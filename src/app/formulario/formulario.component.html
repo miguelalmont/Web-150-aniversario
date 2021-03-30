@@ -4,6 +4,7 @@
       <mat-form-field appearance="standard">
         <mat-label>Nombre</mat-label>
         <input matInput formControlName="firstname" placeholder="Nombre" type="text">
+        <mat-error>El nombre debe contener 6 carácteres como mínimo.</mat-error>
       </mat-form-field>
     </p>
 
@@ -18,6 +19,7 @@
       <mat-form-field appearance="standard">
         <mat-label>Correo electrónico</mat-label>
         <input matInput formControlName="email" placeholder="Correo Electrónico" type="email">
+        <mat-error>Debes introducir un correo válido.</mat-error>
       </mat-form-field>
     </p>
 
@@ -25,6 +27,7 @@
       <mat-form-field appearance="standard">
         <mat-label>Contraseña</mat-label>
         <input matInput formControlName="password" placeholder="Contraseña" type="password">
+        <mat-error>La contraseña debe contener 6 carácteres como mínimo.</mat-error>
       </mat-form-field>
     </p>
 
