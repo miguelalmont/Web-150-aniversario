@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { FormularioComponent } from './formulario/formulario.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: 'home', component: FormularioComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  //{ path: '**', component: PageNotFoundComponent }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

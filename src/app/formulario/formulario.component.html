@@ -1,0 +1,43 @@
+<div class="userForm">
+  <form [formGroup]="newUserForm" (ngSubmit)="onFormSubmit()">
+    <p>
+      <mat-form-field appearance="standard">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="firstname" placeholder="Nombre" type="text">
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="standard">
+        <mat-label>Apellidos</mat-label>
+        <input matInput formControlName="lastname" placeholder="Apellidos" type="text">
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="standard">
+        <mat-label>Correo electrónico</mat-label>
+        <input matInput formControlName="email" placeholder="Correo Electrónico" type="email">
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="standard">
+        <mat-label>Contraseña</mat-label>
+        <input matInput formControlName="password" placeholder="Contraseña" type="password">
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="standard">
+        <mat-label>Verifica tu contraseña</mat-label>
+        <input matInput formControlName="passwordRepeat" placeholder="Contraseña" type="password">
+      </mat-form-field>
+    </p>
+
+    <p>
+        <button type="submit" [disabled]="newUserForm.invalid">Crear</button>
+        <button class="reset-btn" type="reset" [disabled]="newUserForm.pristine">Limpiar</button>
+    </p>
+  </form>
+</div>
