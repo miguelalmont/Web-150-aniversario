@@ -4,12 +4,12 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 
 
 @Component({
-  selector: 'app-formulario',
-  templateUrl: './formulario.component.html',
-  styleUrls: ['./formulario.component.scss']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
 
-export class FormularioComponent implements OnInit {
+export class LoginComponent implements OnInit {
 
   newUserForm: FormGroup = this.fb.group({
     firstname: new FormControl('',  [Validators.required, Validators.minLength(6)]),
