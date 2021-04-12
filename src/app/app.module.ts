@@ -16,6 +16,15 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import { HimnoComponent } from './himno/himno.component';
+import { SaludosComponent } from './saludos/saludos.component';
+import { VisitasComponent } from './visitas/visitas.component';
+import { PActosComponent } from './p-actos/p-actos.component';
+import { AmbientesPJComponent } from './ambientes-pj/ambientes-pj.component';
+import { LogoComponent } from './logo/logo.component';
+import { HistoriaComponent } from './historia/historia.component';
+import { OracionComponent } from './oracion/oracion.component';
+import { MaterialesComponent } from './materiales/materiales.component';
+import { GraciasComponent } from './gracias/gracias.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +32,16 @@ import { HimnoComponent } from './himno/himno.component';
     FormularioComponent,
     HeaderComponent,
     SidenavComponent,
-    HimnoComponent
+    HimnoComponent,
+    SaludosComponent,
+    VisitasComponent,
+    PActosComponent,
+    AmbientesPJComponent,
+    LogoComponent,
+    HistoriaComponent,
+    OracionComponent,
+    MaterialesComponent,
+    GraciasComponent
   ],
   imports: [
     BrowserModule,
