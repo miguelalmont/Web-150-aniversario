@@ -1,45 +1,37 @@
 <mat-drawer-container class="example-container">
   <mat-drawer class="example-sidenav" mode="side" opened>
     <mat-list>
-      <mat-list-item [routerLink]="['registro']" routerLinkActive="router-link-active">
+      <mat-list-item [routerLink]="['registro']" [routerLinkActive]="['active']">
         <mat-icon mat-list-icon>account_circle</mat-icon>
-        <div mat-line class="list-item">Nuevo usuario</div>
-        <mat-divider></mat-divider>
+        <div mat-line class="list-item">Usuarios</div>
       </mat-list-item>
-      <mat-list-item [routerLink]="['saludos']" routerLinkActive="router-link-active">
+      <mat-list-item [routerLink]="['saludos']" [routerLinkActive]="['active']">
         <mat-icon mat-list-icon>thumb_up_alt</mat-icon>
         <div mat-line class="list-item">Saludos</div>
-        <mat-divider></mat-divider>
       </mat-list-item>
-      <mat-list-item [routerLink]="['materiales']" routerLinkActive="router-link-active">
+      <mat-list-item [routerLink]="['materiales']" [routerLinkActive]="['active']">
         <mat-icon mat-list-icon>insert_drive_file</mat-icon>
         <div mat-line class="list-item">Materiales</div>
-        <mat-divider></mat-divider>
       </mat-list-item>
-      <mat-list-item [routerLink]="['visitas']" routerLinkActive="router-link-active">
+      <mat-list-item [routerLink]="['visitas']" [routerLinkActive]="['active']">
         <mat-icon mat-list-icon>visibility</mat-icon>
         <div mat-line class="list-item">Visitas</div>
-        <mat-divider></mat-divider>
       </mat-list-item>
-      <mat-list-item [routerLink]="['actos']" routerLinkActive="router-link-active">
+      <mat-list-item [routerLink]="['actos']" [routerLinkActive]="['active']">
         <mat-icon mat-list-icon>calendar_today</mat-icon>
         <div mat-line class="list-item">Programa Actos</div>
-        <mat-divider></mat-divider>
       </mat-list-item>
-      <mat-list-item [routerLink]="['ambientes']" routerLinkActive="router-link-active">
+      <mat-list-item [routerLink]="['ambientes']" [routerLinkActive]="['active']">
         <mat-icon mat-list-icon>font_download</mat-icon>
         <div mat-line class="list-item">Ambientes PJ</div>
-        <mat-divider></mat-divider>
       </mat-list-item>
-      <mat-list-item [routerLink]="['historia']" routerLinkActive="router-link-active">
+      <mat-list-item [routerLink]="['historia']" [routerLinkActive]="['active']">
         <mat-icon mat-list-icon>account_balance</mat-icon>
         <div mat-line class="list-item">Historia</div>
-        <mat-divider></mat-divider>
       </mat-list-item>
-      <mat-list-item [routerLink]="['oracion']" routerLinkActive="router-link-active">
+      <mat-list-item [routerLink]="['oracion']" [routerLinkActive]="['active']">
         <mat-icon mat-list-icon>location_city</mat-icon>
         <div mat-line class="list-item">Oracion</div>
-        <mat-divider></mat-divider>
       </mat-list-item>
     </mat-list>
   </mat-drawer>

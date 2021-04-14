@@ -3,9 +3,14 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatButtonModule } from '@angular/material/button';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatDialog} from '@angular/material/dialog';
 
 import { ReactiveFormsModule } from '@angular/forms';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './components/login/form/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -22,6 +27,7 @@ import { AmbientesPJComponent } from './components/ambientes-pj/ambientes-pj.com
 import { HistoriaComponent } from './components/historia/historia.component';
 import { OracionComponent } from './components/oracion/oracion.component';
 import { MaterialesComponent } from './components/materiales/materiales.component';
+import { LoginViewComponent } from './components/login/login-view/login-view.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +42,7 @@ import { MaterialesComponent } from './components/materiales/materiales.componen
     HistoriaComponent,
     OracionComponent,
     MaterialesComponent,
+    LoginViewComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +54,12 @@ import { MaterialesComponent } from './components/materiales/materiales.componen
     MatIconModule,
     MatMenuModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatDialog
   ],
   providers: [],
   bootstrap: [AppComponent]
