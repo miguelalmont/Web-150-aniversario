@@ -1,0 +1,19 @@
+<mat-toolbar class="header">
+  <img class="logo" src="../../assets/logo.jpg" height="59px" width="59px">
+  <span class="title">Salesianas 150º Aniversario</span>
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="config-btn" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>logout</mat-icon>
+      <span>Desconectarse</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>manage_accounts</mat-icon>
+      <span>Configuración</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>
+<router-outlet></router-outlet>

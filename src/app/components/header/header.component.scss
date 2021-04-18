@@ -1,0 +1,26 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+.title {
+  margin-left: 1%;
+}
+
+.config-btn {
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: #3490b0;
+  color: white;
+}
+
+.logo {
+  border-radius: 100%;
+}

@@ -1,0 +1,29 @@
+.example-container {
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+.example-sidenav {
+  display: flex;
+  position: fixed;
+  margin-top: 70px;
+  align-items: center;
+  justify-content: center;
+  width: 240px;
+  border-right: #3490b0 5px solid;
+}
+
+$blue: #3490b0;
+$orange: #ee712a;
+mat-list-item:hover {
+  background-color: $blue;
+  cursor: pointer;
+}
+
+mat-list-item.active {
+  border: 3px $blue solid;
+  padding: 2%;
+  font-size: 1.5em;
+  font-weight: 900;
+}

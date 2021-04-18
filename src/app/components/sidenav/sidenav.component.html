@@ -1,0 +1,39 @@
+<mat-drawer-container class="example-container">
+  <mat-drawer class="example-sidenav" mode="side" opened>
+    <mat-list>
+      <mat-list-item [routerLink]="['registro']" [routerLinkActive]="['active']">
+        <mat-icon mat-list-icon>account_circle</mat-icon>
+        <div mat-line class="list-item">Usuarios</div>
+      </mat-list-item>
+      <mat-list-item [routerLink]="['saludos']" [routerLinkActive]="['active']">
+        <mat-icon mat-list-icon>thumb_up_alt</mat-icon>
+        <div mat-line class="list-item">Saludos</div>
+      </mat-list-item>
+      <mat-list-item [routerLink]="['materiales']" [routerLinkActive]="['active']">
+        <mat-icon mat-list-icon>insert_drive_file</mat-icon>
+        <div mat-line class="list-item">Materiales</div>
+      </mat-list-item>
+      <mat-list-item [routerLink]="['visitas']" [routerLinkActive]="['active']">
+        <mat-icon mat-list-icon>visibility</mat-icon>
+        <div mat-line class="list-item">Visitas</div>
+      </mat-list-item>
+      <mat-list-item [routerLink]="['actos']" [routerLinkActive]="['active']">
+        <mat-icon mat-list-icon>calendar_today</mat-icon>
+        <div mat-line class="list-item">Programa Actos</div>
+      </mat-list-item>
+      <mat-list-item [routerLink]="['ambientes']" [routerLinkActive]="['active']">
+        <mat-icon mat-list-icon>font_download</mat-icon>
+        <div mat-line class="list-item">Ambientes PJ</div>
+      </mat-list-item>
+      <mat-list-item [routerLink]="['historia']" [routerLinkActive]="['active']">
+        <mat-icon mat-list-icon>account_balance</mat-icon>
+        <div mat-line class="list-item">Historia</div>
+      </mat-list-item>
+      <mat-list-item [routerLink]="['oracion']" [routerLinkActive]="['active']">
+        <mat-icon mat-list-icon>location_city</mat-icon>
+        <div mat-line class="list-item">Oracion</div>
+      </mat-list-item>
+    </mat-list>
+  </mat-drawer>
+  <mat-drawer-content><router-outlet></router-outlet></mat-drawer-content>
+</mat-drawer-container>
