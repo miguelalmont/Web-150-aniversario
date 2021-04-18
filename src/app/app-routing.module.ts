@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AmbientesPJComponent } from './components/ambientes-pj/ambientes-pj.component';
-import { LoginViewComponent } from './components/login/login-view/login-view.component';
+import { UsersViewComponent } from './components/users/users-view/users-view.component';
 import { HistoriaComponent } from './components/historia/historia.component';
 import { MaterialesComponent } from './components/materiales/materiales.component';
 import { OracionComponent } from './components/oracion/oracion.component';
@@ -13,7 +13,7 @@ import { VisitasComponent } from './components/visitas/visitas.component';
 const routes: Routes = [
   { path: 'home', component: SidenavComponent,
     children: [
-      { path: 'registro', component: LoginViewComponent },
+      { path: 'registro', component: UsersViewComponent },
       { path: 'saludos', component: SaludosComponent },
       { path: 'visitas', component: VisitasComponent },
       { path: 'actos', component: PActosComponent },
