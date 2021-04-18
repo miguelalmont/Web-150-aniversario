@@ -8,8 +8,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
 
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsersComponent } from './components/users/users-form/users.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
@@ -28,6 +29,7 @@ import { HistoriaComponent } from './components/historia/historia.component';
 import { OracionComponent } from './components/oracion/oracion.component';
 import { MaterialesComponent } from './components/materiales/materiales.component';
 import { UsersViewComponent } from './components/users/users-view/users-view.component';
+import { LoginScreenComponent } from './components/login/login-screen/login-screen.component';
 
 @NgModule({
   declarations: [
@@ -42,11 +44,13 @@ import { UsersViewComponent } from './components/users/users-view/users-view.com
     HistoriaComponent,
     OracionComponent,
     MaterialesComponent,
-    UsersViewComponent
+    UsersViewComponent,
+    LoginScreenComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatInputModule,
@@ -59,7 +63,8 @@ import { UsersViewComponent } from './components/users/users-view/users-view.com
     MatPaginatorModule,
     MatButtonModule,
     MatCheckboxModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

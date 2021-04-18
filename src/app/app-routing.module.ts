@@ -9,21 +9,26 @@ import { PActosComponent } from './components/p-actos/p-actos.component';
 import { SaludosComponent } from './components/saludos/saludos.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { VisitasComponent } from './components/visitas/visitas.component';
+import { LoginScreenComponent } from './components/login/login-screen/login-screen.component';
 
 const routes: Routes = [
-  { path: 'home', component: SidenavComponent,
+  { path: 'login', component: LoginScreenComponent,
     children: [
-      { path: 'registro', component: UsersViewComponent },
-      { path: 'saludos', component: SaludosComponent },
-      { path: 'visitas', component: VisitasComponent },
-      { path: 'actos', component: PActosComponent },
-      { path: 'ambientes', component: AmbientesPJComponent },
-      { path: 'historia', component: HistoriaComponent },
-      { path: 'oracion', component: OracionComponent },
-      { path: 'materiales', component: MaterialesComponent }
+      { path: 'home', component: SidenavComponent,
+        children: [
+          { path: 'registro', component: UsersViewComponent },
+          { path: 'saludos', component: SaludosComponent },
+          { path: 'visitas', component: VisitasComponent },
+          { path: 'actos', component: PActosComponent },
+          { path: 'ambientes', component: AmbientesPJComponent },
+          { path: 'historia', component: HistoriaComponent },
+          { path: 'oracion', component: OracionComponent },
+          { path: 'materiales', component: MaterialesComponent }
+        ]
+      }
     ]
   },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   //{ path: '**', component: PageNotFoundComponent }
 ];
 
