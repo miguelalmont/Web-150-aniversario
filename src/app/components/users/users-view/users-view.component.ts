@@ -3,7 +3,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatDialog} from '@angular/material/dialog';
-import {LoginComponent} from '../form/login.component';
+import {UsersComponent} from '../users-form/users.component';
 import {EditUserComponent } from '../edit-user/edit-user.component'
 import { DetailsUserComponent } from '../details-user/details-user.component';
 
@@ -108,7 +108,7 @@ export class UsersViewComponent implements AfterViewInit {
   }
 
   createUserOnClick() {
-    const dialogRef = this.dialog.open(LoginComponent, { disableClose: true });
+    const dialogRef = this.dialog.open(UsersComponent, { disableClose: true });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
