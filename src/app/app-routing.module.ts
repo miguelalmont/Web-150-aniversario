@@ -10,12 +10,13 @@ import { SaludosComponent } from './components/saludos/saludos.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { VisitasComponent } from './components/visitas/visitas.component';
 import { LoginScreenComponent } from './components/login/login-screen/login-screen.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
-  
-      { path: 'home', component: SidenavComponent,
+  { path: 'login', component: LoginScreenComponent },
+  { path: 'home', component: SidenavComponent,
         children: [
-          { path: 'registro', component: UsersViewComponent },
+          { path: 'usuarios', component: UsersViewComponent },
           { path: 'saludos', component: SaludosComponent },
           { path: 'visitas', component: VisitasComponent },
           { path: 'actos', component: PActosComponent },
@@ -24,9 +25,9 @@ const routes: Routes = [
           { path: 'oracion', component: OracionComponent },
           { path: 'materiales', component: MaterialesComponent }
         ]
-      },
+  },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  //{ path: '**', component: PageNotFoundComponent }
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({

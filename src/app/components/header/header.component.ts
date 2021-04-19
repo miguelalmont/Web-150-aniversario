@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  logged: boolean = false;
 
-  ngOnInit(): void {
+  constructor(private router: Router) {
+    this.router.events.subscribe(() => {
+      if (this.router.url.includes('home')) {
+        this.logged = true;
+      } else {
+        this.logged = false;
+      };
+   });
   }
+
+  ngOnInit(): void {}
+
+
 
 }

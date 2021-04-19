@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MatTableModule } from '@angular/material/table';
@@ -30,6 +31,7 @@ import { OracionComponent } from './components/oracion/oracion.component';
 import { MaterialesComponent } from './components/materiales/materiales.component';
 import { UsersViewComponent } from './components/users/users-view/users-view.component';
 import { LoginScreenComponent } from './components/login/login-screen/login-screen.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import { LoginScreenComponent } from './components/login/login-screen/login-scre
     OracionComponent,
     MaterialesComponent,
     UsersViewComponent,
-    LoginScreenComponent
+    LoginScreenComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
