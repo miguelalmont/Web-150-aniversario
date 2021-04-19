@@ -7,7 +7,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonModule } from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatDialog} from '@angular/material/dialog';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/form/login.component';
@@ -28,6 +28,8 @@ import { HistoriaComponent } from './components/historia/historia.component';
 import { OracionComponent } from './components/oracion/oracion.component';
 import { MaterialesComponent } from './components/materiales/materiales.component';
 import { LoginViewComponent } from './components/login/login-view/login-view.component';
+import { EditUserComponent } from './components/login/edit-user/edit-user.component';
+import { DetailsUserComponent } from './components/login/details-user/details-user.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { LoginViewComponent } from './components/login/login-view/login-view.com
     HistoriaComponent,
     OracionComponent,
     MaterialesComponent,
-    LoginViewComponent
+    LoginViewComponent,
+    EditUserComponent,
+    DetailsUserComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +63,7 @@ import { LoginViewComponent } from './components/login/login-view/login-view.com
     MatPaginatorModule,
     MatButtonModule,
     MatCheckboxModule,
-    MatDialog
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
