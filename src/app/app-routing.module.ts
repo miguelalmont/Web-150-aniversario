@@ -12,8 +12,7 @@ import { VisitasComponent } from './components/visitas/visitas.component';
 import { LoginScreenComponent } from './components/login/login-screen/login-screen.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginScreenComponent,
-    children: [
+  
       { path: 'home', component: SidenavComponent,
         children: [
           { path: 'registro', component: UsersViewComponent },
@@ -25,9 +24,7 @@ const routes: Routes = [
           { path: 'oracion', component: OracionComponent },
           { path: 'materiales', component: MaterialesComponent }
         ]
-      }
-    ]
-  },
+      },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   //{ path: '**', component: PageNotFoundComponent }
 ];
