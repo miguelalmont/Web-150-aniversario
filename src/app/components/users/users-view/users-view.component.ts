@@ -60,11 +60,11 @@ let usersData: UserData[] = [
 ]
 
 @Component({
-  selector: 'app-login-view',
-  templateUrl: './login-view.component.html',
-  styleUrls: ['./login-view.component.scss']
+  selector: 'app-users-view',
+  templateUrl: './users-view.component.html',
+  styleUrls: ['./users-view.component.scss']
 })
-export class LoginViewComponent implements AfterViewInit {
+export class UsersViewComponent implements AfterViewInit {
   displayedColumns: string[] = ['name', 'email', 'admin', 'actions'];
   dataSource: MatTableDataSource<UserData>;
   users: UserData[] = usersData;

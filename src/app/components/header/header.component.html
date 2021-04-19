@@ -2,7 +2,7 @@
   <img class="logo" src="../../assets/logo.jpg" height="59px" width="59px">
   <span class="title">Salesianas 150º Aniversario</span>
   <span class="example-spacer"></span>
-  <button mat-icon-button class="config-btn" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+  <button mat-icon-button *ngIf="logged" class="config-btn" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
