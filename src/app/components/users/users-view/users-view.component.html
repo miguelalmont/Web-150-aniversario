@@ -1,7 +1,11 @@
 <div>
-    <button class="insert-btn" (click)="createUserOnClick()" mat-stroked-button>Nuevo Usuario</button>
+    <button class="insert-btn" (click)="createUserOnClick()" mat-stroked-button>
+      <mat-icon>add_circle_outline</mat-icon>
+      Nuevo usuario
+    </button>
 </div>
 
+<div class="table-container">
 <mat-form-field>
     <mat-label>Filtro</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Introduce aquí la palabra a filtrar" #input>
@@ -32,11 +36,20 @@
 
       <!-- Actions Column -->
       <ng-container matColumnDef="actions">
-        <th class="actions-row" mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </th>
+        <th class="actions-row" mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</th>
         <td class="actions-row" mat-cell *matCellDef="let row">
-            <button class="action-btn" mat-stroked-button>Detalles</button>
-            <button class="action-btn" mat-stroked-button>Actualizar datos</button>
-            <button class="action-btn" mat-stroked-button>Eliminar</button>
+            <button class="action-btn view-btn" mat-stroked-button (click)="detailsUserOnClick()">
+              <mat-icon>remove_red_eye</mat-icon>
+              Detalles
+            </button>
+            <button class="action-btn edit-btn" mat-stroked-button (click)="editUserOnClick()">
+              <mat-icon>edit</mat-icon>
+              Editar
+            </button>
+            <button class="action-btn delete-btn" mat-stroked-button>
+              <mat-icon>delete</mat-icon>
+              Eliminar
+            </button>
         </td>
       </ng-container>
   
@@ -45,9 +58,10 @@
   
       <!-- Row shown when there is no matching data. -->
       <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        <td class="mat-cell" colspan="4">No existen coincidencias con el filtro "{{input.value}}"</td>
       </tr>
     </table>
   
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
   </div>
+</div>

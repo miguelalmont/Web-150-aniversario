@@ -29,6 +29,8 @@ import { AmbientesPJComponent } from './components/ambientes-pj/ambientes-pj.com
 import { HistoriaComponent } from './components/historia/historia.component';
 import { OracionComponent } from './components/oracion/oracion.component';
 import { MaterialesComponent } from './components/materiales/materiales.component';
+import { EditUserComponent } from './components/users/edit-user/edit-user.component';
+import { DetailsUserComponent } from './components/users/details-user/details-user.component';
 import { UsersViewComponent } from './components/users/users-view/users-view.component';
 import { LoginScreenComponent } from './components/login/login-screen/login-screen.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
@@ -48,7 +50,9 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     MaterialesComponent,
     UsersViewComponent,
     LoginScreenComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    EditUserComponent,
+    DetailsUserComponent
   ],
   imports: [
     BrowserModule,

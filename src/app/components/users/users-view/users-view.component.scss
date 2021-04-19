@@ -1,9 +1,20 @@
-table {
-  width: 100%;
+$blue: #3490b0;
+$orange: #ee712a;
+$green: #b6bc00;
+$red: #FF0000;
+
+
+
+.table-container {
+  margin: 1%;
 }
 
 .mat-form-field {
   font-size: 14px;
+  width: 30%;
+}
+
+table {
   width: 100%;
 }
 
@@ -11,9 +22,15 @@ td, th {
   width: 15%;
 }
 
-.action-btn {
-  display: inline-block;
-  margin-right: 1%;
+
+
+th {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+tr:hover {
+  background-color: #cccccc;
 }
 
 .actions-row {
@@ -21,5 +38,41 @@ td, th {
 }
 
 .checkbox {
-  margin-left: 10%;
+  margin-left: 16%;
 }
+
+.action-btn {
+  display: inline-block;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  margin-right: 1%;
+}
+
+.insert-btn {
+  margin-top: 1%;
+  margin-left: 1%;
+  background-color: $blue;
+  color: #ffff;
+  font-size: 1.5em;
+}
+
+button {
+  font-size: 1.2em;
+}
+.view-btn {
+  background-color: $green;
+}
+
+.edit-btn {
+  background-color: $orange;
+}
+
+.delete-btn {
+  background-color: $red;
+}
+
+mat-icon {
+  height: 28px;
+}
+
+
