@@ -22,7 +22,6 @@ import { HeaderComponent } from './components/header/header.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { SaludosComponent } from './components/saludos/saludos.component';
 import { VisitasComponent } from './components/visitas/visitas.component';
 import { PActosComponent } from './components/p-actos/p-actos.component';
 import { AmbientesPJComponent } from './components/ambientes-pj/ambientes-pj.component';
@@ -34,6 +33,10 @@ import { DetailsUserComponent } from './components/users/details-user/details-us
 import { UsersViewComponent } from './components/users/users-view/users-view.component';
 import { LoginScreenComponent } from './components/login/login-screen/login-screen.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { SaludosViewComponent } from './components/saludos/saludos-view/saludos-view.component';
+import { SaludosFormComponent } from './components/saludos/saludos-form/saludos-form.component';
+import { SaludosEditComponent } from './components/saludos/saludos-edit/saludos-edit.component';
+import { SaludosDetailsComponent } from './components/saludos/saludos-details/saludos-details.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     UsersComponent,
     HeaderComponent,
     SidenavComponent,
-    SaludosComponent,
+    SaludosViewComponent,
     VisitasComponent,
     PActosComponent,
     AmbientesPJComponent,
@@ -52,7 +55,11 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     LoginScreenComponent,
     PageNotFoundComponent,
     EditUserComponent,
-    DetailsUserComponent
+    DetailsUserComponent,
+    SaludosViewComponent,
+    SaludosFormComponent,
+    SaludosEditComponent,
+    SaludosDetailsComponent
   ],
   imports: [
     BrowserModule,
