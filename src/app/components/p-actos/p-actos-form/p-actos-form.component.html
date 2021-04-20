@@ -1,0 +1,49 @@
+<h2 mat-dialog-title>Nuevo Acto</h2>
+<div class="userForm">
+  <form [formGroup]="newUserForm" (ngSubmit)="onFormSubmit()">
+    <p>
+        <mat-form-field appearance="standard">
+          <mat-label>Titulo</mat-label>
+          <input matInput formControlName="title" placeholder="Titulo" type="text" readonly>
+          <mat-error>El Titulo debe contener 6 carácteres como mínimo.</mat-error>
+        </mat-form-field>
+      </p>
+  
+      <p>
+        <mat-form-field appearance="standard">
+          <mat-label>Descripción</mat-label>
+          <input matInput formControlName="description" placeholder="Descripcion" type="text" readonly>
+          <mat-error>La descripcion debe contener 10 carácteres como mínimo.</mat-error>
+        </mat-form-field>
+      </p>
+  
+      <p>
+        <mat-form-field appearance="standard">
+          <mat-label>Categoria</mat-label>
+          <input matInput formControlName="category" placeholder="Categoria" type="text" readonly>
+          <mat-error>Introduce categoria.</mat-error>
+        </mat-form-field>
+      </p>
+  
+      <p>
+        <mat-form-field appearance="standard">
+          <mat-label>Fecha</mat-label>
+          <input matInput formControlName="date" placeholder="Fecha" type="date" readonly>
+          <mat-error>Introduce fecha.</mat-error>
+        </mat-form-field>
+      </p>
+  
+      <p>
+        <mat-form-field appearance="standard">
+          <mat-label>Imagen</mat-label>
+          <input matInput formControlName="image" placeholder="Imagen" type="image">
+        </mat-form-field>
+      </p>
+
+    <mat-dialog-actions>
+        <button mat-stroked-button type="submit" [disabled]="newUserForm.invalid">Guardar cambios</button>
+        <button mat-stroked-button type="reset" [disabled]="newUserForm.pristine">Limpiar</button>
+        <button mat-stroked-button mat-dialog-close >Cerrar</button>
+    </mat-dialog-actions>
+  </form>
+</div>

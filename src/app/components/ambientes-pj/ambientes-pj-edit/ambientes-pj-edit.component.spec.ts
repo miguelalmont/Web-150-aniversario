@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PActosFormComponent } from './p-actos-form.component';
+import { AmbientesPjEditComponent } from './ambientes-pj-edit.component';
 
-describe('PActosFormComponent', () => {
-  let component: PActosFormComponent;
-  let fixture: ComponentFixture<PActosFormComponent>;
+describe('AmbientesPjEditComponent', () => {
+  let component: AmbientesPjEditComponent;
+  let fixture: ComponentFixture<AmbientesPjEditComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PActosFormComponent ]
+      declarations: [ AmbientesPjEditComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PActosFormComponent);
+    fixture = TestBed.createComponent(AmbientesPjEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PActosFormComponent } from './p-actos-form.component';
+import { HistoriaDetailsComponent } from './historia-details.component';
 
-describe('PActosFormComponent', () => {
-  let component: PActosFormComponent;
-  let fixture: ComponentFixture<PActosFormComponent>;
+describe('HistoriaDetailsComponent', () => {
+  let component: HistoriaDetailsComponent;
+  let fixture: ComponentFixture<HistoriaDetailsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PActosFormComponent ]
+      declarations: [ HistoriaDetailsComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PActosFormComponent);
+    fixture = TestBed.createComponent(HistoriaDetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
