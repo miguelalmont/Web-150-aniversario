@@ -33,6 +33,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { SaludosComponent } from './components/saludos/saludos.component';
 import { VisitasComponent } from './components/visitas/visitas.component';
+<<<<<<< Updated upstream
+=======
+import { AmbientesPJComponent } from './components/ambientes-pj/ambientes-pj.component';
+>>>>>>> Stashed changes
 import { HistoriaComponent } from './components/historia/historia.component';
 import { OracionComponent } from './components/oracion/oracion.component';
 import { MaterialesComponent } from './components/materiales/materiales.component';
@@ -53,6 +57,7 @@ import { PActosDetailsComponent } from './components/p-actos/p-actos-details/p-a
 import { PActosEditComponent } from './components/p-actos/p-actos-edit/p-actos-edit.component';
 import { PActosFormComponent } from './components/p-actos/p-actos-form/p-actos-form.component';
 import { PActosViewComponent } from './components/p-actos/p-actos-view/p-actos-view.component';
+<<<<<<< Updated upstream
 import { AmbientesPjDetailsComponent } from './components/ambientes-pj/ambientes-pj-details/ambientes-pj-details.component';
 import { AmbientesPjEditComponent } from './components/ambientes-pj/ambientes-pj-edit/ambientes-pj-edit.component';
 import { AmbientesPjFormComponent } from './components/ambientes-pj/ambientes-pj-form/ambientes-pj-form.component';
@@ -61,6 +66,8 @@ import { HistoriaDetailsComponent } from './components/historia/historia-details
 import { HistoriaEditComponent } from './components/historia/historia-edit/historia-edit.component';
 import { HistoriaFormComponent } from './components/historia/historia-form/historia-form.component';
 import { HistoriaViewComponent } from './components/historia/historia-view/historia-view.component';
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 @NgModule({
@@ -73,7 +80,10 @@ import { HistoriaViewComponent } from './components/historia/historia-view/histo
     SaludosComponent,
     VisitasComponent,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     PActosComponent,
+=======
+>>>>>>> Stashed changes
     AmbientesPJComponent,
     LogoComponent,
     HistoriaComponent,
@@ -96,6 +106,7 @@ import { HistoriaViewComponent } from './components/historia/historia-view/histo
     PActosDetailsComponent,
     PActosEditComponent,
     PActosFormComponent,
+<<<<<<< Updated upstream
     PActosViewComponent,
     AmbientesPjDetailsComponent,
     AmbientesPjEditComponent,
@@ -105,6 +116,9 @@ import { HistoriaViewComponent } from './components/historia/historia-view/histo
     HistoriaEditComponent,
     HistoriaFormComponent,
     HistoriaViewComponent
+>>>>>>> Stashed changes
+=======
+    PActosViewComponent
 >>>>>>> Stashed changes
   ],
   imports: [

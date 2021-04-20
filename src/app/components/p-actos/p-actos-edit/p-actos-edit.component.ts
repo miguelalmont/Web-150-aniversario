@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
@@ -10,9 +14,15 @@ export class PActosEditComponent implements OnInit {
 
   newUserForm: FormGroup = this.fb.group({
     title: new FormControl('',  [Validators.required, Validators.minLength(6)]),
+<<<<<<< Updated upstream
     description: new FormControl('',  [Validators.required, Validators.minLength(10)]),
     category: new FormControl('',  [Validators.required]),
     date: new FormControl('',  [Validators.required]),
+=======
+    description: new FormControl('',  [Validators.required, Validators.minLength(6)]),
+    category: new FormControl('',  Validators.required),
+    date: new FormControl('',  Validators.required),
+>>>>>>> Stashed changes
     image: new FormControl('', Validators.required)
   });
 
@@ -31,8 +41,15 @@ export class PActosEditComponent implements OnInit {
   ngOnInit(): void {}
 
   onFormSubmit(): void {
+<<<<<<< Updated upstream
     console.log('Name:' + this.newUserForm.get('title').value);
   }
 
 }
 
+=======
+    console.log('Title:' + this.newUserForm.get('title').value);
+  }
+
+}
+>>>>>>> Stashed changes

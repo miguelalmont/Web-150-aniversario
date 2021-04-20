@@ -50,8 +50,13 @@ const routes: Routes = [
           { path: 'saludos', component: SaludosViewComponent },
           { path: 'visitas', component: VisitasComponent },
           { path: 'actos', component: PActosViewComponent },
+<<<<<<< Updated upstream
           { path: 'ambientes', component: AmbientesPjViewComponent },
           { path: 'historia', component: HistoriaViewComponent },
+=======
+          { path: 'ambientes', component: AmbientesPJComponent },
+          { path: 'historia', component: HistoriaComponent },
+>>>>>>> Stashed changes
           { path: 'oracion', component: OracionComponent },
           { path: 'materiales', component: MaterialesComponent }
         ]

@@ -11,7 +11,11 @@ export interface UserData {
   title: string;
   description: string;
   category: string;
+<<<<<<< Updated upstream
   fecha: string;
+=======
+  date: string;
+>>>>>>> Stashed changes
   image: string;
 }
  
@@ -19,43 +23,73 @@ let usersData: UserData[] = [
   {
     title: 'Saludo de la madre Yvonne',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+<<<<<<< Updated upstream
     category: 'Saludo de la madre Yvonne',
     fecha: '01/01/2020',
+=======
+    category: 'image caption',
+    date: 'image caption',
+>>>>>>> Stashed changes
     image: 'image caption',
   },
   {
     title: 'Saludo de la madre Yvonne',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+<<<<<<< Updated upstream
     category: 'Saludo de la madre Yvonne',
     fecha: '01/01/2020',
+=======
+    category: 'image caption',
+    date: 'image caption',
+>>>>>>> Stashed changes
     image: 'image caption',
   },
   {
     title: 'Saludo de la madre Yvonne',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+<<<<<<< Updated upstream
     category: 'Saludo de la madre Yvonne',
     fecha: '01/01/2020',
+=======
+    category: 'image caption',
+    date: 'image caption',
+>>>>>>> Stashed changes
     image: 'image caption',
   },
   {
     title: 'Saludo de la madre Yvonne',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+<<<<<<< Updated upstream
     category: 'Saludo de la madre Yvonne',
     fecha: '01/01/2020',
+=======
+    category: 'image caption',
+    date: 'image caption',
+>>>>>>> Stashed changes
     image: 'image caption',
   },
   {
     title: 'Saludo de la madre Yvonne',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+<<<<<<< Updated upstream
     category: 'Saludo de la madre Yvonne',
     fecha: '01/01/2020',
+=======
+    category: 'image caption',
+    date: 'image caption',
+>>>>>>> Stashed changes
     image: 'image caption',
   },
   {
     title: 'Saludo de la madre Yvonne',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+<<<<<<< Updated upstream
     category: 'Saludo de la madre Yvonne',
     fecha: '01/01/2020',
+=======
+    category: 'image caption',
+    date: 'image caption',
+>>>>>>> Stashed changes
     image: 'image caption',
   }
 ]
@@ -66,7 +100,11 @@ let usersData: UserData[] = [
   styleUrls: ['./p-actos-view.component.scss']
 })
 export class PActosViewComponent implements AfterViewInit {
+<<<<<<< Updated upstream
   displayedColumns: string[] = ['title', 'description','category','fecha', 'image', 'actions'];
+=======
+  displayedColumns: string[] = ['title', 'description', 'category','date','image', 'actions'];
+>>>>>>> Stashed changes
   dataSource: MatTableDataSource<UserData>;
   users: UserData[] = usersData;
 
@@ -131,4 +169,8 @@ export class PActosViewComponent implements AfterViewInit {
       console.log(`Dialog result: ${result}`);
     });
   }
+<<<<<<< Updated upstream
+=======
+  
+>>>>>>> Stashed changes
 }
