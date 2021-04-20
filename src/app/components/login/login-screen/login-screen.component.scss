@@ -7,7 +7,6 @@
     padding-top: 6%;
 }
 
-
 .box {
     display: flex;
     justify-content: center;
@@ -28,4 +27,8 @@
     background-color: #3490b0;
     position: absolute;
     opacity: 0.3;
+}
+
+.btn-block {
+    border: 1px black solid;
 }

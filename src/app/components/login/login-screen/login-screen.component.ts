@@ -7,7 +7,8 @@ import { MatCardModule } from '@angular/material/card';
   styleUrls: ['./login-screen.component.scss']
 })
 export class LoginScreenComponent implements OnInit {
-
+  
+  hide = true;
   constructor() { }
 
   ngOnInit(): void {

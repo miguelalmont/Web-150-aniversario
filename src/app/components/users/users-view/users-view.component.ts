@@ -72,8 +72,9 @@ export class UsersViewComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
+  value = 'Clear me';
+  
   constructor(public dialog: MatDialog) {
-
     this.dataSource = new MatTableDataSource(this.users);
     console.log(this.dataSource)
   }
