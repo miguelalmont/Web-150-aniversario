@@ -7,13 +7,13 @@ import {SaludosFormComponent} from '../saludos-form/saludos-form.component';
 import {SaludosEditComponent } from '../saludos-edit/saludos-edit.component'
 import {SaludosDetailsComponent } from '../saludos-details/saludos-details.component';
 
-export interface UserData {
+export interface SaludosData {
   title: string;
   content: string;
   image: string;
 }
  
-let usersData: UserData[] = [
+let usersData: SaludosData[] = [
   {
     title: 'Saludo de la madre Yvonne',
     content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
@@ -52,8 +52,8 @@ let usersData: UserData[] = [
 })
 export class SaludosViewComponent implements AfterViewInit {
   displayedColumns: string[] = ['title', 'content', 'image', 'actions'];
-  dataSource: MatTableDataSource<UserData>;
-  users: UserData[] = usersData;
+  dataSource: MatTableDataSource<SaludosData>;
+  users: SaludosData[] = usersData;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

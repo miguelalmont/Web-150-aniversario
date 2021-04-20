@@ -8,10 +8,7 @@
 <div class="table-container">
 <mat-form-field>
     <mat-label>Filtro</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Introduce aquí la palabra a filtrar" #input [(ngModel)]="value">
-    <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-      <mat-icon>close</mat-icon>
-    </button>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Introduce aquí la palabra a buscar" #input>
   </mat-form-field>
   
   <div class="mat-elevation-z8">
