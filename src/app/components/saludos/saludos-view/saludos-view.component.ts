@@ -8,54 +8,41 @@ import {SaludosEditComponent } from '../saludos-edit/saludos-edit.component'
 import {SaludosDetailsComponent } from '../saludos-details/saludos-details.component';
 
 export interface UserData {
-  name: string;
-  email: string;
-  password: string;
-  admin: boolean;
+  title: string;
+  content: string;
+  image: string;
 }
-
+ 
 let usersData: UserData[] = [
   {
-    name: 'Admin',
-    email: 'admin@gmail.com',
-    password: '123456',
-    admin: true
+    title: 'Saludo de la madre Yvonne',
+    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    image: 'image caption',
   },
   {
-    name: 'Pepe',
-    email: 'pepe@gmail.com',
-    password: '123456',
-    admin: false
+    title: 'Saludo de las salesianas',
+    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+    image: 'image caption',
   },
   {
-    name: 'Pepa',
-    email: 'pepa@gmail.com',
-    password: '123456',
-    admin: false
+    title: 'Saludo de la madre superiora',
+    content: 'Lorem ipsum dolor sit amet, Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+    image: 'image caption',
   },
   {
-    name: 'Pepa',
-    email: 'pepa@gmail.com',
-    password: '123456',
-    admin: false
+    title: 'Saludo de la inspectoria',
+    content: 'Lorem ipsum dolor sit amet, Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+    image: 'image caption',
   },
   {
-    name: 'Pepa',
-    email: 'pepa@gmail.com',
-    password: '123456',
-    admin: false
+    title: 'Saludo de Charo Ten',
+    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+    image: 'image caption',
   },
   {
-    name: 'Pepa',
-    email: 'pepa@gmail.com',
-    password: '123456',
-    admin: false
-  },
-  {
-    name: 'Pepa',
-    email: 'pepa@gmail.com',
-    password: '123456',
-    admin: false
+    title: 'Saludo de la madre superiora',
+    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+    image: 'image caption',
   }
 ]
 @Component({
@@ -64,7 +51,7 @@ let usersData: UserData[] = [
   styleUrls: ['./saludos-view.component.scss']
 })
 export class SaludosViewComponent implements AfterViewInit {
-  displayedColumns: string[] = ['name', 'email', 'admin', 'actions'];
+  displayedColumns: string[] = ['title', 'content', 'image', 'actions'];
   dataSource: MatTableDataSource<UserData>;
   users: UserData[] = usersData;
 
