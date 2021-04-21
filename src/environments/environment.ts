@@ -6,6 +6,15 @@ export const environment = {
   production: false
 };
 
+export interface UserData {
+  name: string;
+  email: string;
+  password: string;
+  admin: boolean;
+}
+
+
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
