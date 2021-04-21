@@ -107,7 +107,7 @@ export class UsersViewComponent implements AfterViewInit {
   }
 
   createUserOnClick() {
-    const dialogRef = this.dialog.open(UsersComponent, { disableClose: true });
+    const dialogRef = this.dialog.open(UsersComponent, { disableClose: true } );
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

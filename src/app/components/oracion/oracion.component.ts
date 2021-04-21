@@ -44,6 +44,7 @@ export class OracionComponent implements AfterViewInit {
   displayedColumns: string[] = ['title', 'prayer', 'actions'];
   dataSource: MatTableDataSource<PrayerData>;
   prayers: PrayerData[] = prayerData;
+  show: boolean = true
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
