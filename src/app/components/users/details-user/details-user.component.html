@@ -3,35 +3,23 @@
   <button mat-stroked-button mat-dialog-close ><mat-icon>close</mat-icon></button>
 </div>
 <div class="userForm">
-  <form [formGroup]="newUserForm" (ngSubmit)="onFormSubmit()">
+  <form [formGroup]="detailUserForm" (ngSubmit)="onFormSubmit()">
       <mat-form-field appearance="outline">
         <mat-label>Nombre</mat-label>
-        <input matInput formControlName="firstname" placeholder="Nombre" type="text" readonly cdkFocusInitial>
-        <mat-error>El nombre debe contener 6 carácteres como mínimo.</mat-error>
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Apellidos</mat-label>
-        <input matInput formControlName="lastname" placeholder="Apellidos" type="text" readonly>
+        <input matInput formControlName="name" placeholder="Nombre" type="text" readonly cdkFocusInitial>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Correo electrónico</mat-label>
         <input matInput formControlName="email" placeholder="Correo Electrónico" type="email" readonly>
-        <mat-error>Debes introducir un correo válido.</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Contraseña</mat-label>
         <input matInput formControlName="password" placeholder="Contraseña" type="password" readonly>
       </mat-form-field>
-    </p>
-
     <p>
       Administrador:
       <mat-checkbox class="checkbox" disabled="true" [checked]="userToDetail.admin"></mat-checkbox>
     </p>
-
-    <mat-dialog-actions>
-        <button mat-stroked-button mat-dialog-close >Cerrar</button>
-    </mat-dialog-actions>
   </form>
 </div>
 
