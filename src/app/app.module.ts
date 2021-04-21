@@ -22,12 +22,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { VisitasComponent } from './components/visitas/visitas.component';
 import { PActosComponent } from './components/p-actos/p-actos.component';
 import { AmbientesPJComponent } from './components/ambientes-pj/ambientes-pj.component';
 import { HistoriaComponent } from './components/historia/historia.component';
 import { OracionComponent } from './components/oracion/oracion.component';
-import { MaterialesComponent } from './components/materiales/materiales.component';
 import { EditUserComponent } from './components/users/edit-user/edit-user.component';
 import { DetailsUserComponent } from './components/users/details-user/details-user.component';
 import { UsersViewComponent } from './components/users/users-view/users-view.component';
@@ -37,6 +35,14 @@ import { SaludosViewComponent } from './components/saludos/saludos-view/saludos-
 import { SaludosFormComponent } from './components/saludos/saludos-form/saludos-form.component';
 import { SaludosEditComponent } from './components/saludos/saludos-edit/saludos-edit.component';
 import { SaludosDetailsComponent } from './components/saludos/saludos-details/saludos-details.component';
+import { MaterialesViewComponent } from './components/materiales/materiales-view/materiales-view.component';
+import { MaterialesFormComponent } from './components/materiales/materiales-form/materiales-form.component';
+import { MaterialesEditComponent } from './components/materiales/materiales-edit/materiales-edit.component';
+import { MaterialesDetailsComponent } from './components/materiales/materiales-details/materiales-details.component';
+import { VisitasViewComponent } from './components/visitas/visitas-view/visitas-view.component';
+import { VisitasFormComponent } from './components/visitas/visitas-form/visitas-form.component';
+import { VisitasEditComponent } from './components/visitas/visitas-edit/visitas-edit.component';
+import { VisitasDetailsComponent } from './components/visitas/visitas-details/visitas-details.component';
 
 @NgModule({
   declarations: [
@@ -45,12 +51,11 @@ import { SaludosDetailsComponent } from './components/saludos/saludos-details/sa
     HeaderComponent,
     SidenavComponent,
     SaludosViewComponent,
-    VisitasComponent,
     PActosComponent,
     AmbientesPJComponent,
     HistoriaComponent,
     OracionComponent,
-    MaterialesComponent,
+    MaterialesViewComponent,
     UsersViewComponent,
     LoginScreenComponent,
     PageNotFoundComponent,
@@ -59,7 +64,15 @@ import { SaludosDetailsComponent } from './components/saludos/saludos-details/sa
     SaludosViewComponent,
     SaludosFormComponent,
     SaludosEditComponent,
-    SaludosDetailsComponent
+    SaludosDetailsComponent,
+    MaterialesViewComponent,
+    MaterialesFormComponent,
+    MaterialesEditComponent,
+    MaterialesDetailsComponent,
+    VisitasViewComponent,
+    VisitasFormComponent,
+    VisitasEditComponent,
+    VisitasDetailsComponent
   ],
   imports: [
     BrowserModule,
