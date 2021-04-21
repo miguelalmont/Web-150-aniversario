@@ -1,16 +1,52 @@
-/* You can add global styles to this file, and also import other style files */
-
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+// COLORS VARIABLES
+$blue: #3490b0;
+$orange: #ee712a;
+$green: #b6bc00;
+$red: #FF0000;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+// TABLE STYLES
+.table-container { margin: 1%; }
+.mat-form-field { font-size: 14px; width: 30%; }
+  
+table { width: 100%; }
+td, th { width: 15%; }
+th { font-size: 1.5em; font-weight: bold; }
+tr td:first-child { font-weight: bold; }
+tr:hover { background-color: #cccccc; }
+.actions-row { width: 30%; } 
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.checkbox { margin-left: 16%; }
+mat-icon { height: 28px; }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+// BUTTONS
+button { font-size: 1.2em; }
+.action-btn {
+  display: inline-block;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  margin-right: 1%;
+}
+.insert-btn {
+  margin-top: 1%;
+  margin-left: 1%;
+  background-color: $blue;
+  color: #ffff;
+  font-size: 1.5em;
+}
+.view-btn { background-color: $green; }
+.edit-btn { background-color: $orange; } 
+.delete-btn { background-color: $red; }
+  
+// FORMS
+.form {
+  text-align: center;
+  margin: auto;
+  padding: 10px;
+  width: 350px;
+}
+mat-form-field { display: block; }
+  
+  

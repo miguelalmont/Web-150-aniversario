@@ -7,8 +7,11 @@
 
 <div class="table-container">
 <mat-form-field>
-    <mat-label>Filtro</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Introduce aquí la palabra a filtrar" #input>
+    <mat-label>Buscar</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Introduce aquí la palabra a buscar" #input [(ngModel)]="value">
+    <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="closeFilter()">
+      <mat-icon>close</mat-icon>
+    </button>
   </mat-form-field>
   
   <div class="mat-elevation-z8">
@@ -38,7 +41,7 @@
       <ng-container matColumnDef="actions">
         <th class="actions-row" mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</th>
         <td class="actions-row" mat-cell *matCellDef="let row">
-            <button class="action-btn view-btn" mat-stroked-button (click)="detailsUserOnClick()">
+            <button class="action-btn view-btn" mat-stroked-button (click)="detailsUserOnClick(row)">
               <mat-icon>remove_red_eye</mat-icon>
               Detalles
             </button>

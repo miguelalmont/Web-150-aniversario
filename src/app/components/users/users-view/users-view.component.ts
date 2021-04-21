@@ -6,13 +6,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {UsersComponent} from '../users-form/users.component';
 import {EditUserComponent } from '../edit-user/edit-user.component'
 import { DetailsUserComponent } from '../details-user/details-user.component';
-
-export interface UserData {
-  name: string;
-  email: string;
-  password: string;
-  admin: boolean;
-}
+import { UserData } from 'src/environments/environment';
 
 let usersData: UserData[] = [
   {
@@ -68,14 +62,15 @@ export class UsersViewComponent implements AfterViewInit {
   displayedColumns: string[] = ['name', 'email', 'admin', 'actions'];
   dataSource: MatTableDataSource<UserData>;
   users: UserData[] = usersData;
+  userToDetail: UserData;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
+  value = '';
+  
   constructor(public dialog: MatDialog) {
-
     this.dataSource = new MatTableDataSource(this.users);
-    console.log(this.dataSource)
   }
 
   ngAfterViewInit() {
@@ -108,7 +103,7 @@ export class UsersViewComponent implements AfterViewInit {
   }
 
   createUserOnClick() {
-    const dialogRef = this.dialog.open(UsersComponent, { disableClose: true });
+    const dialogRef = this.dialog.open(UsersComponent, { disableClose: true } );
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
@@ -123,12 +118,19 @@ export class UsersViewComponent implements AfterViewInit {
     });
   }
 
-  detailsUserOnClick() {
-    const dialogRef = this.dialog.open(DetailsUserComponent);
+  detailsUserOnClick(row: UserData) {
+    const dialogRef = this.dialog.open(DetailsUserComponent, {
+      data: {row}
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+
+  closeFilter() {
+    this.dataSource.filter = null;
+    this.value = '';
   }
   
 }
