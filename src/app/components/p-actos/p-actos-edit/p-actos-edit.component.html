@@ -1,50 +1,36 @@
-<p>p-actos-edit works!</p>
-<h2 mat-dialog-title>Nuevo Acto</h2>
-<div class="userForm">
+<div class="form-header">
+  <h2 mat-dialog-title>Editar acto</h2>
+  <button mat-stroked-button mat-dialog-close ><mat-icon>close</mat-icon></button>
+</div>
+<div class="form-container">
   <form [formGroup]="newUserForm" (ngSubmit)="onFormSubmit()">
-    <p>
       <mat-form-field appearance="outline">
         <mat-label>Titulo</mat-label>
-        <input matInput formControlName="title" placeholder="Titulo" type="text">
+        <input matInput formControlName="title" placeholder="Titulo" type="text" cdkFocusInitial>
         <mat-error>El nombre debe contener 6 carácteres como mínimo.</mat-error>
       </mat-form-field>
-    </p>
-
-    <p>
       <mat-form-field appearance="outline">
         <mat-label>Descripcion</mat-label>
         <input matInput formControlName="description" placeholder="Descripcion" type="text">
         <mat-error>El nombre debe contener 6 carácteres como mínimo.</mat-error>
       </mat-form-field>
-    </p>
-
-    <p>
       <mat-form-field appearance="outline">
         <mat-label>Categoria</mat-label>
         <input matInput formControlName="category" placeholder="Categoria" type="text">
         <mat-error>El nombre debe contener 6 carácteres como mínimo.</mat-error>
       </mat-form-field>
-    </p>
-
-    <p>
       <mat-form-field appearance="outline">
         <mat-label>Fecha</mat-label>
         <input matInput formControlName="date" placeholder="Fecha" type="date">
         <mat-error>Debes introducir un correo válido.</mat-error>
       </mat-form-field>
-    </p>
-
-    <p>
       <mat-form-field appearance="outline">
         <mat-label>Cartel</mat-label>
         <input matInput formControlName="image" placeholder="Cartel" type="text">
       </mat-form-field>
-    </p>
-
     <mat-dialog-actions>
         <button mat-stroked-button type="submit" [disabled]="newUserForm.invalid">Guardar cambios</button>
         <button mat-stroked-button type="reset" [disabled]="newUserForm.pristine">Limpiar</button>
-        <button mat-stroked-button mat-dialog-close >Cerrar</button>
     </mat-dialog-actions>
   </form>
 </div>

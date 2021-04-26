@@ -41,12 +41,21 @@ button { font-size: 1.2em; }
 .delete-btn { background-color: $red; }
   
 // FORMS
-.form {
+.form-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-container {
   text-align: center;
   margin: auto;
   padding: 10px;
   width: 350px;
 }
-mat-form-field { display: block; }
+
+form mat-form-field { 
+  display: block; 
+  width: 350px;
+}
   
   

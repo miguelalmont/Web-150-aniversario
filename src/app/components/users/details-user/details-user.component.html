@@ -2,7 +2,7 @@
   <h2 mat-dialog-title>Detalles del usuario</h2>
   <button mat-stroked-button mat-dialog-close ><mat-icon>close</mat-icon></button>
 </div>
-<div class="userForm">
+<div class="form-container">
   <form [formGroup]="detailUserForm" (ngSubmit)="onFormSubmit()">
       <mat-form-field appearance="outline">
         <mat-label>Nombre</mat-label>
@@ -14,7 +14,7 @@
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Contraseña</mat-label>
-        <input matInput formControlName="password" placeholder="Contraseña" type="password" readonly>
+        <input matInput formControlName="password" placeholder="Contraseña" type="text" readonly>
       </mat-form-field>
     <p>
       Administrador:
