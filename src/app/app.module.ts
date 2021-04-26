@@ -24,7 +24,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { VisitasComponent } from './components/visitas/visitas.component';
 import { PActosComponent } from './components/p-actos/p-actos.component';
-import { AmbientesPJComponent } from './components/ambientes-pj/ambientes-pj.component';
 import { HistoriaComponent } from './components/historia/historia.component';
 import { OracionComponent } from './components/oracion/oracion.component';
 import { MaterialesComponent } from './components/materiales/materiales.component';
@@ -37,6 +36,10 @@ import { SaludosViewComponent } from './components/saludos/saludos-view/saludos-
 import { SaludosFormComponent } from './components/saludos/saludos-form/saludos-form.component';
 import { SaludosEditComponent } from './components/saludos/saludos-edit/saludos-edit.component';
 import { SaludosDetailsComponent } from './components/saludos/saludos-details/saludos-details.component';
+import { AmbientesPjDetailsComponent } from './components/ambientes-pj/ambientes-pj-details/ambientes-pj-details.component';
+import { AmbientesPjEditComponent } from './components/ambientes-pj/ambientes-pj-edit/ambientes-pj-edit.component';
+import { AmbientesPjFormComponent } from './components/ambientes-pj/ambientes-pj-form/ambientes-pj-form.component';
+import { AmbientesPjViewComponent } from './components/ambientes-pj/ambientes-pj-view/ambientes-pj-view.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,6 @@ import { SaludosDetailsComponent } from './components/saludos/saludos-details/sa
     SaludosViewComponent,
     VisitasComponent,
     PActosComponent,
-    AmbientesPJComponent,
     HistoriaComponent,
     OracionComponent,
     MaterialesComponent,
@@ -59,7 +61,11 @@ import { SaludosDetailsComponent } from './components/saludos/saludos-details/sa
     SaludosViewComponent,
     SaludosFormComponent,
     SaludosEditComponent,
-    SaludosDetailsComponent
+    SaludosDetailsComponent,
+    AmbientesPjDetailsComponent,
+    AmbientesPjEditComponent,
+    AmbientesPjFormComponent,
+    AmbientesPjViewComponent
   ],
   imports: [
     BrowserModule,

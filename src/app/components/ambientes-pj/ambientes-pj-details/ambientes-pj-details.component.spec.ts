@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AmbientesPJComponent } from './ambientes-pj.component';
+import { AmbientesPjDetailsComponent } from './ambientes-pj-details.component';
 
-describe('AmbientesPJComponent', () => {
-  let component: AmbientesPJComponent;
-  let fixture: ComponentFixture<AmbientesPJComponent>;
+describe('AmbientesPjDetailsComponent', () => {
+  let component: AmbientesPjDetailsComponent;
+  let fixture: ComponentFixture<AmbientesPjDetailsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AmbientesPJComponent ]
+      declarations: [ AmbientesPjDetailsComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AmbientesPJComponent);
+    fixture = TestBed.createComponent(AmbientesPjDetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
