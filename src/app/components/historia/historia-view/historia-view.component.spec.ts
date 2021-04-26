@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HistoriaComponent } from './historia.component';
+import { HistoriaViewComponent } from './historia-view.component';
 
-describe('HistoriaComponent', () => {
-  let component: HistoriaComponent;
-  let fixture: ComponentFixture<HistoriaComponent>;
+describe('HistoriaViewComponent', () => {
+  let component: HistoriaViewComponent;
+  let fixture: ComponentFixture<HistoriaViewComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HistoriaComponent ]
+      declarations: [ HistoriaViewComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HistoriaComponent);
+    fixture = TestBed.createComponent(HistoriaViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

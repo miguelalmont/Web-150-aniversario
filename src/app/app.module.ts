@@ -23,7 +23,6 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { VisitasComponent } from './components/visitas/visitas.component';
-import { HistoriaComponent } from './components/historia/historia.component';
 import { OracionComponent } from './components/oracion/oracion.component';
 import { MaterialesComponent } from './components/materiales/materiales.component';
 import { EditUserComponent } from './components/users/edit-user/edit-user.component';
@@ -43,6 +42,10 @@ import { PActosDetailsComponent } from './components/p-actos/p-actos-details/p-a
 import { PActosFormComponent } from './components/p-actos/p-actos-form/p-actos-form.component';
 import { PActosEditComponent } from './components/p-actos/p-actos-edit/p-actos-edit.component';
 import { PActosViewComponent } from './components/p-actos/p-actos-view/p-actos-view.component';
+import { HistoriaDetailsComponent } from './components/historia/historia-details/historia-details.component';
+import { HistoriaEditComponent } from './components/historia/historia-edit/historia-edit.component';
+import { HistoriaFormComponent } from './components/historia/historia-form/historia-form.component';
+import { HistoriaViewComponent } from './components/historia/historia-view/historia-view.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,6 @@ import { PActosViewComponent } from './components/p-actos/p-actos-view/p-actos-v
     SidenavComponent,
     SaludosViewComponent,
     VisitasComponent,
-    HistoriaComponent,
     OracionComponent,
     MaterialesComponent,
     UsersViewComponent,
@@ -71,7 +73,11 @@ import { PActosViewComponent } from './components/p-actos/p-actos-view/p-actos-v
     PActosDetailsComponent,
     PActosFormComponent,
     PActosEditComponent,
-    PActosViewComponent
+    PActosViewComponent,
+    HistoriaDetailsComponent,
+    HistoriaEditComponent,
+    HistoriaFormComponent,
+    HistoriaViewComponent
   ],
   imports: [
     BrowserModule,
