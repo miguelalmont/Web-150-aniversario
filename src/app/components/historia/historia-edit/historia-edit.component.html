@@ -1,1 +1,42 @@
-<p>historia-edit works!</p>
+<h2 mat-dialog-title>Editar Historia</h2>
+<div class="userForm">
+  <form [formGroup]="newUserForm" (ngSubmit)="onFormSubmit()">
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Titulo</mat-label>
+        <input matInput formControlName="title" placeholder="Titulo" type="text">
+        <mat-error>El titulo debe contener 6 carácteres como mínimo.</mat-error>
+      </mat-form-field>
+    </p>
+
+    <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Subtitulo</mat-label>
+          <input matInput formControlName="subtitle" placeholder="Subtitulo" type="text">
+          <mat-error>El subtitulo debe contener 6 carácteres como mínimo.</mat-error>
+        </mat-form-field>
+      </p>
+
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Descripcion</mat-label>
+        <input matInput formControlName="description" placeholder="Descripcion" type="text">
+        <mat-error>El nombre debe contener 6 carácteres como mínimo.</mat-error>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Imagen</mat-label>
+        <input matInput formControlName="image" placeholder="Imagen" type="text">
+      </mat-form-field>
+    </p>
+
+    <mat-dialog-actions>
+        <button mat-stroked-button type="submit" [disabled]="newUserForm.invalid">Guardar cambios</button>
+        <button mat-stroked-button type="reset" [disabled]="newUserForm.pristine">Limpiar</button>
+        <button mat-stroked-button mat-dialog-close >Cerrar</button>
+    </mat-dialog-actions>
+  </form>
+</div>
+
+
