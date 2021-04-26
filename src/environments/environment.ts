@@ -13,6 +13,11 @@ export interface UserData {
   admin: boolean;
 }
 
+export interface AmbientesData {
+  title: string;
+  video: string;
+}
+
 
 
 /*
