@@ -23,7 +23,6 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { VisitasComponent } from './components/visitas/visitas.component';
-import { PActosComponent } from './components/p-actos/p-actos.component';
 import { HistoriaComponent } from './components/historia/historia.component';
 import { OracionComponent } from './components/oracion/oracion.component';
 import { MaterialesComponent } from './components/materiales/materiales.component';
@@ -40,6 +39,10 @@ import { AmbientesPjDetailsComponent } from './components/ambientes-pj/ambientes
 import { AmbientesPjEditComponent } from './components/ambientes-pj/ambientes-pj-edit/ambientes-pj-edit.component';
 import { AmbientesPjFormComponent } from './components/ambientes-pj/ambientes-pj-form/ambientes-pj-form.component';
 import { AmbientesPjViewComponent } from './components/ambientes-pj/ambientes-pj-view/ambientes-pj-view.component';
+import { PActosDetailsComponent } from './components/p-actos/p-actos-details/p-actos-details.component';
+import { PActosFormComponent } from './components/p-actos/p-actos-form/p-actos-form.component';
+import { PActosEditComponent } from './components/p-actos/p-actos-edit/p-actos-edit.component';
+import { PActosViewComponent } from './components/p-actos/p-actos-view/p-actos-view.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +52,6 @@ import { AmbientesPjViewComponent } from './components/ambientes-pj/ambientes-pj
     SidenavComponent,
     SaludosViewComponent,
     VisitasComponent,
-    PActosComponent,
     HistoriaComponent,
     OracionComponent,
     MaterialesComponent,
@@ -65,7 +67,11 @@ import { AmbientesPjViewComponent } from './components/ambientes-pj/ambientes-pj
     AmbientesPjDetailsComponent,
     AmbientesPjEditComponent,
     AmbientesPjFormComponent,
-    AmbientesPjViewComponent
+    AmbientesPjViewComponent,
+    PActosDetailsComponent,
+    PActosFormComponent,
+    PActosEditComponent,
+    PActosViewComponent
   ],
   imports: [
     BrowserModule,
