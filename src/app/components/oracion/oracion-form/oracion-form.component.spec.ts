@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OracionComponent } from './oracion.component';
+import { OracionFormComponent } from './oracion-form.component';
 
-describe('OracionComponent', () => {
-  let component: OracionComponent;
-  let fixture: ComponentFixture<OracionComponent>;
+describe('OracionFormComponent', () => {
+  let component: OracionFormComponent;
+  let fixture: ComponentFixture<OracionFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OracionComponent ]
+      declarations: [ OracionFormComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OracionComponent);
+    fixture = TestBed.createComponent(OracionFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

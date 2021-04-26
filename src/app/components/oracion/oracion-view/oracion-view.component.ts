@@ -3,6 +3,9 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatDialog} from '@angular/material/dialog';
+import { OracionFormComponent } from '../oracion-form/oracion-form.component';
+import { OracionEditComponent } from '../oracion-edit/oracion-edit.component';
+import { OracionDetailsComponent } from '../oracion-details/oracion-details.component';
 
 export interface PrayerData {
   title: string;
@@ -35,12 +38,13 @@ let prayerData: PrayerData[] = [
     prayer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
   }
 ]
+
 @Component({
-  selector: 'app-oracion',
-  templateUrl: './oracion.component.html',
-  styleUrls: ['./oracion.component.scss']
+  selector: 'app-oracion-view',
+  templateUrl: './oracion-view.component.html',
+  styleUrls: ['./oracion-view.component.scss']
 })
-export class OracionComponent implements AfterViewInit {
+export class OracionViewComponent implements AfterViewInit {
   displayedColumns: string[] = ['title', 'prayer', 'actions'];
   dataSource: MatTableDataSource<PrayerData>;
   prayers: PrayerData[] = prayerData;
@@ -84,27 +88,27 @@ export class OracionComponent implements AfterViewInit {
   }
 
   createPrayerOnClick() {
-    // const dialogRef = this.dialog.open(UsersComponent, { disableClose: true });
+    const dialogRef = this.dialog.open(OracionFormComponent, { disableClose: true });
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log(`Dialog result: ${result}`);
-    // });
+     dialogRef.afterClosed().subscribe(result => {
+       console.log(`Dialog result: ${result}`);
+   });
   }
 
   editPrayerOnClick() {
-    // const dialogRef = this.dialog.open(EditUserComponent, { disableClose: true });
+    const dialogRef = this.dialog.open(OracionEditComponent, { disableClose: true });
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log(`Dialog result: ${result}`);
-    // });
+   dialogRef.afterClosed().subscribe(result => {
+    console.log(`Dialog result: ${result}`);
+     });
   }
 
   detailsPrayerOnClick() {
-    // const dialogRef = this.dialog.open(DetailsUserComponent);
+   const dialogRef = this.dialog.open(OracionDetailsComponent);
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log(`Dialog result: ${result}`);
-    // });
+   dialogRef.afterClosed().subscribe(result => {
+    console.log(`Dialog result: ${result}`);
+    });
   }
 
 }

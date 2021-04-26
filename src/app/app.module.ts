@@ -23,7 +23,6 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { VisitasComponent } from './components/visitas/visitas.component';
-import { OracionComponent } from './components/oracion/oracion.component';
 import { MaterialesComponent } from './components/materiales/materiales.component';
 import { EditUserComponent } from './components/users/edit-user/edit-user.component';
 import { DetailsUserComponent } from './components/users/details-user/details-user.component';
@@ -46,6 +45,10 @@ import { HistoriaDetailsComponent } from './components/historia/historia-details
 import { HistoriaEditComponent } from './components/historia/historia-edit/historia-edit.component';
 import { HistoriaFormComponent } from './components/historia/historia-form/historia-form.component';
 import { HistoriaViewComponent } from './components/historia/historia-view/historia-view.component';
+import { OracionDetailsComponent } from './components/oracion/oracion-details/oracion-details.component';
+import { OracionEditComponent } from './components/oracion/oracion-edit/oracion-edit.component';
+import { OracionFormComponent } from './components/oracion/oracion-form/oracion-form.component';
+import { OracionViewComponent } from './components/oracion/oracion-view/oracion-view.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +58,6 @@ import { HistoriaViewComponent } from './components/historia/historia-view/histo
     SidenavComponent,
     SaludosViewComponent,
     VisitasComponent,
-    OracionComponent,
     MaterialesComponent,
     UsersViewComponent,
     LoginScreenComponent,
@@ -77,7 +79,11 @@ import { HistoriaViewComponent } from './components/historia/historia-view/histo
     HistoriaDetailsComponent,
     HistoriaEditComponent,
     HistoriaFormComponent,
-    HistoriaViewComponent
+    HistoriaViewComponent,
+    OracionDetailsComponent,
+    OracionEditComponent,
+    OracionFormComponent,
+    OracionViewComponent
   ],
   imports: [
     BrowserModule,
