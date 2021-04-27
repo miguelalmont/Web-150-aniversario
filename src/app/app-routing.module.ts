@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { UsersViewComponent } from './components/users/users-view/users-view.component';
 import { MaterialesComponent } from './components/materiales/materiales.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
-import { VisitasComponent } from './components/visitas/visitas.component';
 import { LoginScreenComponent } from './components/login/login-screen/login-screen.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { SaludosViewComponent } from './components/saludos/saludos-view/saludos-view.component';
