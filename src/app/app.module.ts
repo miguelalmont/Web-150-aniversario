@@ -49,6 +49,12 @@ import { OracionDetailsComponent } from './components/oracion/oracion-details/or
 import { OracionEditComponent } from './components/oracion/oracion-edit/oracion-edit.component';
 import { OracionFormComponent } from './components/oracion/oracion-form/oracion-form.component';
 import { OracionViewComponent } from './components/oracion/oracion-view/oracion-view.component';
+import { MaterialesFormComponent } from './components/materiales/materiales-form/materiales-form.component';
+import { MaterialesEditComponent } from './components/materiales/materiales-edit/materiales-edit.component';
+import { MaterialesDetailsComponent } from './components/materiales/materiales-details/materiales-details.component';
+import { VisitasDetailsComponent } from './components/visitas/visitas-details/visitas-details.component';
+import { VisitasEditComponent } from './components/visitas/visitas-edit/visitas-edit.component';
+import { VisitasFormComponent } from './components/visitas/visitas-form/visitas-form.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +89,13 @@ import { OracionViewComponent } from './components/oracion/oracion-view/oracion-
     OracionDetailsComponent,
     OracionEditComponent,
     OracionFormComponent,
-    OracionViewComponent
+    OracionViewComponent,
+    MaterialesFormComponent,
+    MaterialesEditComponent,
+    MaterialesDetailsComponent,
+    VisitasDetailsComponent,
+    VisitasEditComponent,
+    VisitasFormComponent
   ],
   imports: [
     BrowserModule,
