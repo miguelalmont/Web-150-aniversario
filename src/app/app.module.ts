@@ -22,8 +22,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { VisitasComponent } from './components/visitas/visitas.component';
-import { MaterialesComponent } from './components/materiales/materiales.component';
+import { VisitasViewComponent } from './components/visitas/visitas-view/visitas-view.component';
+import { MaterialesViewComponent } from './components/materiales/materiales-view/materiales-view.component';
 import { EditUserComponent } from './components/users/edit-user/edit-user.component';
 import { DetailsUserComponent } from './components/users/details-user/details-user.component';
 import { UsersViewComponent } from './components/users/users-view/users-view.component';
@@ -57,8 +57,8 @@ import { OracionViewComponent } from './components/oracion/oracion-view/oracion-
     HeaderComponent,
     SidenavComponent,
     SaludosViewComponent,
-    VisitasComponent,
-    MaterialesComponent,
+    VisitasViewComponent,
+    MaterialesViewComponent,
     UsersViewComponent,
     LoginScreenComponent,
     PageNotFoundComponent,
