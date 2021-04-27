@@ -7,6 +7,7 @@ import {VisitasFormComponent} from '../visitas-form/visitas-form.component';
 import {VisitasEditComponent } from '../visitas-edit/visitas-edit.component'
 import {VisitasDetailsComponent } from '../visitas-details/visitas-details.component';
 
+
 export interface SaludosData {
   title: string;
   content: string;

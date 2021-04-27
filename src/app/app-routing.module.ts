@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UsersViewComponent } from './components/users/users-view/users-view.component';
-import { MaterialesComponent } from './components/materiales/materiales.component';
+import { MaterialesViewComponent } from './components/materiales/materiales-view/materiales-view.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { LoginScreenComponent } from './components/login/login-screen/login-screen.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
@@ -10,6 +10,7 @@ import { AmbientesPjViewComponent } from './components/ambientes-pj/ambientes-pj
 import { PActosViewComponent } from './components/p-actos/p-actos-view/p-actos-view.component';
 import { HistoriaViewComponent } from './components/historia/historia-view/historia-view.component';
 import { OracionViewComponent } from './components/oracion/oracion-view/oracion-view.component';
+import { VisitasViewComponent } from './components/visitas/visitas-view/visitas-view.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginScreenComponent },
@@ -17,12 +18,12 @@ const routes: Routes = [
         children: [
           { path: 'usuarios', component: UsersViewComponent },
           { path: 'saludos', component: SaludosViewComponent },
-          { path: 'visitas', component: VisitasComponent },
+          { path: 'visitas', component: VisitasViewComponent },
           { path: 'actos', component: PActosViewComponent },
           { path: 'ambientes', component: AmbientesPjViewComponent },
           { path: 'historia', component: HistoriaViewComponent },
           { path: 'oracion', component: OracionViewComponent },
-          { path: 'materiales', component: MaterialesComponent }
+          { path: 'materiales', component: MaterialesViewComponent }
         ]
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
