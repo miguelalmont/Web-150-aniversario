@@ -1,0 +1,7 @@
+{
+    "/api/*": {
+        "target": "https://app150.cmaleon.es/api150/",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}

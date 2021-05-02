@@ -6,19 +6,6 @@ export const environment = {
   production: false
 };
 
-export interface UserData {
-  name: string;
-  email: string;
-  password: string;
-  admin: boolean;
-}
-
-export interface AmbientesData {
-  title: string;
-  video: string;
-}
-
-
 
 /*
  * For easier debugging in development mode, you can import the following file
