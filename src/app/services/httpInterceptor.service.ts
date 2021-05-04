@@ -9,7 +9,7 @@ import { AuthenticatorJwt } from './authenticatorJwt.service';
 })
 export class HttpInterceptorService implements HttpInterceptor {
 
-  urlWebAPI = 'https://app150.cmaleon.es/api150/';
+  urlWebAPI = 'https://app150.cmaleon.es/api150/api';
 
   constructor(private autenticadorJwt: AuthenticatorJwt) { }
   
@@ -26,7 +26,7 @@ export class HttpInterceptorService implements HttpInterceptor {
     }
 
     request = request.clone({ headers: request.headers.set('Accept', 'application/json') });
-    // request = request.clone({ headers: request.headers.set('Access-Control-Allow-Origin', '*') });
+    request = request.clone({ headers: request.headers.set('Access-Control-Allow-Origin', '*') });
 
     const newUrl = {url: this.urlWebAPI + request.url}; 
     request = Object.assign(request, newUrl); 

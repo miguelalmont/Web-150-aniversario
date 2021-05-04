@@ -25,7 +25,7 @@ export class LoginService {
       password: password,
     };
 
-    return this.http.post<Token>('auth/login.php', jsonObject).pipe(
+    return this.http.post<Token>('https://app150.cmaleon.es/api150/api/auth/login.php', jsonObject).pipe(
       tap((data) => {
         console.log('User token: ' + data['jwt']);
       })
@@ -33,7 +33,7 @@ export class LoginService {
   }
 
   getUserAuthenticated(): Observable<UserLogin> {
-    return this.http.get<UserLogin>('/auth/login.php').pipe(
+    return this.http.get<UserLogin>('https://app150.cmaleon.es/api150/api/auth/login.php').pipe(
       tap((userAuthenticated) => {
         console.log('getuserAuten');
         if (
