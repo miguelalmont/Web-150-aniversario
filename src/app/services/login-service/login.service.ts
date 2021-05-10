@@ -5,12 +5,14 @@ import { catchError, tap } from 'rxjs/operators';
 import { Token } from './../../models/token';
 import { Md5 } from 'ts-md5/dist/md5';
 import { UserLogin } from './../../models/userLogin';
+import { environment } from './../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
   userAuthenticated: UserLogin;
+  baseUrl = environment.baseUrl
 
   @Output()
   changesInUserAuthenticated = new EventEmitter<UserLogin>();
@@ -25,7 +27,7 @@ export class LoginService {
       password: password,
     };
 
-    return this.http.post<Token>('https://app150.cmaleon.es/api150/api/auth/login.php', jsonObject).pipe(
+    return this.http.post<Token>(`${this.baseUrl}/auth/login.php`, jsonObject).pipe(
       tap((data) => {
         console.log('User token: ' + data['jwt']);
       })
@@ -33,7 +35,7 @@ export class LoginService {
   }
 
   getUserAuthenticated(): Observable<UserLogin> {
-    return this.http.get<UserLogin>('https://app150.cmaleon.es/api150/api/auth/login.php').pipe(
+    return this.http.get<UserLogin>(`${this.baseUrl}/auth/login.php`).pipe(
       tap((userAuthenticated) => {
         console.log('getuserAuten');
         if (

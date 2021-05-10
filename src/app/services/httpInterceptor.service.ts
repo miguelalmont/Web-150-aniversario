@@ -3,13 +3,14 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } fr
 import { Observable } from 'rxjs'; 
 import { map, finalize} from 'rxjs/operators'; 
 import { AuthenticatorJwt } from './authenticatorJwt.service';
+import { environment } from './../../environments/environment';
 
 @Injectable({ 
   providedIn: 'root' 
 })
 export class HttpInterceptorService implements HttpInterceptor {
 
-  urlWebAPI = 'https://app150.cmaleon.es/api150/api';
+  baseUrl = environment.baseUrl
 
   constructor(private autenticadorJwt: AuthenticatorJwt) { }
   
@@ -28,9 +29,9 @@ export class HttpInterceptorService implements HttpInterceptor {
     request = request.clone({ headers: request.headers.set('Accept', 'application/json') });
     request = request.clone({ headers: request.headers.set('Access-Control-Allow-Origin', '*') });
 
-    const newUrl = {url: this.urlWebAPI + request.url}; 
+    const newUrl = {url: this.baseUrl + request.url}; 
     request = Object.assign(request, newUrl); 
-    const newUrlWithParams = {urlWithParams: this.urlWebAPI + request.urlWithParams}; 
+    const newUrlWithParams = {urlWithParams: this.baseUrl + request.urlWithParams}; 
     request = Object.assign(request, newUrlWithParams);
 
     return next.handle(request).pipe( 
