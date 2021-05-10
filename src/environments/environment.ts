@@ -3,21 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  baseUrl: 'https://app150.cmaleon.es/api150/api'
 };
-
-export interface UserData {
-  name: string;
-  email: string;
-  password: string;
-  admin: boolean;
-}
-
-export interface AmbientesData {
-  title: string;
-  video: string;
-}
-
 
 
 /*

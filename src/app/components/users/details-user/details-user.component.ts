@@ -1,7 +1,7 @@
 import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { UserData } from 'src/environments/environment';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-details-user',
@@ -11,7 +11,7 @@ import { UserData } from 'src/environments/environment';
 export class DetailsUserComponent implements OnDestroy {
 
   @Input()
-  userToDetail: UserData = {
+  userToDetail: User = {
     name: '',
     email: '',
     password: '',

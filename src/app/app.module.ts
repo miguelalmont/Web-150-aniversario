@@ -55,6 +55,7 @@ import { MaterialesDetailsComponent } from './components/materiales/materiales-d
 import { VisitasDetailsComponent } from './components/visitas/visitas-details/visitas-details.component';
 import { VisitasEditComponent } from './components/visitas/visitas-edit/visitas-edit.component';
 import { VisitasFormComponent } from './components/visitas/visitas-form/visitas-form.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -114,7 +115,8 @@ import { VisitasFormComponent } from './components/visitas/visitas-form/visitas-
     MatButtonModule,
     MatCheckboxModule,
     MatDialogModule,
-    MatCardModule
+    MatCardModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

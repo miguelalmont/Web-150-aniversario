@@ -6,9 +6,9 @@ import {MatDialog} from '@angular/material/dialog';
 import {UsersComponent} from '../users-form/users.component';
 import {EditUserComponent } from '../edit-user/edit-user.component'
 import { DetailsUserComponent } from '../details-user/details-user.component';
-import { UserData } from 'src/environments/environment';
+import { User } from 'src/app/models/user';
 
-let usersData: UserData[] = [
+let usersData: User[] = [
   {
     name: 'Admin',
     email: 'admin@gmail.com',
@@ -60,9 +60,9 @@ let usersData: UserData[] = [
 })
 export class UsersViewComponent implements AfterViewInit {
   displayedColumns: string[] = ['name', 'email', 'admin', 'actions'];
-  dataSource: MatTableDataSource<UserData>;
-  users: UserData[] = usersData;
-  userToDetail: UserData;
+  dataSource: MatTableDataSource<User>;
+  users: User[] = usersData;
+  userToDetail: User;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -118,7 +118,7 @@ export class UsersViewComponent implements AfterViewInit {
     });
   }
 
-  detailsUserOnClick(row: UserData) {
+  detailsUserOnClick(row: User) {
     const dialogRef = this.dialog.open(DetailsUserComponent, {
       data: {row}
     });
