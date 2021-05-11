@@ -24,7 +24,6 @@ export class HistoriaViewComponent implements AfterViewInit, OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(public dialog: MatDialog, private historiaService: HistoriaService) {
-    this.historiaService.getHistorias().then((data) => this.historiaData = data);
     this.dataSource = new MatTableDataSource(this.historiaData);
   }
 
