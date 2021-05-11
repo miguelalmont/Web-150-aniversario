@@ -6,60 +6,10 @@ import {MatDialog} from '@angular/material/dialog';
 import { PActosFormComponent } from '../p-actos-form/p-actos-form.component';
 import { PActosEditComponent } from '../p-actos-edit/p-actos-edit.component';
 import { PActosDetailsComponent } from '../p-actos-details/p-actos-details.component';
-
-
-export interface ActoData {
-  title: string;
-  description: string;
-  category: string;
-  date: string;
-  image: string;
-}
+import { ActoData } from 'src/app/models/actos';
+import { PActoService } from 'src/app/services/p-acto-service/p-acto.service';
  
-let usersData: ActoData[] = [
-  {
-    title: 'Saludo de la madre Yvonne',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    category: 'image caption',
-    date: 'image caption',
-    image: 'image caption',
-  },
-  {
-    title: 'Saludo de la madre Yvonne',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    category: 'image caption',
-    date: 'image caption',
-    image: 'image caption',
-  },
-  {
-    title: 'Saludo de la madre Yvonne',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    category: 'image caption',
-    date: 'image caption',
-    image: 'image caption',
-  },
-  {
-    title: 'Saludo de la madre Yvonne',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    category: 'image caption',
-    date: 'image caption',
-    image: 'image caption',
-  },
-  {
-    title: 'Saludo de la madre Yvonne',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    category: 'image caption',
-    date: 'image caption',
-    image: 'image caption',
-  },
-  {
-    title: 'Saludo de la madre Yvonne',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    category: 'image caption',
-    date: 'image caption',
-    image: 'image caption',
-  }
-]
+let usersData: ActoData[] = []
 
 @Component({
   selector: 'app-p-actos-view',
@@ -69,15 +19,15 @@ let usersData: ActoData[] = [
 export class PActosViewComponent implements AfterViewInit {
   displayedColumns: string[] = ['title', 'description', 'category', 'date', 'image', 'actions'];
   dataSource: MatTableDataSource<ActoData>;
-  users: ActoData[] = usersData;
+  actos: ActoData[] = [];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private pActosService: PActoService) {
 
-    this.dataSource = new MatTableDataSource(this.users);
-    console.log(this.dataSource)
+    this.pActosService.getHistorias().then((data) => this.actos = data);
+    this.dataSource = new MatTableDataSource(this.actos);
   }
 
   ngAfterViewInit() {
@@ -110,6 +60,7 @@ export class PActosViewComponent implements AfterViewInit {
   }
 
   createUserOnClick() {
+    console.log(this.actos)
     const dialogRef = this.dialog.open(PActosFormComponent, { disableClose: true });
 
     dialogRef.afterClosed().subscribe(result => {
