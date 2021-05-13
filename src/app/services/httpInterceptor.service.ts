@@ -13,7 +13,12 @@ export class HttpInterceptorService implements HttpInterceptor {
   baseUrl = environment.baseUrl
 
   constructor(private autenticadorJwt: AuthenticatorJwt) { }
-  
+
+  // withCredentials: true;
+
+  // req = req.clone({
+  //       withCredentials: true
+  //     });
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
@@ -25,6 +30,9 @@ export class HttpInterceptorService implements HttpInterceptor {
     if (!request.headers.has('Content-Type')) { 
       request = request.clone({ headers: request.headers.set('Content-Type', 'application/json; charset=utf-8') }); 
     }
+
+    
+
 
     request = request.clone({ headers: request.headers.set('Accept', 'application/json') });
     request = request.clone({ headers: request.headers.set('Access-Control-Allow-Origin', '*') });

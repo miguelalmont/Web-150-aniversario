@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
@@ -6,73 +6,33 @@ import {MatDialog} from '@angular/material/dialog';
 import { HistoriaDetailsComponent } from '../historia-details/historia-details.component';
 import { HistoriaEditComponent } from '../historia-edit/historia-edit.component';
 import { HistoriaFormComponent } from '../historia-form/historia-form.component';
-
-export interface HistoriaData {
-  title: string;
-  subtitle: string;
-  description: string;
-  image: string;
-}
- 
-let usersData: HistoriaData[] = [
-  {
-    title: 'Saludo de la madre Yvonne',
-    subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    description: 'image caption',
-    image: 'image caption',
-  },
-  {
-    title: 'Saludo de la madre Yvonne',
-    subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    description: 'image caption',
-    image: 'image caption',
-  },
-  {
-    title: 'Saludo de la madre Yvonne',
-    subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    description: 'image caption',
-    image: 'image caption',
-  },
-  {
-    title: 'Saludo de la madre Yvonne',
-    subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    description: 'image caption',
-    image: 'image caption',
-  },
-  {
-    title: 'Saludo de la madre Yvonne',
-    subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    description: 'image caption',
-    image: 'image caption',
-  },
-  {
-    title: 'Saludo de la madre Yvonne',
-    subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    description: 'image caption',
-    image: 'image caption',
-  }
-]
+import { Historia } from 'src/app/models/historia';
+import { HistoriaService } from 'src/app/services/historia-service/historia.service';
 
 @Component({
   selector: 'app-historia-view',
   templateUrl: './historia-view.component.html',
   styleUrls: ['./historia-view.component.scss']
 })
-export class HistoriaViewComponent implements AfterViewInit {
-  displayedColumns: string[] = ['title', 'subtitle', 'description', 'image', 'actions'];
-  dataSource: MatTableDataSource<HistoriaData>;
-  users: HistoriaData[] = usersData;
+export class HistoriaViewComponent implements AfterViewInit, OnInit {
+  displayedColumns: string[] = ['title', 'subtitle', 'description', 'actions'];
+  dataSource: MatTableDataSource<Historia>;
+  historiaData: Historia[] = [];
+  value = '';
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private historiaService: HistoriaService) {
+    this.dataSource = new MatTableDataSource(this.historiaData);
+  }
 
-    this.dataSource = new MatTableDataSource(this.users);
-    console.log(this.dataSource)
+  async ngOnInit(): Promise<void> {
+    this.historiaData = await this.historiaService.getHistorias();
   }
 
   ngAfterViewInit() {
+    
     this.dataSource.paginator = this.paginator;
     this.paginator._intl.itemsPerPageLabel = 'Por página';
     this.paginator._intl.nextPageLabel = 'Siguiente página';
@@ -102,6 +62,8 @@ export class HistoriaViewComponent implements AfterViewInit {
   }
 
   createUserOnClick() {
+    console.log(this.historiaData)
+
     const dialogRef = this.dialog.open(HistoriaFormComponent, { disableClose: true });
 
     dialogRef.afterClosed().subscribe(result => {

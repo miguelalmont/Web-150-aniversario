@@ -56,6 +56,7 @@ import { VisitasDetailsComponent } from './components/visitas/visitas-details/vi
 import { VisitasEditComponent } from './components/visitas/visitas-edit/visitas-edit.component';
 import { VisitasFormComponent } from './components/visitas/visitas-form/visitas-form.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -96,7 +97,8 @@ import { HttpClientModule } from '@angular/common/http';
     MaterialesDetailsComponent,
     VisitasDetailsComponent,
     VisitasEditComponent,
-    VisitasFormComponent
+    VisitasFormComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
