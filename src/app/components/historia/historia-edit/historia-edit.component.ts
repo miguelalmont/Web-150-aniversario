@@ -9,28 +9,28 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 })
 export class HistoriaEditComponent implements OnInit {
 
-  newUserForm: FormGroup = this.fb.group({
+  newHistoriaForm: FormGroup = this.fb.group({
     title: new FormControl('',  [Validators.required, Validators.minLength(6)]),
     subtitle: new FormControl('',  [Validators.required, Validators.minLength(6)]),
     description: new FormControl('',  [Validators.required, Validators.minLength(6)]),
     image: new FormControl('', Validators.required)
   });
 
-  user = {
-    title: this.newUserForm.get('title').value,
-    subtitle: this.newUserForm.get('subtitle').value,
-    description: this.newUserForm.get('description').value,
-    image: this.newUserForm.get('image').value
+  historia = {
+    title: this.newHistoriaForm.get('title').value,
+    subtitle: this.newHistoriaForm.get('subtitle').value,
+    description: this.newHistoriaForm.get('description').value,
+    image: this.newHistoriaForm.get('image').value
   }
 
   constructor(private fb: FormBuilder) {}
 
-  get title() { return this.newUserForm.get('title').value; }
+  get title() { return this.newHistoriaForm.get('title').value; }
 
   ngOnInit(): void {}
 
   onFormSubmit(): void {
-    console.log('Name:' + this.newUserForm.get('title').value);
+    console.log('Name:' + this.newHistoriaForm.get('title').value);
   }
 
 }

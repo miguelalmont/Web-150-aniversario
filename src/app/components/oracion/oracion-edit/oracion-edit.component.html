@@ -3,7 +3,7 @@
   <button mat-stroked-button mat-dialog-close ><mat-icon>close</mat-icon></button>
 </div>
 <div class="form-container">
-  <form [formGroup]="newUserForm" (ngSubmit)="onFormSubmit()">
+  <form [formGroup]="newOracionForm" (ngSubmit)="onFormSubmit()">
       <mat-form-field appearance="outline">
         <mat-label>Titulo</mat-label>
         <input matInput formControlName="title" placeholder="Titulo" type="text" cdkFocusInitial>
@@ -15,8 +15,8 @@
           <mat-error>El subtitulo debe contener 6 carácteres como mínimo.</mat-error>
         </mat-form-field>
     <mat-dialog-actions>
-        <button mat-stroked-button type="submit" [disabled]="newUserForm.invalid">Guardar cambios</button>
-        <button mat-stroked-button type="reset" [disabled]="newUserForm.pristine">Limpiar</button>
+        <button mat-stroked-button type="submit" [disabled]="newOracionForm.invalid">Guardar cambios</button>
+        <button mat-stroked-button type="reset" [disabled]="newOracionForm.pristine">Limpiar</button>
     </mat-dialog-actions>
   </form>
 </div>

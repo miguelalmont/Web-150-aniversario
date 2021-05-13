@@ -59,7 +59,7 @@ export class PActosViewComponent implements AfterViewInit {
     }
   }
 
-  createUserOnClick() {
+  createActosOnClick() {
     console.log(this.actos)
     const dialogRef = this.dialog.open(PActosFormComponent, { disableClose: true });
 
@@ -68,7 +68,7 @@ export class PActosViewComponent implements AfterViewInit {
     });
   }
 
-  editUserOnClick() {
+  editActosOnClick() {
     const dialogRef = this.dialog.open(PActosEditComponent, { disableClose: true });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -76,7 +76,7 @@ export class PActosViewComponent implements AfterViewInit {
     });
   }
 
-  detailsUserOnClick() {
+  detailsActosOnClick() {
     const dialogRef = this.dialog.open(PActosDetailsComponent);
 
     dialogRef.afterClosed().subscribe(result => {

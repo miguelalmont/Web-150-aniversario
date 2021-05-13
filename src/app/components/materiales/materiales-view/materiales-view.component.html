@@ -1,5 +1,5 @@
 <div>
-    <button class="insert-btn" (click)="createUserOnClick()" mat-stroked-button>
+    <button class="insert-btn" (click)="createMaterialesOnClick()" mat-stroked-button>
       <mat-icon>add_circle_outline</mat-icon>
       Nuevo Material
     </button>
@@ -20,13 +20,13 @@
         <td mat-cell *matCellDef="let row"> {{row.title}} </td>
       </ng-container>
   
-      <!-- Email Column -->
+      <!-- Content Column -->
       <ng-container matColumnDef="content">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Contenido </th>
         <td mat-cell *matCellDef="let row"> {{row.content}} </td>
       </ng-container>
 
-     <!-- Email Column -->
+     <!-- Image Column -->
      <ng-container matColumnDef="image">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Imagen </th>
       <td mat-cell *matCellDef="let row"> {{row.image}} </td>
@@ -36,11 +36,11 @@
       <ng-container matColumnDef="actions">
         <th class="actions-row" mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</th>
         <td class="actions-row" mat-cell *matCellDef="let row">
-            <button class="action-btn view-btn" mat-stroked-button (click)="detailsUserOnClick()">
+            <button class="action-btn view-btn" mat-stroked-button (click)="detailsMaterialesOnClick()">
               <mat-icon>remove_red_eye</mat-icon>
               Detalles
             </button>
-            <button class="action-btn edit-btn" mat-stroked-button (click)="editUserOnClick()">
+            <button class="action-btn edit-btn" mat-stroked-button (click)="editMaterialesOnClick()">
               <mat-icon>edit</mat-icon>
               Editar
             </button>
