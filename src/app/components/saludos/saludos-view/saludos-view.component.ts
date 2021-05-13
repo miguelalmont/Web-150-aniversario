@@ -11,38 +11,46 @@ export interface SaludosData {
   title: string;
   content: string;
   image: string;
-}
+  description: string;
+  video?: string;
+};
  
 let usersData: SaludosData[] = [
   {
     title: 'Saludo de la madre Yvonne',
     content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     image: 'image caption',
+    description: ''
   },
   {
     title: 'Saludo de las salesianas',
     content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
     image: 'image caption',
+    description: ''
   },
   {
     title: 'Saludo de la madre superiora',
     content: 'Lorem ipsum dolor sit amet, Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
     image: 'image caption',
+    description: ''
   },
   {
     title: 'Saludo de la inspectoria',
     content: 'Lorem ipsum dolor sit amet, Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
     image: 'image caption',
+    description: ''
   },
   {
     title: 'Saludo de Charo Ten',
     content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
     image: 'image caption',
+    description: ''
   },
   {
     title: 'Saludo de la madre superiora',
     content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
     image: 'image caption',
+    description: ''
   }
 ]
 @Component({
@@ -51,7 +59,7 @@ let usersData: SaludosData[] = [
   styleUrls: ['./saludos-view.component.scss']
 })
 export class SaludosViewComponent implements AfterViewInit {
-  displayedColumns: string[] = ['title', 'content', 'image', 'actions'];
+  displayedColumns: string[] = ['title', 'content', 'image', 'description', 'video', 'actions'];
   dataSource: MatTableDataSource<SaludosData>;
   users: SaludosData[] = usersData;
 
@@ -61,7 +69,7 @@ export class SaludosViewComponent implements AfterViewInit {
   constructor(public dialog: MatDialog) {
 
     this.dataSource = new MatTableDataSource(this.users);
-    console.log(this.dataSource)
+    //console.log(this.dataSource)
   }
 
   ngAfterViewInit() {

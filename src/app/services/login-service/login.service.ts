@@ -22,10 +22,12 @@ export class LoginService {
   authentication(username: string, password: string): Observable<Token> {
     const md5 = new Md5();
     var jsonObject = {
-      user: username,
+      username: "usercript",
       // password: md5.appendStr(password).end().toString(),
-      password: password,
+      password: "usercript"
     };
+
+    console.log(jsonObject)
 
     return this.http.post<Token>(`${this.baseUrl}/auth/login.php`, jsonObject).pipe(
       tap((data) => {
