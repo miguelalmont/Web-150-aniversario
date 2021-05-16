@@ -3,9 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { Token } from './../../models/token';
-import { Md5 } from 'ts-md5/dist/md5';
 import { UserLogin } from './../../models/userLogin';
 import { environment } from './../../../environments/environment';
+import { Md5 } from 'ts-md5';
 
 @Injectable({
   providedIn: 'root',
