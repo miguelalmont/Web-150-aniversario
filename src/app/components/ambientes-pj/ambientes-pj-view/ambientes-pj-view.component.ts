@@ -7,13 +7,13 @@ import { AmbientesPjDetailsComponent } from '../ambientes-pj-details/ambientes-p
 import { AmbientesPjEditComponent } from '../ambientes-pj-edit/ambientes-pj-edit.component';
 import { AmbientesPjFormComponent } from '../ambientes-pj-form/ambientes-pj-form.component';
 
-export interface SaludosData {
+export interface AmbientesData {
   title: string;
   video: string;
   
 }
  
-let usersData: SaludosData[] = [
+let AmbientesData: AmbientesData[] = [
   {
     title: 'Saludo de la madre Yvonne',
     video: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
@@ -53,15 +53,15 @@ let usersData: SaludosData[] = [
 })
 export class AmbientesPjViewComponent implements AfterViewInit {
   displayedColumns: string[] = ['title', 'video', 'actions'];
-  dataSource: MatTableDataSource<SaludosData>;
-  users: SaludosData[] = usersData;
+  dataSource: MatTableDataSource<AmbientesData>;
+  ambientes: AmbientesData[] = AmbientesData;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(public dialog: MatDialog) {
 
-    this.dataSource = new MatTableDataSource(this.users);
+    this.dataSource = new MatTableDataSource(this.ambientes);
     console.log(this.dataSource)
   }
 
@@ -94,7 +94,7 @@ export class AmbientesPjViewComponent implements AfterViewInit {
     }
   }
 
-  createUserOnClick() {
+  createAmbienteOnClick() {
     const dialogRef = this.dialog.open(AmbientesPjFormComponent, { disableClose: true });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -102,7 +102,7 @@ export class AmbientesPjViewComponent implements AfterViewInit {
     });
   }
 
-  editUserOnClick() {
+  editAmbienteOnClick() {
     const dialogRef = this.dialog.open(AmbientesPjEditComponent, { disableClose: true });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -110,7 +110,7 @@ export class AmbientesPjViewComponent implements AfterViewInit {
     });
   }
 
-  detailsUserOnClick() {
+  detailsAmbienteOnClick() {
     const dialogRef = this.dialog.open(AmbientesPjDetailsComponent);
 
     dialogRef.afterClosed().subscribe(result => {

@@ -7,13 +7,13 @@ import {MaterialesFormComponent} from '../materiales-form/materiales-form.compon
 import {MaterialesEditComponent } from '../materiales-edit/materiales-edit.component'
 import {MaterialesDetailsComponent } from '../materiales-details/materiales-details.component';
 
-export interface SaludosData {
+export interface MaterialesData {
   title: string;
   content: string;
   image: string;
 }
  
-let usersData: SaludosData[] = [
+let materialesData: MaterialesData[] = [
   {
     title: 'Saludo de la madre Yvonne',
     content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
@@ -53,15 +53,15 @@ let usersData: SaludosData[] = [
 })
 export class MaterialesViewComponent implements AfterViewInit {
   displayedColumns: string[] = ['title', 'content', 'image', 'actions'];
-  dataSource: MatTableDataSource<SaludosData>;
-  users: SaludosData[] = usersData;
+  dataSource: MatTableDataSource<MaterialesData>;
+  materiales: MaterialesData[] = materialesData;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(public dialog: MatDialog) {
 
-    this.dataSource = new MatTableDataSource(this.users);
+    this.dataSource = new MatTableDataSource(this.materiales);
     console.log(this.dataSource)
   }
 
@@ -94,7 +94,7 @@ export class MaterialesViewComponent implements AfterViewInit {
     }
   }
 
-  createUserOnClick() {
+  createMaterialesOnClick() {
     const dialogRef = this.dialog.open(MaterialesFormComponent, { disableClose: true });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -102,7 +102,7 @@ export class MaterialesViewComponent implements AfterViewInit {
     });
   }
 
-  editUserOnClick() {
+  editMaterialesOnClick() {
     const dialogRef = this.dialog.open(MaterialesEditComponent, { disableClose: true });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -110,7 +110,7 @@ export class MaterialesViewComponent implements AfterViewInit {
     });
   }
 
-  detailsUserOnClick() {
+  detailsMaterialesOnClick() {
     const dialogRef = this.dialog.open(MaterialesDetailsComponent);
 
     dialogRef.afterClosed().subscribe(result => {
