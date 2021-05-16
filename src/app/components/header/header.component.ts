@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticatorJwt } from 'src/app/services/authenticatorJwt.service';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,7 @@ export class HeaderComponent implements OnInit {
 
   logged: boolean = false;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private authenticatorJwt: AuthenticatorJwt) {
     this.router.events.subscribe(() => {
       if (this.router.url.includes('home')) {
         this.logged = true;
@@ -22,6 +23,11 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  logOut() {
+    console.log('Desconectado')
+    this.authenticatorJwt.deleteJWT();
+    this.router.navigate(['/login']);
+  }
 
 
 }

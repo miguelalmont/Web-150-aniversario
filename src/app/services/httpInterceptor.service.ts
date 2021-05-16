@@ -1,20 +1,18 @@
+import { baseUrl } from 'src/environments/environment';
 import { Injectable } from '@angular/core'; 
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http'; 
 import { Observable } from 'rxjs'; 
 import { map, finalize} from 'rxjs/operators'; 
 import { AuthenticatorJwt } from './authenticatorJwt.service';
-import { environment } from './../../environments/environment';
 
 @Injectable({ 
   providedIn: 'root' 
 })
 export class HttpInterceptorService implements HttpInterceptor {
 
-  baseUrl = environment.baseUrl
+  baseUrl = baseUrl.url;
 
-  constructor(private autenticadorJwt: AuthenticatorJwt) {
-    console.log("HOLI");
-   }
+  constructor(private autenticadorJwt: AuthenticatorJwt) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 

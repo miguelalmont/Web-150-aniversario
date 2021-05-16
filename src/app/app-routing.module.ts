@@ -1,3 +1,4 @@
+import { AuthGuardService } from './services/auth-guard-service/auth-guard.service';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UsersViewComponent } from './components/users/users-view/users-view.component';
@@ -14,7 +15,7 @@ import { VisitasViewComponent } from './components/visitas/visitas-view/visitas-
 
 const routes: Routes = [
   { path: 'login', component: LoginScreenComponent },
-  { path: 'home', component: SidenavComponent,
+  { path: 'home', component: SidenavComponent, canActivate: [AuthGuardService],
         children: [
           { path: 'usuarios', component: UsersViewComponent },
           { path: 'saludos', component: SaludosViewComponent },

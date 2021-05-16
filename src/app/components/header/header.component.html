@@ -6,7 +6,7 @@
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item>
+    <button mat-menu-item (click)="logOut()">
       <mat-icon>logout</mat-icon>
       <span>Desconectarse</span>
     </button>
