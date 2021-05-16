@@ -65,4 +65,9 @@ export class LoginService {
     let url = '/user/get?email=' + email;
     return this.http.get<UserLogin>(url);
   }
+
+  loggedIn() {
+    return !!localStorage.getItem('jwt');    
+  }
+  
 }
