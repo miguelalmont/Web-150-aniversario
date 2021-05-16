@@ -11,7 +11,6 @@ import { baseUrl } from 'src/environments/environment';
 export class HistoriaService {
   
   baseUrl = baseUrl.url
-  baseUrl = environment.baseUrl;
 
   constructor(private http: HttpClient) {}
 
