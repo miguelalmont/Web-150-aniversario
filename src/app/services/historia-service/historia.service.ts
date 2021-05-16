@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Historia } from 'src/app/models/historia';
-import { environment } from 'src/environments/environment';
+import { baseUrl } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HistoriaService {
   
-  baseUrl = environment.baseUrl
+  baseUrl = baseUrl.url
 
   constructor(private http: HttpClient) { }
 
