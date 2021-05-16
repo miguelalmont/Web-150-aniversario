@@ -27,8 +27,13 @@ export class HistoriaViewComponent implements AfterViewInit, OnInit {
     this.dataSource = new MatTableDataSource(this.historiaData);
   }
 
-  async ngOnInit(): Promise<void> {
-    this.historiaData = await this.historiaService.getHistorias();
+  ngOnInit() {
+    this.historiaService.getHistorias().subscribe(
+      data => {
+      this.historiaData = data
+      console.log(this.historiaData)
+    }
+    )
   }
 
   ngAfterViewInit() {
