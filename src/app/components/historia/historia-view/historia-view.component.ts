@@ -1,13 +1,14 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
 import {MatDialog} from '@angular/material/dialog';
 import { HistoriaDetailsComponent } from '../historia-details/historia-details.component';
 import { HistoriaEditComponent } from '../historia-edit/historia-edit.component';
 import { HistoriaFormComponent } from '../historia-form/historia-form.component';
 import { Historia } from 'src/app/models/historia';
 import { HistoriaService } from 'src/app/services/historia-service/historia.service';
+import { HistoriaDataSource } from 'src/app/dataSources/historiaDataSource';
+import { delay, startWith, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-historia-view',
@@ -16,7 +17,7 @@ import { HistoriaService } from 'src/app/services/historia-service/historia.serv
 })
 export class HistoriaViewComponent implements AfterViewInit, OnInit {
   displayedColumns: string[] = ['title', 'subtitle', 'description', 'actions'];
-  dataSource: MatTableDataSource<Historia>;
+  dataSource: HistoriaDataSource;
   historiaData: Historia[] = [];
   value = '';
 
@@ -24,16 +25,11 @@ export class HistoriaViewComponent implements AfterViewInit, OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(public dialog: MatDialog, private historiaService: HistoriaService) {
-    this.dataSource = new MatTableDataSource(this.historiaData);
+    this.dataSource = new HistoriaDataSource(this.historiaService);
   }
 
   ngOnInit() {
-    this.historiaService.getHistorias().subscribe(
-      data => {
-      this.historiaData = data
-      console.log(this.historiaData)
-    }
-    )
+    this.dataSource.loadHistorias();
   }
 
   ngAfterViewInit() {
@@ -67,8 +63,6 @@ export class HistoriaViewComponent implements AfterViewInit, OnInit {
   }
 
   createHistoriaOnClick() {
-    console.log(this.historiaData)
-
     const dialogRef = this.dialog.open(HistoriaFormComponent, { disableClose: true });
 
     dialogRef.afterClosed().subscribe(result => {

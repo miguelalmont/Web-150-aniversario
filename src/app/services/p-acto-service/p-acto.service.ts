@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActoData } from 'src/app/models/actos';
-import { environment } from 'src/environments/environment';
+import { baseUrl } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PActoService {
 
-  baseUrl = environment.baseUrl
+  baseUrl = baseUrl.url
 
   constructor(private http: HttpClient) { }
 
