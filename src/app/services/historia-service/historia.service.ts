@@ -18,4 +18,11 @@ export class HistoriaService {
     let url = this.baseUrl + '/story/list.php';
     return this.http.get<Historia[]>(url);
   }
+
+  insertHistoria() { }
+
+  updateHistoria() { }
+
+  deleteHistoria() { }
+
 }
