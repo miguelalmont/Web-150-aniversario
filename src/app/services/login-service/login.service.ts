@@ -22,9 +22,9 @@ export class LoginService {
   authentication(username: string, password: string): Observable<Token> {
     const md5 = new Md5();
     var jsonObject = {
-      username: "usercript",
-      // password: md5.appendStr(password).end().toString(),
-      password: "usercript"
+      username: username,
+      password: md5.appendStr(password).end().toString(),
+      // password: password
     };
 
     console.log(jsonObject)
