@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Historia } from './../../../models/models';
+import { Component, OnInit, Inject, Input } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
@@ -8,6 +10,17 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
   styleUrls: ['./historia-details.component.scss']
 })
 export class HistoriaDetailsComponent implements OnInit {
+
+  @Input() historiaDetails: Historia = {
+      titulo: '',
+      subtitulo: '',
+      descripcion: '',
+      enUso: 0,
+      medios: []
+  }
+
+  detailHistoriaForm: FormGroup;
+
 
   newHistoriaForm: FormGroup = this.fb.group({
     title: new FormControl('',  [Validators.required, Validators.minLength(6)]),
@@ -23,7 +36,16 @@ export class HistoriaDetailsComponent implements OnInit {
     image: this.newHistoriaForm.get('image').value
   }
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data) {
+    this.historiaDetails = data.row;
+    this.detailHistoriaForm = this.fb.group({
+      titulo: new FormControl(this.historiaDetails.titulo),
+      subtitulo: new FormControl(this.historiaDetails.subtitulo),
+      descripcion: new FormControl(this.historiaDetails.descripcion),
+      enUso: new FormControl(this.historiaDetails.enUso),
+      medios: new FormControl(this.historiaDetails.medios)
+    });
+  }
 
   get title() { return this.newHistoriaForm.get('title').value; }
 
