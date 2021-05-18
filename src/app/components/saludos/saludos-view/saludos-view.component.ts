@@ -6,70 +6,32 @@ import {MatDialog} from '@angular/material/dialog';
 import {SaludosFormComponent} from '../saludos-form/saludos-form.component';
 import {SaludosEditComponent } from '../saludos-edit/saludos-edit.component'
 import {SaludosDetailsComponent } from '../saludos-details/saludos-details.component';
-
-export interface SaludosData {
-  title: string;
-  content: string;
-  image: string;
-  description: string;
-  video?: string;
-};
+import { SaludosDataSource } from 'src/app/dataSources/saludosDataSource';
+import { Saludos } from 'src/app/models/models';
+import { SaludosService } from 'src/app/services/saludos-service/saludos.service';
  
-let usersData: SaludosData[] = [
-  {
-    title: 'Saludo de la madre Yvonne',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    image: 'image caption',
-    description: ''
-  },
-  {
-    title: 'Saludo de las salesianas',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-    image: 'image caption',
-    description: ''
-  },
-  {
-    title: 'Saludo de la madre superiora',
-    content: 'Lorem ipsum dolor sit amet, Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-    image: 'image caption',
-    description: ''
-  },
-  {
-    title: 'Saludo de la inspectoria',
-    content: 'Lorem ipsum dolor sit amet, Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-    image: 'image caption',
-    description: ''
-  },
-  {
-    title: 'Saludo de Charo Ten',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-    image: 'image caption',
-    description: ''
-  },
-  {
-    title: 'Saludo de la madre superiora',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-    image: 'image caption',
-    description: ''
-  }
-]
+
 @Component({
   selector: 'app-saludos-view',
   templateUrl: './saludos-view.component.html',
   styleUrls: ['./saludos-view.component.scss']
 })
 export class SaludosViewComponent implements AfterViewInit {
-  displayedColumns: string[] = ['title', 'content', 'image', 'description', 'video', 'actions'];
-  dataSource: MatTableDataSource<SaludosData>;
-  users: SaludosData[] = usersData;
+  displayedColumns: string[] = ['titulo', 'texto', 'descripcion', 'medios', 'actions'];
+  dataSource: SaludosDataSource;
+  saludosData: Saludos[] = [];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private saludosService: SaludosService) {
+    this.dataSource = new SaludosDataSource(this.saludosService);
+  }
 
-    this.dataSource = new MatTableDataSource(this.users);
-    //console.log(this.dataSource)
+  ngOnInit() {
+    this.dataSource.LoadSaludos();
+    
+    console.log(this.dataSource);
   }
 
   ngAfterViewInit() {
