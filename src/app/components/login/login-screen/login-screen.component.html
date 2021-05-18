@@ -6,14 +6,14 @@
         <mat-card-title>Iniciar sesion</mat-card-title>
       </mat-card-header>
   
-      <form class="example-form">
+      <form class="example-form" [formGroup]="loginForm">
         <mat-card-content>
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Email" type="email">
+            <input matInput formControlName="username" placeholder="Email" type="email">
           </mat-form-field>
   
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Contraseña" [type]="hide ? 'password' : 'text'">
+            <input matInput formControlName="password" placeholder="Contraseña" [type]="hide ? 'password' : 'text'">
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon >{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
               </button>

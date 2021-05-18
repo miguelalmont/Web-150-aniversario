@@ -14,18 +14,16 @@ export class LoginScreenComponent implements OnInit {
   loginForm: FormGroup;
   hide = true;
   constructor(private loginService:LoginService, private router:Router, private authenticatorJwtService: AuthenticatorJwt) { }
- 
 
   ngOnInit(): void {
-    this.loginForm = new FormGroup({
+    this.loginForm  = new FormGroup({
       username: new FormControl ([Validators.required, Validators.minLength(4)]),
       password: new FormControl ([Validators.required])
       });
   }
 
   authenticateUser() {
-    this.loginService.authentication(this.loginForm.controls.username.value,
-      this.loginForm.controls.password.value).subscribe(data => {
+    this.loginService.authentication(this.loginForm.controls.username.value, this.loginForm.controls.password.value).subscribe(data => {
       if (data.token != undefined) {
       this.authenticatorJwtService.storeJWT(data.token); // Almaceno un nuevo JWT
       this.router.navigate(['/home/saludos']); // Navego hasta listado de mensajes
