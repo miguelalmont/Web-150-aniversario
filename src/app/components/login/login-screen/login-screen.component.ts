@@ -24,7 +24,7 @@ export class LoginScreenComponent implements OnInit {
   ) {}
 
   loginForm: FormGroup = this.fb.group({
-    username: ['', [Validators.required, Validators.minLength(4)]],
+    username: ['', [Validators.required]],
     password: ['', [Validators.required]],
   });
 
@@ -81,8 +81,12 @@ export class LoginScreenComponent implements OnInit {
         ) {
           this.authenticatorJwtService.storeJWT(response.token);
           this.router.navigate(['/home/saludos']);
+        } else {
+          alert("Contraseña y usuario no validos")
         }
       })
-      .catch((error) => console.error('Error:', error));
+      .catch((error) => {
+        console.error('Error:', error)
+      });
   }
 }
