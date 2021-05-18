@@ -119,6 +119,7 @@ export class UsersViewComponent implements AfterViewInit {
   }
 
   detailsUserOnClick(row: User) {
+    console.log(row);
     const dialogRef = this.dialog.open(DetailsUserComponent, {
       data: {row}
     });

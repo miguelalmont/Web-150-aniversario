@@ -3,5 +3,6 @@ export interface ActoData {
     description: string;
     category: string;
     date: string;
-    image: string;
+    medios: [];
+    enUso: number;
   }
