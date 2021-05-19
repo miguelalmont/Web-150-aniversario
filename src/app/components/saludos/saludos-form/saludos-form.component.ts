@@ -10,29 +10,29 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 export class SaludosFormComponent implements OnInit {
 
   newSaludosForm: FormGroup = this.fb.group({
-    title: new FormControl(''),
-    content: new FormControl(''),
-    image: new FormControl(''),
-    description: new FormControl(''),
-    video: new FormControl('')
+    titulo: new FormControl(''),
+    contenido: new FormControl(''),
+    descripcion: new FormControl(''),
+    medios: new FormControl(''),
+    enUso: new FormControl('')
   });
 
   saludos = {
-    title: this.newSaludosForm.get('title').value,
-    content: this.newSaludosForm.get('content').value,
-    image: this.newSaludosForm.get('image').value,
-    description: this.newSaludosForm.get('description').value,
-    video: this.newSaludosForm.get('video').value
+    titulo: this.newSaludosForm.get('titulo').value,
+    contenido: this.newSaludosForm.get('contenido').value,
+    descripcion: this.newSaludosForm.get('descripcion').value,
+    medios: this.newSaludosForm.get('medios').value,
+    enUso: this.newSaludosForm.get('enUso').value
   }
 
   constructor(private fb: FormBuilder) {}
 
-  get title() { return this.newSaludosForm.get('firstname').value; }
+  get titulo() { return this.newSaludosForm.get('titulo').value; }
 
   ngOnInit(): void {}
 
   onFormSubmit(): void {
-    console.log('Name:' + this.newSaludosForm.get('firstname').value);
+    console.log('titulo:' + this.newSaludosForm.get('titulo').value);
   }
 
 }

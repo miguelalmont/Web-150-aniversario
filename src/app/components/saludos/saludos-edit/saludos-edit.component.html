@@ -6,24 +6,20 @@
   <form [formGroup]="newSaludosForm" (ngSubmit)="onFormSubmit()">
     <mat-form-field appearance="outline">
       <mat-label>Titulo</mat-label>
-      <input matInput formControlName="title" placeholder="Titulo" type="text" cdkFocusInitial>
+      <input matInput formControlName="titulo" placeholder="Titulo" type="text" cdkFocusInitial>
       <mat-error>El nombre debe contener 6 carácteres como mínimo.</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Contenido</mat-label>
-      <input matInput formControlName="content" placeholder="Contentido" type="text">
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Imagen</mat-label>
-      <input matInput formControlName="image" placeholder="Imagen" type="text">
+      <input matInput formControlName="contenido" placeholder="Contentido" type="text">
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Descripción</mat-label>
-      <input matInput formControlName="description" placeholder="Descripción" type="text">
+      <input matInput formControlName="descripcion" placeholder="Descripción" type="text">
     </mat-form-field>
     <mat-form-field appearance="outline">
-      <mat-label>Video</mat-label>
-      <input matInput formControlName="video" placeholder="Video" type="text">
+      <mat-label>Imagen</mat-label>
+      <input matInput formControlName="medios" placeholder="Imagen" type="text">
     </mat-form-field>
     <mat-dialog-actions>
         <button mat-stroked-button type="submit" [disabled]="newSaludosForm.invalid">Guardar cambios</button>

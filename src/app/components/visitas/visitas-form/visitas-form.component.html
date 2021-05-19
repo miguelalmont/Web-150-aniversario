@@ -6,12 +6,12 @@
   <form [formGroup]="newUserForm" (ngSubmit)="onFormSubmit()">
       <mat-form-field appearance="outline">
         <mat-label>Titulo</mat-label>
-        <input matInput formControlName="firstname" placeholder="Titulo" type="text" cdkFocusInitial>
+        <input matInput formControlName="titulo" placeholder="Titulo" type="text" cdkFocusInitial>
         <mat-error>El titulo no puede estar vacio</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Video-Url</mat-label>
-        <input matInput formControlName="lastname" placeholder="Video-Url" type="text">
+        <input matInput formControlName="medios" placeholder="Video-Url" type="text">
         <mat-error>La Url no puede estar vacio</mat-error>
       </mat-form-field>
     <mat-dialog-actions>

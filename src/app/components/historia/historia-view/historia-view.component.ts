@@ -16,7 +16,7 @@ import { HistoriaDetailsComponent } from '../historia-details/historia-details.c
   styleUrls: ['./historia-view.component.scss']
 })
 export class HistoriaViewComponent implements AfterViewInit, OnInit {
-  displayedColumns: string[] = ['title', 'subtitle', 'description', 'actions'];
+  displayedColumns: string[] = ['titulo', 'subtitulo', 'descripcion', 'actions'];
   dataSource: HistoriaDataSource;
   historiaData: Historia[] = [];
   value = '';
