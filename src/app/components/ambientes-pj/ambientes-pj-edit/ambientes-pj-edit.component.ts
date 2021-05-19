@@ -10,23 +10,23 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 export class AmbientesPjEditComponent implements OnInit {
 
   newAmbienteForm: FormGroup = this.fb.group({
-    title: new FormControl('',  [Validators.required, Validators.minLength(6)]),
-    video: new FormControl('',  Validators.required),
+    titulo: new FormControl('',  [Validators.required, Validators.minLength(6)]),
+    medios: new FormControl('',  Validators.required),
   });
 
   ambiente = {
-    title: this.newAmbienteForm.get('title').value,
-    video: this.newAmbienteForm.get('video').value
+    titulo: this.newAmbienteForm.get('titulo').value,
+    medios: this.newAmbienteForm.get('medios').value
   }
 
   constructor(private fb: FormBuilder) {}
 
-  get title() { return this.newAmbienteForm.get('title').value; }
+  get titulo() { return this.newAmbienteForm.get('titulo').value; }
 
   ngOnInit(): void {}
 
   onFormSubmit(): void {
-    console.log('Name:' + this.newAmbienteForm.get('title').value);
+    console.log('Name:' + this.newAmbienteForm.get('titulo').value);
   }
 
 }
