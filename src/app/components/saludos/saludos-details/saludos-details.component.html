@@ -1,33 +1,27 @@
 <div class="form-header">
-  <h2 mat-dialog-title>Detalles del saludo</h2>
+  <h2 mat-dialog-title>Detalles Saludos</h2>
   <button mat-stroked-button mat-dialog-close ><mat-icon>close</mat-icon></button>
 </div>
 <div class="form-container">
-  <form [formGroup]="newSaludosForm" (ngSubmit)="onFormSubmit()">
-    <mat-form-field appearance="outline">
-      <mat-label>Titulo</mat-label>
-      <input matInput formControlName="title" placeholder="Titulo" type="text" cdkFocusInitial>
-      <mat-error>El nombre debe contener 6 carácteres como mínimo.</mat-error>
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Contenido</mat-label>
-      <input matInput formControlName="content" placeholder="Contentido" type="text">
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Imagen</mat-label>
-      <input matInput formControlName="image" placeholder="Imagen" type="text">
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Descripción</mat-label>
-      <input matInput formControlName="description" placeholder="Descripción" type="text">
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Video</mat-label>
-      <input matInput formControlName="video" placeholder="Video" type="text">
-    </mat-form-field>
-  <mat-dialog-actions>
-      <button mat-stroked-button type="submit" [disabled]="newSaludosForm.invalid">Guardar cambios</button>
-      <button mat-stroked-button type="reset" [disabled]="newSaludosForm.pristine">Limpiar</button>
-  </mat-dialog-actions>
-</form>
+  <form [formGroup]="newSaludoForm" (ngSubmit)="onFormSubmit()">
+      <mat-form-field appearance="outline">
+        <mat-label>Titulo</mat-label>
+        <input matInput formControlName="titulo" placeholder="Titulo" type="text" readonly cdkFocusInitial>
+        <mat-error>El titulo debe contener 6 carácteres como mínimo.</mat-error>
+      </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Contenido</mat-label>
+          <input matInput formControlName="contenido" placeholder="contenido" type="text" readonly>
+          <mat-error>El subtitulo debe contener 6 carácteres como mínimo.</mat-error>
+        </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Descripcion</mat-label>
+        <input matInput formControlName="descripcion" placeholder="Descripcion" type="text" readonly>
+        <mat-error>El nombre debe contener 6 carácteres como mínimo.</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Imagen</mat-label>
+        <input matInput formControlName="medios" placeholder="Imagen" type="text" readonly>
+      </mat-form-field>
+  </form>
 </div>

@@ -1,22 +1,23 @@
 <div class="form-header">
-  <h2 mat-dialog-title>Detalles del material</h2>
+  <h2 mat-dialog-title>Detalles Material</h2>
   <button mat-stroked-button mat-dialog-close ><mat-icon>close</mat-icon></button>
 </div>
 <div class="form-container">
-  <form [formGroup]="newMaterialesForm" (ngSubmit)="onFormSubmit()">
+  <form [formGroup]="newMaterialForm" (ngSubmit)="onFormSubmit()">
       <mat-form-field appearance="outline">
         <mat-label>Titulo</mat-label>
-        <input matInput formControlName="title" placeholder="Titulo" type="text" readonly cdkFocusInitial>
-        <mat-error>El nombre debe contener 6 carácteres como mínimo.</mat-error>
+        <input matInput formControlName="titulo" placeholder="Titulo" type="text" readonly cdkFocusInitial>
+        <mat-error>El titulo debe contener 6 carácteres como mínimo.</mat-error>
       </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Contenido</mat-label>
-        <input matInput formControlName="content" placeholder="Contenido" type="text" readonly>
-      </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Contenido</mat-label>
+          <input matInput formControlName="contenido" placeholder="Contenido" type="text" readonly>
+          <mat-error>El subtitulo debe contener 6 carácteres como mínimo.</mat-error>
+        </mat-form-field>
       
       <mat-form-field appearance="outline">
         <mat-label>Imagen</mat-label>
-        <input matInput formControlName="image" placeholder="imagen" type="text">
+        <input matInput formControlName="medios" placeholder="Imagen" type="text" readonly>
       </mat-form-field>
   </form>
 </div>

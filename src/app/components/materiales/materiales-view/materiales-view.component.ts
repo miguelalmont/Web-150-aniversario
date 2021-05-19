@@ -6,6 +6,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {MaterialesFormComponent} from '../materiales-form/materiales-form.component';
 import {MaterialesEditComponent } from '../materiales-edit/materiales-edit.component'
 import {MaterialesDetailsComponent } from '../materiales-details/materiales-details.component';
+import { Material } from 'src/app/models/models';
 
 export interface MaterialesData {
   title: string;
@@ -110,8 +111,12 @@ export class MaterialesViewComponent implements AfterViewInit {
     });
   }
 
-  detailsMaterialesOnClick() {
-    const dialogRef = this.dialog.open(MaterialesDetailsComponent);
+  detailsMaterialesOnClick(row: Material) {
+    console.log(row);
+    const dialogRef = this.dialog.open(MaterialesDetailsComponent, {
+      
+      data: {row}
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

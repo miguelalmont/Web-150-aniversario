@@ -1,18 +1,20 @@
 <div class="form-header">
-  <h2 mat-dialog-title>Detalles del ambiente PJ</h2>
+  <h2 mat-dialog-title>Detalles Ambiente</h2>
   <button mat-stroked-button mat-dialog-close ><mat-icon>close</mat-icon></button>
 </div>
 <div class="form-container">
   <form [formGroup]="newAmbienteForm" (ngSubmit)="onFormSubmit()">
       <mat-form-field appearance="outline">
         <mat-label>Titulo</mat-label>
-        <input matInput formControlName="title" placeholder="Titulo" type="text" readonly cdkFocusInitial>
-        <mat-error>El nombre debe contener 6 carácteres como mínimo.</mat-error>
+        <input matInput formControlName="titulo" placeholder="Titulo" type="text" readonly cdkFocusInitial>
+        <mat-error>El titulo debe contener 6 carácteres como mínimo.</mat-error>
       </mat-form-field>
+      
       <mat-form-field appearance="outline">
-        <mat-label>Video</mat-label>
-        <input matInput formControlName="video" placeholder="Video" type="text" readonly>
+        <mat-label>Imagen</mat-label>
+        <input matInput formControlName="medios" placeholder="Imagen" type="text" readonly>
       </mat-form-field>
   </form>
 </div>
+
   

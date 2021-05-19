@@ -2,8 +2,8 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { Token } from './../../models/token';
-import { UserLogin } from './../../models/userLogin';
+import { Token } from './../../models/models';
+import { UserLogin } from './../../models/models';
 import { baseUrl } from './../../../environments/environment';
 import { Md5 } from 'ts-md5';
 

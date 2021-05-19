@@ -3,7 +3,7 @@ import { MatPaginator } from "@angular/material/paginator";
 
 import { BehaviorSubject, Observable, of } from "rxjs";
 import { catchError, finalize } from "rxjs/operators";
-import { Historia } from "../models/historia";
+import { Historia } from "../models/models";
 import { HistoriaService } from "../services/historia-service/historia.service";
 
 export class HistoriaDataSource implements DataSource<Historia> {

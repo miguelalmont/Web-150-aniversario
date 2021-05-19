@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ActoData } from 'src/app/models/actos';
+import { ActoData } from 'src/app/models/models';
 import { baseUrl } from 'src/environments/environment';
 
 @Injectable({

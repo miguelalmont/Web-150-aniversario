@@ -6,6 +6,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { AmbientesPjDetailsComponent } from '../ambientes-pj-details/ambientes-pj-details.component';
 import { AmbientesPjEditComponent } from '../ambientes-pj-edit/ambientes-pj-edit.component';
 import { AmbientesPjFormComponent } from '../ambientes-pj-form/ambientes-pj-form.component';
+import { Ambiente } from 'src/app/models/models';
 
 export interface AmbientesData {
   title: string;
@@ -110,12 +111,13 @@ export class AmbientesPjViewComponent implements AfterViewInit {
     });
   }
 
-  detailsAmbienteOnClick() {
-    const dialogRef = this.dialog.open(AmbientesPjDetailsComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+  detailsAmbienteOnClick(row: Ambiente) {
+    console.log(row);
+    const dialogRef = this.dialog.open(AmbientesPjDetailsComponent, {
+      
+      data: {row}
     });
-  }
   
+}
+
 }

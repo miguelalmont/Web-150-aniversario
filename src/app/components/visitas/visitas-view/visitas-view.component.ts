@@ -6,6 +6,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {VisitasFormComponent} from '../visitas-form/visitas-form.component';
 import {VisitasEditComponent } from '../visitas-edit/visitas-edit.component'
 import {VisitasDetailsComponent } from '../visitas-details/visitas-details.component';
+import { Visita } from 'src/app/models/models';
 
 
 export interface VisitasData {
@@ -111,8 +112,12 @@ export class VisitasViewComponent implements AfterViewInit {
     });
   }
 
-  detailsUserOnClick() {
-    const dialogRef = this.dialog.open(VisitasDetailsComponent);
+  detailsUserOnClick(row: Visita) {
+    console.log(row);
+    const dialogRef = this.dialog.open(VisitasDetailsComponent, {
+      
+      data: {row}
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

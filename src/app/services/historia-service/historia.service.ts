@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Historia } from 'src/app/models/historia';
+import { Historia } from 'src/app/models/models';
 import { baseUrl } from 'src/environments/environment';
 
 @Injectable({

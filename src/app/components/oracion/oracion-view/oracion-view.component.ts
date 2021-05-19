@@ -6,36 +6,37 @@ import {MatDialog} from '@angular/material/dialog';
 import { OracionFormComponent } from '../oracion-form/oracion-form.component';
 import { OracionEditComponent } from '../oracion-edit/oracion-edit.component';
 import { OracionDetailsComponent } from '../oracion-details/oracion-details.component';
+import { Oracion } from 'src/app/models/models';
 
 export interface PrayerData {
-  title: string;
-  prayer: string;
+  titulo: string;
+  oracion: string;
 }
 
 let prayerData: PrayerData[] = [
   {
-    title: 'Oración 1',
-    prayer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+    titulo: 'Oración 1',
+    oracion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
   },
   {
-    title: 'Oración 2',
-    prayer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+    titulo: 'Oración 1',
+    oracion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
   },
   {
-    title: 'Oración 3',
-    prayer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+    titulo: 'Oración 1',
+    oracion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
   },
   {
-    title: 'Oración 4',
-    prayer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+    titulo: 'Oración 1',
+    oracion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
   },
   {
-    title: 'Oración 5',
-    prayer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+    titulo: 'Oración 1',
+    oracion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
   },
   {
-    title: 'Oración 6',
-    prayer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+    titulo: 'Oración 1',
+    oracion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
   }
 ]
 
@@ -45,7 +46,7 @@ let prayerData: PrayerData[] = [
   styleUrls: ['./oracion-view.component.scss']
 })
 export class OracionViewComponent implements AfterViewInit {
-  displayedColumns: string[] = ['title', 'prayer', 'actions'];
+  displayedColumns: string[] = ['titulo', 'oracion', 'actions'];
   dataSource: MatTableDataSource<PrayerData>;
   prayers: PrayerData[] = prayerData;
   show: boolean = true
@@ -103,11 +104,15 @@ export class OracionViewComponent implements AfterViewInit {
      });
   }
 
-  detailsPrayerOnClick() {
-   const dialogRef = this.dialog.open(OracionDetailsComponent);
+  detailsPrayerOnClick(row: Oracion) {
+    console.log(row);
+    const dialogRef = this.dialog.open(OracionDetailsComponent, {
+      
+      data: {row}
+    });
 
-   dialogRef.afterClosed().subscribe(result => {
-    console.log(`Dialog result: ${result}`);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
     });
   }
 

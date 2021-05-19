@@ -18,15 +18,15 @@
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="dataSource" matSort>
         <!-- Title Column -->
-        <ng-container class="name-row" matColumnDef="title">
+        <ng-container class="name-row" matColumnDef="titulo">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Titulo</th>
-          <td mat-cell *matCellDef="let row">{{ row.title }}</td>
+          <td mat-cell *matCellDef="let row">{{ row.titulo }}</td>
         </ng-container>
   
         <!-- Prayer Column -->
-        <ng-container matColumnDef="prayer">
+        <ng-container matColumnDef="oracion">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Oracion</th>
-          <td mat-cell *matCellDef="let row">{{ row.prayer }}</td>
+          <td mat-cell *matCellDef="let row">{{ row.oracion }}</td>
         </ng-container>
   
         <!-- Actions Column -->
@@ -43,7 +43,7 @@
             <button
               class="action-btn view-btn"
               mat-stroked-button
-              (click)="detailsPrayerOnClick()"
+              (click)="detailsPrayerOnClick(row)"
             >
               <mat-icon>remove_red_eye</mat-icon>
               Detalles

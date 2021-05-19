@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Material } from 'src/app/models/models';
 
 @Component({
   selector: 'app-materiales-details',
@@ -8,30 +11,46 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 })
 export class MaterialesDetailsComponent implements OnInit {
 
-  newMaterialesForm: FormGroup = this.fb.group({
-    firstname: new FormControl('',  [Validators.required, Validators.minLength(6)]),
-    lastname: new FormControl('',  Validators.required),
-    email: new FormControl('',  [Validators.required, Validators.email]),
-    password: new FormControl('',  [Validators.minLength(6), Validators.required]),
-    passwordRepeat: new FormControl('', Validators.required)
-  });
-
-  materiales = {
-    firstname: this.newMaterialesForm.get('firstname').value,
-    lastname: this.newMaterialesForm.get('lastname').value,
-    email: this.newMaterialesForm.get('email').value,
-    password: this.newMaterialesForm.get('password').value,
-    passwordRepeat: this.newMaterialesForm.get('passwordRepeat').value
+  @Input() materialDetails: Material = {
+      titulo: '',
+      contenido: '',
+      enUso: 0,
+      medios: []
   }
 
-  constructor(private fb: FormBuilder) {}
+  detailMaterialForm: FormGroup;
 
-  get firstname() { return this.newMaterialesForm.get('firstname').value; }
+
+  newMaterialForm: FormGroup = this.fb.group({
+    titulo: new FormControl('',  [Validators.required, Validators.minLength(6)]),
+    contenido: new FormControl('',  [Validators.required, Validators.minLength(6)]),
+    enUso: new FormControl('', Validators.required),
+    medios: new FormControl('', Validators.required)
+  });
+
+  historia = {
+    titulo: this.newMaterialForm.get('titulo').value,
+    contenido: this.newMaterialForm.get('contenido').value,
+    enUso: this.newMaterialForm.get('enUso').value,
+    medios: this.newMaterialForm.get('medios').value
+  }
+
+  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data) {
+    this.materialDetails = data.row;
+    this.detailMaterialForm = this.fb.group({
+      titulo: new FormControl(this.materialDetails.titulo),
+      contenido: new FormControl(this.materialDetails.contenido),
+      enUso: new FormControl(this.materialDetails.enUso),
+      medios: new FormControl(this.materialDetails.medios)
+    });
+  }
+
+  get titulo() { return this.newMaterialForm.get('titulo').value; }
 
   ngOnInit(): void {}
 
   onFormSubmit(): void {
-    console.log('Name:' + this.newMaterialesForm.get('firstname').value);
+    console.log('Titulo:' + this.newMaterialForm.get('titulo').value);
   }
 
 }

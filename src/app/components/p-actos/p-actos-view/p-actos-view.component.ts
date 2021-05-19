@@ -6,7 +6,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { PActosFormComponent } from '../p-actos-form/p-actos-form.component';
 import { PActosEditComponent } from '../p-actos-edit/p-actos-edit.component';
 import { PActosDetailsComponent } from '../p-actos-details/p-actos-details.component';
-import { ActoData } from 'src/app/models/actos';
+import { ActoData } from 'src/app/models/models';
 import { PActoService } from 'src/app/services/p-acto-service/p-acto.service';
  
 let usersData: ActoData[] = []

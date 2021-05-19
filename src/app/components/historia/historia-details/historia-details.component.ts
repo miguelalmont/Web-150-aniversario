@@ -26,6 +26,7 @@ export class HistoriaDetailsComponent implements OnInit {
     titulo: new FormControl('',  [Validators.required, Validators.minLength(6)]),
     subtitulo: new FormControl('',  [Validators.required, Validators.minLength(6)]),
     descripcion: new FormControl('',  [Validators.required, Validators.minLength(6)]),
+    enUso: new FormControl('', Validators.required),
     medios: new FormControl('', Validators.required)
   });
 
@@ -33,6 +34,7 @@ export class HistoriaDetailsComponent implements OnInit {
     titulo: this.newHistoriaForm.get('titulo').value,
     subtitulo: this.newHistoriaForm.get('subtitulo').value,
     descripcion: this.newHistoriaForm.get('descripcion').value,
+    enUso: this.newHistoriaForm.get('enUso').value,
     medios: this.newHistoriaForm.get('medios').value
   }
 
