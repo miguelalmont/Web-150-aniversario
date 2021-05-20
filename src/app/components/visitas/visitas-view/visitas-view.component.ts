@@ -90,7 +90,7 @@ export class VisitasViewComponent implements AfterViewInit {
     }
   }
 
-  createUserOnClick() {
+  createVisitaOnClick() {
     const dialogRef = this.dialog.open(VisitasFormComponent, { disableClose: true });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -98,7 +98,7 @@ export class VisitasViewComponent implements AfterViewInit {
     });
   }
 
-  editUserOnClick() {
+  editVisitaOnClick() {
     const dialogRef = this.dialog.open(VisitasEditComponent, { disableClose: true });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -106,7 +106,7 @@ export class VisitasViewComponent implements AfterViewInit {
     });
   }
 
-  detailsUserOnClick(row: Visita) {
+  detailsVisitarOnClick(row: Visita) {
     console.log(row);
     const dialogRef = this.dialog.open(VisitasDetailsComponent, {
       
