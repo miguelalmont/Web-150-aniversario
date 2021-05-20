@@ -1,3 +1,5 @@
+import { ambientesPj } from './../../../models/models';
+import { AmbientesPJService } from './../../../services/ambientesPJ-service/ambientes-pj.service.service';
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
@@ -6,45 +8,8 @@ import {MatDialog} from '@angular/material/dialog';
 import { AmbientesPjDetailsComponent } from '../ambientes-pj-details/ambientes-pj-details.component';
 import { AmbientesPjEditComponent } from '../ambientes-pj-edit/ambientes-pj-edit.component';
 import { AmbientesPjFormComponent } from '../ambientes-pj-form/ambientes-pj-form.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
-export interface AmbientesData {
-  title: string;
-  video: string;
-  
-}
- 
-let AmbientesData: AmbientesData[] = [
-  {
-    title: 'Saludo de la madre Yvonne',
-    video: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    
-  },
-  {
-    title: 'Saludo de las salesianas',
-    video: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-   
-  },
-  {
-    title: 'Saludo de la madre superiora',
-    video: 'Lorem ipsum dolor sit amet, Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-
-  },
-  {
-    title: 'Saludo de la inspectoria',
-    video: 'Lorem ipsum dolor sit amet, Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-    
-  },
-  {
-    title: 'Saludo de Charo Ten',
-    video: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-   
-  },
-  {
-    title: 'Saludo de la madre superiora',
-    video: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-   
-  }
-]
 
 @Component({
   selector: 'app-ambientes-pj-view',
@@ -53,16 +18,16 @@ let AmbientesData: AmbientesData[] = [
 })
 export class AmbientesPjViewComponent implements AfterViewInit {
   displayedColumns: string[] = ['title', 'video', 'actions'];
-  dataSource: MatTableDataSource<AmbientesData>;
-  ambientes: AmbientesData[] = AmbientesData;
+  dataSource: MatTableDataSource<ambientesPj>;
+  ambientes: ambientesPj[];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private ambientesPjService: AmbientesPJService, private route: ActivatedRoute,
+    private router: Router) {
 
     this.dataSource = new MatTableDataSource(this.ambientes);
-    console.log(this.dataSource)
   }
 
   ngAfterViewInit() {
@@ -83,6 +48,15 @@ export class AmbientesPjViewComponent implements AfterViewInit {
     };
     
     this.dataSource.sort = this.sort;
+
+    // Aqui llamamos al servicio getAmbientes y le asignamos el dadatSource.data a la respuesta
+    this.ambientesPjService.getAmbientesPj().subscribe(
+      response => {
+        this.dataSource.data = response
+        console.log(this.dataSource.data)
+      },
+      error => console.log(error)
+    )
   }
 
   applyFilter(event: Event) {
@@ -102,20 +76,22 @@ export class AmbientesPjViewComponent implements AfterViewInit {
     });
   }
 
-  editAmbienteOnClick() {
-    const dialogRef = this.dialog.open(AmbientesPjEditComponent, { disableClose: true });
+  editAmbienteOnClick(row: ambientesPj) {
+    const dialogRef = this.dialog.open(AmbientesPjEditComponent, { disableClose: true, data: {row} });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+     console.log(`Dialog result: ${result}`);
     });
   }
 
-  detailsAmbienteOnClick() {
+  detailsAmbienteOnClick(row: ambientesPj) {
     const dialogRef = this.dialog.open(AmbientesPjDetailsComponent);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
   }
+
+  
   
 }

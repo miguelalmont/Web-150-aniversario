@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { ambientesPj } from './../../../models/models';
+import { Component, Inject, Input, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
@@ -9,17 +11,31 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 })
 export class AmbientesPjEditComponent implements OnInit {
 
-  newAmbienteForm: FormGroup = this.fb.group({
-    title: new FormControl('',  [Validators.required, Validators.minLength(6)]),
-    video: new FormControl('',  Validators.required),
-  });
+  @Input()
+  ambienteToDetail: ambientesPj = {
+    id: 0,
+    titulo: '',
+    descripcion: '',
+    enUso: 0,
+    medios: []
+  };
 
-  ambiente = {
-    title: this.newAmbienteForm.get('title').value,
-    video: this.newAmbienteForm.get('video').value
-  }
+  newAmbienteForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: ambientesPj) { 
+    this.ambienteToDetail.id = data.id;
+    this.ambienteToDetail.titulo = data.titulo;
+    this.ambienteToDetail.descripcion = data.descripcion;
+    this.ambienteToDetail.enUso = data.enUso;
+    this.ambienteToDetail.medios = data.medios;
+    
+    this.newAmbienteForm = this.fb.group({
+      titulo: [data.titulo],
+      descripcion: [data.descripcion],
+      enUso: [data.enUso],
+      medios: [data.medios]
+    });
+   }
 
   get title() { return this.newAmbienteForm.get('title').value; }
 

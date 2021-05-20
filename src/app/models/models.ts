@@ -30,3 +30,11 @@ export interface UserLogin {
     username: string;
     password: string;
 }
+
+export interface ambientesPj {
+    id: number,
+    titulo: string,
+    descripcion: string,
+    enUso: number,
+    medios: [];
+}
