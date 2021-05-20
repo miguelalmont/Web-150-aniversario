@@ -7,6 +7,8 @@ import {MaterialesFormComponent} from '../materiales-form/materiales-form.compon
 import {MaterialesEditComponent } from '../materiales-edit/materiales-edit.component'
 import {MaterialesDetailsComponent } from '../materiales-details/materiales-details.component';
 import { Material } from 'src/app/models/models';
+import { MaterialesService } from 'src/app/services/materiales-service/materiales.service.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 export interface MaterialesData {
   title: string;
@@ -60,7 +62,8 @@ export class MaterialesViewComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private materialService: MaterialesService, private route: ActivatedRoute,
+    private router: Router) {
 
     this.dataSource = new MatTableDataSource(this.materiales);
     console.log(this.dataSource)

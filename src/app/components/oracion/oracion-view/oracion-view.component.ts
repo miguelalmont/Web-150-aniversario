@@ -7,6 +7,8 @@ import { OracionFormComponent } from '../oracion-form/oracion-form.component';
 import { OracionEditComponent } from '../oracion-edit/oracion-edit.component';
 import { OracionDetailsComponent } from '../oracion-details/oracion-details.component';
 import { Oracion } from 'src/app/models/models';
+import { OracionService } from 'src/app/services/oracion-service/oracion.service.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 export interface PrayerData {
   titulo: string;
@@ -54,7 +56,8 @@ export class OracionViewComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private oracionService: OracionService, private route: ActivatedRoute,
+    private router: Router) {
     this.dataSource = new MatTableDataSource(this.prayers);
     console.log(this.dataSource)
   }

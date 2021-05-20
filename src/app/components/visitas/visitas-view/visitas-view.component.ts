@@ -7,6 +7,8 @@ import {VisitasFormComponent} from '../visitas-form/visitas-form.component';
 import {VisitasEditComponent } from '../visitas-edit/visitas-edit.component'
 import {VisitasDetailsComponent } from '../visitas-details/visitas-details.component';
 import { Visita } from 'src/app/models/models';
+import { VisitasService } from 'src/app/services/visitas-service/visitas.service.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 export interface VisitasData {
@@ -55,7 +57,8 @@ export class VisitasViewComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private visitasService: VisitasService, private route: ActivatedRoute,
+    private router: Router) {
 
     this.dataSource = new MatTableDataSource(this.users);
     console.log(this.dataSource)

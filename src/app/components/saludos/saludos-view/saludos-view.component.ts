@@ -7,6 +7,8 @@ import {SaludosFormComponent} from '../saludos-form/saludos-form.component';
 import {SaludosEditComponent } from '../saludos-edit/saludos-edit.component'
 import {SaludosDetailsComponent } from '../saludos-details/saludos-details.component';
 import { Saludo } from 'src/app/models/models';
+import { SaludosService } from 'src/app/services/saludos-service/saludos.service.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 export interface SaludosData {
   titulo: string;
@@ -61,7 +63,8 @@ export class SaludosViewComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private saludoService: SaludosService, private route: ActivatedRoute,
+    private router: Router) {
 
     this.dataSource = new MatTableDataSource(this.users);
     //console.log(this.dataSource)

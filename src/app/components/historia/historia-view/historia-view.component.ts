@@ -9,6 +9,7 @@ import { HistoriaService } from 'src/app/services/historia-service/historia.serv
 import { HistoriaDataSource } from 'src/app/dataSources/historiaDataSource';
 import { delay, startWith, tap } from 'rxjs/operators';
 import { HistoriaDetailsComponent } from '../historia-details/historia-details.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-historia-view',
@@ -24,7 +25,8 @@ export class HistoriaViewComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(public dialog: MatDialog, private historiaService: HistoriaService) {
+  constructor(public dialog: MatDialog, private historiaService: HistoriaService, private route: ActivatedRoute,
+    private router: Router) {
     this.dataSource = new HistoriaDataSource(this.historiaService);
   }
 

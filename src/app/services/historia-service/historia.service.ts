@@ -15,9 +15,10 @@ export class HistoriaService {
   constructor(private http: HttpClient) {}
 
   getHistorias(): Observable<Historia[]> {
-    let url = this.baseUrl + '/story/list.php';
-    return this.http.get<Historia[]>(url);
+    return this.http.get<Historia[]>(this.baseUrl+'/story/list.php');
   }
+
+ 
 
   insertHistoria() { }
 
