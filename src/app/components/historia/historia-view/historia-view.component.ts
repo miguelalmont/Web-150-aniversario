@@ -10,6 +10,7 @@ import { HistoriaDataSource } from 'src/app/dataSources/historiaDataSource';
 import { delay, startWith, tap } from 'rxjs/operators';
 import { HistoriaDetailsComponent } from '../historia-details/historia-details.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-historia-view',
@@ -18,8 +19,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class HistoriaViewComponent implements AfterViewInit, OnInit {
   displayedColumns: string[] = ['titulo', 'subtitulo', 'descripcion', 'actions'];
-  dataSource: HistoriaDataSource;
-  historiaData: Historia[] = [];
+  dataSource: MatTableDataSource<Historia>;
+  historiaData: Historia[];
   value = '';
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -27,11 +28,11 @@ export class HistoriaViewComponent implements AfterViewInit, OnInit {
 
   constructor(public dialog: MatDialog, private historiaService: HistoriaService, private route: ActivatedRoute,
     private router: Router) {
-    this.dataSource = new HistoriaDataSource(this.historiaService);
+    this.dataSource = new MatTableDataSource(this.historiaData);
   }
 
   ngOnInit() {
-    this.dataSource.loadHistorias();
+    
   }
 
   ngAfterViewInit() {
@@ -52,7 +53,13 @@ export class HistoriaViewComponent implements AfterViewInit, OnInit {
       return `${startIndex + 1} - ${endIndex} de ${length}`;
     };
     
-    this.dataSource.sort = this.sort;
+    this.historiaService.getHistorias().subscribe(
+      response => {
+        this.dataSource.data = response
+        console.log(this.dataSource.data)
+      },
+      error => console.log(error)
+    )
   }
 
   applyFilter(event: Event) {
