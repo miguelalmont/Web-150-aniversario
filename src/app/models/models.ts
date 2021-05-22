@@ -1,5 +1,3 @@
-// import { url } from "node:inspector";
-
 export interface ActoData {
     title: string;
     description: string;
@@ -33,16 +31,10 @@ export interface UserLogin {
     password: string;
 }
 
-export interface Saludos {
-    // title: string;
-    // content: string;
-    // imageUrl: string;
-    // description: string;
-    // videoUrl?: string;
-    id: number;
-    titulo: string;
-    texto: string;
-    descripcion: string;
-    enUso: number;
+export interface ambientesPj {
+    id: number,
+    titulo: string,
+    descripcion: string,
+    enUso: number,
     medios: [];
 }
