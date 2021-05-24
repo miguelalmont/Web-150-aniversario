@@ -15,7 +15,7 @@ export class SaludosService {
   constructor(private http: HttpClient) {}
 
   getSaludos(): Observable<Saludo[]> {
-    let url = this.baseUrl + '/greetings/list.php';
+    let url = this.baseUrl + '/greetings/listEverything.php';
     return this.http.get<Saludo[]>(url); 
   }
 }

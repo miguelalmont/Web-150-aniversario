@@ -8,7 +8,7 @@ import { OracionEditComponent } from '../oracion-edit/oracion-edit.component';
 import { OracionDetailsComponent } from '../oracion-details/oracion-details.component';
 import { Oracion } from 'src/app/models/models';
 import { ActivatedRoute, Router } from '@angular/router';
-import { OracionService } from 'src/app/services/ambientesPJ-service/ambientes-pj.service';
+import { OracionService } from 'src/app/services/oracion-service/oracion.service';
 
 @Component({
   selector: 'app-oracion-view',

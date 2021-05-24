@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AmbientesPJService } from './ambientes-pj.service';
+import { AmbientesPJService } from './ambientes-pj.service.service';
 
 describe('AmbientesPJ.ServiceService', () => {
   let service: AmbientesPJService;
