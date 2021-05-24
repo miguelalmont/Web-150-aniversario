@@ -18,7 +18,8 @@ import { OracionService } from 'src/app/services/ambientesPJ-service/ambientes-p
 export class OracionViewComponent implements AfterViewInit {
   displayedColumns: string[] = ['titulo', 'oracion', 'actions'];
   dataSource: MatTableDataSource<Oracion>;
-  prayers: Oracion[];
+  oraciones: Oracion[];
+  value = '';
   show: boolean = true
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -26,7 +27,7 @@ export class OracionViewComponent implements AfterViewInit {
 
   constructor(public dialog: MatDialog, private oracionService: OracionService, private route: ActivatedRoute,
     private router: Router) {
-    this.dataSource = new MatTableDataSource(this.prayers);
+    this.dataSource = new MatTableDataSource(this.oraciones);
     console.log(this.dataSource)
   }
 
@@ -47,7 +48,13 @@ export class OracionViewComponent implements AfterViewInit {
       return `${startIndex + 1} - ${endIndex} de ${length}`;
     };
     
-    this.dataSource.sort = this.sort;
+    this.oracionService.getOracion().subscribe(
+      response => {
+        this.dataSource.data = response
+        console.log(this.dataSource.data)
+      },
+      error => console.log(error)
+    )
   }
 
   applyFilter(event: Event) {

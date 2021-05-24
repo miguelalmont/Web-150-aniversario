@@ -18,9 +18,10 @@ let usersData: ActoData[] = []
   styleUrls: ['./p-actos-view.component.scss']
 })
 export class PActosViewComponent implements AfterViewInit {
-  displayedColumns: string[] = ['title', 'description', 'category', 'date', 'image', 'actions'];
+  displayedColumns: string[] = ['titulo', 'descripcion', 'categoria', 'fecha', 'medios', 'actions'];
   dataSource: MatTableDataSource<ActoData>;
-  actos: ActoData[] = [];
+  actos: ActoData[];
+  value = '';
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -49,7 +50,13 @@ export class PActosViewComponent implements AfterViewInit {
       return `${startIndex + 1} - ${endIndex} de ${length}`;
     };
     
-    this.dataSource.sort = this.sort;
+    this.pActosService.getActo().subscribe(
+      response => {
+        this.dataSource.data = response
+        console.log(this.dataSource.data)
+      },
+      error => console.log(error)
+    )
   }
 
   applyFilter(event: Event) {

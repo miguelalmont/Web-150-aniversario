@@ -18,7 +18,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class VisitasViewComponent implements AfterViewInit {
   displayedColumns: string[] = ['titulo', 'medios', 'actions'];
   dataSource: MatTableDataSource<Visita>;
-  users: Visita[];
+  visitas: Visita[];
+  value = '';
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -26,7 +27,7 @@ export class VisitasViewComponent implements AfterViewInit {
   constructor(public dialog: MatDialog, private visitasService: VisitasService, private route: ActivatedRoute,
     private router: Router) {
 
-    this.dataSource = new MatTableDataSource(this.users);
+    this.dataSource = new MatTableDataSource(this.visitas);
     console.log(this.dataSource)
   }
 
@@ -47,7 +48,13 @@ export class VisitasViewComponent implements AfterViewInit {
       return `${startIndex + 1} - ${endIndex} de ${length}`;
     };
     
-    this.dataSource.sort = this.sort;
+    this.visitasService.getVisita().subscribe(
+      response => {
+        this.dataSource.data = response
+        console.log(this.dataSource.data)
+      },
+      error => console.log(error)
+    )
   }
 
   applyFilter(event: Event) {

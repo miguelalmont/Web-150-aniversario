@@ -47,7 +47,7 @@ export class SaludosViewComponent implements AfterViewInit {
         return `${startIndex + 1} - ${endIndex} de ${length}`;
       };
 
-    this.dataSource.sort = this.sort;
+    
 
     // Aqui llamamos al servicio getAmbientes y le asignamos el dadatSource.data a la respuesta
     this.saludoService.getSaludos().subscribe(
