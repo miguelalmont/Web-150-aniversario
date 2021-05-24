@@ -10,80 +10,53 @@ import { Saludo } from 'src/app/models/models';
 import { SaludosService } from 'src/app/services/saludos-service/saludos.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
-export interface SaludosData {
-  titulo: string;
-  contenido: string;
-  descripcion: string;
- 
-  
-};
- 
-let usersData: SaludosData[] = [
-  {
-    titulo: 'Saludo de la madre Yvonne',
-    contenido: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    descripcion: 'image caption'
-  },
-  {
-    titulo: 'Saludo de la madre Yvonne',
-    contenido: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    descripcion: 'image caption'
-  },
-  {
-    titulo: 'Saludo de la madre Yvonne',
-    contenido: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    descripcion: 'image caption'
-  },
-  {
-    titulo: 'Saludo de la madre Yvonne',
-    contenido: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    descripcion: 'image caption'
-  },
-  {
-    titulo: 'Saludo de la madre Yvonne',
-    contenido: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    descripcion: 'image caption'
-  },
-  {
-    titulo: 'Saludo de la madre Yvonne',
-    contenido: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    descripcion: 'image caption'
-  }
-]
+
 @Component({
   selector: 'app-saludos-view',
   templateUrl: './saludos-view.component.html',
   styleUrls: ['./saludos-view.component.scss']
 })
 export class SaludosViewComponent implements AfterViewInit {
-  displayedColumns: string[] = ['titulo', 'contenido', 'descripcion', 'actions'];
-  dataSource: MatTableDataSource<SaludosData>;
-  users: SaludosData[] = usersData;
+  displayedColumns: string[] = ['titulo', 'contenido', 'descripcion','medios', 'actions'];
+  dataSource: MatTableDataSource<Saludo>;
+  saludoData: Saludo[];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(public dialog: MatDialog, private saludoService: SaludosService, private route: ActivatedRoute,
-    private router: Router) {}
+    private router: Router) {
+
+    this.dataSource = new MatTableDataSource(this.saludoData);
+  }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.paginator._intl.itemsPerPageLabel = 'Por página';
     this.paginator._intl.nextPageLabel = 'Siguiente página';
     this.paginator._intl.previousPageLabel = 'Página anterior';
-    this.paginator._intl.getRangeLabel = 
-    (page: number, pageSize: number, length: number) => {
-      if (length === 0 || pageSize === 0) {
-        return `Sin registros`;
-      }
-      length = Math.max(length, 0);
-      const startIndex = page * pageSize;
-      // If the start index exceeds the list length, do not try and fix the end index to the end.
-      const endIndex = startIndex < length ? Math.min(startIndex + pageSize, length) : startIndex + pageSize;
-      return `${startIndex + 1} - ${endIndex} de ${length}`;
-    };
-    
+    this.paginator._intl.getRangeLabel =
+      (page: number, pageSize: number, length: number) => {
+        if (length === 0 || pageSize === 0) {
+          return `Sin registros`;
+        }
+        length = Math.max(length, 0);
+        const startIndex = page * pageSize;
+        // If the start index exceeds the list length, do not try and fix the end index to the end.
+        const endIndex = startIndex < length ? Math.min(startIndex + pageSize, length) : startIndex + pageSize;
+        return `${startIndex + 1} - ${endIndex} de ${length}`;
+      };
+
     this.dataSource.sort = this.sort;
+
+    // Aqui llamamos al servicio getAmbientes y le asignamos el dadatSource.data a la respuesta
+    this.saludoService.getSaludos().subscribe(
+      response => {
+        this.dataSource.data = response
+        console.log(this.dataSource.data)
+      },
+      error => console.log(error)
+    )
   }
 
   applyFilter(event: Event) {
@@ -95,7 +68,7 @@ export class SaludosViewComponent implements AfterViewInit {
     }
   }
 
-  createUserOnClick() {
+  createSaludoOnClick() {
     const dialogRef = this.dialog.open(SaludosFormComponent, { disableClose: true });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -103,23 +76,20 @@ export class SaludosViewComponent implements AfterViewInit {
     });
   }
 
-  editUserOnClick() {
-    const dialogRef = this.dialog.open(SaludosEditComponent, { disableClose: true });
+  editSaludoOnClick(row: Saludo) {
+    const dialogRef = this.dialog.open(SaludosEditComponent, { disableClose: true, data: { row } });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
   }
 
-  detailsUserOnClick(row: Saludo) {
+  detailsSaludoOnClick(row: Saludo) {
     console.log(row);
     const dialogRef = this.dialog.open(SaludosDetailsComponent, {
-      
-      data: {row}
+
+      data: { row }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
   }
 }
