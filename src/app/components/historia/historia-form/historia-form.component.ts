@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Historia } from '../../../models/models'
+import { HistoriaService } from 'src/app/services/historia-service/historia.service';
 
 @Component({
   selector: 'app-historia-form',
@@ -17,22 +19,24 @@ export class HistoriaFormComponent implements OnInit {
     enUso: new FormControl('', Validators.required)
   });
 
-  historia = {
-    titulo: this.newHistoriaForm.get('titulo').value,
-    subtitulo: this.newHistoriaForm.get('subtitulo').value,
-    descripcion: this.newHistoriaForm.get('descripcion').value,
-    medios: this.newHistoriaForm.get('medios').value,
-    enUso: this.newHistoriaForm.get('enUso').value
-  }
+  historia: Historia;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private historiaService: HistoriaService) {}
 
   get titulo() { return this.newHistoriaForm.get('titulo').value; }
 
   ngOnInit(): void {}
 
   onFormSubmit(): void {
+    this.historia = {
+    titulo: this.newHistoriaForm.get('titulo').value,
+    subtitulo: this.newHistoriaForm.get('subtitulo').value,
+    descripcion: this.newHistoriaForm.get('descripcion').value,
+    medios: this.newHistoriaForm.get('medios').value,
+    enUso: this.newHistoriaForm.get('enUso').value
+  }
     console.log('Name:' + this.newHistoriaForm.get('titulo').value);
+    this.historiaService.insertHistoria().subscribe();
   }
 
 }
