@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatDialog} from '@angular/material/dialog';
@@ -6,7 +6,6 @@ import { HistoriaEditComponent } from '../historia-edit/historia-edit.component'
 import { HistoriaFormComponent } from '../historia-form/historia-form.component';
 import { Historia } from 'src/app/models/models';
 import { HistoriaService } from 'src/app/services/historia-service/historia.service';
-import { delay, startWith, tap } from 'rxjs/operators';
 import { HistoriaDetailsComponent } from '../historia-details/historia-details.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
@@ -16,11 +15,10 @@ import { MatTableDataSource } from '@angular/material/table';
   templateUrl: './historia-view.component.html',
   styleUrls: ['./historia-view.component.scss']
 })
-export class HistoriaViewComponent implements AfterViewInit, OnInit {
+export class HistoriaViewComponent implements AfterViewInit {
   displayedColumns: string[] = ['titulo', 'subtitulo', 'descripcion', 'actions'];
   dataSource: MatTableDataSource<Historia>;
-  historiaData: Historia[];
-  value = '';
+  historiaData: Historia[] = [];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -30,9 +28,6 @@ export class HistoriaViewComponent implements AfterViewInit, OnInit {
     this.dataSource = new MatTableDataSource(this.historiaData);
   }
 
-  ngOnInit() {
-    
-  }
 
   ngAfterViewInit() {
     
