@@ -66,8 +66,10 @@ export class SaludosViewComponent implements AfterViewInit {
   constructor(public dialog: MatDialog, private saludoService: SaludosService, private route: ActivatedRoute,
     private router: Router) {
 
-    this.dataSource = new MatTableDataSource(this.users);
-    //console.log(this.dataSource)
+  ngOnInit() {
+    this.dataSource.LoadSaludos();
+    
+    console.log(this.dataSource);
   }
 
   ngAfterViewInit() {

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AmbientesPJ.ServiceService } from './ambientes-pj.service.service';
+import { AmbientesPJService } from './ambientes-pj.service';
 
 describe('AmbientesPJ.ServiceService', () => {
-  let service: AmbientesPJ.ServiceService;
+  let service: AmbientesPJService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(AmbientesPJ.ServiceService);
+    service = TestBed.inject(AmbientesPJService);
   });
 
   it('should be created', () => {
