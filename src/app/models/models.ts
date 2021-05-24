@@ -27,6 +27,7 @@ export interface Historia {
     descripcion: string;
     medios: [];
     enUso: number;
+    token?: string;
 }
 
 export interface Oracion {
