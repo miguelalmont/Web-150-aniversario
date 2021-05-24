@@ -23,7 +23,8 @@ export class PActosEditComponent implements OnInit {
     description: this.newActosForm.get('description').value,
     category: this.newActosForm.get('category').value,
     date: this.newActosForm.get('date').value,
-    image: this.newActosForm.get('image').value
+    enUso: this.newActosForm.get('enUso').value,
+    medios: this.newActosForm.get('medios').value
   }
 
   constructor(private fb: FormBuilder) {}

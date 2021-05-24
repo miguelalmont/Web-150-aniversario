@@ -14,7 +14,8 @@ export class PActosFormComponent implements OnInit {
     description: new FormControl('',  [Validators.required, Validators.minLength(6)]),
     category: new FormControl('',  [Validators.required, Validators.minLength(6)]),
     date: new FormControl('',  Validators.required),
-    image: new FormControl('', Validators.required)
+    enUso: new FormControl('', Validators.required),
+    medios: new FormControl('', Validators.required)
   });
 
   acto = {
@@ -22,7 +23,8 @@ export class PActosFormComponent implements OnInit {
     description: this.newActosForm.get('description').value,
     category: this.newActosForm.get('category').value,
     date: this.newActosForm.get('date').value,
-    image: this.newActosForm.get('image').value
+    enUso: this.newActosForm.get('enUso').value,
+    medios: this.newActosForm.get('medios').value
   }
 
   constructor(private fb: FormBuilder) {}

@@ -6,12 +6,12 @@
   <form [formGroup]="newOracionForm" (ngSubmit)="onFormSubmit()">
       <mat-form-field appearance="outline">
         <mat-label>Titulo</mat-label>
-        <input matInput formControlName="title" placeholder="Titulo" type="text" cdkFocusInitial>
+        <input matInput formControlName="titulo" placeholder="Titulo" type="text" cdkFocusInitial>
         <mat-error>El titulo debe contener 6 carácteres como mínimo.</mat-error>
       </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Oracion</mat-label>
-          <input matInput formControlName="prayer" placeholder="Oracion" type="text">
+          <input matInput formControlName="oracion" placeholder="Oracion" type="text">
           <mat-error>El subtitulo debe contener 6 carácteres como mínimo.</mat-error>
         </mat-form-field>
     <mat-dialog-actions>

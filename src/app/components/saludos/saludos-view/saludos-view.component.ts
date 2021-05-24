@@ -6,51 +6,48 @@ import {MatDialog} from '@angular/material/dialog';
 import {SaludosFormComponent} from '../saludos-form/saludos-form.component';
 import {SaludosEditComponent } from '../saludos-edit/saludos-edit.component'
 import {SaludosDetailsComponent } from '../saludos-details/saludos-details.component';
+import { Saludo } from 'src/app/models/models';
+import { SaludosService } from 'src/app/services/saludos-service/saludos.service.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 export interface SaludosData {
-  title: string;
-  content: string;
-  image: string;
-  description: string;
-  video?: string;
+  titulo: string;
+  contenido: string;
+  descripcion: string;
+ 
+  
 };
  
 let usersData: SaludosData[] = [
   {
-    title: 'Saludo de la madre Yvonne',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    image: 'image caption',
-    description: ''
+    titulo: 'Saludo de la madre Yvonne',
+    contenido: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    descripcion: 'image caption'
   },
   {
-    title: 'Saludo de las salesianas',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-    image: 'image caption',
-    description: ''
+    titulo: 'Saludo de la madre Yvonne',
+    contenido: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    descripcion: 'image caption'
   },
   {
-    title: 'Saludo de la madre superiora',
-    content: 'Lorem ipsum dolor sit amet, Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-    image: 'image caption',
-    description: ''
+    titulo: 'Saludo de la madre Yvonne',
+    contenido: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    descripcion: 'image caption'
   },
   {
-    title: 'Saludo de la inspectoria',
-    content: 'Lorem ipsum dolor sit amet, Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-    image: 'image caption',
-    description: ''
+    titulo: 'Saludo de la madre Yvonne',
+    contenido: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    descripcion: 'image caption'
   },
   {
-    title: 'Saludo de Charo Ten',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-    image: 'image caption',
-    description: ''
+    titulo: 'Saludo de la madre Yvonne',
+    contenido: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    descripcion: 'image caption'
   },
   {
-    title: 'Saludo de la madre superiora',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-    image: 'image caption',
-    description: ''
+    titulo: 'Saludo de la madre Yvonne',
+    contenido: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    descripcion: 'image caption'
   }
 ]
 @Component({
@@ -59,14 +56,15 @@ let usersData: SaludosData[] = [
   styleUrls: ['./saludos-view.component.scss']
 })
 export class SaludosViewComponent implements AfterViewInit {
-  displayedColumns: string[] = ['title', 'content', 'image', 'description', 'video', 'actions'];
+  displayedColumns: string[] = ['titulo', 'contenido', 'descripcion', 'actions'];
   dataSource: MatTableDataSource<SaludosData>;
   users: SaludosData[] = usersData;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private saludoService: SaludosService, private route: ActivatedRoute,
+    private router: Router) {
 
     this.dataSource = new MatTableDataSource(this.users);
     //console.log(this.dataSource)
@@ -117,8 +115,12 @@ export class SaludosViewComponent implements AfterViewInit {
     });
   }
 
-  detailsUserOnClick() {
-    const dialogRef = this.dialog.open(SaludosDetailsComponent);
+  detailsUserOnClick(row: Saludo) {
+    console.log(row);
+    const dialogRef = this.dialog.open(SaludosDetailsComponent, {
+      
+      data: {row}
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

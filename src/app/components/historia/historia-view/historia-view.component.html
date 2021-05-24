@@ -15,19 +15,19 @@
     <table mat-table [dataSource]="dataSource" matSort>
   
       <!-- Title Column -->
-      <ng-container class="name-row" matColumnDef="title">
+      <ng-container class="name-row" matColumnDef="titulo">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Titulo </th>
         <td mat-cell *matCellDef="let row"> {{row.titulo}} </td>
       </ng-container>
   
       <!-- Subtitle Column -->
-      <ng-container matColumnDef="subtitle">
+      <ng-container matColumnDef="subtitulo">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Subtitulo </th>
         <td mat-cell *matCellDef="let row"> {{row.subtitulo}} </td>
       </ng-container>
 
       <!-- Description Column -->
-     <ng-container matColumnDef="description">
+     <ng-container matColumnDef="descripcion">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>  Description </th>
         <td mat-cell *matCellDef="let row"> {{row.descripcion}} </td>
       </ng-container>
@@ -42,7 +42,7 @@
       <ng-container matColumnDef="actions">
         <th class="actions-row" mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</th>
         <td class="actions-row" mat-cell *matCellDef="let row">
-            <button class="action-btn view-btn" mat-stroked-button (click)="detailsHistoriaOnClick()">
+            <button class="action-btn view-btn" mat-stroked-button (click)="detailsHistoriaOnClick(row)">
               <mat-icon>remove_red_eye</mat-icon>
               Detalles
             </button>

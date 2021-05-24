@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Visita } from 'src/app/models/models';
 
 @Component({
   selector: 'app-visitas-details',
@@ -8,30 +11,42 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 })
 export class VisitasDetailsComponent implements OnInit {
 
-  newUserForm: FormGroup = this.fb.group({
-    firstname: new FormControl('',  [Validators.required, Validators.minLength(6)]),
-    lastname: new FormControl('',  Validators.required),
-    email: new FormControl('',  [Validators.required, Validators.email]),
-    password: new FormControl('',  [Validators.minLength(6), Validators.required]),
-    passwordRepeat: new FormControl('', Validators.required)
-  });
-
-  user = {
-    firstname: this.newUserForm.get('firstname').value,
-    lastname: this.newUserForm.get('lastname').value,
-    email: this.newUserForm.get('email').value,
-    password: this.newUserForm.get('password').value,
-    passwordRepeat: this.newUserForm.get('passwordRepeat').value
+  @Input() visitaDetails: Visita = {
+      titulo: '',
+      enUso: 0,
+      medios: []
   }
 
-  constructor(private fb: FormBuilder) {}
+  detailVisitaForm: FormGroup;
 
-  get firstname() { return this.newUserForm.get('firstname').value; }
+
+  newVisitaForm: FormGroup = this.fb.group({
+    titulo: new FormControl('',  [Validators.required, Validators.minLength(6)]),
+    enUso: new FormControl('', Validators.required),
+    medios: new FormControl('', Validators.required)
+  });
+
+  visita = {
+    titulo: this.newVisitaForm.get('titulo').value,
+    enUso: this.newVisitaForm.get('enUso').value,
+    medios: this.newVisitaForm.get('medios').value
+  }
+
+  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data) {
+    this.visitaDetails = data.row;
+    this.detailVisitaForm = this.fb.group({
+      titulo: new FormControl(this.visitaDetails.titulo),
+      enUso: new FormControl(this.visitaDetails.enUso),
+      medios: new FormControl(this.visitaDetails.medios)
+    });
+  }
+
+  get titulo() { return this.newVisitaForm.get('titulo').value; }
 
   ngOnInit(): void {}
 
   onFormSubmit(): void {
-    console.log('Name:' + this.newUserForm.get('firstname').value);
+    console.log('Titulo:' + this.newVisitaForm.get('titulo').value);
   }
 
 }

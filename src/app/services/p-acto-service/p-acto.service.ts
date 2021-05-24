@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ActoData } from 'src/app/models/actos';
+import { Observable } from 'rxjs';
+import { ActoData } from 'src/app/models/models';
 import { baseUrl } from 'src/environments/environment';
 
 @Injectable({
@@ -10,11 +11,9 @@ export class PActoService {
 
   baseUrl = baseUrl.url
 
-  constructor(private http: HttpClient) { }
+  constructor(private http:HttpClient) { }
 
-  async getHistorias(): Promise<ActoData[]> {
-    let url = this.baseUrl + '/story/list.php';
-    let historiaData = await this.http.get<ActoData[]>(url).toPromise();
-    return historiaData;
+  getActo():Observable<ActoData[]>{
+    return this.http.get<ActoData[]>(this.baseUrl+'/acts/list.php');
   }
 }

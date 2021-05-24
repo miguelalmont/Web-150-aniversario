@@ -10,25 +10,25 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 export class OracionEditComponent implements OnInit {
 
   newOracionForm: FormGroup = this.fb.group({
-    title: new FormControl('',  [Validators.required, Validators.minLength(6)]),
-    prayer: new FormControl('',  [Validators.required, Validators.minLength(6)])
+    titulo: new FormControl('',  [Validators.required, Validators.minLength(6)]),
+    oracion: new FormControl('',  [Validators.required, Validators.minLength(6)])
     
   });
 
   oracion = {
-    title: this.newOracionForm.get('title').value,
-    prayer: this.newOracionForm.get('prayer').value
+    titulo: this.newOracionForm.get('titulo').value,
+    oracion: this.newOracionForm.get('oracion').value
     
   }
 
   constructor(private fb: FormBuilder) {}
 
-  get title() { return this.newOracionForm.get('title').value; }
+  get titulo() { return this.newOracionForm.get('titulo').value; }
 
   ngOnInit(): void {}
 
   onFormSubmit(): void {
-    console.log('Name:' + this.newOracionForm.get('title').value);
+    console.log('Name:' + this.newOracionForm.get('titulo').value);
   }
 
 }

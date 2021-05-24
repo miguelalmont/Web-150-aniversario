@@ -1,7 +1,7 @@
 import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { User } from 'src/app/models/user';
+import { User } from 'src/app/models/models';
 
 @Component({
   selector: 'app-details-user',

@@ -19,7 +19,7 @@ export class LoginService {
 
   constructor(private http: HttpClient) {}
 
-  authentication(username: string, password: string): Observable<Token> {
+  authentication(name: string, pass: string): Observable<Token> {
     const md5 = new Md5();
     var jsonObject = {
       username: username,

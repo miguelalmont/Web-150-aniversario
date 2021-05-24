@@ -8,8 +8,46 @@ import {MatDialog} from '@angular/material/dialog';
 import { AmbientesPjDetailsComponent } from '../ambientes-pj-details/ambientes-pj-details.component';
 import { AmbientesPjEditComponent } from '../ambientes-pj-edit/ambientes-pj-edit.component';
 import { AmbientesPjFormComponent } from '../ambientes-pj-form/ambientes-pj-form.component';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Ambiente } from 'src/app/models/models';
 
+export interface AmbientesData {
+  titulo: string;
+  medios: string;
+  
+}
+ 
+let AmbientesData: AmbientesData[] = [
+  {
+    titulo: 'Saludo de la madre Yvonne',
+    medios: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    
+  },
+  {
+    titulo: 'Saludo de las salesianas',
+    medios: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+   
+  },
+  {
+    titulo: 'Saludo de la madre superiora',
+    medios: 'Lorem ipsum dolor sit amet, Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+
+  },
+  {
+    titulo: 'Saludo de la inspectoria',
+    medios: 'Lorem ipsum dolor sit amet, Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+    
+  },
+  {
+    titulo: 'Saludo de Charo Ten',
+    medios: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+   
+  },
+  {
+    titulo: 'Saludo de la madre superiora',
+    medios: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+   
+  }
+]
 
 @Component({
   selector: 'app-ambientes-pj-view',
@@ -17,9 +55,9 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./ambientes-pj-view.component.scss']
 })
 export class AmbientesPjViewComponent implements AfterViewInit {
-  displayedColumns: string[] = ['title', 'video', 'actions'];
-  dataSource: MatTableDataSource<ambientesPj>;
-  ambientes: ambientesPj[];
+  displayedColumns: string[] = ['titulo', 'medios', 'actions'];
+  dataSource: MatTableDataSource<AmbientesData>;
+  ambientes: AmbientesData[] = AmbientesData;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -84,14 +122,13 @@ export class AmbientesPjViewComponent implements AfterViewInit {
     });
   }
 
-  detailsAmbienteOnClick(row: ambientesPj) {
-    const dialogRef = this.dialog.open(AmbientesPjDetailsComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+  detailsAmbienteOnClick(row: Ambiente) {
+    console.log(row);
+    const dialogRef = this.dialog.open(AmbientesPjDetailsComponent, {
+      
+      data: {row}
     });
-  }
+  
+}
 
-  
-  
 }

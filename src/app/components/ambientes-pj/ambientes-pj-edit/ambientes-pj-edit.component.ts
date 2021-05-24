@@ -11,38 +11,24 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 })
 export class AmbientesPjEditComponent implements OnInit {
 
-  @Input()
-  ambienteToDetail: ambientesPj = {
-    id: 0,
-    titulo: '',
-    descripcion: '',
-    enUso: 0,
-    medios: []
-  };
+  newAmbienteForm: FormGroup = this.fb.group({
+    titulo: new FormControl('',  [Validators.required, Validators.minLength(6)]),
+    medios: new FormControl('',  Validators.required),
+  });
 
-  newAmbienteForm: FormGroup;
+  ambiente = {
+    titulo: this.newAmbienteForm.get('titulo').value,
+    medios: this.newAmbienteForm.get('medios').value
+  }
 
-  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: ambientesPj) { 
-    this.ambienteToDetail.id = data.id;
-    this.ambienteToDetail.titulo = data.titulo;
-    this.ambienteToDetail.descripcion = data.descripcion;
-    this.ambienteToDetail.enUso = data.enUso;
-    this.ambienteToDetail.medios = data.medios;
-    
-    this.newAmbienteForm = this.fb.group({
-      titulo: [data.titulo],
-      descripcion: [data.descripcion],
-      enUso: [data.enUso],
-      medios: [data.medios]
-    });
-   }
+  constructor(private fb: FormBuilder) {}
 
-  get title() { return this.newAmbienteForm.get('title').value; }
+  get titulo() { return this.newAmbienteForm.get('titulo').value; }
 
   ngOnInit(): void {}
 
   onFormSubmit(): void {
-    console.log('Name:' + this.newAmbienteForm.get('title').value);
+    console.log('Name:' + this.newAmbienteForm.get('titulo').value);
   }
 
 }

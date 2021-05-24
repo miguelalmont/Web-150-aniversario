@@ -36,7 +36,7 @@
       <ng-container matColumnDef="actions">
         <th class="actions-row" mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</th>
         <td class="actions-row" mat-cell *matCellDef="let row">
-            <button class="action-btn view-btn" mat-stroked-button (click)="detailsMaterialesOnClick()">
+            <button class="action-btn view-btn" mat-stroked-button (click)="detailsMaterialesOnClick(row)">
               <mat-icon>remove_red_eye</mat-icon>
               Detalles
             </button>

@@ -6,7 +6,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {UsersComponent} from '../users-form/users.component';
 import {EditUserComponent } from '../edit-user/edit-user.component'
 import { DetailsUserComponent } from '../details-user/details-user.component';
-import { User } from 'src/app/models/user';
+import { User } from 'src/app/models/models';
 
 let usersData: User[] = [
   {
@@ -119,6 +119,7 @@ export class UsersViewComponent implements AfterViewInit {
   }
 
   detailsUserOnClick(row: User) {
+    console.log(row);
     const dialogRef = this.dialog.open(DetailsUserComponent, {
       data: {row}
     });

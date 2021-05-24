@@ -6,22 +6,22 @@
   <form [formGroup]="newHistoriaForm" (ngSubmit)="onFormSubmit()">
       <mat-form-field appearance="outline">
         <mat-label>Titulo</mat-label>
-        <input matInput formControlName="title" placeholder="Titulo" type="text" readonly cdkFocusInitial>
+        <input matInput formControlName="titulo" placeholder="Titulo" type="text" readonly cdkFocusInitial>
         <mat-error>El titulo debe contener 6 carácteres como mínimo.</mat-error>
       </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Subtitulo</mat-label>
-          <input matInput formControlName="subtitle" placeholder="Subtitulo" type="text" readonly>
+          <input matInput formControlName="subtitulo" placeholder="Subtitulo" type="text" readonly>
           <mat-error>El subtitulo debe contener 6 carácteres como mínimo.</mat-error>
         </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Descripcion</mat-label>
-        <input matInput formControlName="description" placeholder="Descripcion" type="text" readonly>
+        <input matInput formControlName="descripcion" placeholder="Descripcion" type="text" readonly>
         <mat-error>El nombre debe contener 6 carácteres como mínimo.</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Imagen</mat-label>
-        <input matInput formControlName="image" placeholder="Imagen" type="text" readonly>
+        <input matInput formControlName="medios" placeholder="Imagen" type="text" readonly>
       </mat-form-field>
   </form>
 </div>

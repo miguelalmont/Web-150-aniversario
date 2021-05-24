@@ -3,7 +3,22 @@ export interface ActoData {
     description: string;
     category: string;
     date: string;
-    image: string;
+    medios: [];
+    enUso: number;
+}
+
+export interface Saludo {
+    titulo: string;
+    contenido: string;
+    descripcion: string;
+    medios: [];
+    enUso: number;
+}
+
+export interface Visita {
+    titulo: string;
+    medios: [];
+    enUso: number;
 }
 
 export interface Historia {
@@ -12,7 +27,26 @@ export interface Historia {
     descripcion: string;
     medios: [];
     enUso: number;
-}  
+}
+
+export interface Oracion {
+    titulo: string;
+    oracion: string;
+    enUso: number;
+}
+
+export interface Material {
+    titulo: string;
+    contenido: string;
+    medios: [];
+    enUso: number;
+}
+
+export interface Ambiente {
+    titulo: string;
+    medios: [];
+    enUso: number;
+}
 
 export interface Token {
     token:string

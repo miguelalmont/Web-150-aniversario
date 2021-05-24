@@ -10,27 +10,28 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 export class HistoriaEditComponent implements OnInit {
 
   newHistoriaForm: FormGroup = this.fb.group({
-    title: new FormControl('',  [Validators.required, Validators.minLength(6)]),
-    subtitle: new FormControl('',  [Validators.required, Validators.minLength(6)]),
-    description: new FormControl('',  [Validators.required, Validators.minLength(6)]),
-    image: new FormControl('', Validators.required)
+    titulo: new FormControl('',  [Validators.required, Validators.minLength(6)]),
+    subtitulo: new FormControl('',  [Validators.required, Validators.minLength(6)]),
+    descripcion: new FormControl('',  [Validators.required, Validators.minLength(6)]),
+    medios: new FormControl('', Validators.required),
+    enUso: new FormControl('', Validators.required)
   });
 
   historia = {
-    title: this.newHistoriaForm.get('title').value,
-    subtitle: this.newHistoriaForm.get('subtitle').value,
-    description: this.newHistoriaForm.get('description').value,
-    image: this.newHistoriaForm.get('image').value
+    titulo: this.newHistoriaForm.get('titulo').value,
+    subtitulo: this.newHistoriaForm.get('subtitulo').value,
+    descripcion: this.newHistoriaForm.get('descripcion').value,
+    medios: this.newHistoriaForm.get('medios').value
   }
 
   constructor(private fb: FormBuilder) {}
 
-  get title() { return this.newHistoriaForm.get('title').value; }
+  get titulo() { return this.newHistoriaForm.get('titulo').value; }
 
   ngOnInit(): void {}
 
   onFormSubmit(): void {
-    console.log('Name:' + this.newHistoriaForm.get('title').value);
+    console.log('Name:' + this.newHistoriaForm.get('titulo').value);
   }
 
 }

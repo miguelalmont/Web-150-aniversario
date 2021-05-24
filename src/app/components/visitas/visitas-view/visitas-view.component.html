@@ -1,5 +1,5 @@
 <div>
-    <button class="insert-btn" (click)="createUserOnClick()" mat-stroked-button>
+    <button class="insert-btn" (click)="createVisitaOnClick()" mat-stroked-button>
       <mat-icon>add_circle_outline</mat-icon>
       Nueva visita
     </button>
@@ -15,26 +15,26 @@
     <table mat-table [dataSource]="dataSource" matSort>
   
       <!-- Title Column -->
-      <ng-container class="name-row" matColumnDef="title">
+      <ng-container class="name-row" matColumnDef="titulo">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Titulo </th>
-        <td mat-cell *matCellDef="let row"> {{row.title}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.titulo}} </td>
       </ng-container>
   
       <!-- Video Url Column -->
-      <ng-container matColumnDef="videoUrl">
+      <ng-container matColumnDef="medios">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Video Url </th>
-        <td mat-cell *matCellDef="let row"> {{row.content}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.medios}} </td>
       </ng-container>
       
       <!-- Actions Column -->
       <ng-container matColumnDef="actions">
         <th class="actions-row" mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</th>
         <td class="actions-row" mat-cell *matCellDef="let row">
-            <button class="action-btn view-btn" mat-stroked-button (click)="detailsUserOnClick()">
+            <button class="action-btn view-btn" mat-stroked-button (click)="detailsVisitaOnClick(row)">
               <mat-icon>remove_red_eye</mat-icon>
               Detalles
             </button>
-            <button class="action-btn edit-btn" mat-stroked-button (click)="editUserOnClick()">
+            <button class="action-btn edit-btn" mat-stroked-button (click)="editVisitaOnClick()">
               <mat-icon>edit</mat-icon>
               Editar
             </button>

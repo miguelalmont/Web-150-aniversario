@@ -3,14 +3,14 @@
   <button mat-stroked-button mat-dialog-close ><mat-icon>close</mat-icon></button>
 </div>
 <div class="form-container">
-  <form [formGroup]="newUserForm" (ngSubmit)="onFormSubmit()">
+  <form [formGroup]="newVisitaForm" (ngSubmit)="onFormSubmit()">
     <mat-form-field appearance="outline">
       <mat-label>Titulo</mat-label>
-      <input matInput formControlName="firstname" placeholder="Titulo" type="text" cdkFocusInitial disabled>
+      <input matInput formControlName="titulo" placeholder="Titulo" type="text" cdkFocusInitial disabled>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Video-Url</mat-label>
-      <input matInput formControlName="lastname" placeholder="Video-Url" type="text" disabled>
+      <input matInput formControlName="medios" placeholder="Video-Url" type="text" disabled>
     </mat-form-field>
   </form>
 </div>

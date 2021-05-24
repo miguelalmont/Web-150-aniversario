@@ -6,8 +6,9 @@ import {MatDialog} from '@angular/material/dialog';
 import { PActosFormComponent } from '../p-actos-form/p-actos-form.component';
 import { PActosEditComponent } from '../p-actos-edit/p-actos-edit.component';
 import { PActosDetailsComponent } from '../p-actos-details/p-actos-details.component';
-import { ActoData } from 'src/app/models/actos';
+import { ActoData } from 'src/app/models/models';
 import { PActoService } from 'src/app/services/p-acto-service/p-acto.service';
+import { ActivatedRoute, Router } from '@angular/router';
  
 let usersData: ActoData[] = []
 
@@ -24,10 +25,11 @@ export class PActosViewComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(public dialog: MatDialog, private pActosService: PActoService) {
+  constructor(public dialog: MatDialog, private pActosService: PActoService,private route: ActivatedRoute,
+    private router: Router) {
 
-    this.pActosService.getHistorias().then((data) => this.actos = data);
     this.dataSource = new MatTableDataSource(this.actos);
+    console.log(this.dataSource)
   }
 
   ngAfterViewInit() {
