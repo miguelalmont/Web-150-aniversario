@@ -7,42 +7,8 @@ import {VisitasFormComponent} from '../visitas-form/visitas-form.component';
 import {VisitasEditComponent } from '../visitas-edit/visitas-edit.component'
 import {VisitasDetailsComponent } from '../visitas-details/visitas-details.component';
 import { Visita } from 'src/app/models/models';
-import { VisitasService } from 'src/app/services/visitas-service/visitas.service.service';
+import { VisitasService } from 'src/app/services/visitas-service/visitas.service';
 import { ActivatedRoute, Router } from '@angular/router';
-
-
-export interface VisitasData {
-  titulo: string;
-  medios: string;
-  
-}
- 
-let usersData: VisitasData[] = [
-  {
-    titulo: 'Saludo de la madre Yvonne',
-    medios: 'image caption',
-  },
-  {
-    titulo: 'Saludo de la madre Yvonne',
-    medios: 'image caption',
-  },
-  {
-    titulo: 'Saludo de la madre Yvonne',
-    medios: 'image caption',
-  },
-  {
-    titulo: 'Saludo de la madre Yvonne',
-    medios: 'image caption',
-  },
-  {
-    titulo: 'Saludo de la madre Yvonne',
-    medios: 'image caption',
-  },
-  {
-    titulo: 'Saludo de la madre Yvonne',
-    medios: 'image caption',
-  }
-]
 
 @Component({
   selector: 'app-visitas-view',
@@ -51,8 +17,8 @@ let usersData: VisitasData[] = [
 })
 export class VisitasViewComponent implements AfterViewInit {
   displayedColumns: string[] = ['titulo', 'medios', 'actions'];
-  dataSource: MatTableDataSource<VisitasData>;
-  users: VisitasData [] = usersData;
+  dataSource: MatTableDataSource<Visita>;
+  users: Visita[];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Saludos} from 'src/app/models/models';
+import { Saludo} from 'src/app/models/models';
 import { baseUrl } from 'src/environments/environment';
 
 @Injectable({
@@ -14,9 +14,8 @@ export class SaludosService {
 
   constructor(private http: HttpClient) {}
 
-  getSaludos(): Observable<Saludos[]> {
+  getSaludos(): Observable<Saludo[]> {
     let url = this.baseUrl + '/greetings/list.php';
-    console.log(url)
-    return this.http.get<Saludos[]>(url); 
+    return this.http.get<Saludo[]>(url); 
   }
 }

@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
@@ -7,7 +7,7 @@ import {SaludosFormComponent} from '../saludos-form/saludos-form.component';
 import {SaludosEditComponent } from '../saludos-edit/saludos-edit.component'
 import {SaludosDetailsComponent } from '../saludos-details/saludos-details.component';
 import { Saludo } from 'src/app/models/models';
-import { SaludosService } from 'src/app/services/saludos-service/saludos.service.service';
+import { SaludosService } from 'src/app/services/saludos-service/saludos.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 export interface SaludosData {
@@ -64,13 +64,7 @@ export class SaludosViewComponent implements AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(public dialog: MatDialog, private saludoService: SaludosService, private route: ActivatedRoute,
-    private router: Router) {
-
-  ngOnInit() {
-    this.dataSource.LoadSaludos();
-    
-    console.log(this.dataSource);
-  }
+    private router: Router) {}
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -128,5 +122,4 @@ export class SaludosViewComponent implements AfterViewInit {
       console.log(`Dialog result: ${result}`);
     });
   }
-  
 }

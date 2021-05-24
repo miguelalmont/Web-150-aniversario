@@ -18,8 +18,6 @@ export class HistoriaService {
     return this.http.get<Historia[]>(this.baseUrl+'/story/list.php');
   }
 
- 
-
   insertHistoria() { }
 
   updateHistoria() { }

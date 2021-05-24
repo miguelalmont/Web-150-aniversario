@@ -2,8 +2,7 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { Token } from './../../models/token';
-import { UserLogin } from './../../models/userLogin';
+import { Token, UserLogin } from './../../models/models';
 import { baseUrl } from './../../../environments/environment';
 import { Md5 } from 'ts-md5';
 
@@ -22,9 +21,8 @@ export class LoginService {
   authentication(name: string, pass: string): Observable<Token> {
     const md5 = new Md5();
     var jsonObject = {
-      username: username,
-      password: md5.appendStr(password).end().toString(),
-      // password: password
+      username: name,
+      password: md5.appendStr(pass).end().toString()
     };
 
     console.log(jsonObject)

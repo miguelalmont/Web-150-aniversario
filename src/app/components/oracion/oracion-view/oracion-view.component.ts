@@ -7,40 +7,8 @@ import { OracionFormComponent } from '../oracion-form/oracion-form.component';
 import { OracionEditComponent } from '../oracion-edit/oracion-edit.component';
 import { OracionDetailsComponent } from '../oracion-details/oracion-details.component';
 import { Oracion } from 'src/app/models/models';
-import { OracionService } from 'src/app/services/oracion-service/oracion.service.service';
 import { ActivatedRoute, Router } from '@angular/router';
-
-export interface PrayerData {
-  titulo: string;
-  oracion: string;
-}
-
-let prayerData: PrayerData[] = [
-  {
-    titulo: 'Oración 1',
-    oracion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
-  },
-  {
-    titulo: 'Oración 1',
-    oracion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
-  },
-  {
-    titulo: 'Oración 1',
-    oracion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
-  },
-  {
-    titulo: 'Oración 1',
-    oracion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
-  },
-  {
-    titulo: 'Oración 1',
-    oracion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
-  },
-  {
-    titulo: 'Oración 1',
-    oracion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
-  }
-]
+import { OracionService } from 'src/app/services/ambientesPJ-service/ambientes-pj.service';
 
 @Component({
   selector: 'app-oracion-view',
@@ -49,8 +17,8 @@ let prayerData: PrayerData[] = [
 })
 export class OracionViewComponent implements AfterViewInit {
   displayedColumns: string[] = ['titulo', 'oracion', 'actions'];
-  dataSource: MatTableDataSource<PrayerData>;
-  prayers: PrayerData[] = prayerData;
+  dataSource: MatTableDataSource<Oracion>;
+  prayers: Oracion[];
   show: boolean = true
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
