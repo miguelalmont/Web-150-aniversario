@@ -14,6 +14,6 @@ export class PActoService {
   constructor(private http:HttpClient) { }
 
   getActo():Observable<ActoData[]>{
-    return this.http.get<ActoData[]>(this.baseUrl+'/acts/list.php');
+    return this.http.get<ActoData[]>('/acts/list.php');
   }
 }

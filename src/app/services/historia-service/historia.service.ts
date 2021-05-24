@@ -15,7 +15,7 @@ export class HistoriaService {
   constructor(private http: HttpClient) {}
 
   getHistorias(): Observable<Historia[]> {
-    return this.http.get<Historia[]>(this.baseUrl+'/story/list.php');
+    return this.http.get<Historia[]>('/story/list.php');
   }
 
   insertHistoria() { }

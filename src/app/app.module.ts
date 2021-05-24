@@ -55,8 +55,9 @@ import { MaterialesDetailsComponent } from './components/materiales/materiales-d
 import { VisitasDetailsComponent } from './components/visitas/visitas-details/visitas-details.component';
 import { VisitasEditComponent } from './components/visitas/visitas-edit/visitas-edit.component';
 import { VisitasFormComponent } from './components/visitas/visitas-form/visitas-form.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { HttpInterceptorService } from './services/httpInterceptor.service';
 
 @NgModule({
   declarations: [
@@ -120,7 +121,13 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     MatCardModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
