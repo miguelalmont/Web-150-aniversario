@@ -1,3 +1,4 @@
+import { MaterialesService } from 'src/app/services/materiales-service/materiales.service';
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
@@ -7,47 +8,8 @@ import {MaterialesFormComponent} from '../materiales-form/materiales-form.compon
 import {MaterialesEditComponent } from '../materiales-edit/materiales-edit.component'
 import {MaterialesDetailsComponent } from '../materiales-details/materiales-details.component';
 import { Material } from 'src/app/models/models';
-import { MaterialesService } from 'src/app/services/materiales-service/materiales.service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
-export interface MaterialesData {
-  title: string;
-  content: string;
-  image: string;
-}
- 
-let materialesData: MaterialesData[] = [
-  {
-    title: 'Saludo de la madre Yvonne',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    image: 'image caption',
-  },
-  {
-    title: 'Saludo de las salesianas',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-    image: 'image caption',
-  },
-  {
-    title: 'Saludo de la madre superiora',
-    content: 'Lorem ipsum dolor sit amet, Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-    image: 'image caption',
-  },
-  {
-    title: 'Saludo de la inspectoria',
-    content: 'Lorem ipsum dolor sit amet, Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-    image: 'image caption',
-  },
-  {
-    title: 'Saludo de Charo Ten',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-    image: 'image caption',
-  },
-  {
-    title: 'Saludo de la madre superiora',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-    image: 'image caption',
-  }
-]
 
 @Component({
   selector: 'app-materiales-view',
@@ -55,9 +17,10 @@ let materialesData: MaterialesData[] = [
   styleUrls: ['./materiales-view.component.scss']
 })
 export class MaterialesViewComponent implements AfterViewInit {
-  displayedColumns: string[] = ['title', 'content', 'image', 'actions'];
-  dataSource: MatTableDataSource<MaterialesData>;
-  materiales: MaterialesData[] = materialesData;
+  displayedColumns: string[] = ['titulo', 'contenido', 'medios', 'actions'];
+  dataSource: MatTableDataSource<Material>;
+  materiales: Material[];
+  value = '';
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -86,7 +49,15 @@ export class MaterialesViewComponent implements AfterViewInit {
       return `${startIndex + 1} - ${endIndex} de ${length}`;
     };
     
-    this.dataSource.sort = this.sort;
+    
+
+    this.materialService.getMaterial().subscribe(
+      response => {
+        this.dataSource.data = response
+        console.log(this.dataSource.data)
+      },
+      error => console.log(error)
+    )
   }
 
   applyFilter(event: Event) {

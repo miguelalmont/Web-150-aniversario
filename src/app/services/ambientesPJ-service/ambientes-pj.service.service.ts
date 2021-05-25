@@ -9,12 +9,11 @@ import { baseUrl } from 'src/environments/environment';
 })
 export class AmbientesPJService {
 
-  baseUrl = baseUrl.url
   
   constructor(private http:HttpClient) { }
 
   getAmbientesPj():Observable<ambientesPj[]> {
-    return this.http.get<ambientesPj[]>(this.baseUrl+'/pjenvironments/list.php');
+    return this.http.get<ambientesPj[]>('/pjenvironments/list.php');
   }
   
 }

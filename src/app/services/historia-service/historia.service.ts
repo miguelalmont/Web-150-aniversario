@@ -11,12 +11,11 @@ import { AuthenticatorJwt } from '../authenticatorJwt.service';
 })
 export class HistoriaService {
   
-  baseUrl = baseUrl.url
 
   constructor(private http: HttpClient, private auth: AuthenticatorJwt) {}
 
   getHistorias(): Observable<Historia[]> {
-    return this.http.get<Historia[]>(this.baseUrl+'/story/listEverything.php');
+    return this.http.get<Historia[]>('/story/list.php');
   }
 
   insertHistoria(): Observable<Historia> {
@@ -28,7 +27,7 @@ export class HistoriaService {
       token: this.auth.getJWT()
     }
     console.log(body)
-    return this.http.post<Historia>(this.baseUrl+'/story/insert.php', body);
+    return this.http.post<Historia>('/story/insert.php', body);
    }
 
   updateHistoria() { }

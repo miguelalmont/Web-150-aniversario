@@ -9,11 +9,10 @@ import { baseUrl } from 'src/environments/environment';
 })
 export class PActoService {
 
-  baseUrl = baseUrl.url
 
   constructor(private http:HttpClient) { }
 
   getActo():Observable<ActoData[]>{
-    return this.http.get<ActoData[]>(this.baseUrl+'/acts/list.php');
+    return this.http.get<ActoData[]>('/acts/list.php');
   }
 }
