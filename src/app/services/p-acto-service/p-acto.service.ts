@@ -9,7 +9,6 @@ import { baseUrl } from 'src/environments/environment';
 })
 export class PActoService {
 
-  baseUrl = baseUrl.url
 
   constructor(private http:HttpClient) { }
 

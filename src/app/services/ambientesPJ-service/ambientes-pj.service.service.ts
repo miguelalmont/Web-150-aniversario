@@ -9,7 +9,6 @@ import { baseUrl } from 'src/environments/environment';
 })
 export class AmbientesPJService {
 
-  baseUrl = baseUrl.url
   
   constructor(private http:HttpClient) { }
 

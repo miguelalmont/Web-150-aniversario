@@ -10,12 +10,10 @@ import { baseUrl } from 'src/environments/environment';
 })
 export class SaludosService {
 
-  baseUrl = baseUrl.url
 
   constructor(private http: HttpClient) {}
 
   getSaludos(): Observable<Saludo[]> {
-    let url = this.baseUrl + '/greetings/listEverything.php';
-    return this.http.get<Saludo[]>(url); 
+    return this.http.get<Saludo[]>('/greetings/listEverything.php'); 
   }
 }

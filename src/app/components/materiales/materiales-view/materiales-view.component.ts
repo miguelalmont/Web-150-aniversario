@@ -1,3 +1,4 @@
+import { MaterialesService } from 'src/app/services/materiales-service/materiales.service';
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
@@ -7,7 +8,6 @@ import {MaterialesFormComponent} from '../materiales-form/materiales-form.compon
 import {MaterialesEditComponent } from '../materiales-edit/materiales-edit.component'
 import {MaterialesDetailsComponent } from '../materiales-details/materiales-details.component';
 import { Material } from 'src/app/models/models';
-import { MaterialesService } from 'src/app/services/materiales-service/materiales.service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 

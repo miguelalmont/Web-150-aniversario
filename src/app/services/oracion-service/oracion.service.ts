@@ -9,11 +9,9 @@ import { baseUrl } from 'src/environments/environment';
 })
 export class OracionService {
 
-  baseUrl = baseUrl.url
-
   constructor(private http:HttpClient) { }
 
   getOracion():Observable<Oracion[]>{
-    return this.http.get<Oracion[]>(this.baseUrl+'/visits/list.php');
+    return this.http.get<Oracion[]>('/pray/list.php');
   }
 }

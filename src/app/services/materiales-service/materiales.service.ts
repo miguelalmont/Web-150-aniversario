@@ -1,20 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Saludo } from 'src/app/models/models';
+import { Material } from 'src/app/models/models';
 import { baseUrl } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SaludosService {
-
-  baseUrl = baseUrl.url
+export class MaterialesService {
 
   constructor(private http:HttpClient) { }
 
-  getSaludo():Observable<Saludo[]>{
-    return this.http.get<Saludo[]>(this.baseUrl+'/greetings/list.php');
+  getMaterial():Observable<Material[]>{
+    return this.http.get<Material[]>('/materials/list.php');
   }
-  
 }

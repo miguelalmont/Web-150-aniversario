@@ -9,11 +9,10 @@ import { baseUrl } from 'src/environments/environment';
 })
 export class VisitasService {
 
-  baseUrl = baseUrl.url
 
   constructor(private http:HttpClient) { }
 
   getVisita():Observable<Visita[]>{
-    return this.http.get<Visita[]>(this.baseUrl+'/visits/list.php');
+    return this.http.get<Visita[]>('/visits/list.php');
   }
 }
