@@ -15,21 +15,21 @@
     <table mat-table [dataSource]="dataSource" matSort>
   
       <!-- Title Column -->
-      <ng-container class="name-row" matColumnDef="title">
+      <ng-container class="name-row" matColumnDef="titulo">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Titulo </th>
-        <td mat-cell *matCellDef="let row"> {{row.title}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.titulo}} </td>
       </ng-container>
   
       <!-- Content Column -->
-      <ng-container matColumnDef="content">
+      <ng-container matColumnDef="contenido">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Contenido </th>
-        <td mat-cell *matCellDef="let row"> {{row.content}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.contenido}} </td>
       </ng-container>
 
      <!-- Image Column -->
-     <ng-container matColumnDef="image">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Imagen </th>
-      <td mat-cell *matCellDef="let row"> {{row.image}} </td>
+     <ng-container matColumnDef="medios">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Medios </th>
+      <td mat-cell *matCellDef="let row"> {{row.medios}} </td>
     </ng-container>
 
       <!-- Actions Column -->
