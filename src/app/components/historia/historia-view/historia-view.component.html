@@ -32,6 +32,11 @@
         <td mat-cell *matCellDef="let row"> {{row.descripcion}} </td>
       </ng-container>
 
+      <ng-container matColumnDef="enUso">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>enUso</th>
+        <td mat-cell *matCellDef="let row">{{ row.enUso }}</td>
+      </ng-container>
+
      <!-- Imagen Column
      <ng-container matColumnDef="image">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Imagen </th>

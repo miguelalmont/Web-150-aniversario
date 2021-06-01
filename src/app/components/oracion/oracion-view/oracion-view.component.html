@@ -28,6 +28,12 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Oracion</th>
           <td mat-cell *matCellDef="let row">{{ row.oracion }}</td>
         </ng-container>
+
+         <!-- Prayer Column -->
+         <ng-container matColumnDef="enUso">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>enUso</th>
+          <td mat-cell *matCellDef="let row">{{ row.enUso }}</td>
+        </ng-container>
   
         <!-- Actions Column -->
         <ng-container matColumnDef="actions">
