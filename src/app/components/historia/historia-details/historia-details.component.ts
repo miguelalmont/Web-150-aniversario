@@ -3,6 +3,7 @@ import { Component, OnInit, Inject, Input } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { HistoriaService } from 'src/app/services/historia-service/historia.service';
 
 @Component({
   selector: 'app-historia-details',
@@ -30,7 +31,7 @@ export class HistoriaDetailsComponent implements OnInit {
     medios: new FormControl('', Validators.required)
   });
 
-  historia = {
+  historia: Historia = {
     titulo: this.newHistoriaForm.get('titulo').value,
     subtitulo: this.newHistoriaForm.get('subtitulo').value,
     descripcion: this.newHistoriaForm.get('descripcion').value,
@@ -38,7 +39,7 @@ export class HistoriaDetailsComponent implements OnInit {
     medios: this.newHistoriaForm.get('medios').value
   }
 
-  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data) {
+  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data, private historiaService: HistoriaService) {
     this.historiaDetails = data.row;
     this.detailHistoriaForm = this.fb.group({
       titulo: new FormControl(this.historiaDetails.titulo),
@@ -53,8 +54,6 @@ export class HistoriaDetailsComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onFormSubmit(): void {
-    console.log('Titulo:' + this.newHistoriaForm.get('titulo').value);
-  }
+  onFormSubmit(): void {  }
 
 }

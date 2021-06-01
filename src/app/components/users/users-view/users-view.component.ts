@@ -110,8 +110,8 @@ export class UsersViewComponent implements AfterViewInit {
     });
   }
 
-  editUserOnClick() {
-    const dialogRef = this.dialog.open(EditUserComponent, { disableClose: true });
+  editUserOnClick(row: User) {
+    const dialogRef = this.dialog.open(EditUserComponent, { data: {row} });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

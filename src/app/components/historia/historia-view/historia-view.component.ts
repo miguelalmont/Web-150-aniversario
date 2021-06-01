@@ -74,8 +74,8 @@ export class HistoriaViewComponent implements AfterViewInit {
     });
   }
 
-  editHistoriaOnClick() {
-    const dialogRef = this.dialog.open(HistoriaEditComponent, { disableClose: true });
+  editHistoriaOnClick(row: Historia) {
+    const dialogRef = this.dialog.open(HistoriaEditComponent, { disableClose: true, data: {row} });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
@@ -84,11 +84,7 @@ export class HistoriaViewComponent implements AfterViewInit {
 
 
   detailsHistoriaOnClick(row: Historia) {
-    console.log(row);
-    const dialogRef = this.dialog.open(HistoriaDetailsComponent, {
-      
-      data: {row}
-    });
+    const dialogRef = this.dialog.open(HistoriaDetailsComponent, { data: {row} });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

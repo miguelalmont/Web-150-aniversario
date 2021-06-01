@@ -41,7 +41,7 @@ export class HistoriaFormComponent implements OnInit {
     enUso: this.newHistoriaForm.get('enUso').value
   }
     console.log('Name:' + this.newHistoriaForm.get('titulo').value);
-    this.historiaService.insertHistoria().subscribe();
+    this.historiaService.insertHistoria(this.historia).subscribe();
   }
 
 }

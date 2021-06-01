@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { User } from 'src/app/models/models';
 
 
 @Component({
@@ -8,6 +10,14 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
   styleUrls: ['./edit-user.component.scss']
 })
 export class EditUserComponent implements OnInit {
+
+  @Input()
+  userToUpdate: User = {
+    name: '',
+    email: '',
+    password: '',
+    admin: false
+  };
 
   newUserForm: FormGroup = this.fb.group({
     firstname: new FormControl('',  [Validators.required, Validators.minLength(6)]),
@@ -25,7 +35,14 @@ export class EditUserComponent implements OnInit {
     passwordRepeat: this.newUserForm.get('passwordRepeat').value
   }
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data) {
+    this.userToUpdate = data.row;
+    this.newUserForm = this.fb.group({
+      name: new FormControl(this.userToUpdate.name),
+      email: new FormControl(this.userToUpdate.email),
+      password: new FormControl(this.userToUpdate.password),
+      admin: new FormControl(this.userToUpdate.admin)
+    });}
 
   get firstname() { return this.newUserForm.get('firstname').value; }
 

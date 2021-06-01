@@ -18,19 +18,32 @@ export class HistoriaService {
     return this.http.get<Historia[]>('/story/list.php');
   }
 
-  insertHistoria(): Observable<Historia> {
+  insertHistoria(row: Historia): Observable<Historia> {
+      let body = {
+        tituloHistoria: row.titulo,
+        subtituloHistoria: row.subtitulo,
+        descripcion: row.descripcion,
+        enUso: row.enUso,
+        medios: row.medios,
+        token: this.auth.getJWT()
+      }
+      console.log(body)
+      return this.http.post<Historia>('/story/insert.php', body);
+   }
+
+  updateHistoria(row: Historia): Observable<Historia> { 
     let body = {
-      tituloHistoria: 'pepe',
-      subtituloHistoria: 'pepepepe',
-      descripcion: 'descripcion',
-      enUso: 0,
+      idHistoria: row.id,
+      tituloHistoria: row.titulo,
+      subtituloHistoria: row.subtitulo,
+      descripcion: row.descripcion,
+      enUso: row.enUso,
+      medios: row.medios,
       token: this.auth.getJWT()
     }
     console.log(body)
-    return this.http.post<Historia>('/story/insert.php', body);
-   }
-
-  updateHistoria() { }
+    return this.http.put<Historia>('/story/update.php', body);
+  }
 
   deleteHistoria() { }
 

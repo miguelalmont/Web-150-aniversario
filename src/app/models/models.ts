@@ -22,6 +22,7 @@ export interface Visita {
 }
 
 export interface Historia {
+    id?: number;
     titulo: string;
     subtitulo: string;
     descripcion: string;
