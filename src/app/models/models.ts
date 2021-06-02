@@ -1,8 +1,9 @@
 export interface ActoData {
-    title: string;
-    description: string;
-    category: string;
-    date: string;
+    titulo: string;
+    descripcion: string;
+    categoria: string;
+    ubicacion: string;
+    fecha: string;
     medios: [];
     enUso: number;
 }
@@ -17,6 +18,7 @@ export interface Saludo {
 
 export interface Visita {
     titulo: string;
+    descripcion: string;
     medios: [];
     enUso: number;
 }
