@@ -77,8 +77,8 @@ export class MaterialesViewComponent implements AfterViewInit {
     });
   }
 
-  editMaterialesOnClick() {
-    const dialogRef = this.dialog.open(MaterialesEditComponent, { disableClose: true });
+  editMaterialesOnClick(row: Material) {
+    const dialogRef = this.dialog.open(MaterialesEditComponent, { disableClose: true,data: {row} });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

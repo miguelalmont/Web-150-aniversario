@@ -29,6 +29,7 @@ export class OracionService {
 
 updateOracion(row: Oracion): Observable<Oracion> { 
   let body = {
+    id: row.id,
     titulo: row.titulo,
     texto: row.oracion,
     enUso: row.enUso,

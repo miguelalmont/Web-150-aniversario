@@ -30,6 +30,7 @@ export class MaterialesService {
 
 updateMaterial(row: Material): Observable<Material> { 
   let body = {
+    id: row.id,
     titulo: row.titulo,
     contenido: row.contenido,
     enUso: row.enUso,

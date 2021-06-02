@@ -31,6 +31,7 @@ export class VisitasService {
 
 updateVisita(row: Visita): Observable<Visita> { 
   let body = {
+    id: row.id,
     titulo: row.titulo,
     descripcion: row.descripcion,
     enUso: row.enUso,

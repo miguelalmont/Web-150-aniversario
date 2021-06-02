@@ -20,6 +20,7 @@ export class SaludosService {
 
   insertSaludo(row: Saludo): Observable<Saludo> {
     let body = {
+      id: row.id,
       titulo: row.titulo,
       descripcion: row.descripcion,
       texto: row.contenido,

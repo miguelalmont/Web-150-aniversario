@@ -1,4 +1,5 @@
 export interface ActoData {
+    id?: number;
     titulo: string;
     descripcion: string;
     categoria: string;
@@ -9,6 +10,7 @@ export interface ActoData {
 }
 
 export interface Saludo {
+    id?: number;
     titulo: string;
     contenido: string;
     descripcion: string;
@@ -17,6 +19,7 @@ export interface Saludo {
 }
 
 export interface Visita {
+    id?: number;
     titulo: string;
     descripcion: string;
     medios: [];
@@ -34,23 +37,20 @@ export interface Historia {
 }
 
 export interface Oracion {
+    id?: number;
     titulo: string;
     oracion: string;
     enUso: number;
 }
 
 export interface Material {
+    id?: number;
     titulo: string;
     contenido: string;
     medios: [];
     enUso: number;
 }
 
-export interface Ambiente {
-    titulo: string;
-    medios: [];
-    enUso: number;
-}
 
 export interface Token {
     token:string

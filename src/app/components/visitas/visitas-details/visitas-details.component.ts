@@ -13,6 +13,7 @@ export class VisitasDetailsComponent implements OnInit {
 
   @Input() visitaDetails: Visita = {
       titulo: '',
+      descripcion: '',
       enUso: 0,
       medios: []
   }
@@ -22,12 +23,14 @@ export class VisitasDetailsComponent implements OnInit {
 
   newVisitaForm: FormGroup = this.fb.group({
     titulo: new FormControl('',  [Validators.required, Validators.minLength(6)]),
+    descripcion: new FormControl('',  [Validators.required, Validators.minLength(6)]),
     enUso: new FormControl('', Validators.required),
     medios: new FormControl('', Validators.required)
   });
 
   visita = {
     titulo: this.newVisitaForm.get('titulo').value,
+    descripcion: this.newVisitaForm.get('titulo').value,
     enUso: this.newVisitaForm.get('enUso').value,
     medios: this.newVisitaForm.get('medios').value
   }
@@ -36,6 +39,7 @@ export class VisitasDetailsComponent implements OnInit {
     this.visitaDetails = data.row;
     this.detailVisitaForm = this.fb.group({
       titulo: new FormControl(this.visitaDetails.titulo),
+      descripcion: new FormControl(this.visitaDetails.descripcion),
       enUso: new FormControl(this.visitaDetails.enUso),
       medios: new FormControl(this.visitaDetails.medios)
     });

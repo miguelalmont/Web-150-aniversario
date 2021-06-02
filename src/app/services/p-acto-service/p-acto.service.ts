@@ -34,6 +34,7 @@ export class PActoService {
 
 updateActo(row: ActoData): Observable<ActoData> { 
   let body = {
+    id: row.id,
     titulo: row.titulo,
     descripcion: row.descripcion,
     categoria: row.categoria,

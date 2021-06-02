@@ -74,8 +74,8 @@ export class OracionViewComponent implements AfterViewInit {
    });
   }
 
-  editPrayerOnClick() {
-    const dialogRef = this.dialog.open(OracionEditComponent, { disableClose: true });
+  editPrayerOnClick(row: Oracion) {
+    const dialogRef = this.dialog.open(OracionEditComponent, { disableClose: true, data: {row} });
 
    dialogRef.afterClosed().subscribe(result => {
     console.log(`Dialog result: ${result}`);

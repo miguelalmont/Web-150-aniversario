@@ -31,6 +31,7 @@ export class AmbientesPJService {
 
 updateAmbientesPj(row: ambientesPj): Observable<ambientesPj> { 
   let body = {
+    id: row.id,
     titulo: row.titulo,
     descripcion: row.descripcion,
     enUso: row.enUso,
