@@ -17,7 +17,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./ambientes-pj-view.component.scss']
 })
 export class AmbientesPjViewComponent implements AfterViewInit {
-  displayedColumns: string[] = ['titulo', 'medios', 'actions'];
+  displayedColumns: string[] = ['titulo', 'descripcion','medios','enUso', 'actions'];
   dataSource: MatTableDataSource<Ambiente>;
   ambientes: Ambiente[] = [];
 

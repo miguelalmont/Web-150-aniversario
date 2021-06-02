@@ -13,6 +13,6 @@ export class VisitasService {
   constructor(private http:HttpClient) { }
 
   getVisita():Observable<Visita[]>{
-    return this.http.get<Visita[]>('/visits/list.php');
+    return this.http.get<Visita[]>('/visits/listEverything.php');
   }
 }

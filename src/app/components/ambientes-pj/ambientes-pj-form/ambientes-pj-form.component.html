@@ -10,9 +10,17 @@
         <mat-error>El nombre debe contener 6 carácteres como mínimo.</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
+        <mat-label>Descripcion</mat-label>
+        <input matInput formControlName="descripcion" placeholder="Descripcion" type="text">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
         <mat-label>Video</mat-label>
         <input matInput formControlName="medios" placeholder="Video" type="text">
       </mat-form-field>
+      <p>
+        enUso:
+        <mat-checkbox class="checkbox" disabled="true" [checked]="ambiente.enUso"></mat-checkbox>
+      </p>
     <mat-dialog-actions>
         <button mat-stroked-button type="submit" [disabled]="newAmbienteForm.invalid">Guardar cambios</button>
         <button mat-stroked-button type="reset" [disabled]="newAmbienteForm.pristine">Limpiar</button>

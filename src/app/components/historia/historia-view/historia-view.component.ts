@@ -16,7 +16,7 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./historia-view.component.scss']
 })
 export class HistoriaViewComponent implements AfterViewInit {
-  displayedColumns: string[] = ['titulo', 'subtitulo', 'descripcion', 'actions'];
+  displayedColumns: string[] = ['titulo', 'subtitulo', 'descripcion','enUso', 'actions'];
   dataSource: MatTableDataSource<Historia>;
   historiaData: Historia[] = [];
 

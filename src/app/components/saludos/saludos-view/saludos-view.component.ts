@@ -17,7 +17,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./saludos-view.component.scss']
 })
 export class SaludosViewComponent implements AfterViewInit {
-  displayedColumns: string[] = ['titulo', 'descripcion','url','tipo', 'actions'];
+  displayedColumns: string[] = ['titulo', 'descripcion','texto','url','tipo','enUso', 'actions'];
   dataSource: MatTableDataSource<Saludo>;
   saludoData: Saludo[];
 

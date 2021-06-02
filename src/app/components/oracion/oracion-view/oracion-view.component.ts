@@ -16,7 +16,7 @@ import { OracionService } from 'src/app/services/oracion-service/oracion.service
   styleUrls: ['./oracion-view.component.scss']
 })
 export class OracionViewComponent implements AfterViewInit {
-  displayedColumns: string[] = ['titulo', 'oracion', 'actions'];
+  displayedColumns: string[] = ['titulo', 'oracion','enUso', 'actions'];
   dataSource: MatTableDataSource<Oracion>;
   oraciones: Oracion[];
   value = '';

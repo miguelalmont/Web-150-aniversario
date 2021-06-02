@@ -16,7 +16,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./visitas-view.component.scss']
 })
 export class VisitasViewComponent implements AfterViewInit {
-  displayedColumns: string[] = ['titulo', 'medios', 'actions'];
+  displayedColumns: string[] = ['titulo','descripcion', 'medios','enUso', 'actions'];
   dataSource: MatTableDataSource<Visita>;
   visitas: Visita[];
   value = '';

@@ -9,11 +9,23 @@
         <input matInput formControlName="titulo" placeholder="Titulo" type="text" readonly cdkFocusInitial>
         <mat-error>El titulo debe contener 6 carácteres como mínimo.</mat-error>
       </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Descripcion</mat-label>
+        <input matInput formControlName="descripcion" placeholder="Descripcion" type="text" readonly cdkFocusInitial>
+        <mat-error>La descripcion debe contener 6 carácteres como mínimo.</mat-error>
+      </mat-form-field>
       
       <mat-form-field appearance="outline">
         <mat-label>Imagen</mat-label>
         <input matInput formControlName="medios" placeholder="Imagen" type="text" readonly>
       </mat-form-field>
+
+      <p>
+        enUso:
+        <mat-checkbox class="checkbox" disabled="true" [checked]="ambienteDetails.enUso"></mat-checkbox>
+      </p>
+      
   </form>
 </div>
 
