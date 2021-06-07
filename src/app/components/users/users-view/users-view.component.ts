@@ -11,50 +11,6 @@ import { UsuariosService } from 'src/app/services/usuarios-service/usuarios.serv
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from "sweetalert2";
 
-let usersData: User[] = [
-  {
-    name: 'Admin',
-    email: 'admin@gmail.com',
-    password: '123456',
-    admin: true
-  },
-  {
-    name: 'Pepe',
-    email: 'pepe@gmail.com',
-    password: '123456',
-    admin: false
-  },
-  {
-    name: 'Pepa',
-    email: 'pepa@gmail.com',
-    password: '123456',
-    admin: false
-  },
-  {
-    name: 'Pepa',
-    email: 'pepa@gmail.com',
-    password: '123456',
-    admin: false
-  },
-  {
-    name: 'Pepa',
-    email: 'pepa@gmail.com',
-    password: '123456',
-    admin: false
-  },
-  {
-    name: 'Pepa',
-    email: 'pepa@gmail.com',
-    password: '123456',
-    admin: false
-  },
-  {
-    name: 'Pepa',
-    email: 'pepa@gmail.com',
-    password: '123456',
-    admin: false
-  }
-]
 
 @Component({
   selector: 'app-users-view',
@@ -157,6 +113,7 @@ export class UsersViewComponent implements AfterViewInit {
       return true;
     else
       return false;
+  }
   borrarSwt(){
     Swal.fire({
       title: '¿Estas seguro?',
@@ -177,5 +134,5 @@ export class UsersViewComponent implements AfterViewInit {
       }
     })
   }
-  
+
 }

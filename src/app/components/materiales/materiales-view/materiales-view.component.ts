@@ -104,6 +104,7 @@ export class MaterialesViewComponent implements AfterViewInit {
       return true;
     else
       return null;
+  }
   borrarSwt(){
     Swal.fire({
       title: '¿Estas seguro?',

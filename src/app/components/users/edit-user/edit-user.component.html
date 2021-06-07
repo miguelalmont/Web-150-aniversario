@@ -26,7 +26,6 @@
       </mat-form-field>
       <small *ngIf="newUserForm.errors?.misMatch">La contraseña no coincide</small>
     <mat-dialog-actions>
-        <button mat-stroked-button type="submit" [disabled]="newUserForm.invalid" mat-dialog-close>Guardar cambios</button>
         <button mat-stroked-button type="submit" [disabled]="newUserForm.invalid" (click)="editarSwt()">Guardar cambios</button>
         <button mat-stroked-button type="reset" [disabled]="newUserForm.pristine">Limpiar</button>
     </mat-dialog-actions>

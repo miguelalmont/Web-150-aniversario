@@ -45,10 +45,9 @@ export class UsuariosService {
   }
 
   deleteUser() { }
-  constructor(private http:HttpClient, private jwt:AuthenticatorJwt) { }
 
   logOut(){
-    const token:string = this.jwt.getJWT();
+    const token:string = this.auth.getJWT();
     return this.http.post('/auth/logout.php', token);
   }
 
