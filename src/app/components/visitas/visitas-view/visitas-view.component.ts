@@ -83,7 +83,9 @@ export class VisitasViewComponent implements AfterViewInit {
     });
   }
 
-  detailsVisitarOnClick(row: Visita) {
+  detailsVisitaOnClick(row: Visita) {
+
+    // NO CARGA EL DETAILS
     console.log(row);
     const dialogRef = this.dialog.open(VisitasDetailsComponent, {
       
