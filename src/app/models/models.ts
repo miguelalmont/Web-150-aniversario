@@ -58,10 +58,12 @@ export interface Token {
 
 
 export interface User {
-    name:string,
-    email: string,
+    id?: number,
+    username: string,
     password: string,
-    admin: boolean
+    mail: string,
+    rolName: string,
+    token?: string
 }
 
 export interface UserLogin {

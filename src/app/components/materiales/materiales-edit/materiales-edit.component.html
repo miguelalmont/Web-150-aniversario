@@ -6,18 +6,21 @@
   <form [formGroup]="newMaterialesForm" (ngSubmit)="onFormSubmit()">
     <mat-form-field appearance="outline">
       <mat-label>Titulo</mat-label>
-      <input matInput formControlName="titulo" placeholder="Titulo" type="text" readonly cdkFocusInitial>
+      <input matInput formControlName="titulo" placeholder="Titulo" type="text" cdkFocusInitial>
       <mat-error>El nombre debe contener 6 carácteres como mínimo.</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Contenido</mat-label>
-      <input matInput formControlName="contenido" placeholder="Contenido" type="text" readonly>
+      <input matInput formControlName="contenido" placeholder="Contenido" type="text">
     </mat-form-field>
-    
     <mat-form-field appearance="outline">
       <mat-label>Imagen</mat-label>
       <input matInput formControlName="medios" placeholder="imagen" type="text">
     </mat-form-field>
+    <p>
+      En uso:
+      <mat-checkbox class="checkbox" [checked]="enUsoBool(MaterialInput.enUso)"></mat-checkbox>
+    </p>
     <mat-dialog-actions>
         <button mat-stroked-button type="submit" [disabled]="newMaterialesForm.invalid">Guardar cambios</button>
         <button mat-stroked-button type="reset" [disabled]="newMaterialesForm.pristine">Limpiar</button>

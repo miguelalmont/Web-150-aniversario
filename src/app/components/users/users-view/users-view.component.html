@@ -18,22 +18,22 @@
     <table mat-table [dataSource]="dataSource" matSort>
   
       <!-- Name Column -->
-      <ng-container matColumnDef="name">
+      <ng-container matColumnDef="username">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
-        <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.username}} </td>
       </ng-container>
   
       <!-- Email Column -->
-      <ng-container matColumnDef="email">
+      <ng-container matColumnDef="mail">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Correo electrónico </th>
-        <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.mail}} </td>
       </ng-container>
 
       <!-- isAdmin Column -->
-      <ng-container matColumnDef="admin">
+      <ng-container matColumnDef="rolName">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Administrador </th>
         <td mat-cell *matCellDef="let row">
-            <mat-checkbox class="checkbox" disabled="true" [checked]="row.admin"></mat-checkbox>
+            <mat-checkbox class="checkbox" disabled="true" [checked]="checkRolName(row.rolName)"></mat-checkbox>
         </td>
       </ng-container>
 

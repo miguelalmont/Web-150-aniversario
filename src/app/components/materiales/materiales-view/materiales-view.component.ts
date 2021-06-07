@@ -17,7 +17,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./materiales-view.component.scss']
 })
 export class MaterialesViewComponent implements AfterViewInit {
-  displayedColumns: string[] = ['titulo', 'contenido', 'medios', 'actions'];
+  displayedColumns: string[] = ['titulo', 'contenido', 'medios', 'enUso', 'actions'];
   dataSource: MatTableDataSource<Material>;
   materiales: Material[];
   value = '';
@@ -78,7 +78,7 @@ export class MaterialesViewComponent implements AfterViewInit {
   }
 
   editMaterialesOnClick(row: Material) {
-    const dialogRef = this.dialog.open(MaterialesEditComponent, { disableClose: true,data: {row} });
+    const dialogRef = this.dialog.open(MaterialesEditComponent, { disableClose: true, data: {row} });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
@@ -95,6 +95,15 @@ export class MaterialesViewComponent implements AfterViewInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+
+  enUsoBool(enUso: number) {
+    if (enUso == 0)
+      return false;
+    else if (enUso == 1)
+      return true;
+    else
+      return null;
   }
   
 }

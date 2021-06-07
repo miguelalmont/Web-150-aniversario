@@ -30,11 +30,12 @@ export class MaterialesEditComponent implements OnInit {
     titulo: this.newMaterialesForm.get('titulo').value,
     contenido: this.newMaterialesForm.get('contenido').value,
     medios: this.newMaterialesForm.get('medios').value,
-    enUso: this.newMaterialesForm.get('enUso').value
+    enUso: 0
   }
 
   constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data, private materialService: MaterialesService) {
     this.MaterialInput = data.row;
+    console.log('INPUT ->' + this.MaterialInput.titulo);
     this.newMaterialesForm = this.fb.group({
       titulo: new FormControl(this.MaterialInput.titulo),
       contenido: new FormControl(this.MaterialInput.contenido),
@@ -43,7 +44,7 @@ export class MaterialesEditComponent implements OnInit {
     });
   }
 
-  get titulp() { return this.newMaterialesForm.get('titulo').value; }
+  get titulo() { return this.newMaterialesForm.get('titulo').value; }
 
   ngOnInit(): void {}
 
@@ -59,5 +60,14 @@ export class MaterialesEditComponent implements OnInit {
       res => console.log("formulario editado"),
       error => console.log(error)
     );
+  }
+
+  enUsoBool(enUso: number) {
+    if (enUso == 0)
+      return false;
+    else if (enUso == 1)
+      return true;
+    else
+      return null;
   }
 }
