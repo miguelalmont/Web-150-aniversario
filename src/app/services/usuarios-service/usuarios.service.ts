@@ -30,7 +30,7 @@ export class UsuariosService {
       return this.http.post<User>('/auth/insert.php', body);
    }
 
-  updateUser(row: User): Observable<User> { 
+  updateUser(row: User) { 
     let body = {
       id: row.id,
       username: row.username,
@@ -40,7 +40,8 @@ export class UsuariosService {
       token: this.auth.getJWT()
     }
     console.log(body)
-    return this.http.put<User>('/auth/update.php', body);
+    return this.http.put(`/auth/update.php?idUser=${body.id}&userName=${body.username}&password=${body.password}&mail=${body.mail}
+    &rolName=${body.rolName}&token=${body.token}`, body);
   }
 
   deleteUser() { }

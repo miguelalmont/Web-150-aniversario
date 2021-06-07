@@ -33,7 +33,7 @@
         <input matInput formControlName="passwordRepeat" placeholder="Contraseña" type="password">
         <mat-error>La contraseña debe contener 6 carácteres como mínimo.</mat-error>
       </mat-form-field>
-      <!-- <small *ngIf="newUserForm.errors?.misMatch">La contraseña no coincide</small> -->
+      <small *ngIf="newUserForm.errors?.misMatch">La contraseña no coincide</small>
 
     <mat-dialog-actions>
         <button mat-stroked-button type="submit" [disabled]="newUserForm.invalid">Guardar cambios</button>

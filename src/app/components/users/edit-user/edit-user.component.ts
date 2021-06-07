@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { User } from 'src/app/models/models';
 import { UsuariosService } from 'src/app/services/usuarios-service/usuarios.service';
+import { passwordValidator } from 'src/app/shared/password-validator';
 
 
 @Component({
@@ -42,9 +43,11 @@ export class EditUserComponent implements OnInit {
     this.newUserForm = this.fb.group({
       username: new FormControl(this.userToUpdate.username),
       mail: new FormControl(this.userToUpdate.mail),
-      password: new FormControl(this.userToUpdate.password),
+      password: [''],
+      passwordRepeat: new FormControl('', [Validators.required]),
       admin: new FormControl(this.checkRolName(this.userToUpdate.rolName))
-    });}
+    }, {validators: passwordValidator} ) 
+  }
 
   get name() { return this.newUserForm.get('username').value; }
 
@@ -58,7 +61,7 @@ export class EditUserComponent implements OnInit {
       password: this.newUserForm.get('password').value,
       rolName: this.unCheckRolName(this.data.row.rolName)
     }
-    console.log(this.user)
+
     this.usuariosService.updateUser(this.user).subscribe(
       res => console.log("usuario editado"),
       error => console.log(error)

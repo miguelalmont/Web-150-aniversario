@@ -80,7 +80,13 @@ export class UsersViewComponent implements AfterViewInit {
     const dialogRef = this.dialog.open(EditUserComponent, { data: {row} });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      this.usuariosService.getUser().subscribe(
+        response => {
+          this.dataSource.data = response
+          console.log(this.dataSource.data)
+        },
+        error => console.log(error)
+      )
     });
   }
 
