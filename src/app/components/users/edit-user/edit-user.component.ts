@@ -54,6 +54,7 @@ export class EditUserComponent implements OnInit {
   ngOnInit(): void {}
 
   onFormSubmit(): void {
+
     this.user = {
       id: this.data.row.id,
       username: this.newUserForm.get('username').value,
@@ -62,9 +63,11 @@ export class EditUserComponent implements OnInit {
       rolName: this.unCheckRolName(this.data.row.rolName)
     }
 
+    
+
     this.usuariosService.updateUser(this.user).subscribe(
-      res => console.log("usuario editado"),
-      error => console.log(error)
+      res => console.log("usuario editado", res, this.user),
+      error => console.error(error, "Error", this.user)
     );
   }
 
