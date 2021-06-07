@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-historia-edit',
@@ -32,6 +33,27 @@ export class HistoriaEditComponent implements OnInit {
 
   onFormSubmit(): void {
     console.log('Name:' + this.newHistoriaForm.get('titulo').value);
+  }
+
+  editarSwt(){
+    Swal.fire({
+      title: '¿Estas seguro?',
+      text: "Los cambios no se podran revertir",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: "Cancelar",
+      confirmButtonText: 'Actualizar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Perfecto',
+          'Historia actualizada correctamente',
+          'success'
+        )
+      }
+    })
   }
 
 }

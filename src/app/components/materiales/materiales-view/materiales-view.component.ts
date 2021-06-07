@@ -9,7 +9,7 @@ import {MaterialesEditComponent } from '../materiales-edit/materiales-edit.compo
 import {MaterialesDetailsComponent } from '../materiales-details/materiales-details.component';
 import { Material } from 'src/app/models/models';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-materiales-view',
@@ -95,6 +95,27 @@ export class MaterialesViewComponent implements AfterViewInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+
+  borrarSwt(){
+    Swal.fire({
+      title: '¿Estas seguro?',
+      text: "Los cambios no se podran revertir",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: "Cancelar",
+      confirmButtonText: 'Borrar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Borrado',
+          'Material borrado correctamente',
+          'success'
+        )
+      }
+    })
   }
   
 }
