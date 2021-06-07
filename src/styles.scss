@@ -21,6 +21,14 @@ tr:hover { background-color: #cccccc; }
 .checkbox { margin-left: 16%; }
 mat-icon { height: 28px; }
 
+.trim-cell {
+  max-width: 150px;
+  max-height: 150px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 // BUTTONS
 button { font-size: 1.2em; }
 .action-btn {
