@@ -28,7 +28,7 @@
         <input matInput formControlName="passwordRepeat" placeholder="Contraseña" type="password">
       </mat-form-field>
     <mat-dialog-actions>
-        <button mat-stroked-button type="submit" [disabled]="newUserForm.invalid">Guardar cambios</button>
+        <button mat-stroked-button type="submit" [disabled]="newUserForm.invalid" (click)="editarSwt()">Guardar cambios</button>
         <button mat-stroked-button type="reset" [disabled]="newUserForm.pristine">Limpiar</button>
     </mat-dialog-actions>
   </form>

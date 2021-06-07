@@ -7,6 +7,7 @@ import {UsersComponent} from '../users-form/users.component';
 import {EditUserComponent } from '../edit-user/edit-user.component'
 import { DetailsUserComponent } from '../details-user/details-user.component';
 import { User } from 'src/app/models/models';
+import Swal from "sweetalert2";
 
 let usersData: User[] = [
   {
@@ -132,6 +133,27 @@ export class UsersViewComponent implements AfterViewInit {
   closeFilter() {
     this.dataSource.filter = null;
     this.value = '';
+  }
+
+  borrarSwt(){
+    Swal.fire({
+      title: '¿Estas seguro?',
+      text: "Los cambios no se podran revertir",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: "Cancelar",
+      confirmButtonText: 'Borrar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Borrado',
+          'Usuário borrado correctamente',
+          'success'
+        )
+      }
+    })
   }
   
 }

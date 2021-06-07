@@ -19,7 +19,7 @@
       <input matInput formControlName="medios" placeholder="imagen" type="text">
     </mat-form-field>
     <mat-dialog-actions>
-        <button mat-stroked-button type="submit" [disabled]="newMaterialesForm.invalid">Guardar cambios</button>
+        <button mat-stroked-button type="submit" [disabled]="newMaterialesForm.invalid" (click)="editarSwt()">Guardar cambios</button>
         <button mat-stroked-button type="reset" [disabled]="newMaterialesForm.pristine">Limpiar</button>
     </mat-dialog-actions>
   </form>

@@ -23,7 +23,7 @@
         <mat-checkbox class="checkbox" disabled="true" [checked]="ambiente.enUso"></mat-checkbox>
       </p>
     <mat-dialog-actions>
-        <button mat-stroked-button type="submit" [disabled]="newAmbienteForm.invalid">Guardar cambios</button>
+        <button mat-stroked-button type="submit" [disabled]="newAmbienteForm.invalid" (click)="editarSwt()">Guardar cambios</button>
         <button mat-stroked-button type="reset" [disabled]="newAmbienteForm.pristine">Limpiar</button>
     </mat-dialog-actions>
   </form>

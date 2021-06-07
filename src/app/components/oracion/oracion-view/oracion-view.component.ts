@@ -9,6 +9,7 @@ import { OracionDetailsComponent } from '../oracion-details/oracion-details.comp
 import { Oracion } from 'src/app/models/models';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OracionService } from 'src/app/services/oracion-service/oracion.service';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-oracion-view',
@@ -92,6 +93,27 @@ export class OracionViewComponent implements AfterViewInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+
+  borrarSwt(){
+    Swal.fire({
+      title: '¿Estas seguro?',
+      text: "Los cambios no se podran revertir",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: "Cancelar",
+      confirmButtonText: 'Borrar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Borrado',
+          'Oracion borrada correctamente',
+          'success'
+        )
+      }
+    })
   }
 
 }

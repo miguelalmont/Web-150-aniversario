@@ -58,6 +58,7 @@ import { VisitasFormComponent } from './components/visitas/visitas-form/visitas-
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { HttpInterceptorService } from './services/httpInterceptor.service';
+import Swal from 'sweetalert2';
 
 @NgModule({
   declarations: [
@@ -99,7 +100,7 @@ import { HttpInterceptorService } from './services/httpInterceptor.service';
     VisitasDetailsComponent,
     VisitasEditComponent,
     VisitasFormComponent,
-    SpinnerComponent
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,

@@ -10,6 +10,7 @@ import { AmbientesPjEditComponent } from '../ambientes-pj-edit/ambientes-pj-edit
 import { AmbientesPjFormComponent } from '../ambientes-pj-form/ambientes-pj-form.component';
 import { Ambiente } from 'src/app/models/models';
 import { ActivatedRoute, Router } from '@angular/router';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-ambientes-pj-view',
@@ -91,6 +92,27 @@ export class AmbientesPjViewComponent implements AfterViewInit {
       data: { row }
     });
 
+  }
+
+  borrarSwt(){
+    Swal.fire({
+      title: '¿Estas seguro?',
+      text: "Los cambios no se podran revertir",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: "Cancelar",
+      confirmButtonText: 'Borrar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Borrado',
+          'Ambiente borrado correctamente',
+          'success'
+        )
+      }
+    })
   }
 
 }
