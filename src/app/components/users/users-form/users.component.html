@@ -7,18 +7,13 @@
     
       <mat-form-field appearance="outline">
         <mat-label>Nombre</mat-label>
-        <input matInput formControlName="firstname" placeholder="Nombre" type="text" cdkFocusInitial>
+        <input matInput formControlName="username" placeholder="Nombre" type="text" cdkFocusInitial>
         <mat-error>El nombre debe contener 6 carácteres como mínimo.</mat-error>
-      </mat-form-field>
-  
-      <mat-form-field appearance="outline">
-        <mat-label>Apellidos</mat-label>
-        <input matInput formControlName="lastname" placeholder="Apellidos" type="text">
       </mat-form-field>
    
       <mat-form-field appearance="outline">
         <mat-label>Correo electrónico</mat-label>
-        <input matInput formControlName="email" placeholder="Correo Electrónico" type="email">
+        <input matInput formControlName="mail" placeholder="Correo Electrónico" type="email">
         <mat-error>Debes introducir un correo válido.</mat-error>
       </mat-form-field>
    
@@ -34,6 +29,11 @@
         <mat-error>La contraseña debe contener 6 carácteres como mínimo.</mat-error>
       </mat-form-field>
       <!-- <small *ngIf="newUserForm.errors?.misMatch">La contraseña no coincide</small> -->
+
+      <p>
+        Administrador:
+        <mat-checkbox class="checkbox" formControlName="rolName" [value]="checkRolName(user.rolName)"></mat-checkbox>
+      </p>
 
     <mat-dialog-actions>
         <button mat-stroked-button type="submit" [disabled]="newUserForm.invalid">Guardar cambios</button>

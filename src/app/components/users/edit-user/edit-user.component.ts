@@ -42,7 +42,7 @@ export class EditUserComponent implements OnInit {
     this.newUserForm = this.fb.group({
       username: new FormControl(this.userToUpdate.username),
       mail: new FormControl(this.userToUpdate.mail),
-      password: new FormControl(this.userToUpdate.password),
+      password: new FormControl(''),
       admin: new FormControl(this.checkRolName(this.userToUpdate.rolName))
     });}
 
