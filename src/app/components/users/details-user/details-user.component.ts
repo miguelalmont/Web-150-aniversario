@@ -12,10 +12,10 @@ export class DetailsUserComponent implements OnDestroy {
 
   @Input()
   userToDetail: User = {
-    name: '',
-    email: '',
+    username: '',
     password: '',
-    admin: false
+    mail: '',
+    rolName: ''
   };
 
   detailUserForm: FormGroup;
@@ -23,10 +23,10 @@ export class DetailsUserComponent implements OnDestroy {
   constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data) {
     this.userToDetail = data.row;
     this.detailUserForm = this.fb.group({
-      name: new FormControl(this.userToDetail.name),
-      email: new FormControl(this.userToDetail.email),
+      username: new FormControl(this.userToDetail.username),
+      mail: new FormControl(this.userToDetail.mail),
       password: new FormControl(this.userToDetail.password),
-      admin: new FormControl(this.userToDetail.admin)
+      rolName: new FormControl(this.checkRolName(this.userToDetail.rolName))
     });
   }
   ngOnDestroy(): void {
@@ -38,4 +38,10 @@ export class DetailsUserComponent implements OnDestroy {
     console.log('Name:' + this.detailUserForm.get('firstname').value);
   }
 
+  checkRolName(rolName: string) {
+    if (rolName == 'admin')
+      return true;
+    else
+      return false;
+  }
 }

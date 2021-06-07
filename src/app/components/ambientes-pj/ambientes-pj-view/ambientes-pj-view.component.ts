@@ -8,7 +8,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { AmbientesPjDetailsComponent } from '../ambientes-pj-details/ambientes-pj-details.component';
 import { AmbientesPjEditComponent } from '../ambientes-pj-edit/ambientes-pj-edit.component';
 import { AmbientesPjFormComponent } from '../ambientes-pj-form/ambientes-pj-form.component';
-import { Ambiente } from 'src/app/models/models';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from "sweetalert2";
 
@@ -19,8 +18,8 @@ import Swal from "sweetalert2";
 })
 export class AmbientesPjViewComponent implements AfterViewInit {
   displayedColumns: string[] = ['titulo', 'descripcion','medios','enUso', 'actions'];
-  dataSource: MatTableDataSource<Ambiente>;
-  ambientes: Ambiente[] = [];
+  dataSource: MatTableDataSource<ambientesPj>;
+  ambientes: ambientesPj[] = [];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -85,7 +84,7 @@ export class AmbientesPjViewComponent implements AfterViewInit {
     });
   }
 
-  detailsAmbienteOnClick(row: Ambiente) {
+  detailsAmbienteOnClick(row: ambientesPj) {
     console.log(row);
     const dialogRef = this.dialog.open(AmbientesPjDetailsComponent, {
 

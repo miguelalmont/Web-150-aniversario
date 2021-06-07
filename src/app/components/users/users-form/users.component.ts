@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { User } from 'src/app/models/models';
+import { UsuariosService } from 'src/app/services/usuarios-service/usuarios.service';
 import { passwordValidator } from 'src/app/shared/password-validator';
+import { Md5 } from 'ts-md5';
 
 
 @Component({
@@ -13,29 +16,49 @@ import { passwordValidator } from 'src/app/shared/password-validator';
 export class UsersComponent implements OnInit {
 
   newUserForm: FormGroup = this.fb.group({
-    firstname: new FormControl('',  [Validators.required, Validators.minLength(6)]),
-    lastname: new FormControl('',  Validators.required),
-    email: new FormControl('',  [Validators.required, Validators.email]),
+    username: new FormControl('',  [Validators.required, Validators.minLength(6)]),
+    mail: new FormControl('',  [Validators.required, Validators.email]),
     password: new FormControl('',  [Validators.minLength(6), Validators.required]),
-    passwordRepeat: new FormControl('', [Validators.required])
+    passwordRepeat: new FormControl('',  [Validators.minLength(6), Validators.required]),
+    rolName: []
   }, {validators: passwordValidator});
 
-  user = {
-    firstname: this.newUserForm.get('firstname').value,
-    lastname: this.newUserForm.get('lastname').value,
-    email: this.newUserForm.get('email').value,
+  user: User = {
+    username: this.newUserForm.get('username').value,
+    mail: this.newUserForm.get('mail').value,
     password: this.newUserForm.get('password').value,
-    passwordRepeat: this.newUserForm.get('passwordRepeat').value
+    rolName: this.newUserForm.get('rolName').value,
   }
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private usuariosService: UsuariosService) {}
 
   get firstname() { return this.newUserForm.get('firstname').value; }
 
   ngOnInit(): void {}
 
   onFormSubmit(): void {
-    console.log('Name:' + this.newUserForm.get('firstname').value);
+    this.user = {
+      username: this.newUserForm.get('username').value,
+      mail: this.newUserForm.get('mail').value,
+      password: this.newUserForm.get('password').value,
+      rolName: this.unCheckRolName(this.newUserForm.get('rolName').value),
+    }
+    console.log('Name:' + this.newUserForm.get('username').value);
+    this.usuariosService.insertUser(this.user).subscribe();
+  }
+
+  checkRolName(rolName: string) {
+    if (rolName === 'admin')
+      return true;
+    else
+      return false;
+  }
+
+  unCheckRolName(rolName: boolean) {
+    if (rolName)
+      return 'admin';
+    else
+      return 'user';
   }
 
 }

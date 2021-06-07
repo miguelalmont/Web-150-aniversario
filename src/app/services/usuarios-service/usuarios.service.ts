@@ -12,6 +12,39 @@ export class UsuariosService {
 
   baseUrl = baseUrl.url
 
+  constructor(private http: HttpClient, private auth: AuthenticatorJwt) { }
+
+  getUser(): Observable<User[]> {
+    return this.http.get<User[]>('/auth/list.php');
+  }
+
+  insertUser(row: User): Observable<User> {
+      let body = {
+        username: row.username,
+        password: row.password,
+        mail: row.mail,
+        rolName: row.rolName,
+        token: this.auth.getJWT()
+      }
+      console.log(body)
+      return this.http.post<User>('/auth/insert.php', body);
+   }
+
+  updateUser(row: User) { 
+    let body = {
+      id: row.id,
+      username: row.username,
+      password: row.password,
+      mail: row.mail,
+      rolName: row.rolName,
+      token: this.auth.getJWT()
+    }
+    console.log(body)
+    return this.http.put(`/auth/update.php?idUser=${body.id}&userName=${body.username}&password=${body.password}&mail=${body.mail}
+    &rolName=${body.rolName}&token=${body.token}`, body);
+  }
+
+  deleteUser() { }
   constructor(private http:HttpClient, private jwt:AuthenticatorJwt) { }
 
   logOut(){
@@ -19,5 +52,4 @@ export class UsuariosService {
     return this.http.post('/auth/logout.php', token);
   }
 
-  
 }

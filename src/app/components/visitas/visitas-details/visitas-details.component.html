@@ -8,9 +8,17 @@
       <mat-label>Titulo</mat-label>
       <input matInput formControlName="titulo" placeholder="Titulo" type="text" cdkFocusInitial disabled>
     </mat-form-field>
+     <mat-form-field appearance="outline">
+      <mat-label>Descripcion</mat-label>
+      <input matInput formControlName="descripcion" placeholder="Descripcion" type="text" cdkFocusInitial disabled>
+    </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Video-Url</mat-label>
       <input matInput formControlName="medios" placeholder="Video-Url" type="text" disabled>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>En uso</mat-label>
+      <input matInput formControlName="enUso" placeholder="En uso" type="checkbox" disabled>
     </mat-form-field>
   </form>
 </div>

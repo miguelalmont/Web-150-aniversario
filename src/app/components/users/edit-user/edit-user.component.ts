@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import Swal from "sweetalert2";
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { User } from 'src/app/models/models';
+import { UsuariosService } from 'src/app/services/usuarios-service/usuarios.service';
+import { passwordValidator } from 'src/app/shared/password-validator';
 
 
 @Component({
@@ -14,43 +16,74 @@ export class EditUserComponent implements OnInit {
 
   @Input()
   userToUpdate: User = {
-    name: '',
-    email: '',
+    id: 0,
+    username: '',
     password: '',
-    admin: false
+    mail: '',
+    rolName: ''
   };
 
   newUserForm: FormGroup = this.fb.group({
-    firstname: new FormControl('',  [Validators.required, Validators.minLength(6)]),
-    lastname: new FormControl('',  Validators.required),
-    email: new FormControl('',  [Validators.required, Validators.email]),
+    username: new FormControl('',  [Validators.required, Validators.minLength(6)]),
+    mail: new FormControl('',  [Validators.required, Validators.email]),
     password: new FormControl('',  [Validators.minLength(6), Validators.required]),
-    passwordRepeat: new FormControl('', Validators.required)
+    passwordRepeat: new FormControl('', Validators.required),
+    rolName: new FormControl(false)
   });
 
-  user = {
-    firstname: this.newUserForm.get('firstname').value,
-    lastname: this.newUserForm.get('lastname').value,
-    email: this.newUserForm.get('email').value,
-    password: this.newUserForm.get('password').value,
-    passwordRepeat: this.newUserForm.get('passwordRepeat').value
+  user: User = {
+    id: 0,
+    username: '',
+    mail: '',
+    password: '',
+    rolName: ''
   }
 
-  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data) {
+  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data, private usuariosService: UsuariosService) {
     this.userToUpdate = data.row;
     this.newUserForm = this.fb.group({
-      name: new FormControl(this.userToUpdate.name),
-      email: new FormControl(this.userToUpdate.email),
-      password: new FormControl(this.userToUpdate.password),
-      admin: new FormControl(this.userToUpdate.admin)
-    });}
+      username: new FormControl(this.userToUpdate.username),
+      mail: new FormControl(this.userToUpdate.mail),
+      password: [''],
+      passwordRepeat: new FormControl('', [Validators.required]),
+      admin: new FormControl(this.checkRolName(this.userToUpdate.rolName))
+    }, {validators: passwordValidator} ) 
+  }
 
-  get firstname() { return this.newUserForm.get('firstname').value; }
+  get name() { return this.newUserForm.get('username').value; }
 
   ngOnInit(): void {}
 
   onFormSubmit(): void {
-    console.log('Name:' + this.newUserForm.get('firstname').value);
+
+    this.user = {
+      id: this.data.row.id,
+      username: this.newUserForm.get('username').value,
+      mail: this.newUserForm.get('mail').value,
+      password: this.newUserForm.get('password').value,
+      rolName: this.unCheckRolName(this.data.row.rolName)
+    }
+
+    
+
+    this.usuariosService.updateUser(this.user).subscribe(
+      res => console.log("usuario editado", res, this.user),
+      error => console.error(error, "Error", this.user)
+    );
+  }
+
+  checkRolName(rolName: string) {
+    if (rolName === 'admin')
+      return true;
+    else
+      return false;
+  }
+
+  unCheckRolName(rolName: boolean) {
+    if (rolName)
+      return 'admin';
+    else
+      return 'user';
   }
 
   editarSwt(){

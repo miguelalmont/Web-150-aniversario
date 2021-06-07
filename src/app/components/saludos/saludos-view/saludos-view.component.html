@@ -29,7 +29,7 @@
     <!-- Texto Column -->
     <ng-container matColumnDef="texto">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Texto </th>
-      <td mat-cell *matCellDef="let row"> {{row.texto}} </td>
+      <td class="trim-cell" mat-cell *matCellDef="let row"> {{row.texto}} </td>
     </ng-container>
 
     <ng-container matColumnDef="url">

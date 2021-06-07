@@ -78,8 +78,8 @@ export class PActosViewComponent implements AfterViewInit {
     });
   }
 
-  editActosOnClick() {
-    const dialogRef = this.dialog.open(PActosEditComponent, { disableClose: true });
+  editActosOnClick(row: ActoData) {
+    const dialogRef = this.dialog.open(PActosEditComponent, { disableClose: true, data: {row}});
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

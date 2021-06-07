@@ -7,6 +7,8 @@ import {UsersComponent} from '../users-form/users.component';
 import {EditUserComponent } from '../edit-user/edit-user.component'
 import { DetailsUserComponent } from '../details-user/details-user.component';
 import { User } from 'src/app/models/models';
+import { UsuariosService } from 'src/app/services/usuarios-service/usuarios.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import Swal from "sweetalert2";
 
 let usersData: User[] = [
@@ -60,9 +62,9 @@ let usersData: User[] = [
   styleUrls: ['./users-view.component.scss']
 })
 export class UsersViewComponent implements AfterViewInit {
-  displayedColumns: string[] = ['name', 'email', 'admin', 'actions'];
+  displayedColumns: string[] = ['username', 'mail', 'rolName', 'actions'];
   dataSource: MatTableDataSource<User>;
-  users: User[] = usersData;
+  users: User[] = [];
   userToDetail: User;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -70,7 +72,8 @@ export class UsersViewComponent implements AfterViewInit {
 
   value = '';
   
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private usuariosService: UsuariosService, private route: ActivatedRoute,
+    private router: Router) {
     this.dataSource = new MatTableDataSource(this.users);
   }
 
@@ -92,6 +95,14 @@ export class UsersViewComponent implements AfterViewInit {
     };
     
     this.dataSource.sort = this.sort;
+    
+    this.usuariosService.getUser().subscribe(
+      response => {
+        this.dataSource.data = response
+        console.log(this.dataSource.data)
+      },
+      error => console.log(error)
+    )
   }
 
   applyFilter(event: Event) {
@@ -115,7 +126,13 @@ export class UsersViewComponent implements AfterViewInit {
     const dialogRef = this.dialog.open(EditUserComponent, { data: {row} });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      this.usuariosService.getUser().subscribe(
+        response => {
+          this.dataSource.data = response
+          console.log(this.dataSource.data)
+        },
+        error => console.log(error)
+      )
     });
   }
 
@@ -135,6 +152,11 @@ export class UsersViewComponent implements AfterViewInit {
     this.value = '';
   }
 
+  checkRolName(rolName: string) {
+    if (rolName == 'admin')
+      return true;
+    else
+      return false;
   borrarSwt(){
     Swal.fire({
       title: '¿Estas seguro?',

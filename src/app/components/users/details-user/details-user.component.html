@@ -6,11 +6,11 @@
   <form [formGroup]="detailUserForm">
       <mat-form-field appearance="outline">
         <mat-label>Nombre</mat-label>
-        <input matInput formControlName="name" placeholder="Nombre" type="text" readonly cdkFocusInitial>
+        <input matInput formControlName="username" placeholder="Nombre" type="text" readonly cdkFocusInitial>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Correo electrónico</mat-label>
-        <input matInput formControlName="email" placeholder="Correo Electrónico" type="email" readonly>
+        <input matInput formControlName="mail" placeholder="Correo Electrónico" type="email" readonly>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Contraseña</mat-label>
@@ -18,7 +18,7 @@
       </mat-form-field>
     <p>
       Administrador:
-      <mat-checkbox class="checkbox" disabled="true" [checked]="userToDetail.admin"></mat-checkbox>
+      <mat-checkbox class="checkbox" disabled="true" [checked]="checkRolName(userToDetail.rolName)"></mat-checkbox>
     </p>
   </form>
 </div>
