@@ -68,7 +68,7 @@ export interface User {
 
 export interface UserLogin {
     username: string;
-    password: string;
+    password: string,
 }
 
 export interface ambientesPj {
@@ -76,5 +76,6 @@ export interface ambientesPj {
     titulo: string,
     descripcion: string,
     enUso: number,
-    medios: [];
+    medios: [],
+    token?: string
 }
