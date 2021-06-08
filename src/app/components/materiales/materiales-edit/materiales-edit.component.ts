@@ -58,7 +58,7 @@ export class MaterialesEditComponent implements OnInit {
       enUso: this.newMaterialesForm.get('enUso').value,
       medios: this.newMaterialesForm.get('medios').value
     }
-    this.materialService.updateMaterial(this.materiales).subscribe(
+    this.materialService.editMaterial(this.materiales).subscribe(
       res => console.log("formulario editado"),
       error => console.log(error)
     );

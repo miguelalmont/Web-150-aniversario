@@ -11,40 +11,29 @@ import { AuthenticatorJwt } from '../authenticatorJwt.service';
 })
 export class HistoriaService {
   
+  url: string = '/story';
 
-  constructor(private http: HttpClient, private auth: AuthenticatorJwt) {}
+  constructor(private http:HttpClient) { }
 
-  getHistorias(): Observable<Historia[]> {
-    return this.http.get<Historia[]>('/story/list.php');
+  getHistorias():Observable<Historia[]>{
+    return this.http.get<Historia[]>(`${this.url}/list.php`);
   }
 
-  insertHistoria(row: Historia): Observable<Historia> {
-      let body = {
-        tituloHistoria: row.titulo,
-        subtituloHistoria: row.subtitulo,
-        descripcion: row.descripcion,
-        enUso: row.enUso,
-        medios: row.medios,
-        token: this.auth.getJWT()
-      }
-      console.log(body)
-      return this.http.post<Historia>('/story/insert.php', body);
-   }
-
-  updateHistoria(row: Historia): Observable<Historia> { 
-    let body = {
-      idHistoria: row.id,
-      tituloHistoria: row.titulo,
-      subtituloHistoria: row.subtitulo,
-      descripcion: row.descripcion,
-      enUso: row.enUso,
-      medios: row.medios,
-      token: this.auth.getJWT()
-    }
-    console.log(body)
-    return this.http.put<Historia>('/story/update.php', body);
+  getHistoriaByID(id: number): Observable<Historia> {
+    return this.http.get<Historia>(`${this.url}/${id}`);
   }
 
-  deleteHistoria() { }
+  createHistoria(historia: Historia): Observable<Historia> {
+    return this.http.post<Historia>(this.url, historia);
+  }
+
+  editHistoria(historia: Historia): Observable<Historia> {
+    const endpoint = `${this.url}/${historia.id}`;
+    return this.http.put<Historia>(endpoint, historia);
+  }
+
+  deleteHistoria(historia: Historia): Observable<Historia> {
+    return this.http.delete<Historia>(`${this.url}/${historia.id}`);
+  };
 
 }

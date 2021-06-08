@@ -65,7 +65,7 @@ export class HistoriaEditComponent implements OnInit {
       enUso: this.newHistoriaForm.get('enUso').value,
       medios: this.newHistoriaForm.get('medios').value
     }
-    this.historiaService.updateHistoria(this.historia).subscribe(
+    this.historiaService.editHistoria(this.historia).subscribe(
       res => console.log("formulario editado"),
       error => console.log(error)
     );

@@ -2,44 +2,41 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Material } from 'src/app/models/models';
-import { baseUrl } from 'src/environments/environment';
-import { AuthenticatorJwt } from '../authenticatorJwt.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class MaterialesService {
 
-  constructor(private http:HttpClient,private auth: AuthenticatorJwt) { }
+
+  url: string = '/materials';
+
+  constructor(private http:HttpClient) { }
 
   getMaterial():Observable<Material[]>{
-    return this.http.get<Material[]>('/materials/list.php');
+    return this.http.get<Material[]>(`${this.url}/list.php`);
   }
 
-  insertMaterial(row: Material): Observable<Material> {
-    let body = {
-      titulo: row.titulo,
-      contenido: row.contenido,
-      enUso: row.enUso,
-      medios: row.medios,
-      token: this.auth.getJWT()
-    }
-    console.log(body)
-    return this.http.post<Material>('/materials/insert.php', body);
- }
-
-updateMaterial(row: Material): Observable<Material> { 
-  let body = {
-    id: row.id,
-    titulo: row.titulo,
-    contenido: row.contenido,
-    enUso: row.enUso,
-    medios: row.medios,
-    token: this.auth.getJWT()
+  getMaterial2():Observable<Material[]>{
+    return this.http.get<Material[]>(`${this.url}/listEverything.php`);
   }
-  console.log(body)
-  return this.http.put<Material>('/materials/update.php', body);
-}
 
-deleteMaterial() { }
+  getMaterialByID(id: number): Observable<Material> {
+    return this.http.get<Material>(`${this.url}/${id}`);
+  }
+
+  createMaterial(material: Material): Observable<Material> {
+    return this.http.post<Material>(this.url, material);
+  }
+
+  editMaterial(material: Material): Observable<Material> {
+    const endpoint = `${this.url}/${material.id}`;
+    return this.http.put<Material>(endpoint, material);
+  }
+
+  deleteMaterial(material: Material): Observable<Material> {
+    return this.http.delete<Material>(`${this.url}/${material.id}`);
+  };
+
 }
