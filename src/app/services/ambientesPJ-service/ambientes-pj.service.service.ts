@@ -10,38 +10,33 @@ import { AuthenticatorJwt } from '../authenticatorJwt.service';
 })
 export class AmbientesPJService {
 
-  
-  constructor(private http:HttpClient, private auth: AuthenticatorJwt) { }
+  url: string = '/pjenvironments';
+
+  constructor(private http:HttpClient) { }
 
   getAmbientesPj():Observable<ambientesPj[]> {
     return this.http.get<ambientesPj[]>('/pjenvironments/list.php');
   }
 
-  insertAmbientesPj(row: ambientesPj): Observable<ambientesPj> {
-    let body = {
-      titulo: row.titulo,
-      descripcion: row.descripcion,
-      enUso: row.enUso,
-      medios: row.medios,
-      token: this.auth.getJWT()
-    }
-    console.log(body)
-    return this.http.post<ambientesPj>('/pjenvironments/insert.php', body);
- }
+  // getAmbientesPj():Observable<ambientesPj[]>{
+  //   return this.http.get<ambientesPj[]>(`${this.url}/listEverything.php`);
+  // }
 
-updateAmbientesPj(row: ambientesPj): Observable<ambientesPj> { 
-  let body = {
-    id: row.id,
-    titulo: row.titulo,
-    descripcion: row.descripcion,
-    enUso: row.enUso,
-    medios: row.medios,
-    token: this.auth.getJWT()
+  getAmbienteByID(id: number): Observable<ambientesPj> {
+    return this.http.get<ambientesPj>(`${this.url}/${id}`);
   }
-  console.log(body)
-  return this.http.put<ambientesPj>('/pjenvironments/update.php', body);
-}
 
-deleteAmbientesPj() { }
+  createAmbiente(historia: ambientesPj): Observable<ambientesPj> {
+    return this.http.post<ambientesPj>(this.url, historia);
+  }
+
+  editAmbiente(historia: ambientesPj): Observable<ambientesPj> {
+    const endpoint = `${this.url}/${historia.id}`;
+    return this.http.put<ambientesPj>(endpoint, historia);
+  }
+
+  deleteAmbiente(historia: ambientesPj): Observable<ambientesPj> {
+    return this.http.delete<ambientesPj>(`${this.url}/${historia.id}`);
+  };
   
 }

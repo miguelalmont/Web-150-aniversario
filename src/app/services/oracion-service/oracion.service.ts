@@ -1,43 +1,37 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Oracion, Visita } from 'src/app/models/models';
-import { baseUrl } from 'src/environments/environment';
-import { AuthenticatorJwt } from '../authenticatorJwt.service';
+import { Oracion } from 'src/app/models/models';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class OracionService {
 
-  constructor(private http:HttpClient,private auth: AuthenticatorJwt) { }
+  url: string = '/pray';
+
+  constructor(private http:HttpClient) { }
 
   getOracion():Observable<Oracion[]>{
-    return this.http.get<Oracion[]>('/pray/list.php');
+    return this.http.get<Oracion[]>(`${this.url}/listEverything.php`);
   }
 
-  insertOracion(row: Oracion): Observable<Oracion> {
-    let body = {
-      titulo: row.titulo,
-      texto: row.oracion,
-      enUso: row.enUso,
-      token: this.auth.getJWT()
-    }
-    console.log(body)
-    return this.http.post<Oracion>('/pray/insert.php', body);
- }
-
-updateOracion(row: Oracion): Observable<Oracion> { 
-  let body = {
-    id: row.id,
-    titulo: row.titulo,
-    texto: row.oracion,
-    enUso: row.enUso,
-    token: this.auth.getJWT()
+  getOracionByID(id: number): Observable<Oracion> {
+    return this.http.get<Oracion>(`${this.url}/${id}`);
   }
-  console.log(body)
-  return this.http.put<Oracion>('/pray/update.php', body);
-}
 
-deleteOracion() { }
+  createOracion(oracion: Oracion): Observable<Oracion> {
+    return this.http.post<Oracion>(this.url, oracion);
+  }
+
+  editOracion(oracion: Oracion): Observable<Oracion> {
+    const endpoint = `${this.url}/${oracion.id}`;
+    return this.http.put<Oracion>(endpoint, oracion);
+  }
+
+  deleteOracion(oracion: Oracion): Observable<Oracion> {
+    return this.http.delete<Oracion>(`${this.url}/${oracion.id}`);
+  };
+
 }

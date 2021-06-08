@@ -51,7 +51,7 @@ export class AmbientesPjEditComponent implements OnInit {
       enUso: this.newAmbienteForm.get('enUso').value,
       medios: this.newAmbienteForm.get('medios').value
     }
-    this.ambienteService.updateAmbientesPj(this.ambiente).subscribe(
+    this.ambienteService.editAmbiente(this.ambiente).subscribe(
       res => console.log("formulario editado"),
       error => console.log(error)
     );

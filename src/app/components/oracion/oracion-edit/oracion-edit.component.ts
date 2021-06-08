@@ -57,7 +57,7 @@ export class OracionEditComponent implements OnInit {
       oracion: this.newOracionForm.get('oracion').value,
       enUso: this.newOracionForm.get('enUso').value
     }
-    this.oracionService.updateOracion(this.oracion).subscribe(
+    this.oracionService.editOracion(this.oracion).subscribe(
       res => console.log("formulario editado"),
       error => console.log(error)
     );
