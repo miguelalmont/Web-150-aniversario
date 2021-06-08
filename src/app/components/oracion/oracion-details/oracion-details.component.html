@@ -3,17 +3,19 @@
   <button mat-stroked-button mat-dialog-close ><mat-icon>close</mat-icon></button>
 </div>
 <div class="form-container">
-  <form [formGroup]="newOracionForm" (ngSubmit)="onFormSubmit()">
+  <form [formGroup]="newOracionForm">
       <mat-form-field appearance="outline">
-        <mat-label>Titulo</mat-label>
-        <input matInput formControlName="title" placeholder="Titulo" type="text" readonly cdkFocusInitial>
-        <mat-error>El titulo debe contener 6 carácteres como mínimo.</mat-error>
+        <mat-label>Título</mat-label>
+        <input matInput formControlName="titulo" placeholder="Título" type="text" readonly cdkFocusInitial>
       </mat-form-field>
         <mat-form-field appearance="outline">
-          <mat-label>Oracion</mat-label>
-          <input matInput formControlName="prayer" placeholder="Oracion" type="text" readonly>
-          <mat-error>El subtitulo debe contener 6 carácteres como mínimo.</mat-error>
+          <mat-label>Oración</mat-label>
+          <input matInput formControlName="oracion" placeholder="Oración" type="text" readonly>
         </mat-form-field>
+        <p>
+          En uso:
+          <mat-checkbox class="checkbox" disabled="true" [checked]="checkEnUso(oracionInput.enUso)"></mat-checkbox>
+        </p>
   </form>
 </div>
 

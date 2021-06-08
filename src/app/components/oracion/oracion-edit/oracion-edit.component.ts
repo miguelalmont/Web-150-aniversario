@@ -1,11 +1,12 @@
 import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Oracion } from 'src/app/models/models';
 import { OracionService } from 'src/app/services/oracion-service/oracion.service';
 import { Inject } from '@angular/core';
 import Swal from "sweetalert2";
+import { OracionViewComponent } from '../oracion-view/oracion-view.component';
 
 @Component({
   selector: 'app-oracion-edit',
@@ -37,7 +38,8 @@ export class OracionEditComponent implements OnInit {
     
   }
 
-  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data, private oracionService: OracionService) {
+  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data, private oracionService: OracionService,
+  public dialogRef: MatDialogRef<OracionViewComponent>) {
     this.oracionInput = data.row;
     this.newOracionForm = this.fb.group({
       titulo: new FormControl(this.oracionInput.titulo),
@@ -58,8 +60,14 @@ export class OracionEditComponent implements OnInit {
       enUso: this.newOracionForm.get('enUso').value
     }
     this.oracionService.editOracion(this.oracion).subscribe(
-      res => console.log("formulario editado"),
-      error => console.log(error)
+      res => {
+        console.log("formulario editado")
+        this.dialogRef.close();
+      },
+      error => {
+        console.log(error)
+        this.dialogRef.close();
+      }
     );
   }
 
