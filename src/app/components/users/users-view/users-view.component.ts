@@ -57,7 +57,16 @@ export class UsersViewComponent implements AfterViewInit {
         this.dataSource.data = response
         console.log(this.dataSource.data)
       },
-      error => console.log(error)
+      error => {
+        console.log(error)
+        Swal.fire({
+          title: 'Error',
+          text: `Hubo un error al cargar los datos, ${error}`,
+          icon: 'error',
+          cancelButtonColor: '#d33',
+          cancelButtonText: "Cerrar",
+        })
+      }
     )
   }
 
