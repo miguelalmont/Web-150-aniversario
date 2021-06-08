@@ -75,8 +75,8 @@ export class VisitasViewComponent implements AfterViewInit {
     });
   }
 
-  editVisitaOnClick() {
-    const dialogRef = this.dialog.open(VisitasEditComponent, { disableClose: true });
+  editVisitaOnClick(row: Visita) {
+    const dialogRef = this.dialog.open(VisitasEditComponent, { disableClose: true , data: {row}});
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
@@ -84,11 +84,8 @@ export class VisitasViewComponent implements AfterViewInit {
   }
 
   detailsVisitaOnClick(row: Visita) {
-
-    // NO CARGA EL DETAILS
     console.log(row);
     const dialogRef = this.dialog.open(VisitasDetailsComponent, {
-      
       data: {row}
     });
 

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Visita } from 'src/app/models/models';
 import Swal from "sweetalert2";
 
 @Component({
@@ -9,26 +11,40 @@ import Swal from "sweetalert2";
 })
 export class VisitasEditComponent implements OnInit {
 
-  newVisitaForm: FormGroup = this.fb.group({
-    titulo: new FormControl('',  [Validators.required, Validators.minLength(6)]),
-    medios: new FormControl('',  Validators.required),
-    enUso: new FormControl('',  Validators.required)
-  });
-
-  visita = {
-    titulo: this.newVisitaForm.get('titulo').value,
-    medios: this.newVisitaForm.get('medios').value,
-    enUso: this.newVisitaForm.get('enUso').value
+  @Input()
+  visitaEdit: Visita = {
+    titulo: '',
+    descripcion: '',
+    enUso: 0,
+    medios: []
   }
 
-  constructor(private fb: FormBuilder) {}
+  visitaEditForm: FormGroup;
 
-  get titulo() { return this.newVisitaForm.get('titulo').value; }
+  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data) {
+    this.visitaEdit = data.row;
+    this.visitaEditForm = this.fb.group({
+    titulo: new FormControl(this.visitaEdit.titulo),
+    descripcion: new FormControl(this.visitaEdit.descripcion),
+    enUso: new FormControl(this.visitaEdit.enUso),
+    image: new FormControl(this.visitaEdit.medios[0].url),
+    video: new FormControl(this.visitaEdit.medios[1].url)
+    })
+  }
+
+  get titulo() { return this.visitaEditForm.get('titulo').value; }
 
   ngOnInit(): void {}
 
   onFormSubmit(): void {
-    console.log('Name:' + this.newVisitaForm.get('titulo').value);
+    console.log('Name:' + this.visitaEditForm.get('titulo').value);
+  }
+
+  checkInUse(inUse: number) {
+    if (inUse == 1)
+      return true;
+    else
+      return false;
   }
 
   editarSwt(){

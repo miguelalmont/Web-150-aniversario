@@ -5,7 +5,7 @@ export interface ActoData {
     categoria: string;
     ubicacion: string;
     fecha: string;
-    medios: [];
+    medios: Array<any>;
     enUso: number;
 }
 
@@ -14,7 +14,7 @@ export interface Saludo {
     titulo: string;
     contenido: string;
     descripcion: string;
-    medios: [];
+    medios: Array<any>;
     enUso: number;
 }
 
@@ -22,8 +22,9 @@ export interface Visita {
     id?: number;
     titulo: string;
     descripcion: string;
-    medios: [];
+    medios: Array<any>;
     enUso: number;
+    token?: string;
 }
 
 export interface Historia {
@@ -31,7 +32,7 @@ export interface Historia {
     titulo: string;
     subtitulo: string;
     descripcion: string;
-    medios: [];
+    medios: Array<any>;
     enUso: number;
     token?: string;
 }
@@ -47,7 +48,7 @@ export interface Material {
     id?: number;
     titulo: string;
     contenido: string;
-    medios: [];
+    medios: Array<any>;
     enUso: number;
 }
 
@@ -76,6 +77,6 @@ export interface ambientesPj {
     titulo: string,
     descripcion: string,
     enUso: number,
-    medios: [],
+    medios: Array<any>,
     token?: string
 }
