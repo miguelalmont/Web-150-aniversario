@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/models';
@@ -19,15 +19,9 @@ export class UsuariosService {
   }
 
   insertUser(row: User): Observable<User> {
-      let body = {
-        username: row.username,
-        password: row.password,
-        mail: row.mail,
-        rolName: row.rolName,
-        token: this.auth.getJWT()
-      }
-      console.log(body)
-      return this.http.post<User>('/auth/insert.php', body);
+    row.token = this.auth.getJWT();
+    console.log(row)
+    return this.http.post<User>('/auth/insert.php', row);
    }
 
   updateUser(row: User) { 
@@ -44,7 +38,16 @@ export class UsuariosService {
     &rolName=${body.rolName}&token=${body.token}`, body);
   }
 
-  deleteUser() { }
+  deleteUser(id: number) {
+    // const options = {
+    //   headers: new HttpHeaders(),
+    //   body: {
+    //     idUser: id,
+    //     token: this.auth.getJWT()
+    //   },
+    // };
+    return this.http.delete(`/auth/delete.php/${id}`);
+   }
 
   logOut(){
     const token:string = this.auth.getJWT();

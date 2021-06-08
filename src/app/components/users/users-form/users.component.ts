@@ -5,7 +5,6 @@ import { User } from 'src/app/models/models';
 import { UsuariosService } from 'src/app/services/usuarios-service/usuarios.service';
 import { passwordValidator } from 'src/app/shared/password-validator';
 import Swal from 'sweetalert2';
-import { Md5 } from 'ts-md5';
 
 
 @Component({
