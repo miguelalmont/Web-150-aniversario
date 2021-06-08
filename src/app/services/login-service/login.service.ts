@@ -27,7 +27,7 @@ export class LoginService {
 
     console.log(jsonObject)
 
-    return this.http.post<Token>(`${this.baseUrl}/auth/login.php`, jsonObject).pipe(
+    return this.http.post<Token>(`/auth/login.php`, jsonObject).pipe(
       tap((data) => {
         console.log('User token: ' + data['jwt']);
       })
@@ -35,7 +35,7 @@ export class LoginService {
   }
 
   getUserAuthenticated(): Observable<UserLogin> {
-    return this.http.get<UserLogin>(`${this.baseUrl}/auth/login.php`).pipe(
+    return this.http.get<UserLogin>(`/auth/login.php`).pipe(
       tap((userAuthenticated) => {
         console.log('getuserAuten');
         if (

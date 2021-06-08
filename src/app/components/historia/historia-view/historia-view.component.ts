@@ -9,6 +9,7 @@ import { HistoriaService } from 'src/app/services/historia-service/historia.serv
 import { HistoriaDetailsComponent } from '../historia-details/historia-details.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-historia-view',
@@ -89,6 +90,27 @@ export class HistoriaViewComponent implements AfterViewInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+
+  borrarSwt(){
+    Swal.fire({
+      title: '¿Estas seguro?',
+      text: "Los cambios no se podran revertir",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: "Cancelar",
+      confirmButtonText: 'Borrar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Borrado',
+          'Historia borrada correctamente',
+          'success'
+        )
+      }
+    })
   }
   
 }

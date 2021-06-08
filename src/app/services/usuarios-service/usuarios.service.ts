@@ -46,4 +46,9 @@ export class UsuariosService {
 
   deleteUser() { }
 
+  logOut(){
+    const token:string = this.auth.getJWT();
+    return this.http.post('/auth/logout.php', token);
+  }
+
 }

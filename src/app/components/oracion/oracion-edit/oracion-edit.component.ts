@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { Oracion } from 'src/app/models/models';
 import { OracionService } from 'src/app/services/oracion-service/oracion.service';
 import { Inject } from '@angular/core';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-oracion-edit',
@@ -60,6 +61,27 @@ export class OracionEditComponent implements OnInit {
       res => console.log("formulario editado"),
       error => console.log(error)
     );
+  }
+
+  editarSwt(){
+    Swal.fire({
+      title: '¿Estas seguro?',
+      text: "Los cambios no se podran revertir",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: "Cancelar",
+      confirmButtonText: 'Actualizar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Perfecto',
+          'Oracion actualizada correctamente',
+          'success'
+        )
+      }
+    })
   }
 
 }

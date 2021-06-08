@@ -1,5 +1,6 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import Swal from "sweetalert2";
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { User } from 'src/app/models/models';
 import { UsuariosService } from 'src/app/services/usuarios-service/usuarios.service';
@@ -85,4 +86,24 @@ export class EditUserComponent implements OnInit {
       return 'user';
   }
 
+  editarSwt(){
+    Swal.fire({
+      title: '¿Estas seguro?',
+      text: "Los cambios no se podran revertir",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: "Cancelar",
+      confirmButtonText: 'Actualizar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Perfecto',
+          'Usuário actualizado correctamente',
+          'success'
+        )
+      }
+    })
+  }
 }

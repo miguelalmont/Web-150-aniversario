@@ -9,6 +9,8 @@ import { DetailsUserComponent } from '../details-user/details-user.component';
 import { User } from 'src/app/models/models';
 import { UsuariosService } from 'src/app/services/usuarios-service/usuarios.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import Swal from "sweetalert2";
+
 
 @Component({
   selector: 'app-users-view',
@@ -112,5 +114,25 @@ export class UsersViewComponent implements AfterViewInit {
     else
       return false;
   }
-  
+  borrarSwt(){
+    Swal.fire({
+      title: '¿Estas seguro?',
+      text: "Los cambios no se podran revertir",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: "Cancelar",
+      confirmButtonText: 'Borrar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Borrado',
+          'Usuário borrado correctamente',
+          'success'
+        )
+      }
+    })
+  }
+
 }

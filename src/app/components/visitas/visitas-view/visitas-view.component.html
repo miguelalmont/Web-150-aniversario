@@ -19,23 +19,25 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Titulo </th>
         <td mat-cell *matCellDef="let row"> {{row.titulo}} </td>
       </ng-container>
-
-      <!-- Title Column -->
-      <ng-container class="name-row" matColumnDef="descripcion">
+  
+      <!-- Descripcion Column -->
+      <ng-container matColumnDef="descripcion">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Descripcion </th>
         <td class="trim-cell" mat-cell *matCellDef="let row"> {{row.descripcion}} </td>
       </ng-container>
-  
-      <!-- Video Url Column -->
+
+      <!-- Medios Column -->
       <ng-container matColumnDef="medios">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Video Url </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Medios </th>
         <td mat-cell *matCellDef="let row"> {{row.medios[0].url}} </td>
       </ng-container>
 
-      <!-- Title Column -->
-      <ng-container class="name-row" matColumnDef="enUso">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> enUso </th>
-        <td mat-cell *matCellDef="let row"> {{row.enUso}} </td>
+      <!-- enUso Column -->
+      <ng-container matColumnDef="enUso">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> En Uso </th>
+        <td mat-cell *matCellDef="let row">
+            <mat-checkbox class="checkbox" disabled="true" [checked]="row.enUso"></mat-checkbox>
+        </td>
       </ng-container>
       
       <!-- Actions Column -->
@@ -50,7 +52,7 @@
               <mat-icon>edit</mat-icon>
               Editar
             </button>
-            <button class="action-btn delete-btn" mat-stroked-button>
+            <button class="action-btn delete-btn" mat-stroked-button (click)="borrarSwt()">
               <mat-icon>delete</mat-icon>
               Eliminar
             </button>

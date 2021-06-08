@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MaterialesService } from 'src/app/services/materiales-service/materiales.service';
 import { Material } from 'src/app/models/models';
+import Swal from "sweetalert2";
+
 @Component({
   selector: 'app-materiales-edit',
   templateUrl: './materiales-edit.component.html',
@@ -70,4 +72,25 @@ export class MaterialesEditComponent implements OnInit {
     else
       return null;
   }
+  editarSwt(){
+    Swal.fire({
+      title: '¿Estas seguro?',
+      text: "Los cambios no se podran revertir",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: "Cancelar",
+      confirmButtonText: 'Actualizar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Perfecto',
+          'Material actualizado correctamente',
+          'success'
+        )
+      }
+    })
+  }
+
 }
