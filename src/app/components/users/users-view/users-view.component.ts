@@ -114,9 +114,10 @@ export class UsersViewComponent implements AfterViewInit {
     else
       return false;
   }
-  borrarSwt(){
+
+  deleteUserOnClick(){
     Swal.fire({
-      title: '¿Estas seguro?',
+      title: '¿Estás seguro?',
       text: "Los cambios no se podran revertir",
       icon: 'warning',
       showCancelButton: true,
@@ -128,7 +129,7 @@ export class UsersViewComponent implements AfterViewInit {
       if (result.isConfirmed) {
         Swal.fire(
           'Borrado',
-          'Usuário borrado correctamente',
+          'Usuario borrado correctamente',
           'success'
         )
       }

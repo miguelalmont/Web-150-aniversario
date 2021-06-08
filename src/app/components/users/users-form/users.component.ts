@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { User } from 'src/app/models/models';
 import { UsuariosService } from 'src/app/services/usuarios-service/usuarios.service';
 import { passwordValidator } from 'src/app/shared/password-validator';
+import Swal from 'sweetalert2';
 import { Md5 } from 'ts-md5';
 
 
@@ -45,8 +46,37 @@ export class UsersComponent implements OnInit {
     }
     console.log('Name:' + this.newUserForm.get('username').value);
     this.usuariosService.insertUser(this.user).subscribe(
-      response => console.log('Usuario insertado ', response),
-      error => console.error('Error ', error)
+      response => {
+        console.log('Usuario insertado ', response)
+        Swal.fire({
+          title: '¿Estas seguro?',
+          text: "Vas a crear un usuario",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          cancelButtonText: "Cancelar",
+          confirmButtonText: 'Crear'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire(
+              'Perfecto',
+              'Usuario creado correctamente',
+              'success'
+            )
+          }
+        })
+      },
+      error => {
+        console.error('Error ', error)
+        Swal.fire({
+          title: 'Error',
+          text: 'Hubo un error al crear',
+          icon: 'error',
+          cancelButtonColor: '#d33',
+          cancelButtonText: "Cerrar",
+        })
+      }
     );
   }
 

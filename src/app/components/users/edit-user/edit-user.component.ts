@@ -70,7 +70,7 @@ export class EditUserComponent implements OnInit {
       res => {
         console.log("usuario editado", res, this.user)
         Swal.fire({
-          title: '¿Estas seguro?',
+          title: '¿Estás seguro?',
           text: "Los cambios no se podran revertir",
           icon: 'warning',
           showCancelButton: true,
@@ -82,7 +82,7 @@ export class EditUserComponent implements OnInit {
           if (result.isConfirmed) {
             Swal.fire(
               'Perfecto',
-              'Usuário actualizado correctamente',
+              'Usuario actualizado correctamente',
               'success'
             )
           }
