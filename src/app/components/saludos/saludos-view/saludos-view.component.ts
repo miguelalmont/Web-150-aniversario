@@ -56,16 +56,7 @@ export class SaludosViewComponent implements AfterViewInit {
         this.dataSource.data = response
         console.log(this.dataSource.data)
       },
-      error => {
-        console.log(error)
-        Swal.fire({
-          title: 'Error',
-          text: `Hubo un error al cargar los datos, ${error}`,
-          icon: 'error',
-          cancelButtonColor: '#d33',
-          cancelButtonText: "Cerrar",
-        })
-      }
+      error => console.log(error)
     )
   }
 
@@ -103,9 +94,9 @@ export class SaludosViewComponent implements AfterViewInit {
 
   }
 
-  deleteUserOnClick(){
+  borrarSwt(){
     Swal.fire({
-      title: '¿Estás seguro?',
+      title: '¿Estas seguro?',
       text: "Los cambios no se podran revertir",
       icon: 'warning',
       showCancelButton: true,

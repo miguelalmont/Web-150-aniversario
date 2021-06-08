@@ -64,39 +64,41 @@ export class EditUserComponent implements OnInit {
       rolName: this.unCheckRolName(this.data.row.rolName)
     }
 
-    Swal.fire({
-      title: '¿Estás seguro?',
-      text: "Los cambios no se podran revertir",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      cancelButtonText: "Cancelar",
-      confirmButtonText: 'Actualizar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.usuariosService.updateUser(this.user).subscribe(
-          res => {
-            console.log("usuario editado", res, this.user)
+    
+
+    this.usuariosService.updateUser(this.user).subscribe(
+      res => {
+        console.log("usuario editado", res, this.user)
+        Swal.fire({
+          title: '¿Estás seguro?',
+          text: "Los cambios no se podran revertir",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          cancelButtonText: "Cancelar",
+          confirmButtonText: 'Actualizar'
+        }).then((result) => {
+          if (result.isConfirmed) {
             Swal.fire(
               'Perfecto',
               'Usuario actualizado correctamente',
               'success'
             )
-          },
-          error => {
-            console.error(error, "Error", this.user)
-            Swal.fire({
-              title: 'Error',
-              text: 'Hubo un error al editar',
-              icon: 'error',
-              cancelButtonColor: '#d33',
-              cancelButtonText: "Cerrar",
-            })
           }
-        );
+        })
+      },
+      error => {
+        console.error(error, "Error", this.user)
+        Swal.fire({
+          title: 'Error',
+          text: 'Hubo un error al editar',
+          icon: 'error',
+          cancelButtonColor: '#d33',
+          cancelButtonText: "Cerrar",
+        })
       }
-    }) 
+    );
   }
 
   checkRolName(rolName: string) {
