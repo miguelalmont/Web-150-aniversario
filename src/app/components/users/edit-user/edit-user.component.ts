@@ -67,8 +67,37 @@ export class EditUserComponent implements OnInit {
     
 
     this.usuariosService.updateUser(this.user).subscribe(
-      res => console.log("usuario editado", res, this.user),
-      error => console.error(error, "Error", this.user)
+      res => {
+        console.log("usuario editado", res, this.user)
+        Swal.fire({
+          title: '¿Estas seguro?',
+          text: "Los cambios no se podran revertir",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          cancelButtonText: "Cancelar",
+          confirmButtonText: 'Actualizar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire(
+              'Perfecto',
+              'Usuário actualizado correctamente',
+              'success'
+            )
+          }
+        })
+      },
+      error => {
+        console.error(error, "Error", this.user)
+        Swal.fire({
+          title: 'Error',
+          text: 'Hubo un error al editar',
+          icon: 'error',
+          cancelButtonColor: '#d33',
+          cancelButtonText: "Cerrar",
+        })
+      }
     );
   }
 
@@ -86,24 +115,4 @@ export class EditUserComponent implements OnInit {
       return 'user';
   }
 
-  editarSwt(){
-    Swal.fire({
-      title: '¿Estas seguro?',
-      text: "Los cambios no se podran revertir",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      cancelButtonText: "Cancelar",
-      confirmButtonText: 'Actualizar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire(
-          'Perfecto',
-          'Usuário actualizado correctamente',
-          'success'
-        )
-      }
-    })
-  }
 }

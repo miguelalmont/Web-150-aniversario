@@ -44,7 +44,10 @@ export class UsersComponent implements OnInit {
       rolName: this.unCheckRolName(this.newUserForm.get('rolName').value),
     }
     console.log('Name:' + this.newUserForm.get('username').value);
-    this.usuariosService.insertUser(this.user).subscribe();
+    this.usuariosService.insertUser(this.user).subscribe(
+      response => console.log('Usuario insertado ', response),
+      error => console.error('Error ', error)
+    );
   }
 
   checkRolName(rolName: string) {
