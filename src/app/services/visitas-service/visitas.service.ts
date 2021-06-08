@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Visita } from 'src/app/models/models';
-import { AuthenticatorJwt } from '../authenticatorJwt.service';
 
 @Injectable({
   providedIn: 'root'
