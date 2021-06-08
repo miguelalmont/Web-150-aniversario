@@ -25,17 +25,16 @@ export class DetailsUserComponent implements OnDestroy {
     this.detailUserForm = this.fb.group({
       username: new FormControl(this.userToDetail.username),
       mail: new FormControl(this.userToDetail.mail),
-      password: new FormControl(this.userToDetail.password),
       rolName: new FormControl(this.checkRolName(this.userToDetail.rolName))
     });
   }
   ngOnDestroy(): void {
   }
 
-  get firstname() { return this.detailUserForm.get('firstname').value; }
+  get firstname() { return this.detailUserForm.get('username').value; }
 
   onFormSubmit(): void {
-    console.log('Name:' + this.detailUserForm.get('firstname').value);
+    console.log('Name:' + this.detailUserForm.get('username').value);
   }
 
   checkRolName(rolName: string) {

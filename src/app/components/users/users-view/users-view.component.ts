@@ -1,10 +1,10 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
-import {MatDialog} from '@angular/material/dialog';
-import {UsersComponent} from '../users-form/users.component';
-import {EditUserComponent } from '../edit-user/edit-user.component'
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { UsersComponent } from '../users-form/users.component';
+import { EditUserComponent } from '../edit-user/edit-user.component'
 import { DetailsUserComponent } from '../details-user/details-user.component';
 import { User } from 'src/app/models/models';
 import { UsuariosService } from 'src/app/services/usuarios-service/usuarios.service';
@@ -27,7 +27,7 @@ export class UsersViewComponent implements AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
 
   value = '';
-  
+
   constructor(public dialog: MatDialog, private usuariosService: UsuariosService, private route: ActivatedRoute,
     private router: Router) {
     this.dataSource = new MatTableDataSource(this.users);
@@ -38,20 +38,20 @@ export class UsersViewComponent implements AfterViewInit {
     this.paginator._intl.itemsPerPageLabel = 'Por página';
     this.paginator._intl.nextPageLabel = 'Siguiente página';
     this.paginator._intl.previousPageLabel = 'Página anterior';
-    this.paginator._intl.getRangeLabel = 
-    (page: number, pageSize: number, length: number) => {
-      if (length === 0 || pageSize === 0) {
-        return `Sin registros`;
-      }
-      length = Math.max(length, 0);
-      const startIndex = page * pageSize;
-      // If the start index exceeds the list length, do not try and fix the end index to the end.
-      const endIndex = startIndex < length ? Math.min(startIndex + pageSize, length) : startIndex + pageSize;
-      return `${startIndex + 1} - ${endIndex} de ${length}`;
-    };
-    
+    this.paginator._intl.getRangeLabel =
+      (page: number, pageSize: number, length: number) => {
+        if (length === 0 || pageSize === 0) {
+          return `Sin registros`;
+        }
+        length = Math.max(length, 0);
+        const startIndex = page * pageSize;
+        // If the start index exceeds the list length, do not try and fix the end index to the end.
+        const endIndex = startIndex < length ? Math.min(startIndex + pageSize, length) : startIndex + pageSize;
+        return `${startIndex + 1} - ${endIndex} de ${length}`;
+      };
+
     this.dataSource.sort = this.sort;
-    
+
     this.usuariosService.getUser().subscribe(
       response => {
         this.dataSource.data = response
@@ -80,7 +80,7 @@ export class UsersViewComponent implements AfterViewInit {
   }
 
   createUserOnClick() {
-    const dialogRef = this.dialog.open(UsersComponent, { disableClose: true } );
+    const dialogRef = this.dialog.open(UsersComponent, { disableClose: true });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
@@ -88,7 +88,7 @@ export class UsersViewComponent implements AfterViewInit {
   }
 
   editUserOnClick(row: User) {
-    const dialogRef = this.dialog.open(EditUserComponent, { data: {row} });
+    const dialogRef = this.dialog.open(EditUserComponent, { data: { row } });
 
     dialogRef.afterClosed().subscribe(result => {
       this.usuariosService.getUser().subscribe(
@@ -104,7 +104,7 @@ export class UsersViewComponent implements AfterViewInit {
   detailsUserOnClick(row: User) {
     console.log(row);
     const dialogRef = this.dialog.open(DetailsUserComponent, {
-      data: {row}
+      data: { row }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -124,7 +124,8 @@ export class UsersViewComponent implements AfterViewInit {
       return false;
   }
 
-  deleteUserOnClick(){
+  deleteUserOnClick(row: User) {
+
     Swal.fire({
       title: '¿Estás seguro?',
       text: "Los cambios no se podran revertir",
@@ -133,16 +134,30 @@ export class UsersViewComponent implements AfterViewInit {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       cancelButtonText: "Cancelar",
-      confirmButtonText: 'Borrar'
+      confirmButtonText: 'Eliminar'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Borrado',
-          'Usuario borrado correctamente',
-          'success'
-        )
+        this.usuariosService.deleteUser(row.id).subscribe(
+          res => {
+            console.log("usuario borrado", res, row);
+            Swal.fire(
+              'Perfecto',
+              'Usuario eliminado correctamente',
+              'success'
+            )
+          },
+          error => {
+            console.error(error, "Error", row)
+            Swal.fire({
+              title: 'Error',
+              text: 'Hubo un error al eliminar',
+              icon: 'error',
+              cancelButtonColor: '#d33',
+              cancelButtonText: "Cerrar",
+            })
+          }
+        );
       }
     })
   }
-
 }
