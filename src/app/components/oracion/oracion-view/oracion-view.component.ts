@@ -1,8 +1,8 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
-import {MatDialog} from '@angular/material/dialog';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
 import { OracionFormComponent } from '../oracion-form/oracion-form.component';
 import { OracionEditComponent } from '../oracion-edit/oracion-edit.component';
 import { OracionDetailsComponent } from '../oracion-details/oracion-details.component';
@@ -17,7 +17,7 @@ import Swal from "sweetalert2";
   styleUrls: ['./oracion-view.component.scss']
 })
 export class OracionViewComponent implements AfterViewInit {
-  displayedColumns: string[] = ['titulo', 'oracion','enUso', 'actions'];
+  displayedColumns: string[] = ['titulo', 'oracion', 'enUso', 'actions'];
   dataSource: MatTableDataSource<Oracion>;
   oraciones: Oracion[];
   value = '';
@@ -37,18 +37,18 @@ export class OracionViewComponent implements AfterViewInit {
     this.paginator._intl.itemsPerPageLabel = 'Por página';
     this.paginator._intl.nextPageLabel = 'Siguiente página';
     this.paginator._intl.previousPageLabel = 'Página anterior';
-    this.paginator._intl.getRangeLabel = 
-    (page: number, pageSize: number, length: number) => {
-      if (length === 0 || pageSize === 0) {
-        return `Sin registros`;
-      }
-      length = Math.max(length, 0);
-      const startIndex = page * pageSize;
-      // If the start index exceeds the list length, do not try and fix the end index to the end.
-      const endIndex = startIndex < length ? Math.min(startIndex + pageSize, length) : startIndex + pageSize;
-      return `${startIndex + 1} - ${endIndex} de ${length}`;
-    };
-    
+    this.paginator._intl.getRangeLabel =
+      (page: number, pageSize: number, length: number) => {
+        if (length === 0 || pageSize === 0) {
+          return `Sin registros`;
+        }
+        length = Math.max(length, 0);
+        const startIndex = page * pageSize;
+        // If the start index exceeds the list length, do not try and fix the end index to the end.
+        const endIndex = startIndex < length ? Math.min(startIndex + pageSize, length) : startIndex + pageSize;
+        return `${startIndex + 1} - ${endIndex} de ${length}`;
+      };
+
     this.oracionService.getOracion().subscribe(
       response => {
         this.dataSource.data = response
@@ -70,24 +70,24 @@ export class OracionViewComponent implements AfterViewInit {
   createPrayerOnClick() {
     const dialogRef = this.dialog.open(OracionFormComponent, { disableClose: true });
 
-     dialogRef.afterClosed().subscribe(result => {
-       console.log(`Dialog result: ${result}`);
-   });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   editPrayerOnClick(row: Oracion) {
-    const dialogRef = this.dialog.open(OracionEditComponent, { disableClose: true, data: {row} });
+    const dialogRef = this.dialog.open(OracionEditComponent, { disableClose: true, data: { row } });
 
-   dialogRef.afterClosed().subscribe(result => {
-    console.log(`Dialog result: ${result}`);
-     });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   detailsPrayerOnClick(row: Oracion) {
     console.log(row);
     const dialogRef = this.dialog.open(OracionDetailsComponent, {
-      
-      data: {row}
+
+      data: { row }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -95,7 +95,16 @@ export class OracionViewComponent implements AfterViewInit {
     });
   }
 
-  borrarSwt(){
+  enUsoBool(enUso: number) {
+    if (enUso == 0)
+      return false;
+    else if (enUso == 1)
+      return true;
+    else
+      return null;
+  }
+
+  borrarSwt() {
     Swal.fire({
       title: '¿Estas seguro?',
       text: "Los cambios no se podran revertir",
