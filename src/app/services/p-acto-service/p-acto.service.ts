@@ -10,43 +10,34 @@ import { AuthenticatorJwt } from '../authenticatorJwt.service';
 })
 export class PActoService {
 
+  url: string = '/acts';
 
   constructor(private http:HttpClient,private auth: AuthenticatorJwt) { }
 
-  getActo():Observable<ActoData[]>{
-    return this.http.get<ActoData[]>('/acts/listEverything.php');
+  // getActo():Observable<ActoData[]>{
+  //   return this.http.get<ActoData[]>('/acts/listEverything.php');
+  // }
+
+  getActos():Observable<ActoData[]>{
+    return this.http.get<ActoData[]>(`${this.url}/listEverything.php`);
   }
 
-  insertActo(row: ActoData): Observable<ActoData> {
-    let body = {
-      titulo: row.titulo,
-      descripcion: row.descripcion,
-      categoria: row.categoria,
-      ubicacion: row.ubicacion,
-      fecha: row.fecha,
-      enUso: row.enUso,
-      medios: row.medios,
-      token: this.auth.getJWT()
-    }
-    console.log(body)
-    return this.http.post<ActoData>('/acts/insert.php', body);
- }
-
-updateActo(row: ActoData): Observable<ActoData> { 
-  let body = {
-    id: row.id,
-    titulo: row.titulo,
-    descripcion: row.descripcion,
-    categoria: row.categoria,
-    ubicacion: row.ubicacion,
-    fecha: row.fecha,
-    enUso: row.enUso,
-    medios: row.medios,
-    token: this.auth.getJWT()
+  getActosByID(id: number): Observable<ActoData> {
+    return this.http.get<ActoData>(`${this.url}/${id}`);
   }
-  console.log(body)
-  return this.http.put<ActoData>('/acts/update.php', body);
-}
 
-deleteActo() { }
+  createActos(acto: ActoData): Observable<ActoData> {
+    return this.http.post<ActoData>(this.url, acto);
+  }
+
+  editActos(acto: ActoData): Observable<ActoData> {
+    const endpoint = `${this.url}/${acto.id}`;
+    return this.http.put<ActoData>(endpoint, acto);
+  }
+
+  deleteActos(acto: ActoData): Observable<ActoData> {
+    return this.http.delete<ActoData>(`${this.url}/${acto.id}`);
+  };
+
+  
 }

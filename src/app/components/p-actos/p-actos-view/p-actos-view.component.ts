@@ -51,7 +51,7 @@ export class PActosViewComponent implements AfterViewInit {
       return `${startIndex + 1} - ${endIndex} de ${length}`;
     };
     
-    this.pActosService.getActo().subscribe(
+    this.pActosService.getActos().subscribe(
       response => {
         this.dataSource.data = response
         console.log(this.dataSource.data)
