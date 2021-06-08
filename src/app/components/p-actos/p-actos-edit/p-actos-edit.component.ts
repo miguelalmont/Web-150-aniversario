@@ -76,7 +76,7 @@ export class PActosEditComponent implements OnInit {
       medios: this.newActosForm.get('medios').value,
       enUso: this.newActosForm.get('enUso').value
     }
-    this.actoService.updateActo(this.acto).subscribe(
+    this.actoService.editActos(this.acto).subscribe(
       res => console.log("formulario editado"),
       error => console.log(error)
     );

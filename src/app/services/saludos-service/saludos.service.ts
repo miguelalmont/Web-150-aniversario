@@ -12,38 +12,32 @@ import { AuthenticatorJwt } from '../authenticatorJwt.service';
 export class SaludosService {
 
 
+  url: string = '/greetings';
+
   constructor(private http: HttpClient, private auth: AuthenticatorJwt) {}
 
-  getSaludos(): Observable<Saludo[]> {
-    return this.http.get<Saludo[]>('/greetings/listEverything.php'); 
+  // getSaludos(): Observable<Saludo[]> {
+  //   return this.http.get<Saludo[]>('/greetings/listEverything.php'); 
+  // }
+
+  getSaludos():Observable<Saludo[]>{
+    return this.http.get<Saludo[]>(`${this.url}/listEverything.php`);
   }
 
-  insertSaludo(row: Saludo): Observable<Saludo> {
-    let body = {
-      id: row.id,
-      titulo: row.titulo,
-      descripcion: row.descripcion,
-      texto: row.contenido,
-      enUso: row.enUso,
-      medios: row.medios,
-      token: this.auth.getJWT()
-    }
-    console.log(body)
-    return this.http.post<Saludo>('/greetings/insert.php', body);
- }
-
-updateSaludo(row: Saludo): Observable<Saludo> { 
-  let body = {
-    titulo: row.titulo,
-    descripcion: row.descripcion,
-    texto: row.contenido,
-    enUso: row.enUso,
-    medios: row.medios,
-    token: this.auth.getJWT()
+  getSaludosByID(id: number): Observable<Saludo> {
+    return this.http.get<Saludo>(`${this.url}/${id}`);
   }
-  console.log(body)
-  return this.http.put<Saludo>('/greetings/update.php', body);
-}
 
-deleteSaludo() { }
+  createSaludos(saludo: Saludo): Observable<Saludo> {
+    return this.http.post<Saludo>(this.url, saludo);
+  }
+
+  editSaludos(saludo: Saludo): Observable<Saludo> {
+    const endpoint = `${this.url}/${saludo.id}`;
+    return this.http.put<Saludo>(endpoint, saludo);
+  }
+
+  deleteSaludos(saludo: Saludo): Observable<Saludo> {
+    return this.http.delete<Saludo>(`${this.url}/${saludo.id}`);
+  };
 }
