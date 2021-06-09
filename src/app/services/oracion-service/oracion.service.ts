@@ -14,7 +14,7 @@ export class OracionService {
   constructor(private http:HttpClient) { }
 
   getOracion():Observable<Oracion[]>{
-    return this.http.get<Oracion[]>(`${this.url}/listEverything.php`);
+    return this.http.get<Oracion[]>(`${this.url}/list.php`);
   }
 
   getOracionByID(id: number): Observable<Oracion> {

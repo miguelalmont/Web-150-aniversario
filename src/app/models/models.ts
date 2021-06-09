@@ -45,9 +45,8 @@ export interface Oracion {
 
 export interface Material {
     id?: number;
-    titulo: string;
-    contenido: string;
-    medios: [];
+    tipo: number;
+    url: string;
     enUso: number;
 }
 

@@ -64,8 +64,6 @@ export class EditUserComponent implements OnInit {
       rolName: this.unCheckRolName(this.data.row.rolName)
     }
 
-    
-
     this.usuariosService.updateUser(this.user).subscribe(
       res => {
         console.log("usuario editado", res, this.user)

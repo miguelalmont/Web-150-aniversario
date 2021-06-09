@@ -8,6 +8,9 @@ import { Material } from 'src/app/models/models';
   providedIn: 'root'
 })
 export class MaterialesService {
+  editUser(user: any) {
+    throw new Error('Method not implemented.');
+  }
 
 
   url: string = '/materials';
