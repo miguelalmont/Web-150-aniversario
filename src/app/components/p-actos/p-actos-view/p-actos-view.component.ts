@@ -86,8 +86,8 @@ export class PActosViewComponent implements AfterViewInit {
     });
   }
 
-  detailsActosOnClick() {
-    const dialogRef = this.dialog.open(PActosDetailsComponent);
+  detailsActosOnClick(row: ActoData) {
+    const dialogRef = this.dialog.open(PActosDetailsComponent, { disableClose: true, data: { row } });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
@@ -103,25 +103,39 @@ export class PActosViewComponent implements AfterViewInit {
       return null;
   }
 
-  borrarSwt() {
+  deleteActosOnClick(row: ActoData) {
     Swal.fire({
-      title: '¿Estas seguro?',
+      title: '¿Estás seguro?',
       text: "Los cambios no se podran revertir",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       cancelButtonText: "Cancelar",
-      confirmButtonText: 'Borrar'
+      confirmButtonText: 'Eliminar'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Borrado',
-          'Acto borrado correctamente',
-          'success'
-        )
+        this.pActosService.deleteActos(row).subscribe(
+          res => {
+            console.log("acto borrado", res, row);
+            Swal.fire(
+              'Perfecto',
+              'Acto eliminado correctamente',
+              'success'
+            )
+          },
+          error => {
+            console.error(error, "Error", row)
+            Swal.fire({
+              title: 'Error',
+              text: 'Hubo un error al eliminar',
+              icon: 'error',
+              cancelButtonColor: '#d33',
+              cancelButtonText: "Cerrar",
+            })
+          }
+        );
       }
     })
   }
-
 }

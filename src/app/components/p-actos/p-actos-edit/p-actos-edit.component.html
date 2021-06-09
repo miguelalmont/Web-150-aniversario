@@ -3,7 +3,7 @@
   <button mat-stroked-button mat-dialog-close ><mat-icon>close</mat-icon></button>
 </div>
 <div class="form-container">
-  <form [formGroup]="newActosForm" (ngSubmit)="onFormSubmit()">
+  <form [formGroup]="actosFormEdit" (ngSubmit)="onFormSubmit()">
       <mat-form-field appearance="outline">
         <mat-label>Titulo</mat-label>
         <input matInput formControlName="titulo" placeholder="Titulo" type="text" cdkFocusInitial>
@@ -26,20 +26,25 @@
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Fecha</mat-label>
-        <input matInput formControlName="fecha" placeholder="Fecha" type="date">
-        <mat-error>Debes introducir un correo válido.</mat-error>
+        <input matInput formControlName="fecha" placeholder="Fecha" type="text">
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Cartel</mat-label>
-        <input matInput formControlName="medios" placeholder="Medios" type="text">
+        <mat-label>Imagen</mat-label>
+        <input matInput formControlName="image" placeholder="Cartel" type="text">
       </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>en Uso</mat-label>
-        <input matInput formControlName="enUso" placeholder="enUso" type="checkbox">
-      </mat-form-field>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Video</mat-label>
+          <input matInput formControlName="video" placeholder="Video" type="text">
+        </mat-form-field>
+        <p>
+        <mat-label>En uso</mat-label>
+        <mat-checkbox class="checkbox" [checked]="checkInUse(actoInput.enUso)"></mat-checkbox>
+      </p>
     <mat-dialog-actions>
-        <button mat-stroked-button type="submit" [disabled]="newActosForm.invalid">Guardar cambios</button>
-        <button mat-stroked-button type="reset" [disabled]="newActosForm.pristine">Limpiar</button>
+        <button mat-stroked-button type="submit" [disabled]="actosFormEdit.invalid">Guardar cambios</button>
+        <button mat-stroked-button type="reset" [disabled]="actosFormEdit.pristine">Limpiar</button>
     </mat-dialog-actions>
   </form>
 </div>
+

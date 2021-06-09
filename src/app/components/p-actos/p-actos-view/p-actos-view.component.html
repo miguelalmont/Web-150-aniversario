@@ -62,7 +62,7 @@
       <ng-container matColumnDef="actions">
         <th class="actions-row" mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</th>
         <td class="actions-row" mat-cell *matCellDef="let row">
-          <button class="action-btn view-btn" mat-stroked-button (click)="detailsActosOnClick()">
+          <button class="action-btn view-btn" mat-stroked-button (click)="detailsActosOnClick(row)">
             <mat-icon>remove_red_eye</mat-icon>
             Detalles
           </button>
@@ -70,7 +70,7 @@
             <mat-icon>edit</mat-icon>
             Editar
           </button>
-          <button class="action-btn delete-btn" mat-stroked-button (click)="borrarSwt()">
+          <button class="action-btn delete-btn" mat-stroked-button (click)="deleteActosOnClick(row)">
             <mat-icon>delete</mat-icon>
             Eliminar
           </button>

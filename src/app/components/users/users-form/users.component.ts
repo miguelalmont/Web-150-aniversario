@@ -23,16 +23,9 @@ export class UsersComponent implements OnInit {
     rolName: []
   }, {validators: passwordValidator});
 
-  user: User = {
-    username: this.newUserForm.get('username').value,
-    mail: this.newUserForm.get('mail').value,
-    password: this.newUserForm.get('password').value,
-    rolName: this.newUserForm.get('rolName').value,
-  }
+  user: User;
 
   constructor(private fb: FormBuilder, private usuariosService: UsuariosService) {}
-
-  get firstname() { return this.newUserForm.get('firstname').value; }
 
   ngOnInit(): void {}
 

@@ -7,6 +7,7 @@ export interface ActoData {
     fecha: string;
     medios: Array<any>;
     enUso: number;
+    token?: string;
 }
 
 export interface Saludo {
@@ -16,6 +17,7 @@ export interface Saludo {
     descripcion: string;
     medios: Array<any>;
     enUso: number;
+    token?: string;
 }
 
 export interface Visita {
@@ -42,6 +44,7 @@ export interface Oracion {
     titulo: string;
     oracion: string;
     enUso: number;
+    token?: string;
 }
 
 export interface Material {
@@ -50,11 +53,12 @@ export interface Material {
     contenido: string;
     medios: Array<any>;
     enUso: number;
+    token?: string;
 }
 
 
 export interface Token {
-    token:string
+    token:string;
 }
 
 
@@ -69,7 +73,8 @@ export interface User {
 
 export interface UserLogin {
     username: string;
-    password: string,
+    password: string;
+    token?: string;
 }
 
 export interface ambientesPj {
