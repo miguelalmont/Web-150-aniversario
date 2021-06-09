@@ -23,5 +23,9 @@
         <mat-label>Imagen</mat-label>
         <input matInput formControlName="medios" placeholder="Imagen" type="text" readonly>
       </mat-form-field>
+      <p>
+        En Uso:
+        <mat-checkbox class="checkbox" disabled="true" [checked]="checkEnUso(historiaDetails.enUso)"></mat-checkbox>
+      </p>
   </form>
 </div>

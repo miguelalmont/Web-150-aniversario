@@ -45,15 +45,30 @@ export class HistoriaDetailsComponent implements OnInit {
       titulo: new FormControl(this.historiaDetails.titulo),
       subtitulo: new FormControl(this.historiaDetails.subtitulo),
       descripcion: new FormControl(this.historiaDetails.descripcion),
-      enUso: new FormControl(this.historiaDetails.enUso),
+      enUso: new FormControl(this.checkEnUso(this.historia.enUso)),
       medios: new FormControl(this.historiaDetails.medios)
     });
+  }
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
   }
 
   get titulo() { return this.newHistoriaForm.get('titulo').value; }
 
-  ngOnInit(): void {}
+  ngOnDestroy(): void {
+  }
 
-  onFormSubmit(): void {  }
+  get firstname() { return this.detailHistoriaForm.get('titulo').value; }
+
+  onFormSubmit(): void {
+    console.log('Name:' + this.detailHistoriaForm.get('titulo').value);
+  }
+
+  checkEnUso(enUso: number) {
+    if (enUso == 1)
+      return true;
+    else
+      return false;
+  }
 
 }
