@@ -3,18 +3,19 @@
 <div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center">
     <mat-card class="box">
       <mat-card-header>
-        <mat-card-title>Iniciar sesion</mat-card-title>
+        <mat-card-title>Iniciar sesión</mat-card-title>
       </mat-card-header>
   
       <form class="example-form" [formGroup]="loginForm">
         
         <mat-card-content>
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="input_container">
             <input matInput placeholder="Email" type="email" formControlName="username">
+            <mat-icon matSuffix>account_circle</mat-icon>
             <mat-error>Campo requerido</mat-error>
           </mat-form-field>
   
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="input_container">
             <input matInput placeholder="Contraseña" [type]="hide ? 'password' : 'text'" formControlName="password">
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon >{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
