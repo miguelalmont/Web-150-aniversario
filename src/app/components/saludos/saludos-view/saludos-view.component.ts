@@ -18,7 +18,7 @@ import Swal from "sweetalert2";
   styleUrls: ['./saludos-view.component.scss']
 })
 export class SaludosViewComponent implements AfterViewInit {
-  displayedColumns: string[] = ['titulo', 'descripcion','texto','url','tipo','enUso', 'actions'];
+  displayedColumns: string[] = ['titulo', 'descripcion','texto','url','video','enUso', 'actions'];
   dataSource: MatTableDataSource<Saludo>;
   saludoData: Saludo[];
   isLoading: boolean;
@@ -89,18 +89,27 @@ export class SaludosViewComponent implements AfterViewInit {
   }
 
   editSaludoOnClick(row: Saludo) {
-    const dialogRef = this.dialog.open(SaludosEditComponent, { disableClose: true, data: { row } });
+    const dialogRef = this.dialog.open(SaludosEditComponent, { data: { row } });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      this.saludoService.getSaludos().subscribe(
+        response => {
+          this.dataSource.data = response
+          console.log(this.dataSource.data)
+        },
+        error => console.log(error)
+      )
     });
   }
 
   detailsSaludoOnClick(row: Saludo) {
     console.log(row);
     const dialogRef = this.dialog.open(SaludosDetailsComponent, {
-
       data: { row }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
     });
 
   }
@@ -114,23 +123,39 @@ export class SaludosViewComponent implements AfterViewInit {
       return null;
   }
 
-  borrarSwt(){
+  deleteSaludoOnClick(row: Saludo) {
+
     Swal.fire({
-      title: '¿Estas seguro?',
+      title: '¿Estás seguro?',
       text: "Los cambios no se podran revertir",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       cancelButtonText: "Cancelar",
-      confirmButtonText: 'Borrar'
+      confirmButtonText: 'Eliminar'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Borrado',
-          'Saludo borrado correctamente',
-          'success'
-        )
+        this.saludoService.deleteSaludos(row).subscribe(
+          res => {
+            console.log("Saludo borrado", res, row);
+            Swal.fire(
+              'Perfecto',
+              'Saludo eliminada correctamente',
+              'success'
+            )
+          },
+          error => {
+            console.error(error, "Error", row)
+            Swal.fire({
+              title: 'Error',
+              text: 'Hubo un error al eliminar',
+              icon: 'error',
+              cancelButtonColor: '#d33',
+              cancelButtonText: "Cerrar",
+            })
+          }
+        );
       }
     })
   }
