@@ -76,10 +76,10 @@ export class PActosFormComponent implements OnInit {
       if (result.isConfirmed) {
         this.actoService.createActos(this.acto).subscribe(
           res => {
-            console.log("usuario insertado", res, this.acto)
+            console.log("Acto insertado", res, this.acto)
             Swal.fire(
               'Perfecto',
-              'Usuario insertado correctamente',
+              'Acto insertado correctamente',
               'success'
             )
           },

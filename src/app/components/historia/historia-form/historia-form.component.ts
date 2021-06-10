@@ -42,40 +42,40 @@ export class HistoriaFormComponent implements OnInit {
     enUso: this.newHistoriaForm.get('enUso').value
   }
   console.log('Name:' + this.newHistoriaForm.get('titulo').value);
-  this.historiaService.createHistoria(this.historia).subscribe(
-    response => {
-      console.log('Historia insertada ', response)
-      Swal.fire({
-        title: '¿Estas seguro?',
-        text: "Vas a crear una Historia",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        cancelButtonText: "Cancelar",
-        confirmButtonText: 'Crear'
-      }).then((result) => {
-        if (result.isConfirmed) {
+  Swal.fire({
+    title: '¿Estas seguro?',
+    text: "Vas a crear una Historia",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    cancelButtonText: "Cancelar",
+    confirmButtonText: 'Crear'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.historiaService.createHistoria(this.historia).subscribe(
+        response => {
+          console.log('Historia insertada', response)
           Swal.fire(
             'Perfecto',
             'Historia creada correctamente',
             'success'
           )
+        },
+        error => {
+          console.error('Error ', error)
+          Swal.fire({
+            title: 'Error',
+            text: 'Hubo un error al crear',
+            icon: 'error',
+            cancelButtonColor: '#d33',
+            cancelButtonText: "Cerrar",
+          })
         }
-      })
-    },
-    error => {
-      console.error('Error ', error)
-      Swal.fire({
-        title: 'Error',
-        text: 'Hubo un error al crear',
-        icon: 'error',
-        cancelButtonColor: '#d33',
-        cancelButtonText: "Cerrar",
-      })
+      );
     }
-  );
-  }
+  })
+}
 
   checkEnUso(enUso: number) {
     if (enUso === 1)

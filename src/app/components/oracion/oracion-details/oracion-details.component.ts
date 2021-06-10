@@ -28,15 +28,14 @@ export class OracionDetailsComponent implements OnInit {
     oracion: new FormControl('', [
       Validators.required,
       Validators.minLength(6),
-    ]),
-    enUso: new FormControl('', Validators.required),
+    ])
   });
 
   oracion = {
     id: this.oracionInput.id,
     titulo: this.newOracionForm.get('titulo').value,
     oracion: this.newOracionForm.get('oracion').value,
-    enUso: this.newOracionForm.get('enUso').value,
+    enUso: this.oracionInput.enUso
   };
 
   constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data) {
@@ -44,7 +43,7 @@ export class OracionDetailsComponent implements OnInit {
     this.newOracionForm = this.fb.group({
       titulo: new FormControl(this.oracionInput.titulo),
       oracion: new FormControl(this.oracionInput.oracion),
-      enUso: new FormControl(this.oracionInput.enUso),
+      enUso: this.oracionInput.enUso
     });
   }
 
@@ -55,12 +54,8 @@ export class OracionDetailsComponent implements OnInit {
   checkUso: boolean;
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
   }
 
-  onFormSubmit(): void {
-    console.log(this.newOracionForm);
-  }
 
   checkEnUso(enUso: number): boolean {
     return enUso === 0 ? false : true;

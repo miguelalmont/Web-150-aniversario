@@ -24,7 +24,7 @@ export class MaterialesFormComponent implements OnInit {
     this.newMaterialesForm = this.fb.group({
       titulo: new FormControl(''),
       contenido: new FormControl(''),
-      fotos: new FormControl(''),
+      image: new FormControl(''),
       video: new FormControl(''),
       audio: new FormControl(''),
       enUso: new FormControl(''),
@@ -38,13 +38,13 @@ export class MaterialesFormComponent implements OnInit {
     this.materiales = {
       titulo: this.newMaterialesForm.get('titulo').value,
       contenido: this.newMaterialesForm.get('contenido').value,
-      medios: [{ fotos: this.newMaterialesForm.get('image').value }, { audio: this.newMaterialesForm.get('audio').value }],
-      enUso: this.newMaterialesForm.get('enUso').value,
+      medios: [{ url: this.newMaterialesForm.get('image').value }, {url: this.newMaterialesForm.get('video').value}, { url: this.newMaterialesForm.get('audio').value }],
+      enUso: this.materiales.enUso
     }
 
     Swal.fire({
       title: '¿Estas seguro?',
-      text: "Vas a crear un usuario",
+      text: "Vas a crear una entrada de materiales",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -55,7 +55,7 @@ export class MaterialesFormComponent implements OnInit {
       if (result.isConfirmed) {
         this.materialesService.createMaterial(this.materiales).subscribe(
           response => {
-            console.log('Usuario insertado ', response)
+            console.log('Material insertado ', response)
             Swal.fire(
               'Perfecto',
               'Material creado correctamente',
@@ -83,6 +83,13 @@ export class MaterialesFormComponent implements OnInit {
       return true;
     else
       return false;
+  }
+
+  unCheckInUse(enUso: boolean) {
+    if (enUso)
+      return 1;
+    else
+      return 0;
   }
 
 

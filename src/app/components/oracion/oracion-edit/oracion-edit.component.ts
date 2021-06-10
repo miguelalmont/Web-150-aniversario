@@ -59,39 +59,39 @@ export class OracionEditComponent implements OnInit {
       oracion: this.newOracionForm.get('oracion').value,
       enUso: this.unCheckEnUso(this.data.row.enUso)
     }
-    this.oracionService.editOracion(this.oracion).subscribe(
-      res => {
-        console.log("Oracion editada", res, this.oracion)
-        Swal.fire({
-          title: '¿Estás seguro?',
-          text: "Los cambios no se podran revertir",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          cancelButtonText: "Cancelar",
-          confirmButtonText: 'Actualizar'
-        }).then((result) => {
-          if (result.isConfirmed) {
+    Swal.fire({
+      title: '¿Estas seguro?',
+      text: "Vas a editar una Oracion",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: "Cancelar",
+      confirmButtonText: 'Editar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.oracionService.editOracion(this.oracion).subscribe(
+          response => {
+            console.log('Oracion editada', response)
             Swal.fire(
               'Perfecto',
-              'Oracion actualizada correctamente',
+              'Oracion editada correctamente',
               'success'
             )
+          },
+          error => {
+            console.error('Error ', error)
+            Swal.fire({
+              title: 'Error',
+              text: 'Hubo un error al editar',
+              icon: 'error',
+              cancelButtonColor: '#d33',
+              cancelButtonText: "Cerrar",
+            })
           }
-        })
-      },
-      error => {
-        console.error(error, "Error", this.oracion)
-        Swal.fire({
-          title: 'Error',
-          text: 'Hubo un error al editar',
-          icon: 'error',
-          cancelButtonColor: '#d33',
-          cancelButtonText: "Cerrar",
-        })
+        );
       }
-    );
+    })
   }
 
   checkEnUso(enUso: number) {

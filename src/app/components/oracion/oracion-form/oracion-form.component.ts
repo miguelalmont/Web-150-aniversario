@@ -13,65 +13,62 @@ import Swal from 'sweetalert2';
 export class OracionFormComponent implements OnInit {
 
   newOracionForm: FormGroup = this.fb.group({
-    titulo: new FormControl('',  [Validators.required, Validators.minLength(6)]),
-    oracion: new FormControl('',  [Validators.required, Validators.minLength(6)]),
-    enUso: new FormControl('',  Validators.required)
-    
+    titulo: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    oracion: new FormControl('', [Validators.required, Validators.minLength(6)])
   });
 
   oracion = {
-    titulo: this.newOracionForm.get('titulo').value,
-    oracion: this.newOracionForm.get('oracion').value,
-    enUso: this.newOracionForm.get('enUso').value
-    
+    titulo: '',
+    oracion: '',
+    enUso: 0
   }
 
-  constructor(private fb: FormBuilder, private oracionService: OracionService) {}
+  constructor(private fb: FormBuilder, private oracionService: OracionService) { }
 
   get titulo() { return this.newOracionForm.get('titulo').value; }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onFormSubmit(): void {
     this.oracion = {
       titulo: this.newOracionForm.get('titulo').value,
       oracion: this.newOracionForm.get('oracion').value,
-      enUso: this.newOracionForm.get('enUso').value
+      enUso: this.oracion.enUso
     }
     console.log('Name:' + this.newOracionForm.get('titulo').value);
-    this.oracionService.createOracion(this.oracion).subscribe(
-      response => {
-        console.log('Oracion insertada ', response)
-        Swal.fire({
-          title: '¿Estas seguro?',
-          text: "Vas a crear una Oracion",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          cancelButtonText: "Cancelar",
-          confirmButtonText: 'Crear'
-        }).then((result) => {
-          if (result.isConfirmed) {
+    Swal.fire({
+      title: '¿Estas seguro?',
+      text: "Vas a crear una Oracion",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: "Cancelar",
+      confirmButtonText: 'Crear'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.oracionService.createOracion(this.oracion).subscribe(
+          response => {
+            console.log('Oracion insertada', response)
             Swal.fire(
               'Perfecto',
               'Oracion creada correctamente',
               'success'
             )
+          },
+          error => {
+            console.error('Error ', error)
+            Swal.fire({
+              title: 'Error',
+              text: 'Hubo un error al crear',
+              icon: 'error',
+              cancelButtonColor: '#d33',
+              cancelButtonText: "Cerrar",
+            })
           }
-        })
-      },
-      error => {
-        console.error('Error ', error)
-        Swal.fire({
-          title: 'Error',
-          text: 'Hubo un error al crear',
-          icon: 'error',
-          cancelButtonColor: '#d33',
-          cancelButtonText: "Cerrar",
-        })
+        );
       }
-    );
+    })
   }
 
   checkEnUso(enUso: number) {

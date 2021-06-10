@@ -65,40 +65,39 @@ export class HistoriaEditComponent implements OnInit {
       enUso: this.unCheckEnUso(this.data.row.enUso),
       medios: this.newHistoriaForm.get('medios').value
     }
-    this.historiaService.editHistoria(this.historia).subscribe(
-      res => {
-        console.log("Historia editada", res, this.historia)
-        Swal.fire({
-          title: '¿Estás seguro?',
-          text: "Los cambios no se podran revertir",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          cancelButtonText: "Cancelar",
-          confirmButtonText: 'Actualizar'
-        }).then((result) => {
-          if (result.isConfirmed) {
+    Swal.fire({
+      title: '¿Estas seguro?',
+      text: "Vas a editar una Historia",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: "Cancelar",
+      confirmButtonText: 'Editar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.historiaService.editHistoria(this.historia).subscribe(
+          response => {
+            console.log('Historia editar', response)
             Swal.fire(
               'Perfecto',
-              'Historia actualizada correctamente',
+              'Historia editada correctamente',
               'success'
             )
+          },
+          error => {
+            console.error('Error ', error)
+            Swal.fire({
+              title: 'Error',
+              text: 'Hubo un error al editar',
+              icon: 'error',
+              cancelButtonColor: '#d33',
+              cancelButtonText: "Cerrar",
+            })
           }
-        })
-      },
-      error => {
-        console.error(error, "Error", this.historia)
-        Swal.fire({
-          title: 'Error',
-          text: 'Hubo un error al editar',
-          icon: 'error',
-          cancelButtonColor: '#d33',
-          cancelButtonText: "Cerrar",
-        })
+        );
       }
-    );
-
+    })
   }
 
   checkEnUso(enUso: number) {

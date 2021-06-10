@@ -36,7 +36,6 @@ export class HistoriaDetailsComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
   }
 
   get titulo() { return this.detailHistoriaForm.get('titulo').value; }
