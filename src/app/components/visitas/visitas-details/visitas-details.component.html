@@ -3,22 +3,26 @@
   <button mat-stroked-button mat-dialog-close ><mat-icon>close</mat-icon></button>
 </div>
 <div class="form-container">
-  <form [formGroup]="newVisitaForm" (ngSubmit)="onFormSubmit()">
+  <form [formGroup]="detailVisitaForm">
     <mat-form-field appearance="outline">
       <mat-label>Titulo</mat-label>
-      <input matInput formControlName="titulo" placeholder="Titulo" type="text" cdkFocusInitial disabled>
+      <input matInput formControlName="titulo" placeholder="Titulo" type="text" readonly cdkFocusInitial>
     </mat-form-field>
      <mat-form-field appearance="outline">
       <mat-label>Descripcion</mat-label>
-      <input matInput formControlName="descripcion" placeholder="Descripcion" type="text" cdkFocusInitial disabled>
+      <input matInput formControlName="descripcion" placeholder="Descripcion" type="text" readonly>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Imagen-Url</mat-label>
+      <input matInput formControlName="image" placeholder="Imagen-Url" type="text" readonly>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Video-Url</mat-label>
-      <input matInput formControlName="medios" placeholder="Video-Url" type="text" disabled>
+      <input matInput formControlName="video" placeholder="Video-Url" type="text" readonly>
     </mat-form-field>
-    <mat-form-field appearance="outline">
+    <p>
       <mat-label>En uso</mat-label>
-      <input matInput formControlName="enUso" placeholder="En uso" type="checkbox" disabled>
-    </mat-form-field>
+      <mat-checkbox class="checkbox" disabled="true" [checked]="checkInUse(visitaDetails.enUso)"></mat-checkbox>
+    </p>
   </form>
 </div>

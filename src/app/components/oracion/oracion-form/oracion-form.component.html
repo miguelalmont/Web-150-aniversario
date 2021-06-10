@@ -14,6 +14,10 @@
           <input matInput formControlName="oracion" placeholder="Oracion" type="text">
           <mat-error>El subtítulo debe contener 6 carácteres como mínimo.</mat-error>
         </mat-form-field>
+        <p>
+          En Uso:
+          <mat-checkbox class="checkbox" formControlName="enUso" [value]="checkEnUso(oracion.enUso)"></mat-checkbox>
+        </p>
     <mat-dialog-actions>
         <button mat-stroked-button type="submit" [disabled]="newOracionForm.invalid">Guardar cambios</button>
         <button mat-stroked-button type="reset" [disabled]="newOracionForm.pristine">Limpiar</button>

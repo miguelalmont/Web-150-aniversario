@@ -125,7 +125,6 @@ export class UsersViewComponent implements AfterViewInit {
   }
 
   deleteUserOnClick(row: User) {
-
     Swal.fire({
       title: '¿Estás seguro?',
       text: "Los cambios no se podran revertir",

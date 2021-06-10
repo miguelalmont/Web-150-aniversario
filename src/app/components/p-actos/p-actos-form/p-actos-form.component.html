@@ -6,28 +6,36 @@
   <form [formGroup]="newActosForm" (ngSubmit)="onFormSubmit()">
       <mat-form-field appearance="outline">
         <mat-label>Titulo</mat-label>
-        <input matInput formControlName="title" placeholder="Titulo" type="text" cdkFocusInitial>
+        <input matInput formControlName="titulo" placeholder="Titulo" type="text" cdkFocusInitial>
         <mat-error>El nombre debe contener 6 carácteres como mínimo.</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Descripcion</mat-label>
-        <input matInput formControlName="description" placeholder="Descripcion" type="text">
+        <input matInput formControlName="descripcion" placeholder="Descripcion" type="text">
         <mat-error>El nombre debe contener 6 carácteres como mínimo.</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Categoria</mat-label>
-        <input matInput formControlName="category" placeholder="Categoria" type="text">
+        <input matInput formControlName="categoria" placeholder="Categoria" type="text">
         <mat-error>El nombre debe contener 6 carácteres como mínimo.</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Fecha</mat-label>
-        <input matInput formControlName="date" placeholder="Fecha" type="date">
-        <mat-error>Debes introducir un correo válido.</mat-error>
+        <input matInput formControlName="fecha" placeholder="Fecha" type="text">
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Cartel</mat-label>
-        <input matInput formControlName="medios" placeholder="Cartel" type="text">
+        <mat-label>Imagen</mat-label>
+        <input matInput formControlName="image" placeholder="Imagen" type="text">
       </mat-form-field>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Video</mat-label>
+          <input matInput formControlName="video" placeholder="Video" type="text">
+        </mat-form-field>
+        <p>
+        <mat-label>En uso</mat-label>
+        <mat-checkbox class="checkbox" [checked]="checkInUse(acto.enUso)"></mat-checkbox>
+      </p>
     <mat-dialog-actions>
         <button mat-stroked-button type="submit" [disabled]="newActosForm.invalid">Guardar cambios</button>
         <button mat-stroked-button type="reset" [disabled]="newActosForm.pristine">Limpiar</button>

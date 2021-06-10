@@ -70,7 +70,6 @@ export class PActosViewComponent implements AfterViewInit {
   }
 
   createActosOnClick() {
-    console.log(this.actos)
     const dialogRef = this.dialog.open(PActosFormComponent, { disableClose: true });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -79,15 +78,24 @@ export class PActosViewComponent implements AfterViewInit {
   }
 
   editActosOnClick(row: ActoData) {
-    const dialogRef = this.dialog.open(PActosEditComponent, { disableClose: true, data: { row } });
+    const dialogRef = this.dialog.open(PActosEditComponent, { data: { row } });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      this.pActosService.getActos().subscribe(
+        response => {
+          this.dataSource.data = response
+          console.log(this.dataSource.data)
+        },
+        error => console.log(error)
+      )
     });
   }
 
-  detailsActosOnClick() {
-    const dialogRef = this.dialog.open(PActosDetailsComponent);
+  detailsActosOnClick(row: ActoData) {
+    console.log(row);
+    const dialogRef = this.dialog.open(PActosDetailsComponent, {
+      data: { row }
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
@@ -103,25 +111,40 @@ export class PActosViewComponent implements AfterViewInit {
       return null;
   }
 
-  borrarSwt() {
+  deleteActosOnClick(row: ActoData) {
+
     Swal.fire({
-      title: '¿Estas seguro?',
+      title: '¿Estás seguro?',
       text: "Los cambios no se podran revertir",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       cancelButtonText: "Cancelar",
-      confirmButtonText: 'Borrar'
+      confirmButtonText: 'Eliminar'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Borrado',
-          'Acto borrado correctamente',
-          'success'
-        )
+        this.pActosService.deleteActos(row).subscribe(
+          res => {
+            console.log("Acto borrado", res, row);
+            Swal.fire(
+              'Perfecto',
+              'Acto eliminado correctamente',
+              'success'
+            )
+          },
+          error => {
+            console.error(error, "Error", row)
+            Swal.fire({
+              title: 'Error',
+              text: 'Hubo un error al eliminar',
+              icon: 'error',
+              cancelButtonColor: '#d33',
+              cancelButtonText: "Cerrar",
+            })
+          }
+        );
       }
     })
   }
-
 }

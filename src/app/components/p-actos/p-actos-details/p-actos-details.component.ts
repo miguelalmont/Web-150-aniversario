@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ActoData } from 'src/app/models/models';
 
 
 @Component({
@@ -10,27 +12,46 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 })
 export class PActosDetailsComponent implements OnInit {
 
-  newActosForm: FormGroup = this.fb.group({
-    title: new FormControl('',  [Validators.required, Validators.minLength(6)]),
-    description: new FormControl('',  [Validators.required, Validators.minLength(6)]),
-    category: new FormControl('',  [Validators.required, Validators.minLength(6)]),
-    date: new FormControl('',  Validators.required),
-    enUso: new FormControl('', Validators.required),
-    medios: new FormControl('', Validators.required)
-  });
-
-  acto = {
-    title: this.newActosForm.get('title').value,
-    description: this.newActosForm.get('description').value,
-    category: this.newActosForm.get('category').value,
-    date: this.newActosForm.get('date').value,
-    enUso: this.newActosForm.get('enUso').value,
-    medios: this.newActosForm.get('medios').value
+  @Input() actoInput: ActoData = {
+    id: 0,
+    titulo: '',
+    descripcion: '',
+    categoria: '',
+    ubicacion: '',
+    fecha: '',
+    medios: [],
+    enUso: 0
   }
 
-  constructor(private fb: FormBuilder) {}
+  newActosForm: FormGroup;
 
-  get title() { return this.newActosForm.get('title').value; }
+  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data) {
+    this.actoInput = data.row;
+    this.newActosForm = this.fb.group({
+      titulo: new FormControl(this.actoInput.titulo),
+      descripcion: new FormControl(this.actoInput.descripcion),
+      categoria: new FormControl(this.actoInput.categoria),
+      ubicacion: new FormControl(this.actoInput.descripcion),
+      fecha: new FormControl(this.actoInput.fecha),
+      image: new FormControl(this.actoInput.medios[0].url),
+      video: new FormControl(this.actoInput.medios[1].url),
+      enUso: new FormControl(this.checkInUse(this.actoInput.enUso))
+    });
+  }
+
+  checkInUse(inUse: number) {
+    if (inUse == 1)
+      return true;
+    else
+      return false;
+  }
+
+  unCheckInUse(enUso: boolean) {
+    if (enUso)
+      return 1;
+    else
+      return 0;
+  }
 
   ngOnInit(): void {}
 

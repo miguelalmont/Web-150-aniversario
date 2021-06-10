@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Visita } from 'src/app/models/models';
+import { VisitasService } from 'src/app/services/visitas-service/visitas.service';
 import Swal from "sweetalert2";
 
 @Component({
@@ -9,31 +12,59 @@ import Swal from "sweetalert2";
 })
 export class VisitasEditComponent implements OnInit {
 
-  newVisitaForm: FormGroup = this.fb.group({
-    titulo: new FormControl('',  [Validators.required, Validators.minLength(6)]),
-    medios: new FormControl('',  Validators.required),
-    enUso: new FormControl('',  Validators.required)
-  });
-
-  visita = {
-    titulo: this.newVisitaForm.get('titulo').value,
-    medios: this.newVisitaForm.get('medios').value,
-    enUso: this.newVisitaForm.get('enUso').value
+  @Input()
+  visitaEdit: Visita = {
+    titulo: '',
+    descripcion: '',
+    enUso: 0,
+    medios: []
   }
 
-  constructor(private fb: FormBuilder) {}
+  visitaEditForm: FormGroup;
 
-  get titulo() { return this.newVisitaForm.get('titulo').value; }
+  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data, private visitaService: VisitasService) {
+    this.visitaEdit = data.row;
+    this.visitaEditForm = this.fb.group({
+      titulo: new FormControl(this.visitaEdit.titulo),
+      descripcion: new FormControl(this.visitaEdit.descripcion),
+      enUso: new FormControl(this.visitaEdit.enUso),
+      image: new FormControl(this.visitaEdit.medios[0].url),
+      video: new FormControl(this.visitaEdit.medios[1].url)
+    })
+  }
 
-  ngOnInit(): void {}
+  get titulo() { return this.visitaEditForm.get('titulo').value; }
+
+  ngOnInit(): void { }
 
   onFormSubmit(): void {
-    console.log('Name:' + this.newVisitaForm.get('titulo').value);
+    console.log('Name:' + this.visitaEditForm.get('titulo').value);
   }
 
-  editarSwt(){
+  checkInUse(inUse: number) {
+    if (inUse == 1)
+      return true;
+    else
+      return false;
+  }
+
+  unCheckInUse(enUso: boolean) {
+    if (enUso)
+      return 1;
+    else
+      return 0;
+  }
+
+  editarSwt() {
+    this.visitaEdit = {
+      id: this.data.row.id,
+      titulo: this.visitaEditForm.get('titulo').value,
+      descripcion: this.visitaEditForm.get('descripcion').value,
+      medios: [{ url: this.visitaEditForm.get('image').value }, { url: this.visitaEditForm.get('video').value }],
+      enUso: this.unCheckInUse(this.data.row.enUso)
+    }
     Swal.fire({
-      title: '¿Estas seguro?',
+      title: '¿Estás seguro?',
       text: "Los cambios no se podran revertir",
       icon: 'warning',
       showCancelButton: true,
@@ -43,11 +74,26 @@ export class VisitasEditComponent implements OnInit {
       confirmButtonText: 'Actualizar'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Perfecto',
-          'Ambiente actualizado correctamente',
-          'success'
-        )
+        this.visitaService.deleteVisita(this.visitaEdit).subscribe(
+          res => {
+            console.log("usuario editado", res, this.visitaEdit)
+            Swal.fire(
+              'Perfecto',
+              'Usuario actualizado correctamente',
+              'success'
+            )
+          },
+          error => {
+            console.error(error, "Error", this.visitaEdit)
+            Swal.fire({
+              title: 'Error',
+              text: 'Hubo un error al editar',
+              icon: 'error',
+              cancelButtonColor: '#d33',
+              cancelButtonText: "Cerrar",
+            })
+          }
+        );
       }
     })
   }

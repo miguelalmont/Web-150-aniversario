@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject, Input } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { Visita } from 'src/app/models/models';
 
 @Component({
@@ -20,37 +19,30 @@ export class VisitasDetailsComponent implements OnInit {
 
   detailVisitaForm: FormGroup;
 
-
-  newVisitaForm: FormGroup = this.fb.group({
-    titulo: new FormControl('',  [Validators.required, Validators.minLength(6)]),
-    descripcion: new FormControl('',  [Validators.required, Validators.minLength(6)]),
-    enUso: new FormControl('', Validators.required),
-    medios: new FormControl('', Validators.required)
-  });
-
-  visita = {
-    titulo: this.newVisitaForm.get('titulo').value,
-    descripcion: this.newVisitaForm.get('titulo').value,
-    enUso: this.newVisitaForm.get('enUso').value,
-    medios: this.newVisitaForm.get('medios').value
-  }
-
   constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data) {
     this.visitaDetails = data.row;
     this.detailVisitaForm = this.fb.group({
-      titulo: new FormControl(this.visitaDetails.titulo),
-      descripcion: new FormControl(this.visitaDetails.descripcion),
-      enUso: new FormControl(this.visitaDetails.enUso),
-      medios: new FormControl(this.visitaDetails.medios)
-    });
+    titulo: new FormControl(this.visitaDetails.titulo),
+    descripcion: new FormControl(this.visitaDetails.descripcion),
+    enUso: new FormControl(this.visitaDetails.enUso),
+    image: new FormControl(this.visitaDetails.medios[0].url),
+    video: new FormControl(this.visitaDetails.medios[1].url)
+    })
   }
 
-  get titulo() { return this.newVisitaForm.get('titulo').value; }
+  get titulo() { return this.detailVisitaForm.get('titulo').value; }
 
   ngOnInit(): void {}
 
   onFormSubmit(): void {
-    console.log('Titulo:' + this.newVisitaForm.get('titulo').value);
+    console.log('Titulo:' + this.detailVisitaForm.get('titulo').value);
+  }
+
+  checkInUse(inUse: number) {
+    if (inUse == 1)
+      return true;
+    else
+      return false;
   }
 
 }

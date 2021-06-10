@@ -8,6 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Oracion } from 'src/app/models/models';
+import { OracionService } from 'src/app/services/oracion-service/oracion.service';
 
 @Component({
   selector: 'app-oracion-details',
@@ -53,7 +54,9 @@ export class OracionDetailsComponent implements OnInit {
 
   checkUso: boolean;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 
   onFormSubmit(): void {
     console.log(this.newOracionForm);

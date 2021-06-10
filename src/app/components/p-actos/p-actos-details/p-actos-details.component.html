@@ -6,28 +6,43 @@
   <form [formGroup]="newActosForm" (ngSubmit)="onFormSubmit()">
       <mat-form-field appearance="outline">
         <mat-label>Titulo</mat-label>
-        <input matInput formControlName="title" placeholder="Titulo" type="text" readonly cdkFocusInitial>
+        <input matInput formControlName="titulo" placeholder="Titulo" type="text" readonly cdkFocusInitial>
         <mat-error>El nombre debe contener 6 carácteres como mínimo.</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Descripcion</mat-label>
-        <input matInput formControlName="description" placeholder="Descripcion" type="text" readonly>
+        <input matInput formControlName="descripcion" placeholder="Descripcion" type="text" readonly>
+        <mat-error>El nombre debe contener 6 carácteres como mínimo.</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Ubicacion</mat-label>
+        <input matInput formControlName="ubicacion" placeholder="Ubicacion" type="text" readonly>
         <mat-error>El nombre debe contener 6 carácteres como mínimo.</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Categoria</mat-label>
-        <input matInput formControlName="category" placeholder="Categoria" type="text" readonly>
+        <input matInput formControlName="categoria" placeholder="Categoria" type="text" readonly>
         <mat-error>El nombre debe contener 6 carácteres como mínimo.</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Fecha</mat-label>
-        <input matInput formControlName="date" placeholder="Fecha" type="date" readonly>
+        <input matInput formControlName="fecha" placeholder="Fecha" type="text" readonly>
         <mat-error>Debes introducir un correo válido.</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Cartel</mat-label>
-        <input matInput formControlName="medios" placeholder="Cartel" type="text" readonly>
+        <mat-label>Imagen</mat-label>
+        <input matInput formControlName="image" placeholder="Cartel" type="text">
       </mat-form-field>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Video</mat-label>
+          <input matInput formControlName="video" placeholder="Video" type="text">
+        </mat-form-field>
+        <p>
+      <p>
+        <mat-label>Cartel</mat-label>
+        <mat-checkbox class="checkbox" disabled="true" [checked]="checkInUse(actoInput.enUso)"></mat-checkbox>
+      </p>
   </form>
 </div>
 

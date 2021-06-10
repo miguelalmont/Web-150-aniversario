@@ -24,9 +24,9 @@ export class EditUserComponent implements OnInit {
   };
 
   newUserForm: FormGroup = this.fb.group({
-    username: new FormControl('',  [Validators.required, Validators.minLength(6)]),
-    mail: new FormControl('',  [Validators.required, Validators.email]),
-    password: new FormControl('',  [Validators.minLength(6), Validators.required]),
+    username: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    mail: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.minLength(6), Validators.required]),
     passwordRepeat: new FormControl('', Validators.required),
     rolName: new FormControl(false)
   });
@@ -47,12 +47,12 @@ export class EditUserComponent implements OnInit {
       password: [''],
       passwordRepeat: new FormControl('', [Validators.required]),
       admin: new FormControl(this.checkRolName(this.userToUpdate.rolName))
-    }, {validators: passwordValidator} ) 
+    }, { validators: passwordValidator })
   }
 
   get name() { return this.newUserForm.get('username').value; }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onFormSubmit(): void {
 
@@ -63,44 +63,40 @@ export class EditUserComponent implements OnInit {
       password: this.newUserForm.get('password').value,
       rolName: this.unCheckRolName(this.data.row.rolName)
     }
-
-    
-
-    this.usuariosService.updateUser(this.user).subscribe(
-      res => {
-        console.log("usuario editado", res, this.user)
-        Swal.fire({
-          title: '¿Estás seguro?',
-          text: "Los cambios no se podran revertir",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          cancelButtonText: "Cancelar",
-          confirmButtonText: 'Actualizar'
-        }).then((result) => {
-          if (result.isConfirmed) {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: "Los cambios no se podran revertir",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: "Cancelar",
+      confirmButtonText: 'Actualizar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.usuariosService.deleteUser(this.user.id).subscribe(
+          res => {
+            console.log("usuario editado", res, this.user)
             Swal.fire(
               'Perfecto',
               'Usuario actualizado correctamente',
               'success'
             )
+          },
+          error => {
+            console.error(error, "Error", this.user)
+            Swal.fire({
+              title: 'Error',
+              text: 'Hubo un error al editar',
+              icon: 'error',
+              cancelButtonColor: '#d33',
+              cancelButtonText: "Cerrar",
+            })
           }
-        })
-      },
-      error => {
-        console.error(error, "Error", this.user)
-        Swal.fire({
-          title: 'Error',
-          text: 'Hubo un error al editar',
-          icon: 'error',
-          cancelButtonColor: '#d33',
-          cancelButtonText: "Cerrar",
-        })
+        );
       }
-    );
+    })
   }
-
   checkRolName(rolName: string) {
     if (rolName === 'admin')
       return true;
