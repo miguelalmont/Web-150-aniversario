@@ -8,6 +8,7 @@ import {
 import { Router } from '@angular/router';
 import { AuthenticatorJwt } from 'src/app/services/authenticatorJwt.service';
 import { LoginService } from 'src/app/services/login-service/login.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login-screen',
@@ -82,11 +83,24 @@ export class LoginScreenComponent implements OnInit {
           this.authenticatorJwtService.storeJWT(response.token);
           this.router.navigate(['/home/saludos']);
         } else {
-          alert("Contraseña y usuario no validos")
+          Swal.fire({
+            title: 'Error',
+            text: `Hubo un error al introducir los datos`,
+            icon: 'error',
+            cancelButtonColor: '#d33',
+            cancelButtonText: "Cerrar",
+          })
         }
       })
       .catch((error) => {
         console.error('Error:', error)
+        Swal.fire({
+          title: 'Error',
+          text: `Server error ${error}`,
+          icon: 'error',
+          cancelButtonColor: '#d33',
+          cancelButtonText: "Cerrar",
+        })
       });
   }
 }

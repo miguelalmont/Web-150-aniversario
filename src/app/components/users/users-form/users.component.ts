@@ -1,3 +1,4 @@
+import { UsersViewComponent } from './../users-view/users-view.component';
 import { Component, OnInit } from '@angular/core';
 
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
@@ -5,6 +6,7 @@ import { User } from 'src/app/models/models';
 import { UsuariosService } from 'src/app/services/usuarios-service/usuarios.service';
 import { passwordValidator } from 'src/app/shared/password-validator';
 import Swal from 'sweetalert2';
+import { MatDialogRef } from '@angular/material/dialog';
 
 
 @Component({
@@ -24,7 +26,8 @@ export class UsersComponent implements OnInit {
     rolName: ''
   };
 
-  constructor(private fb: FormBuilder, private usuariosService: UsuariosService) {
+  constructor(private fb: FormBuilder, private usuariosService: UsuariosService,
+    public dialogRef: MatDialogRef<UsersViewComponent>) {
     this.newUserForm = this.fb.group({
       username: new FormControl('',  [Validators.required, Validators.minLength(6)]),
       mail: new FormControl('',  [Validators.required, Validators.email]),
@@ -62,6 +65,7 @@ export class UsersComponent implements OnInit {
               'Usuario creado correctamente',
               'success'
             )
+            this.dialogRef.close()
           },
           error => {
             console.error('Error ', error)
@@ -72,6 +76,7 @@ export class UsersComponent implements OnInit {
               cancelButtonColor: '#d33',
               cancelButtonText: "Cerrar",
             })
+            this.dialogRef.close()
           }
         );
       }
