@@ -12,6 +12,8 @@ import Swal from "sweetalert2";
 })
 export class VisitasEditComponent implements OnInit {
 
+  checked: boolean = false;
+
   @Input()
   visitaEdit: Visita = {
     titulo: '',
@@ -58,7 +60,7 @@ export class VisitasEditComponent implements OnInit {
       titulo: this.visitaEditForm.get('titulo').value,
       descripcion: this.visitaEditForm.get('descripcion').value,
       medios: [{ url: this.visitaEditForm.get('image').value }, { url: this.visitaEditForm.get('video').value }],
-      enUso: this.unCheckInUse(this.data.row.enUso)
+      enUso: this.unCheckInUse(this.visitaEditForm.get('enUso').value)
     }
     Swal.fire({
       title: '¿Estás seguro?',

@@ -15,6 +15,8 @@ import { OracionViewComponent } from '../oracion-view/oracion-view.component';
 })
 export class OracionEditComponent implements OnInit {
 
+  checked: boolean = false;
+
   @Input() oracionInput: Oracion = {
     id: 0,
     titulo: '',
@@ -26,8 +28,7 @@ export class OracionEditComponent implements OnInit {
 
     titulo: new FormControl('',  [Validators.required, Validators.minLength(6)]),
     oracion: new FormControl('',  [Validators.required, Validators.minLength(6)]),
-    enUso: new FormControl('',  Validators.required)
-    
+    enUso: this.checked
   });
 
   oracion = {
@@ -35,7 +36,6 @@ export class OracionEditComponent implements OnInit {
     titulo: this.newOracionForm.get('titulo').value,
     oracion: this.newOracionForm.get('oracion').value,
     enUso: this.newOracionForm.get('enUso').value
-    
   }
 
   constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data, private oracionService: OracionService,
@@ -44,11 +44,9 @@ export class OracionEditComponent implements OnInit {
     this.newOracionForm = this.fb.group({
       titulo: new FormControl(this.oracionInput.titulo),
       oracion: new FormControl(this.oracionInput.oracion),
-      enUso: new FormControl(this.checkEnUso(this.oracionInput.enUso))
+      enUso: this.checkEnUso(this.oracionInput.enUso)
     });
   }
-
-  get titulo() { return this.newOracionForm.get('titulo').value; }
 
   ngOnInit(): void {}
 
@@ -57,7 +55,7 @@ export class OracionEditComponent implements OnInit {
       id: this.data.row.id,
       titulo: this.newOracionForm.get('titulo').value,
       oracion: this.newOracionForm.get('oracion').value,
-      enUso: this.unCheckEnUso(this.data.row.enUso)
+      enUso: this.unCheckEnUso(this.newOracionForm.get('enUso').value)
     }
     Swal.fire({
       title: '¿Estas seguro?',

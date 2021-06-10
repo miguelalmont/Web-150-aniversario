@@ -17,6 +17,8 @@ import { PActosViewComponent } from '../p-actos-view/p-actos-view.component';
 
 export class PActosEditComponent implements OnInit {
 
+  checked: boolean = false;
+
   @Input() actoInput: ActoData = {
     id: 0,
     titulo: '',
@@ -41,7 +43,7 @@ export class PActosEditComponent implements OnInit {
       fecha: new FormControl(this.actoInput.fecha),
       image: new FormControl(this.actoInput.medios[0].url),
       video: new FormControl(this.actoInput.medios[1].url),
-      enUso: new FormControl(this.checkInUse(this.actoInput.enUso))
+      enUso: this.checkInUse(this.actoInput.enUso)
     });
   }
 
@@ -70,7 +72,7 @@ export class PActosEditComponent implements OnInit {
       ubicacion: this.actosFormEdit.get('ubicacion').value,
       fecha: this.actosFormEdit.get('fecha').value,
       medios: [{ url: this.actosFormEdit.get('image').value }, { url: this.actosFormEdit.get('video').value }],
-      enUso: this.unCheckInUse(this.data.row.enUso)
+      enUso: this.unCheckInUse(this.actosFormEdit.get('enUso').value)
     }
     Swal.fire({
       title: '¿Estás seguro?',

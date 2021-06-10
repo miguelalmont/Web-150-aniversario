@@ -51,7 +51,8 @@ export interface Material {
     id?: number;
     titulo: string;
     contenido: string;
-    medios: Array<any>;
+    medios?: Array<any>;
+    url?: string;
     enUso: number;
     token?: string;
 }

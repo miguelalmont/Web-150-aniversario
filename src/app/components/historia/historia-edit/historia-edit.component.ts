@@ -14,6 +14,8 @@ import { HistoriaViewComponent } from '../historia-view/historia-view.component'
 })
 export class HistoriaEditComponent implements OnInit {
 
+  checked: boolean = false;
+
   @Input() historiaInput: Historia = {
     id: 0,
     titulo: '',
@@ -28,17 +30,10 @@ export class HistoriaEditComponent implements OnInit {
     subtitulo: new FormControl('',  [Validators.required, Validators.minLength(6)]),
     descripcion: new FormControl('',  [Validators.required, Validators.minLength(6)]),
     medios: new FormControl('', Validators.required),
-    enUso: new FormControl('', Validators.required)
+    enUso: this.checked
   });
 
-  historia = {
-    id: this.historiaInput.id,
-    titulo: this.newHistoriaForm.get('titulo').value,
-    subtitulo: this.newHistoriaForm.get('subtitulo').value,
-    descripcion: this.newHistoriaForm.get('descripcion').value,
-    enUso: 0,
-    medios: this.newHistoriaForm.get('medios').value
-  }
+  historia: Historia;
 
   constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data, private historiaService: HistoriaService,
   public dialogRef: MatDialogRef<HistoriaViewComponent>) {
@@ -47,13 +42,10 @@ export class HistoriaEditComponent implements OnInit {
       titulo: new FormControl(this.historiaInput.titulo),
       subtitulo: new FormControl(this.historiaInput.subtitulo),
       descripcion: new FormControl(this.historiaInput.descripcion),
-      enUso: new FormControl(this.checkEnUso(this.historiaInput.enUso)),
+      enUso: this.checkEnUso(this.historiaInput.enUso),
       medios: new FormControl(this.historiaInput.medios)
     });
   }
-
-  get titulo() { return this.newHistoriaForm.get('titulo').value; }
-
   ngOnInit(): void {
     
   }
@@ -64,7 +56,7 @@ export class HistoriaEditComponent implements OnInit {
       titulo: this.newHistoriaForm.get('titulo').value,
       subtitulo: this.newHistoriaForm.get('subtitulo').value,
       descripcion: this.newHistoriaForm.get('descripcion').value,
-      enUso: this.unCheckEnUso(this.data.row.enUso),
+      enUso: this.unCheckEnUso(this.newHistoriaForm.get('enUso').value),
       medios: this.newHistoriaForm.get('medios').value
     }
     Swal.fire({

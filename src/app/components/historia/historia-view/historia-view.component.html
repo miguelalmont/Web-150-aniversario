@@ -37,7 +37,7 @@
       <ng-container matColumnDef="enUso">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> En uso </th>
         <td mat-cell *matCellDef="let row">
-          <mat-checkbox class="checkbox" disabled="true" [checked]="enUsoBool(row.enUso)"></mat-checkbox>
+          <mat-checkbox formControlName="enUso" class="checkbox" [(checked)]="checked"></mat-checkbox>
         </td>
       </ng-container>
 

@@ -12,10 +12,9 @@ import Swal from 'sweetalert2';
 })
 export class OracionFormComponent implements OnInit {
 
-  newOracionForm: FormGroup = this.fb.group({
-    titulo: new FormControl('', [Validators.required, Validators.minLength(6)]),
-    oracion: new FormControl('', [Validators.required, Validators.minLength(6)])
-  });
+  checked: boolean = false;
+
+  newOracionForm: FormGroup;
 
   oracion = {
     titulo: '',
@@ -23,9 +22,13 @@ export class OracionFormComponent implements OnInit {
     enUso: 0
   }
 
-  constructor(private fb: FormBuilder, private oracionService: OracionService) { }
-
-  get titulo() { return this.newOracionForm.get('titulo').value; }
+  constructor(private fb: FormBuilder, private oracionService: OracionService) {
+    this.newOracionForm = this.fb.group({
+      titulo: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      oracion: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      enUso: this.checked
+    });   
+  }
 
   ngOnInit(): void { }
 
@@ -33,7 +36,7 @@ export class OracionFormComponent implements OnInit {
     this.oracion = {
       titulo: this.newOracionForm.get('titulo').value,
       oracion: this.newOracionForm.get('oracion').value,
-      enUso: this.oracion.enUso
+      enUso: this.unCheckEnUso(this.newOracionForm.get('enUso').value)
     }
     console.log('Name:' + this.newOracionForm.get('titulo').value);
     Swal.fire({

@@ -24,7 +24,7 @@
       </mat-form-field>
       <p>
         <mat-label>En uso</mat-label>
-        <mat-checkbox class="checkbox" [checked]="checkInUse(visita.enUso)"></mat-checkbox>
+        <mat-checkbox formControlName="enUso" class="checkbox" [(checked)]="checked"></mat-checkbox>
       </p>
     <mat-dialog-actions>
         <button mat-stroked-button type="submit" [disabled]="newVisitaForm.invalid">Guardar cambios</button>

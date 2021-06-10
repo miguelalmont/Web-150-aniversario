@@ -13,11 +13,13 @@ import { MaterialesViewComponent } from '../materiales-view/materiales-view.comp
 })
 export class MaterialesEditComponent implements OnInit {
 
+  checked: boolean = false;
+
   @Input()
   materialInput: Material = {
     titulo: '',
     contenido: '',
-    medios : [],
+    url : '',
     enUso: 0,
 }
 
@@ -27,14 +29,12 @@ export class MaterialesEditComponent implements OnInit {
   public dialogRef: MatDialogRef<MaterialesViewComponent>) {
 
     this.materialInput = data.row;
-    console.log("editar tabla" ,this.materialInput)
+    this.checked = this.checkInUse(this.materialInput.enUso)
     this.newMaterialesForm = this.fb.group({
       titulo: new FormControl(this.materialInput.titulo),
       contenido: new FormControl(this.materialInput.contenido),
-      fotos: new FormControl(this.materialInput.medios[0].url),
-      video: new FormControl(this.materialInput.medios[1].url),
-      audio: new FormControl(this.materialInput.medios[2].url),
-      enUso: new FormControl(this.checkInUse(this.materialInput.enUso)),
+      url: new FormControl(this.materialInput.url),
+      enUso: this.checked
     });
   }
   ngOnInit(): void {  }
@@ -44,8 +44,8 @@ export class MaterialesEditComponent implements OnInit {
     this.materialInput = {
       titulo: this.newMaterialesForm.get('titulo').value,
       contenido: this.newMaterialesForm.get('contenido').value,
-      medios: [{ fotos: this.newMaterialesForm.get('image').value }, { audio: this.newMaterialesForm.get('audio').value }],
-      enUso: this.newMaterialesForm.get('enUso').value,
+      url: this.newMaterialesForm.get('url').value,
+      enUso: this.unCheckInUse(this.newMaterialesForm.get('enUso').value)
     }
 
     this.materialService.editMaterial(this.materialInput).subscribe(

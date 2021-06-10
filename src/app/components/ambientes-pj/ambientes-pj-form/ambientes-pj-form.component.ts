@@ -12,12 +12,6 @@ import Swal from 'sweetalert2';
 })
 export class AmbientesPjFormComponent implements OnInit {
 
-  newAmbienteForm: FormGroup = this.fb.group({
-    titulo: new FormControl('', [Validators.required]),
-    descripcion: new FormControl('', [Validators.required]),
-    video: new FormControl('')
-  });
-
   ambiente: ambientesPj = {
     titulo: '',
     descripcion: '',
@@ -25,8 +19,17 @@ export class AmbientesPjFormComponent implements OnInit {
     medios: []
   }
 
+  newAmbienteForm: FormGroup;
+  checked: boolean = false;
 
-  constructor(private fb: FormBuilder, private ambienteService: AmbientesPJService) { }
+  constructor(private fb: FormBuilder, private ambienteService: AmbientesPJService) {
+    this.newAmbienteForm = this.fb.group({
+      titulo: new FormControl('', [Validators.required]),
+      descripcion: new FormControl('', [Validators.required]),
+      video: new FormControl(''),
+      enUso: this.checked
+    });
+   }
 
   ngOnInit(): void { }
 
@@ -49,7 +52,7 @@ export class AmbientesPjFormComponent implements OnInit {
       titulo: this.newAmbienteForm.get('titulo').value,
       descripcion: this.newAmbienteForm.get('descripcion').value,
       medios: [{ url: this.newAmbienteForm.get('video').value }],
-      enUso: this.ambiente.enUso
+      enUso: this.unCheckInUse(this.newAmbienteForm.get('enUso').value)
     }
     Swal.fire({
       title: '¿Estás seguro?',

@@ -17,6 +17,9 @@ import Swal from "sweetalert2";
   styleUrls: ['./historia-view.component.scss']
 })
 export class HistoriaViewComponent implements AfterViewInit {
+
+  checked: boolean = false;
+
   displayedColumns: string[] = ['titulo', 'subtitulo', 'descripcion', 'enUso', 'actions'];
   dataSource: MatTableDataSource<Historia>;
   historiaData: Historia[] = [];

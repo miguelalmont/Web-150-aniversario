@@ -11,6 +11,8 @@ import { SaludosService } from 'src/app/services/saludos-service/saludos.service
 })
 export class SaludosFormComponent implements OnInit {
 
+  checked: boolean = false;
+
   newSaludoForm: FormGroup;
 
   saludos: Saludo = {
@@ -27,11 +29,10 @@ export class SaludosFormComponent implements OnInit {
       texto: new FormControl(''),
       descripcion: new FormControl(''),
       image: new FormControl(''),
-      video: new FormControl('')
+      video: new FormControl(''),
+      enUso: this.checked
     });
   }
-
-  get titulo() { return this.newSaludoForm.get('titulo').value; }
 
   ngOnInit(): void {}
 
@@ -55,7 +56,7 @@ export class SaludosFormComponent implements OnInit {
       texto: this.newSaludoForm.get('texto').value,
       descripcion: this.newSaludoForm.get('descripcion').value,
       medios: [{ url: this.newSaludoForm.get('image').value }, { url: this.newSaludoForm.get('video').value }],
-      enUso: this.saludos.enUso
+      enUso: this.unCheckInUse(this.newSaludoForm.get('enUso').value)
     }
     Swal.fire({
       title: '¿Estás seguro?',

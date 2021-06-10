@@ -16,7 +16,7 @@
         </mat-form-field>
         <p>
           En Uso:
-          <mat-checkbox class="checkbox" formControlName="enUso" [value]="checkEnUso(oracion.enUso)"></mat-checkbox>
+          <mat-checkbox  formControlName="enUso" class="checkbox" [(checked)]="checked"></mat-checkbox>
         </p>
     <mat-dialog-actions>
         <button mat-stroked-button type="submit" [disabled]="newOracionForm.invalid" >Guardar cambios</button>

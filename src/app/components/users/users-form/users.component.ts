@@ -26,13 +26,16 @@ export class UsersComponent implements OnInit {
     rolName: ''
   };
 
+  checked: boolean = false;
+
   constructor(private fb: FormBuilder, private usuariosService: UsuariosService,
     public dialogRef: MatDialogRef<UsersViewComponent>) {
     this.newUserForm = this.fb.group({
       username: new FormControl('',  [Validators.required, Validators.minLength(6)]),
       mail: new FormControl('',  [Validators.required, Validators.email]),
       password: new FormControl('',  [Validators.minLength(6), Validators.required]),
-      passwordRepeat: new FormControl('',  [Validators.minLength(6), Validators.required])
+      passwordRepeat: new FormControl('',  [Validators.minLength(6), Validators.required]),
+      admin: this.checked
     }, {validators: passwordValidator});
   }
 
@@ -43,7 +46,7 @@ export class UsersComponent implements OnInit {
       username: this.newUserForm.get('username').value,
       mail: this.newUserForm.get('mail').value,
       password: this.newUserForm.get('password').value,
-      rolName: this.user.rolName
+      rolName: this.unCheckRolName(this.newUserForm.get('admin').value)
     }
     console.log('Name:' + this.newUserForm.get('username').value);
     Swal.fire({

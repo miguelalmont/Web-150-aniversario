@@ -13,6 +13,8 @@ import { SaludosService } from 'src/app/services/saludos-service/saludos.service
 })
 export class SaludosEditComponent implements OnInit {
 
+  checked: boolean = false;
+
   @Input() saludoInput: Saludo = {
     id: 0,
     titulo: '',
@@ -32,7 +34,7 @@ saludosFormEdit: FormGroup;
       texto: new FormControl(this.saludoInput.texto),
       image: new FormControl(this.saludoInput.medios[0].url),
       video: new FormControl(this.saludoInput.medios[1].url),
-      enUso: new FormControl(this.checkInUse(this.saludoInput.enUso))
+      enUso: this.checkInUse(this.saludoInput.enUso)
     });
   }
 
@@ -59,7 +61,7 @@ saludosFormEdit: FormGroup;
       descripcion: this.saludosFormEdit.get('descripcion').value,
       texto: this.saludosFormEdit.get('texto').value,
       medios: [{ url: this.saludosFormEdit.get('image').value }, { url: this.saludosFormEdit.get('video').value }],
-      enUso: this.unCheckInUse(this.data.row.enUso)
+      enUso: this.unCheckInUse(this.saludosFormEdit.get('enUso').value)
     }
     Swal.fire({
       title: '¿Estás seguro?',

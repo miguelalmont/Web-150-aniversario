@@ -104,6 +104,15 @@ export class VisitasViewComponent implements AfterViewInit {
     });
   }
 
+  enUsoBool(enUso: number) {
+    if (enUso == 0)
+      return false;
+    else if (enUso == 1)
+      return true;
+    else
+      return null;
+  }
+
   deleteVisitaOnClick(row: Visita) {
 
     Swal.fire({

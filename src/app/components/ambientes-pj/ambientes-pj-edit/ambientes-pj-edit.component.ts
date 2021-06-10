@@ -22,10 +22,13 @@ export class AmbientesPjEditComponent implements OnInit {
     medios: []
   }
 
+  checked: boolean = false;
+
   newAmbienteForm: FormGroup = this.fb.group({
     titulo: new FormControl('', [Validators.required]),
     descripcion: new FormControl('', [Validators.required]),
-    video: new FormControl('')
+    video: new FormControl(''),
+    enUso: false
   });
   constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data, private ambienteService: AmbientesPJService) {
     this.ambienteInput = data.row;
@@ -34,13 +37,15 @@ export class AmbientesPjEditComponent implements OnInit {
       this.newAmbienteForm = this.fb.group({
         titulo: new FormControl(this.data.row.titulo, [Validators.required]),
         descripcion: new FormControl(this.data.row.descripcion, [Validators.required]),
-        video: new FormControl(this.data.row.medios[0].url)
+        video: new FormControl(this.data.row.medios[0].url),
+        enUso: this.checked
       });
     } else {
       this.newAmbienteForm = this.fb.group({
         titulo: new FormControl(this.data.row.titulo, [Validators.required]),
         descripcion: new FormControl('', [Validators.required]),
-        video: new FormControl('')
+        video: new FormControl(''),
+        enUso: this.checked
       });
     }
   }
@@ -67,7 +72,7 @@ export class AmbientesPjEditComponent implements OnInit {
       titulo: this.newAmbienteForm.get('titulo').value,
       descripcion: this.newAmbienteForm.get('descripcion').value,
       medios: [{ url: this.newAmbienteForm.get('video').value }],
-      enUso: this.ambienteInput.enUso
+      enUso: this.unCheckInUse(this.newAmbienteForm.get('enUso').value)
     }
     Swal.fire({
       title: '¿Estás seguro?',

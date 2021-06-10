@@ -12,11 +12,14 @@ import Swal from "sweetalert2";
 })
 export class VisitasFormComponent implements OnInit {
 
+  checked: boolean = false;
+
   newVisitaForm: FormGroup = this.fb.group({
     titulo: new FormControl('', Validators.required),
     descripcion: new FormControl('', Validators.required),
     image: new FormControl(''),
-    video: new FormControl('')
+    video: new FormControl(''),
+    enUso: this.checked
   });
 
   visita: Visita = {
@@ -50,7 +53,7 @@ export class VisitasFormComponent implements OnInit {
       titulo: this.newVisitaForm.get('titulo').value,
       descripcion: this.newVisitaForm.get('descripcion').value,
       medios: [{ url: this.newVisitaForm.get('image').value }, { url: this.newVisitaForm.get('video').value }],
-      enUso: this.visita.enUso
+      enUso: this.unCheckInUse(this.newVisitaForm.get('enUso').value)
     }
     Swal.fire({
       title: '¿Estás seguro?',

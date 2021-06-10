@@ -24,46 +24,33 @@ export class EditUserComponent implements OnInit {
     rolName: ''
   };
 
-  newUserForm: FormGroup = this.fb.group({
-    username: new FormControl('', [Validators.required, Validators.minLength(6)]),
-    mail: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.minLength(6), Validators.required]),
-    passwordRepeat: new FormControl('', Validators.required),
-    rolName: new FormControl(false)
-  });
+  newUserForm: FormGroup;
 
-  user: User = {
-    id: 0,
-    username: '',
-    mail: '',
-    password: '',
-    rolName: ''
-  }
+  checked: boolean = false;
 
   constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data, private usuariosService: UsuariosService,
   public dialogRef: MatDialogRef<UsersViewComponent>) {
     this.userToUpdate = data.row;
+    this.checked = this.checkRolName(this.data.row.rolName)
     this.newUserForm = this.fb.group({
       username: new FormControl(this.userToUpdate.username, Validators.required),
       mail: new FormControl(this.userToUpdate.mail, Validators.required),
-      password: ['', Validators.minLength(6)],
-      passwordRepeat: new FormControl('', [Validators.required]),
-      admin: new FormControl(this.checkRolName(this.userToUpdate.rolName))
+      password: new FormControl('', [Validators.required, Validators.min(6)]),
+      passwordRepeat: new FormControl('', Validators.required),
+      admin: this.checked
     }, { validators: passwordValidator })
   }
-
-  get name() { return this.newUserForm.get('username').value; }
 
   ngOnInit(): void { }
 
   onFormSubmit(): void {
 
-    this.user = {
-      id: this.data.row.id,
+    this.userToUpdate = {
+      id: this.userToUpdate.id,
       username: this.newUserForm.get('username').value,
       mail: this.newUserForm.get('mail').value,
       password: this.newUserForm.get('password').value,
-      rolName: this.unCheckRolName(this.data.row.rolName)
+      rolName: this.unCheckRolName(this.newUserForm.get('admin').value)
     }
     Swal.fire({
       title: '¿Estás seguro?',
@@ -76,9 +63,9 @@ export class EditUserComponent implements OnInit {
       confirmButtonText: 'Actualizar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.usuariosService.deleteUser(this.user.id).subscribe(
+        this.usuariosService.updateUser(this.userToUpdate).subscribe(
           res => {
-            console.log("usuario editado", res, this.user)
+            console.log("usuario editado", res, this.userToUpdate)
             Swal.fire(
               'Perfecto',
               'Usuario actualizado correctamente',
@@ -87,7 +74,7 @@ export class EditUserComponent implements OnInit {
             this.dialogRef.close()
           },
           error => {
-            console.error(error, "Error", this.user)
+            console.error(error, "Error", this.userToUpdate)
             Swal.fire({
               title: 'Error',
               text: 'Hubo un error al editar',
@@ -108,10 +95,11 @@ export class EditUserComponent implements OnInit {
       return false;
   }
 
-  unCheckRolName(rolName: boolean) {
-    if (rolName)
+  unCheckRolName(checked: boolean) {
+    console.log("CHECKED IS " + checked)
+    if (checked)
       return 'admin';
-    else
+    else if (!checked)
       return 'user';
   }
 

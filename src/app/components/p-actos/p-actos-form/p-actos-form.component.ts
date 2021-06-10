@@ -13,6 +13,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class PActosFormComponent implements OnInit {
 
+  checked: boolean = false;
+
   newActosForm: FormGroup;
 
   acto: ActoData = {
@@ -34,11 +36,10 @@ export class PActosFormComponent implements OnInit {
       ubicacion: new FormControl(''),
       fecha: new FormControl(''),
       image: new FormControl(''),
-      video: new FormControl('')
+      video: new FormControl(''),
+      enUso: this.checked
     });
   }
-
-  get title() { return this.newActosForm.get('title').value; }
 
   ngOnInit(): void { }
 
@@ -64,7 +65,7 @@ export class PActosFormComponent implements OnInit {
       ubicacion: this.newActosForm.get('ubicacion').value,
       fecha: this.newActosForm.get('fecha').value,
       medios: [{ url: this.newActosForm.get('image').value }, { url: this.newActosForm.get('video').value }],
-      enUso: this.acto.enUso
+      enUso: this.unCheckInUse(this.newActosForm.get('enUso').value)
     }
     Swal.fire({
       title: '¿Estás seguro?',

@@ -24,6 +24,10 @@
         <input matInput formControlName="passwordRepeat" placeholder="Repite tu contraseña" type="password">
         <mat-error>La contraseña es requerida.</mat-error>
       </mat-form-field>
+      <p>
+        Administrador:
+        <mat-checkbox formControlName="admin" class="checkbox" [(checked)]="checked"></mat-checkbox>
+      </p>
       <small class="password-verify" *ngIf="newUserForm.errors?.misMatch">La contraseña no coincide</small>
     <mat-dialog-actions>
         <button mat-stroked-button type="submit" [disabled]="newUserForm.invalid">Guardar cambios</button>

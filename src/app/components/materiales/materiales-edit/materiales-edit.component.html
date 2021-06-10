@@ -14,12 +14,11 @@
       <input matInput formControlName="contenido" placeholder="Contenido" type="text" >
       <mat-error>El subtitulo debe contener 6 carácteres como mínimo.</mat-error>
     </mat-form-field>
-    <mat-form-field appearance="fotos">
-      <mat-label>Fotos</mat-label>
-      <input matInput formControlName="fotos" placeholder="Fotos" type="text" >
-      <mat-error>El subtitulo debe contener 6 carácteres como mínimo.</mat-error>
-    </mat-form-field>
     <mat-form-field appearance="outline">
+      <mat-label>Url</mat-label>
+      <input matInput formControlName="url" placeholder="Url" type="text" >
+    </mat-form-field>
+    <!-- <mat-form-field appearance="outline">
       <mat-label>Videos</mat-label>
       <input matInput formControlName="videos" placeholder="Videos" type="text" >
       <mat-error>El subtitulo debe contener 6 carácteres como mínimo.</mat-error>
@@ -28,10 +27,10 @@
       <mat-label>Audios</mat-label>
       <input matInput formControlName="audios" placeholder="Audios" type="text" >
       <mat-error>El subtitulo debe contener 6 carácteres como mínimo.</mat-error>
-    </mat-form-field>
+    </mat-form-field> -->
     <p>
       Administrador:
-      <mat-checkbox class="checkbox" disabled="false" [checked]="checkInUse(materialInput.enUso)"></mat-checkbox>
+      <mat-checkbox  formControlName="enUso" class="checkbox" [(checked)]="checked"></mat-checkbox>
     </p>
     <mat-dialog-actions>
         <button mat-stroked-button type="submit" [disabled]="newMaterialesForm.invalid">Guardar cambios</button>

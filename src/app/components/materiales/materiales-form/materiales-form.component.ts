@@ -11,12 +11,14 @@ import Swal from 'sweetalert2';
 })
 export class MaterialesFormComponent implements OnInit {
 
+  checked: boolean = false;
+
   newMaterialesForm: FormGroup;
 
   materiales = {
     titulo: '',
     contenido: '',
-    medios : [],
+    url: '',
     enUso: 0,
   }
 
@@ -24,10 +26,8 @@ export class MaterialesFormComponent implements OnInit {
     this.newMaterialesForm = this.fb.group({
       titulo: new FormControl(''),
       contenido: new FormControl(''),
-      image: new FormControl(''),
-      video: new FormControl(''),
-      audio: new FormControl(''),
-      enUso: new FormControl(''),
+      url: new FormControl(''),
+      enUso: this.checked,
     })
   }
 
@@ -38,7 +38,7 @@ export class MaterialesFormComponent implements OnInit {
     this.materiales = {
       titulo: this.newMaterialesForm.get('titulo').value,
       contenido: this.newMaterialesForm.get('contenido').value,
-      medios: [{ url: this.newMaterialesForm.get('image').value }, {url: this.newMaterialesForm.get('video').value}, { url: this.newMaterialesForm.get('audio').value }],
+      url: this.newMaterialesForm.get('url').value,
       enUso: this.materiales.enUso
     }
 
