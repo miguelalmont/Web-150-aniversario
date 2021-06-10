@@ -44,39 +44,40 @@ export class UsersComponent implements OnInit {
       rolName: this.unCheckRolName(this.newUserForm.get('rolName').value),
     }
     console.log('Name:' + this.newUserForm.get('username').value);
-    this.usuariosService.insertUser(this.user).subscribe(
-      response => {
-        console.log('Usuario insertado ', response)
-        Swal.fire({
-          title: '¿Estas seguro?',
-          text: "Vas a crear un usuario",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          cancelButtonText: "Cancelar",
-          confirmButtonText: 'Crear'
-        }).then((result) => {
-          if (result.isConfirmed) {
+
+    Swal.fire({
+      title: '¿Estas seguro?',
+      text: "Vas a crear un usuario",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: "Cancelar",
+      confirmButtonText: 'Crear'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.usuariosService.insertUser(this.user).subscribe(
+          response => {
+            console.log('Usuario insertado ', response)
             Swal.fire(
               'Perfecto',
               'Usuario creado correctamente',
               'success'
             )
+          },
+          error => {
+            console.error('Error ', error)
+            Swal.fire({
+              title: 'Error',
+              text: 'Hubo un error al crear',
+              icon: 'error',
+              cancelButtonColor: '#d33',
+              cancelButtonText: "Cerrar",
+            })
           }
-        })
-      },
-      error => {
-        console.error('Error ', error)
-        Swal.fire({
-          title: 'Error',
-          text: 'Hubo un error al crear',
-          icon: 'error',
-          cancelButtonColor: '#d33',
-          cancelButtonText: "Cerrar",
-        })
+        );
       }
-    );
+    }) 
   }
 
   checkRolName(rolName: string) {

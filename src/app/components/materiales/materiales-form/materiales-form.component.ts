@@ -13,8 +13,8 @@ export class MaterialesFormComponent implements OnInit {
 
   newMaterialesForm: FormGroup = this.fb.group({
     tipo: new FormControl('',  [Validators.required, Validators.minLength(6)]),
-    url: new FormControl('',  [Validators.required, Validators.minLength(10)]),
-    enUso: new FormControl('',  Validators.required)
+    url: new FormControl(''),
+    enUso: new FormControl('')
   });
 
   materiales = {
@@ -32,52 +32,53 @@ export class MaterialesFormComponent implements OnInit {
     this.materiales = {
       tipo: this.newMaterialesForm.get('tipo').value,
       url: this.newMaterialesForm.get('url').value,
-      enUso: this.newMaterialesForm.get('enUso').value
+      enUso: this.checkUse().value
     }
 
-    console.log('Name:' + this.newMaterialesForm.get('username').value);
-    this.materialesService.createMaterial(this.materiales).subscribe(
-      response => {
-        console.log('Usuario insertado ', response)
-        Swal.fire({
-          title: '¿Estas seguro?',
-          text: "Vas a crear un usuario",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          cancelButtonText: "Cancelar",
-          confirmButtonText: 'Crear'
-        }).then((result) => {
-          if (result.isConfirmed) {
+    Swal.fire({
+      title: '¿Estas seguro?',
+      text: "Vas a crear un usuario",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: "Cancelar",
+      confirmButtonText: 'Crear'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.materialesService.createMaterial(this.materiales).subscribe(
+          response => {
+            console.log('Usuario insertado ', response)
             Swal.fire(
               'Perfecto',
-              'Usuario creado correctamente',
+              'Material creado correctamente',
               'success'
             )
+          },
+          error => {
+            console.error('Error ', error)
+            Swal.fire({
+              title: 'Error',
+              text: 'Hubo un error al crear',
+              icon: 'error',
+              cancelButtonColor: '#d33',
+              cancelButtonText: "Cerrar",
+            })
           }
-        })
-      },
-      error => {
-        console.error('Error ', error)
-        Swal.fire({
-          title: 'Error',
-          text: 'Hubo un error al crear',
-          icon: 'error',
-          cancelButtonColor: '#d33',
-          cancelButtonText: "Cerrar",
-        })
+        );
       }
-    );
+    })
 
   }
 
   checkUse(){
     if(this.newMaterialesForm.get('enUso').value == true){
       this.materiales.enUso = 1
+      return this.materiales.enUso
       console.log(this.materiales.enUso)
     }else{
       this.materiales.enUso = 0;
+      return this.materiales.enUso
       console.log(this.materiales.enUso)
     }
   }
