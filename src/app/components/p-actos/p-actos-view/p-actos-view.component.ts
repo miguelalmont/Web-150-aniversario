@@ -70,7 +70,6 @@ export class PActosViewComponent implements AfterViewInit {
   }
 
   createActosOnClick() {
-    console.log(this.actos)
     const dialogRef = this.dialog.open(PActosFormComponent, { disableClose: true });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -79,15 +78,24 @@ export class PActosViewComponent implements AfterViewInit {
   }
 
   editActosOnClick(row: ActoData) {
-    const dialogRef = this.dialog.open(PActosEditComponent, { disableClose: true, data: { row } });
+    const dialogRef = this.dialog.open(PActosEditComponent, { data: { row } });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      this.pActosService.getActos().subscribe(
+        response => {
+          this.dataSource.data = response
+          console.log(this.dataSource.data)
+        },
+        error => console.log(error)
+      )
     });
   }
 
   detailsActosOnClick(row: ActoData) {
-    const dialogRef = this.dialog.open(PActosDetailsComponent, { disableClose: true, data: { row } });
+    console.log(row);
+    const dialogRef = this.dialog.open(PActosDetailsComponent, {
+      data: { row }
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
@@ -104,6 +112,7 @@ export class PActosViewComponent implements AfterViewInit {
   }
 
   deleteActosOnClick(row: ActoData) {
+
     Swal.fire({
       title: '¿Estás seguro?',
       text: "Los cambios no se podran revertir",
@@ -117,7 +126,7 @@ export class PActosViewComponent implements AfterViewInit {
       if (result.isConfirmed) {
         this.pActosService.deleteActos(row).subscribe(
           res => {
-            console.log("acto borrado", res, row);
+            console.log("Acto borrado", res, row);
             Swal.fire(
               'Perfecto',
               'Acto eliminado correctamente',

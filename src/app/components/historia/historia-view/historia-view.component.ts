@@ -76,16 +76,24 @@ export class HistoriaViewComponent implements AfterViewInit {
   }
 
   editHistoriaOnClick(row: Historia) {
-    const dialogRef = this.dialog.open(HistoriaEditComponent, { disableClose: true, data: { row } });
+    const dialogRef = this.dialog.open(HistoriaEditComponent, { data: { row } });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      this.historiaService.getHistorias().subscribe(
+        response => {
+          this.dataSource.data = response
+          console.log(this.dataSource.data)
+        },
+        error => console.log(error)
+      )
     });
   }
 
-
   detailsHistoriaOnClick(row: Historia) {
-    const dialogRef = this.dialog.open(HistoriaDetailsComponent, { data: { row } });
+    console.log(row);
+    const dialogRef = this.dialog.open(HistoriaDetailsComponent, {
+      data: { row }
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
@@ -101,25 +109,43 @@ export class HistoriaViewComponent implements AfterViewInit {
       return null;
   }
 
-  borrarSwt() {
+  deleteHistoriaOnClick(row: Historia) {
+
     Swal.fire({
-      title: '¿Estas seguro?',
+      title: '¿Estás seguro?',
       text: "Los cambios no se podran revertir",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       cancelButtonText: "Cancelar",
-      confirmButtonText: 'Borrar'
+      confirmButtonText: 'Eliminar'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Borrado',
-          'Historia borrada correctamente',
-          'success'
-        )
+        this.historiaService.deleteHistoria(row).subscribe(
+          res => {
+            console.log("Historia borrada", res, row);
+            Swal.fire(
+              'Perfecto',
+              'Historia eliminada correctamente',
+              'success'
+            )
+          },
+          error => {
+            console.error(error, "Error", row)
+            Swal.fire({
+              title: 'Error',
+              text: 'Hubo un error al eliminar',
+              icon: 'error',
+              cancelButtonColor: '#d33',
+              cancelButtonText: "Cerrar",
+            })
+          }
+        );
       }
     })
   }
+
+  
 
 }

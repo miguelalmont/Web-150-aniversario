@@ -77,39 +77,72 @@ export class AmbientesPjViewComponent implements AfterViewInit {
   }
 
   editAmbienteOnClick(row: ambientesPj) {
-    const dialogRef = this.dialog.open(AmbientesPjEditComponent, { disableClose: true, data: { row } });
+    const dialogRef = this.dialog.open(AmbientesPjEditComponent, { data: { row } });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      this.ambientesPjService.getAmbientesPj().subscribe(
+        response => {
+          this.dataSource.data = response
+          console.log(this.dataSource.data)
+        },
+        error => console.log(error)
+      )
     });
   }
 
   detailsAmbienteOnClick(row: ambientesPj) {
     console.log(row);
     const dialogRef = this.dialog.open(AmbientesPjDetailsComponent, {
-
       data: { row }
     });
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
-  borrarSwt(){
+  enUsoBool(enUso: number) {
+    if (enUso == 0)
+      return false;
+    else if (enUso == 1)
+      return true;
+    else
+      return null;
+  }
+
+  deleteAmbienteOnClick(row: ambientesPj) {
+
     Swal.fire({
-      title: '¿Estas seguro?',
+      title: '¿Estás seguro?',
       text: "Los cambios no se podran revertir",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       cancelButtonText: "Cancelar",
-      confirmButtonText: 'Borrar'
+      confirmButtonText: 'Eliminar'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Borrado',
-          'Ambiente borrado correctamente',
-          'success'
-        )
+        this.ambientesPjService.deleteAmbiente(row).subscribe(
+          res => {
+            console.log("Ambiente borrado", res, row);
+            Swal.fire(
+              'Perfecto',
+              'Ambiente eliminado correctamente',
+              'success'
+            )
+          },
+          error => {
+            console.error(error, "Error", row)
+            Swal.fire({
+              title: 'Error',
+              text: 'Hubo un error al eliminar',
+              icon: 'error',
+              cancelButtonColor: '#d33',
+              cancelButtonText: "Cerrar",
+            })
+          }
+        );
       }
     })
   }

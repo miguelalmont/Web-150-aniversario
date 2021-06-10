@@ -42,7 +42,7 @@ export class OracionEditComponent implements OnInit {
     this.newOracionForm = this.fb.group({
       titulo: new FormControl(this.oracionInput.titulo),
       oracion: new FormControl(this.oracionInput.oracion),
-      enUso: new FormControl(this.oracionInput.enUso)
+      enUso: new FormControl(this.checkEnUso(this.oracionInput.enUso))
     });
   }
 
@@ -55,33 +55,55 @@ export class OracionEditComponent implements OnInit {
       id: this.data.row.id,
       titulo: this.newOracionForm.get('titulo').value,
       oracion: this.newOracionForm.get('oracion').value,
-      enUso: this.newOracionForm.get('enUso').value
+      enUso: this.unCheckEnUso(this.data.row.enUso)
     }
     this.oracionService.editOracion(this.oracion).subscribe(
-      res => console.log("formulario editado"),
-      error => console.log(error)
+      res => {
+        console.log("Oracion editada", res, this.oracion)
+        Swal.fire({
+          title: '¿Estás seguro?',
+          text: "Los cambios no se podran revertir",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          cancelButtonText: "Cancelar",
+          confirmButtonText: 'Actualizar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire(
+              'Perfecto',
+              'Oracion actualizada correctamente',
+              'success'
+            )
+          }
+        })
+      },
+      error => {
+        console.error(error, "Error", this.oracion)
+        Swal.fire({
+          title: 'Error',
+          text: 'Hubo un error al editar',
+          icon: 'error',
+          cancelButtonColor: '#d33',
+          cancelButtonText: "Cerrar",
+        })
+      }
     );
   }
 
-  editarSwt(){
-    Swal.fire({
-      title: '¿Estas seguro?',
-      text: "Los cambios no se podran revertir",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      cancelButtonText: "Cancelar",
-      confirmButtonText: 'Actualizar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire(
-          'Perfecto',
-          'Oracion actualizada correctamente',
-          'success'
-        )
-      }
-    })
+  checkEnUso(enUso: number) {
+    if (enUso === 1)
+      return true;
+    else
+      return false;
+  }
+
+  unCheckEnUso(enUso: boolean) {
+    if (enUso)
+      return 1;
+    else
+      return 2;
   }
 
 }

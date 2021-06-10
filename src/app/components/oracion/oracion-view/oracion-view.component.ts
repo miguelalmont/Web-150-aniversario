@@ -76,17 +76,22 @@ export class OracionViewComponent implements AfterViewInit {
   }
 
   editPrayerOnClick(row: Oracion) {
-    const dialogRef = this.dialog.open(OracionEditComponent, { disableClose: true, data: { row } });
+    const dialogRef = this.dialog.open(OracionEditComponent, { data: { row } });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      this.oracionService.getOracion().subscribe(
+        response => {
+          this.dataSource.data = response
+          console.log(this.dataSource.data)
+        },
+        error => console.log(error)
+      )
     });
   }
 
   detailsPrayerOnClick(row: Oracion) {
     console.log(row);
     const dialogRef = this.dialog.open(OracionDetailsComponent, {
-
       data: { row }
     });
 
@@ -104,23 +109,39 @@ export class OracionViewComponent implements AfterViewInit {
       return null;
   }
 
-  borrarSwt() {
+  deletePrayerOnClick(row: Oracion) {
+
     Swal.fire({
-      title: '¿Estas seguro?',
+      title: '¿Estás seguro?',
       text: "Los cambios no se podran revertir",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       cancelButtonText: "Cancelar",
-      confirmButtonText: 'Borrar'
+      confirmButtonText: 'Eliminar'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Borrado',
-          'Oracion borrada correctamente',
-          'success'
-        )
+        this.oracionService.deleteOracion(row).subscribe(
+          res => {
+            console.log("Oracion borrada", res, row);
+            Swal.fire(
+              'Perfecto',
+              'Oracion eliminada correctamente',
+              'success'
+            )
+          },
+          error => {
+            console.error(error, "Error", row)
+            Swal.fire({
+              title: 'Error',
+              text: 'Hubo un error al eliminar',
+              icon: 'error',
+              cancelButtonColor: '#d33',
+              cancelButtonText: "Cerrar",
+            })
+          }
+        );
       }
     })
   }

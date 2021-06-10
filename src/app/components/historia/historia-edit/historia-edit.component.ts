@@ -45,7 +45,7 @@ export class HistoriaEditComponent implements OnInit {
       titulo: new FormControl(this.historiaInput.titulo),
       subtitulo: new FormControl(this.historiaInput.subtitulo),
       descripcion: new FormControl(this.historiaInput.descripcion),
-      enUso: new FormControl(this.historiaInput.enUso),
+      enUso: new FormControl(this.checkEnUso(this.historiaInput.enUso)),
       medios: new FormControl(this.historiaInput.medios)
     });
   }
@@ -62,35 +62,57 @@ export class HistoriaEditComponent implements OnInit {
       titulo: this.newHistoriaForm.get('titulo').value,
       subtitulo: this.newHistoriaForm.get('subtitulo').value,
       descripcion: this.newHistoriaForm.get('descripcion').value,
-      enUso: this.newHistoriaForm.get('enUso').value,
+      enUso: this.unCheckEnUso(this.data.row.enUso),
       medios: this.newHistoriaForm.get('medios').value
     }
     this.historiaService.editHistoria(this.historia).subscribe(
-      res => console.log("formulario editado"),
-      error => console.log(error)
+      res => {
+        console.log("Historia editada", res, this.historia)
+        Swal.fire({
+          title: '¿Estás seguro?',
+          text: "Los cambios no se podran revertir",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          cancelButtonText: "Cancelar",
+          confirmButtonText: 'Actualizar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire(
+              'Perfecto',
+              'Historia actualizada correctamente',
+              'success'
+            )
+          }
+        })
+      },
+      error => {
+        console.error(error, "Error", this.historia)
+        Swal.fire({
+          title: 'Error',
+          text: 'Hubo un error al editar',
+          icon: 'error',
+          cancelButtonColor: '#d33',
+          cancelButtonText: "Cerrar",
+        })
+      }
     );
 
   }
 
-  editarSwt(){
-    Swal.fire({
-      title: '¿Estas seguro?',
-      text: "Los cambios no se podran revertir",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      cancelButtonText: "Cancelar",
-      confirmButtonText: 'Actualizar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire(
-          'Perfecto',
-          'Historia actualizada correctamente',
-          'success'
-        )
-      }
-    })
+  checkEnUso(enUso: number) {
+    if (enUso === 1)
+      return true;
+    else
+      return false;
+  }
+
+  unCheckEnUso(enUso: boolean) {
+    if (enUso)
+      return 1;
+    else
+      return 2;
   }
 
 }
