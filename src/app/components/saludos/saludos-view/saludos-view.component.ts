@@ -48,8 +48,6 @@ export class SaludosViewComponent implements AfterViewInit {
         return `${startIndex + 1} - ${endIndex} de ${length}`;
       };
 
-    
-
     // Aqui llamamos al servicio getAmbientes y le asignamos el dadatSource.data a la respuesta
     this.saludoService.getSaludos().subscribe(
       response => {
@@ -103,23 +101,39 @@ export class SaludosViewComponent implements AfterViewInit {
       return null;
   }
 
-  borrarSwt(){
+  deleteSaludosOnClick(row: Saludo) {
+
     Swal.fire({
-      title: '¿Estas seguro?',
+      title: '¿Estás seguro?',
       text: "Los cambios no se podran revertir",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       cancelButtonText: "Cancelar",
-      confirmButtonText: 'Borrar'
+      confirmButtonText: 'Eliminar'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Borrado',
-          'Saludo borrado correctamente',
-          'success'
-        )
+        this.saludoService.deleteSaludos(row).subscribe(
+          res => {
+            console.log("Saludo borrado", res, row);
+            Swal.fire(
+              'Perfecto',
+              'Saludo eliminado correctamente',
+              'success'
+            )
+          },
+          error => {
+            console.error(error, "Error", row)
+            Swal.fire({
+              title: 'Error',
+              text: 'Hubo un error al eliminar',
+              icon: 'error',
+              cancelButtonColor: '#d33',
+              cancelButtonText: "Cerrar",
+            })
+          }
+        );
       }
     })
   }
