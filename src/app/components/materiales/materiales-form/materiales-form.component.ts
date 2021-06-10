@@ -11,28 +11,35 @@ import Swal from 'sweetalert2';
 })
 export class MaterialesFormComponent implements OnInit {
 
-  newMaterialesForm: FormGroup = this.fb.group({
-    tipo: new FormControl('',  [Validators.required, Validators.minLength(6)]),
-    url: new FormControl(''),
-    enUso: new FormControl('')
-  });
+  newMaterialesForm: FormGroup;
 
   materiales = {
-    tipo: this.newMaterialesForm.get('tipo').value,
-    url: this.newMaterialesForm.get('url').value,
-    enUso: this.newMaterialesForm.get('enUso').value
+    titulo: '',
+    contenido: '',
+    medios : [],
+    enUso: 0,
   }
 
-  constructor(private fb: FormBuilder, private materialesService: MaterialesService) {}
+  constructor(private fb: FormBuilder, private materialesService: MaterialesService) {
+    this.newMaterialesForm = this.fb.group({
+      titulo: new FormControl(''),
+      contenido: new FormControl(''),
+      fotos: new FormControl(''),
+      video: new FormControl(''),
+      audio: new FormControl(''),
+      enUso: new FormControl(''),
+    })
+  }
 
   ngOnInit(): void {}
 
   onFormSubmit(): void {
-    
+
     this.materiales = {
-      tipo: this.newMaterialesForm.get('tipo').value,
-      url: this.newMaterialesForm.get('url').value,
-      enUso: this.checkUse().value
+      titulo: this.newMaterialesForm.get('titulo').value,
+      contenido: this.newMaterialesForm.get('contenido').value,
+      medios: [{ fotos: this.newMaterialesForm.get('image').value }, { audio: this.newMaterialesForm.get('audio').value }],
+      enUso: this.newMaterialesForm.get('enUso').value,
     }
 
     Swal.fire({
@@ -71,16 +78,11 @@ export class MaterialesFormComponent implements OnInit {
 
   }
 
-  checkUse(){
-    if(this.newMaterialesForm.get('enUso').value == true){
-      this.materiales.enUso = 1
-      return this.materiales.enUso
-      console.log(this.materiales.enUso)
-    }else{
-      this.materiales.enUso = 0;
-      return this.materiales.enUso
-      console.log(this.materiales.enUso)
-    }
+  checkInUse(inUse: number) {
+    if (inUse == 1)
+      return true;
+    else
+      return false;
   }
 
 
