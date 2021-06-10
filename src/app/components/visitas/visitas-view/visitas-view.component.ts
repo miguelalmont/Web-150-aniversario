@@ -17,7 +17,7 @@ import Swal from "sweetalert2";
   styleUrls: ['./visitas-view.component.scss']
 })
 export class VisitasViewComponent implements AfterViewInit {
-  displayedColumns: string[] = ['titulo', 'descripcion', 'medios', 'enUso','actions'];
+  displayedColumns: string[] = ['titulo', 'descripcion', 'image', 'video', 'enUso','actions'];
   dataSource: MatTableDataSource<Visita>;
   visitas: Visita[];
   value = '';
@@ -84,7 +84,6 @@ export class VisitasViewComponent implements AfterViewInit {
   }
 
   detailsVisitaOnClick(row: Visita) {
-    console.log(row);
     const dialogRef = this.dialog.open(VisitasDetailsComponent, {
       data: {row}
     });
@@ -94,25 +93,40 @@ export class VisitasViewComponent implements AfterViewInit {
     });
   }
 
-  borrarSwt(){
+  deleteVisitaOnClick(row: Visita) {
+
     Swal.fire({
-      title: '¿Estas seguro?',
+      title: '¿Estás seguro?',
       text: "Los cambios no se podran revertir",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       cancelButtonText: "Cancelar",
-      confirmButtonText: 'Borrar'
+      confirmButtonText: 'Eliminar'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Borrado',
-          'Ambiente borrado correctamente',
-          'success'
-        )
+        this.visitasService.deleteVisita(row).subscribe(
+          res => {
+            console.log("Visita borrada", res, row);
+            Swal.fire(
+              'Perfecto',
+              'Visita eliminada correctamente',
+              'success'
+            )
+          },
+          error => {
+            console.error(error, "Error", row)
+            Swal.fire({
+              title: 'Error',
+              text: 'Hubo un error al eliminar',
+              icon: 'error',
+              cancelButtonColor: '#d33',
+              cancelButtonText: "Cerrar",
+            })
+          }
+        );
       }
     })
   }
-  
 }

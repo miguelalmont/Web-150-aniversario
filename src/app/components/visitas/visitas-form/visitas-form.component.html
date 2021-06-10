@@ -10,10 +10,22 @@
         <mat-error>El titulo no puede estar vacio</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Video-Url</mat-label>
-        <input matInput formControlName="medios" placeholder="Video-Url" type="text">
-        <mat-error>La Url no puede estar vacio</mat-error>
+        <mat-label>Descripción</mat-label>
+        <input matInput formControlName="descripcion" placeholder="Descripción" type="text">
+        <mat-error>El titulo no puede estar vacio</mat-error>
       </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Imagen</mat-label>
+        <input matInput formControlName="image" placeholder="Imagen" type="text">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Video</mat-label>
+        <input matInput formControlName="video" placeholder="Video" type="text">
+      </mat-form-field>
+      <p>
+        <mat-label>En uso</mat-label>
+        <mat-checkbox class="checkbox" [checked]="checkInUse(visita.enUso)"></mat-checkbox>
+      </p>
     <mat-dialog-actions>
         <button mat-stroked-button type="submit" [disabled]="newVisitaForm.invalid">Guardar cambios</button>
         <button mat-stroked-button type="reset" [disabled]="newVisitaForm.pristine">Limpiar</button>

@@ -27,14 +27,11 @@ export class VisitasEditComponent implements OnInit {
     this.visitaEditForm = this.fb.group({
       titulo: new FormControl(this.visitaEdit.titulo),
       descripcion: new FormControl(this.visitaEdit.descripcion),
-      enUso: new FormControl(this.visitaEdit.enUso),
       image: new FormControl(this.visitaEdit.medios[0].url),
       video: new FormControl(this.visitaEdit.medios[1].url)
     })
   }
-
-  get titulo() { return this.visitaEditForm.get('titulo').value; }
-
+  
   ngOnInit(): void { }
 
   onFormSubmit(): void {
