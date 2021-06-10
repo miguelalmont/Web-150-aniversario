@@ -13,53 +13,64 @@ import Swal from "sweetalert2";
 })
 export class AmbientesPjEditComponent implements OnInit {
 
-  @Input() ambienteInput: ambientesPj = {
+  @Input()
+  ambienteInput: ambientesPj = {
     id: 0,
     titulo: '',
     descripcion: '',
     enUso: 0,
     medios: []
-}
-
-  newAmbienteForm: FormGroup = this.fb.group({
-    titulo: new FormControl('',  [Validators.required, Validators.minLength(6)]),
-    descripcion: new FormControl('',  [Validators.required, Validators.minLength(6)]),
-    enUso: new FormControl('',  Validators.required),
-    medios: new FormControl('',  Validators.required),
-  });
-
-  ambiente = {
-    id: this.ambienteInput.id,
-    titulo: this.newAmbienteForm.get('titulo').value,
-    descripcion: this.newAmbienteForm.get('descripcion').value,
-    enUso: this.newAmbienteForm.get('enUso').value,
-    medios: this.newAmbienteForm.get('medios').value
   }
 
-  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data, private ambienteService: AmbientesPJService) {}
-
-  get titulo() { return this.newAmbienteForm.get('titulo').value; }
+  newAmbienteForm: FormGroup = this.fb.group({
+    titulo: new FormControl('', [Validators.required]),
+    descripcion: new FormControl('', [Validators.required]),
+    video: new FormControl('')
+  });
+  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data, private ambienteService: AmbientesPJService) {
+    this.ambienteInput = data.row;
+    console.log(this.ambienteInput)
+    if (this.data.row.medios != undefined || this.data.row.descripcion != undefined || this.data.row.medios != null || this.data.row.descripcion != null) {
+      this.newAmbienteForm = this.fb.group({
+        titulo: new FormControl(this.data.row.titulo, [Validators.required]),
+        descripcion: new FormControl(this.data.row.descripcion, [Validators.required]),
+        video: new FormControl(this.data.row.medios[0].url)
+      });
+    } else {
+      this.newAmbienteForm = this.fb.group({
+        titulo: new FormControl(this.data.row.titulo, [Validators.required]),
+        descripcion: new FormControl('', [Validators.required]),
+        video: new FormControl('')
+      });
+    }
+  }
 
   ngOnInit(): void {}
 
-  onFormSubmit(): void {
-    
-    this.ambiente = {
+  checkInUse(inUse: number) {
+    if (inUse == 1)
+      return true;
+    else
+      return false;
+  }
+
+  unCheckInUse(enUso: boolean) {
+    if (enUso)
+      return 1;
+    else
+      return 0;
+  }
+
+  onFormSubmit() {
+    this.ambienteInput = {
       id: this.data.row.id,
       titulo: this.newAmbienteForm.get('titulo').value,
       descripcion: this.newAmbienteForm.get('descripcion').value,
-      enUso: this.newAmbienteForm.get('enUso').value,
-      medios: this.newAmbienteForm.get('medios').value
+      medios: [{ url: this.newAmbienteForm.get('video').value }],
+      enUso: this.ambienteInput.enUso
     }
-    this.ambienteService.editAmbiente(this.ambiente).subscribe(
-      res => console.log("formulario editado"),
-      error => console.log(error)
-    );
-  }
-
-  editarSwt(){
     Swal.fire({
-      title: '¿Estas seguro?',
+      title: '¿Estás seguro?',
       text: "Los cambios no se podran revertir",
       icon: 'warning',
       showCancelButton: true,
@@ -69,13 +80,27 @@ export class AmbientesPjEditComponent implements OnInit {
       confirmButtonText: 'Actualizar'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Perfecto',
-          'Ambiente actualizado correctamente',
-          'success'
-        )
+        this.ambienteService.editAmbiente(this.ambienteInput).subscribe(
+          res => {
+            console.log("ambiente editado", res, this.ambienteInput)
+            Swal.fire(
+              'Perfecto',
+              'Ambiente actualizado correctamente',
+              'success'
+            )
+          },
+          error => {
+            console.error(error, "Error", this.ambienteInput)
+            Swal.fire({
+              title: 'Error',
+              text: 'Hubo un error al editar',
+              icon: 'error',
+              cancelButtonColor: '#d33',
+              cancelButtonText: "Cerrar",
+            })
+          }
+        );
       }
     })
   }
-
 }

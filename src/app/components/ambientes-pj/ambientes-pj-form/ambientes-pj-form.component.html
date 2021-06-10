@@ -5,21 +5,22 @@
 <div class="form-container">
   <form [formGroup]="newAmbienteForm" (ngSubmit)="onFormSubmit()">
       <mat-form-field appearance="outline">
-        <mat-label>Titulo</mat-label>
+        <mat-label>Título</mat-label>
         <input matInput formControlName="titulo" placeholder="Titulo" type="text" cdkFocusInitial>
-        <mat-error>El nombre debe contener 6 carácteres como mínimo.</mat-error>
+        <mat-error>El título es un campo obligatorio.</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Descripcion</mat-label>
         <input matInput formControlName="descripcion" placeholder="Descripcion" type="text">
+        <mat-error>La descripción es un campo obligatorio.</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Video</mat-label>
-        <input matInput formControlName="medios" placeholder="Video" type="text">
+        <input matInput formControlName="video" placeholder="Video" type="text">
       </mat-form-field>
       <p>
         enUso:
-        <mat-checkbox class="checkbox" disabled="true" [checked]="ambiente.enUso"></mat-checkbox>
+        <mat-checkbox class="checkbox" [checked]="checkInUse(ambiente.enUso)"></mat-checkbox>
       </p>
     <mat-dialog-actions>
         <button mat-stroked-button type="submit" [disabled]="newAmbienteForm.invalid">Guardar cambios</button>

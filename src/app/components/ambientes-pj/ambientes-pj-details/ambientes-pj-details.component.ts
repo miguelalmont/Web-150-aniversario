@@ -10,47 +10,52 @@ import { ambientesPj } from 'src/app/models/models';
 })
 export class AmbientesPjDetailsComponent implements OnInit {
 
-  @Input() ambienteDetails: ambientesPj = {
-      id: 0,
-      titulo: '',
-      descripcion: '',
-      enUso: 0,
-      medios: []
+  @Input()
+  ambienteInput: ambientesPj = {
+    id: 0,
+    titulo: '',
+    descripcion: '',
+    enUso: 0,
+    medios: []
   }
-
-  detailAmbienteForm: FormGroup;
-
 
   newAmbienteForm: FormGroup = this.fb.group({
-    titulo: new FormControl('',  [Validators.required, Validators.minLength(6)]),
-    descripcion: new FormControl('',  [Validators.required, Validators.minLength(6)]),
-    enUso: new FormControl('', Validators.required),
-    medios: new FormControl('', Validators.required)
+    titulo: new FormControl('', [Validators.required]),
+    descripcion: new FormControl('', [Validators.required]),
+    video: new FormControl('')
   });
-
-  ambiente = {
-    titulo: this.newAmbienteForm.get('titulo').value,
-    descripcion: new FormControl('',  [Validators.required, Validators.minLength(6)]),
-    enUSo: this.newAmbienteForm.get('enUso').value,
-    medios: this.newAmbienteForm.get('medios').value
-  }
-
   constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data) {
-    this.ambienteDetails = data.row;
-    this.detailAmbienteForm = this.fb.group({
-      titulo: new FormControl(this.ambienteDetails.titulo),
-      descripcion: new FormControl(this.ambienteDetails.descripcion),
-      enUso: new FormControl(this.ambienteDetails.enUso),
-      medios: new FormControl(this.ambienteDetails.medios)
-    });
+    this.ambienteInput = data.row;
+    console.log(this.ambienteInput)
+    if (this.data.row.medios != undefined || this.data.row.descripcion != undefined || this.data.row.medios != null || this.data.row.descripcion != null) {
+      this.newAmbienteForm = this.fb.group({
+        titulo: new FormControl(this.data.row.titulo, [Validators.required]),
+        descripcion: new FormControl(this.data.row.descripcion, [Validators.required]),
+        video: new FormControl(this.data.row.medios[0].url)
+      });
+    } else {
+      this.newAmbienteForm = this.fb.group({
+        titulo: new FormControl(this.data.row.titulo, [Validators.required]),
+        descripcion: new FormControl('', [Validators.required]),
+        video: new FormControl('')
+      });
+    }
   }
-
-  get titulo() { return this.newAmbienteForm.get('titulo').value; }
 
   ngOnInit(): void {}
 
-  onFormSubmit(): void {
-    console.log('Titulo:' + this.newAmbienteForm.get('titulo').value);
+  checkInUse(inUse: number) {
+    if (inUse == 1)
+      return true;
+    else
+      return false;
+  }
+
+  unCheckInUse(enUso: boolean) {
+    if (enUso)
+      return 1;
+    else
+      return 0;
   }
 
 }

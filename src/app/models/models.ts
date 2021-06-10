@@ -72,13 +72,14 @@ export interface User {
 }
 
 export interface UserLogin {
+    id?: number,
     username: string;
     password: string;
     token?: string;
 }
 
 export interface ambientesPj {
-    id: number,
+    id?: number,
     titulo: string,
     descripcion: string,
     enUso: number,

@@ -19,7 +19,7 @@ let usersData: ActoData[] = []
   styleUrls: ['./p-actos-view.component.scss']
 })
 export class PActosViewComponent implements AfterViewInit {
-  displayedColumns: string[] = ['titulo', 'descripcion', 'ubicacion', 'categoria', 'fecha', 'medios', 'enUso', 'actions'];
+  displayedColumns: string[] = ['titulo', 'descripcion', 'ubicacion', 'categoria', 'fecha', 'video', 'enUso', 'actions'];
   dataSource: MatTableDataSource<ActoData>;
   actos: ActoData[];
   value = '';

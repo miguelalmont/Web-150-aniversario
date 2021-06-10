@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { ambientesPj } from 'src/app/models/models';
+import { AmbientesPJService } from 'src/app/services/ambientesPJ-service/ambientes-pj.service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-ambientes-pj-form',
@@ -10,27 +13,76 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 export class AmbientesPjFormComponent implements OnInit {
 
   newAmbienteForm: FormGroup = this.fb.group({
-    titulo: new FormControl('',  [Validators.required, Validators.minLength(6)]),
-    descripcion: new FormControl('',  [Validators.required, Validators.minLength(6)]),
-    enUso: new FormControl('',  Validators.required),
-    medios: new FormControl('',  Validators.required)
+    titulo: new FormControl('', [Validators.required]),
+    descripcion: new FormControl('', [Validators.required]),
+    video: new FormControl('')
   });
 
-  ambiente = {
-    titulo: this.newAmbienteForm.get('titulo').value,
-    descripcion: this.newAmbienteForm.get('descripcion').value,
-    enUso: this.newAmbienteForm.get('enUso').value,
-    medios: this.newAmbienteForm.get('medios').value
+  ambiente: ambientesPj = {
+    titulo: '',
+    descripcion: '',
+    enUso: 0,
+    medios: []
   }
 
-  constructor(private fb: FormBuilder) {}
 
-  get titulo() { return this.newAmbienteForm.get('titulo').value; }
+  constructor(private fb: FormBuilder, private ambienteService: AmbientesPJService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
-  onFormSubmit(): void {
-    console.log('Name:' + this.newAmbienteForm.get('titulo').value);
+  checkInUse(inUse: number) {
+    if (inUse == 1)
+      return true;
+    else
+      return false;
   }
 
+  unCheckInUse(enUso: boolean) {
+    if (enUso)
+      return 1;
+    else
+      return 0;
+  }
+
+  onFormSubmit() {
+    this.ambiente = {
+      titulo: this.newAmbienteForm.get('titulo').value,
+      descripcion: this.newAmbienteForm.get('descripcion').value,
+      medios: [{ url: this.newAmbienteForm.get('video').value }],
+      enUso: this.ambiente.enUso
+    }
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: "Los cambios no se podran revertir",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: "Cancelar",
+      confirmButtonText: 'Insertar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.ambienteService.createAmbiente(this.ambiente).subscribe(
+          res => {
+            console.log("Ambiente insertado", res, this.ambiente)
+            Swal.fire(
+              'Perfecto',
+              'Ambiente insertado correctamente',
+              'success'
+            )
+          },
+          error => {
+            console.error(error, "Error", this.ambiente)
+            Swal.fire({
+              title: 'Error',
+              text: 'Hubo un error al insertar',
+              icon: 'error',
+              cancelButtonColor: '#d33',
+              cancelButtonText: "Cerrar",
+            })
+          }
+        );
+      }
+    })
+  }
 }
