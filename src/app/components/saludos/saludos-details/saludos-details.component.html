@@ -3,15 +3,15 @@
   <button mat-stroked-button mat-dialog-close ><mat-icon>close</mat-icon></button>
 </div>
 <div class="form-container">
-  <form [formGroup]="newSaludoForm" (ngSubmit)="onFormSubmit()">
+  <form [formGroup]="detailSaludoForm" (ngSubmit)="onFormSubmit()">
       <mat-form-field appearance="outline">
         <mat-label>Titulo</mat-label>
         <input matInput formControlName="titulo" placeholder="Titulo" type="text" readonly cdkFocusInitial>
         <mat-error>El titulo debe contener 6 carácteres como mínimo.</mat-error>
       </mat-form-field>
         <mat-form-field appearance="outline">
-          <mat-label>Contenido</mat-label>
-          <input matInput formControlName="contenido" placeholder="contenido" type="text" readonly>
+          <mat-label>Texto</mat-label>
+          <input matInput formControlName="texto" placeholder="contenido" type="text" readonly>
           <mat-error>El subtitulo debe contener 6 carácteres como mínimo.</mat-error>
         </mat-form-field>
       <mat-form-field appearance="outline">
@@ -21,7 +21,17 @@
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Imagen</mat-label>
-        <input matInput formControlName="medios" placeholder="Imagen" type="text" readonly>
+        <input matInput formControlName="image" placeholder="Cartel" type="text">
       </mat-form-field>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Video</mat-label>
+          <input matInput formControlName="video" placeholder="Video" type="text">
+        </mat-form-field>
+        <p>
+      <p>
+        <mat-label>En uso</mat-label>
+        <mat-checkbox class="checkbox" disabled="true" [checked]="checkInUse(saludoInput.enUso)"></mat-checkbox>
+      </p>
   </form>
 </div>

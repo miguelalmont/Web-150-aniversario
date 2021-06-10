@@ -3,7 +3,7 @@
   <button mat-stroked-button mat-dialog-close ><mat-icon>close</mat-icon></button>
 </div>
 <div class="form-container">
-  <form [formGroup]="newSaludosForm" (ngSubmit)="onFormSubmit()">
+  <form [formGroup]="saludosFormEdit" (ngSubmit)="onFormSubmit()">
     <mat-form-field appearance="outline">
       <mat-label>Titulo</mat-label>
       <input matInput formControlName="titulo" placeholder="Titulo" type="text" cdkFocusInitial>
@@ -11,7 +11,7 @@
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Contenido</mat-label>
-      <input matInput formControlName="contenido" placeholder="Contentido" type="text">
+      <input matInput formControlName="texto" placeholder="Contentido" type="text">
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Descripción</mat-label>
@@ -19,11 +19,20 @@
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Imagen</mat-label>
-      <input matInput formControlName="medios" placeholder="Imagen" type="text">
+      <input matInput formControlName="image" placeholder="Cartel" type="text">
     </mat-form-field>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Video</mat-label>
+        <input matInput formControlName="video" placeholder="Video" type="text">
+      </mat-form-field>
+      <p>
+      <mat-label>En uso</mat-label>
+      <mat-checkbox class="checkbox" [checked]="checkInUse(saludoInput.enUso)"></mat-checkbox>
+    </p>
     <mat-dialog-actions>
-        <button mat-stroked-button type="submit" [disabled]="newSaludosForm.invalid" (click)="editarSwt()">Guardar cambios</button>
-        <button mat-stroked-button type="reset" [disabled]="newSaludosForm.pristine">Limpiar</button>
+        <button mat-stroked-button type="submit" [disabled]="saludosFormEdit.invalid" >Guardar cambios</button>
+        <button mat-stroked-button type="reset" [disabled]="saludosFormEdit.pristine">Limpiar</button>
     </mat-dialog-actions>
   </form>
 </div>
