@@ -5,13 +5,28 @@
 <div class="form-container">
   <form [formGroup]="newMaterialesForm" (ngSubmit)="onFormSubmit()">
   <mat-form-field appearance="outline">
-    <mat-label>Tipo</mat-label>
-    <input matInput formControlName="tipo" placeholder="Tipo" type="text"  cdkFocusInitial>
+    <mat-label>Titulo</mat-label>
+    <input matInput formControlName="titulo" placeholder="Titulo" type="text"  cdkFocusInitial>
     <mat-error>El titulo debe contener 6 carácteres como mínimo.</mat-error>
   </mat-form-field>
   <mat-form-field appearance="outline">
-    <mat-label>Url</mat-label>
-    <input matInput formControlName="url" placeholder="Url" type="text" >
+    <mat-label>Contenido</mat-label>
+    <input matInput formControlName="contenido" placeholder="Contenido" type="text" >
+    <mat-error>El subtitulo debe contener 10 carácteres como mínimo.</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Fotos</mat-label>
+    <input matInput formControlName="fotos" placeholder="Fotos" type="text" >
+    <mat-error>El subtitulo debe contener 10 carácteres como mínimo.</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Videos</mat-label>
+    <input matInput formControlName="video" placeholder="Videos" type="text" >
+    <mat-error>El subtitulo debe contener 10 carácteres como mínimo.</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Audio</mat-label>
+    <input matInput formControlName="audio" placeholder="Audio" type="text" >
     <mat-error>El subtitulo debe contener 10 carácteres como mínimo.</mat-error>
   </mat-form-field>
   <p>

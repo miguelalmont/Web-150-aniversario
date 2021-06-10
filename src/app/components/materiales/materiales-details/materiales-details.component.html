@@ -5,16 +5,28 @@
 <div class="form-container">
   <form [formGroup]="detailMaterialForm" (ngSubmit)="onFormSubmit()">
       <mat-form-field appearance="outline">
-        <mat-label>Tipo</mat-label>
-        <input matInput formControlName="tipo" placeholder="Tipo" type="text" readonly cdkFocusInitial>
+        <mat-label>Título</mat-label>
+        <input matInput formControlName="titulo" placeholder="Título" type="text" readonly cdkFocusInitial>
       </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Url</mat-label>
-          <input matInput formControlName="url" placeholder="Url" type="text" readonly>
-        </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Contenido</mat-label>
+        <input matInput formControlName="contenido" placeholder="Contenido" type="text" readonly>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Fotos</mat-label>
+        <input matInput formControlName="fotos" placeholder="Fotos" type="text" readonly>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Videos</mat-label>
+        <input matInput formControlName="videos" placeholder="Videos" type="text" readonly>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Audios</mat-label>
+        <input matInput formControlName="audios" placeholder="Audios" type="text" readonly>
+      </mat-form-field>
       <p>
         Administrador:
-        <mat-checkbox class="checkbox" disabled="true" [checked]="checkInUse(materialDetails.enUso)"></mat-checkbox>
+        <mat-checkbox class="checkbox" disabled="true" [checked]="checkInUse(materialInput.enUso)"></mat-checkbox>
       </p>
   </form>
 </div>
