@@ -4,23 +4,23 @@
 </div>
 <div class="form-container">
   <form [formGroup]="newMaterialesForm" (ngSubmit)="onFormSubmit()">
-    <mat-form-field appearance="outline">
-      <mat-label>Titulo</mat-label>
-      <input matInput formControlName="titulo" placeholder="Titulo" type="text" readonly cdkFocusInitial>
-      <mat-error>El nombre debe contener 6 carácteres como mínimo.</mat-error>
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Contenido</mat-label>
-      <input matInput formControlName="contenido" placeholder="Contenido" type="text" readonly>
-    </mat-form-field>
-    
-    <mat-form-field appearance="outline">
-      <mat-label>Imagen</mat-label>
-      <input matInput formControlName="medios" placeholder="imagen" type="text">
-    </mat-form-field>
-    <mat-dialog-actions>
-        <button mat-stroked-button type="submit" [disabled]="newMaterialesForm.invalid">Guardar cambios</button>
-        <button mat-stroked-button type="reset" [disabled]="newMaterialesForm.pristine">Limpiar</button>
-    </mat-dialog-actions>
+  <mat-form-field appearance="outline">
+    <mat-label>Tipo</mat-label>
+    <input matInput formControlName="tipo" placeholder="Tipo" type="text"  cdkFocusInitial>
+    <mat-error>El titulo debe contener 6 carácteres como mínimo.</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Url</mat-label>
+    <input matInput formControlName="url" placeholder="Url" type="text" >
+    <mat-error>El subtitulo debe contener 10 carácteres como mínimo.</mat-error>
+  </mat-form-field>
+  <p>
+    Administrador:
+    <mat-checkbox class="checkbox" disabled="false"></mat-checkbox>
+  </p>
+  <mat-dialog-actions>
+      <button mat-stroked-button type="submit" [disabled]="newMaterialesForm.invalid">Guardar cambios</button>
+      <button mat-stroked-button type="reset" [disabled]="newMaterialesForm.pristine">Limpiar</button>
+  </mat-dialog-actions>
   </form>
 </div>

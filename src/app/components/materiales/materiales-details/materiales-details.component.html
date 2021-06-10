@@ -3,21 +3,18 @@
   <button mat-stroked-button mat-dialog-close ><mat-icon>close</mat-icon></button>
 </div>
 <div class="form-container">
-  <form [formGroup]="newMaterialForm" (ngSubmit)="onFormSubmit()">
+  <form [formGroup]="detailMaterialForm" (ngSubmit)="onFormSubmit()">
       <mat-form-field appearance="outline">
-        <mat-label>Titulo</mat-label>
-        <input matInput formControlName="titulo" placeholder="Titulo" type="text" readonly cdkFocusInitial>
-        <mat-error>El titulo debe contener 6 carácteres como mínimo.</mat-error>
+        <mat-label>Tipo</mat-label>
+        <input matInput formControlName="tipo" placeholder="Tipo" type="text" readonly cdkFocusInitial>
       </mat-form-field>
         <mat-form-field appearance="outline">
-          <mat-label>Contenido</mat-label>
-          <input matInput formControlName="contenido" placeholder="Contenido" type="text" readonly>
-          <mat-error>El subtitulo debe contener 6 carácteres como mínimo.</mat-error>
+          <mat-label>Url</mat-label>
+          <input matInput formControlName="url" placeholder="Url" type="text" readonly>
         </mat-form-field>
-      
-      <mat-form-field appearance="outline">
-        <mat-label>Imagen</mat-label>
-        <input matInput formControlName="medios" placeholder="Imagen" type="text" readonly>
-      </mat-form-field>
+      <p>
+        Administrador:
+        <mat-checkbox class="checkbox" disabled="true" [checked]="checkInUse(materialDetails.enUso)"></mat-checkbox>
+      </p>
   </form>
 </div>

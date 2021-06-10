@@ -1,9 +1,10 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MaterialesService } from 'src/app/services/materiales-service/materiales.service';
 import { Material } from 'src/app/models/models';
 import Swal from "sweetalert2";
+import { MaterialesViewComponent } from '../materiales-view/materiales-view.component';
 
 @Component({
   selector: 'app-materiales-edit',
@@ -12,56 +13,84 @@ import Swal from "sweetalert2";
 })
 export class MaterialesEditComponent implements OnInit {
 
-  @Input() MaterialInput: Material = {
+  @Input() 
+  materialToUpdate: Material = {
     id: 0,
-    titulo: '',
-    contenido: '',
-    enUso: 0,
-    medios: []
+    tipo: 0,
+    url: '',
+    enUso: 0
 }
 
   newMaterialesForm: FormGroup = this.fb.group({
-    titulo: new FormControl('',  [Validators.required, Validators.minLength(6)]),
-    contenido: new FormControl('',  Validators.required),
-    medios: new FormControl('',  Validators.required),
-    enUso: new FormControl('',  Validators.required)
+    tipo: new FormControl('',  [Validators.required, Validators.minLength(1)]),
+    url: new FormControl('',  [Validators.required, Validators.email]),
+    enUso: new FormControl('',  [Validators.required, Validators.minLength(1)])
   });
 
-  materiales = {
-    id: this.MaterialInput.id,
-    titulo: this.newMaterialesForm.get('titulo').value,
-    contenido: this.newMaterialesForm.get('contenido').value,
-    medios: this.newMaterialesForm.get('medios').value,
+  material: Material = {
+    id: 0,
+    tipo: 0,
+    url: '',
     enUso: 0
   }
 
-  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data, private materialService: MaterialesService) {
-    this.MaterialInput = data.row;
-    console.log('INPUT ->' + this.MaterialInput.titulo);
+  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data, private materialService: MaterialesService,
+  public dialogRef: MatDialogRef<MaterialesViewComponent>) {
+    
+    this.materialToUpdate = data.row;
+    console.log("editar tabla" ,this.materialToUpdate)
     this.newMaterialesForm = this.fb.group({
-      titulo: new FormControl(this.MaterialInput.titulo),
-      contenido: new FormControl(this.MaterialInput.contenido),
-      enUso: new FormControl(this.MaterialInput.enUso),
-      medios: new FormControl(this.MaterialInput.medios)
+      tipo: new FormControl(this.materialToUpdate.tipo),
+      url: new FormControl(this.materialToUpdate.url),
+      enUso: new FormControl(this.materialToUpdate.enUso),
     });
   }
-
-  get titulo() { return this.newMaterialesForm.get('titulo').value; }
-
-  ngOnInit(): void {}
+  ngOnInit(): void {  }
 
   onFormSubmit(): void {
-    this.materiales = {
-      id: this.data.row.id,
-      titulo: this.newMaterialesForm.get('titulo').value,
-      contenido: this.newMaterialesForm.get('contenido').value,
-      enUso: this.newMaterialesForm.get('enUso').value,
-      medios: this.newMaterialesForm.get('medios').value
+
+    this.material = {
+      tipo: this.newMaterialesForm.get('tipo').value,
+      url: this.newMaterialesForm.get('url').value,
+      enUso: this.newMaterialesForm.get('enUso').value
     }
-    this.materialService.editMaterial(this.materiales).subscribe(
-      res => console.log("formulario editado"),
-      error => console.log(error)
+
+    this.materialService.editMaterial(this.material).subscribe(
+      res => {
+        console.log("usuario editado", res, this.material)
+        Swal.fire({
+          title: '¿Estás seguro?',
+          text: "Los cambios no se podrán revertir",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          cancelButtonText: "Cancelar",
+          confirmButtonText: 'Actualizar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire(
+              'Perfecto',
+              'Material actualizado correctamente',
+              'success'
+            )
+            this.dialogRef.close();
+          }
+        })
+      },
+      error => {
+        console.error(error, "Error", this.material)
+        Swal.fire({
+          title: 'Error',
+          text: 'Hubo un error al editar',
+          icon: 'error',
+          cancelButtonColor: '#d33',
+          cancelButtonText: "Cerrar",
+        })
+        this.dialogRef.close();
+      }
     );
+
   }
 
   enUsoBool(enUso: number) {
@@ -72,25 +101,6 @@ export class MaterialesEditComponent implements OnInit {
     else
       return null;
   }
-  editarSwt(){
-    Swal.fire({
-      title: '¿Estas seguro?',
-      text: "Los cambios no se podran revertir",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      cancelButtonText: "Cancelar",
-      confirmButtonText: 'Actualizar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire(
-          'Perfecto',
-          'Material actualizado correctamente',
-          'success'
-        )
-      }
-    })
-  }
+  
 
 }

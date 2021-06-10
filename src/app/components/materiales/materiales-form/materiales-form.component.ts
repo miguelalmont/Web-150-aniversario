@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { MaterialesService } from 'src/app/services/materiales-service/materiales.service';
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-materiales-form',
   templateUrl: './materiales-form.component.html',
@@ -9,25 +12,77 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 export class MaterialesFormComponent implements OnInit {
 
   newMaterialesForm: FormGroup = this.fb.group({
-    titulo: new FormControl('',  [Validators.required, Validators.minLength(6)]),
-    contenido: new FormControl('',  Validators.required),
-    medios: new FormControl('',  Validators.required)
+    tipo: new FormControl('',  [Validators.required, Validators.minLength(6)]),
+    url: new FormControl(''),
+    enUso: new FormControl('')
   });
 
   materiales = {
-    titulo: this.newMaterialesForm.get('titulo').value,
-    contenido: this.newMaterialesForm.get('contenido').value,
-    medios: this.newMaterialesForm.get('medios').value
+    tipo: this.newMaterialesForm.get('tipo').value,
+    url: this.newMaterialesForm.get('url').value,
+    enUso: this.newMaterialesForm.get('enUso').value
   }
 
-  constructor(private fb: FormBuilder) {}
-
-  get titulo() { return this.newMaterialesForm.get('titulo').value; }
+  constructor(private fb: FormBuilder, private materialesService: MaterialesService) {}
 
   ngOnInit(): void {}
 
   onFormSubmit(): void {
-    console.log('titulo:' + this.newMaterialesForm.get('titulo').value);
+    
+    this.materiales = {
+      tipo: this.newMaterialesForm.get('tipo').value,
+      url: this.newMaterialesForm.get('url').value,
+      enUso: this.checkUse().value
+    }
+
+    Swal.fire({
+      title: '¿Estas seguro?',
+      text: "Vas a crear un usuario",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: "Cancelar",
+      confirmButtonText: 'Crear'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.materialesService.createMaterial(this.materiales).subscribe(
+          response => {
+            console.log('Usuario insertado ', response)
+            Swal.fire(
+              'Perfecto',
+              'Material creado correctamente',
+              'success'
+            )
+          },
+          error => {
+            console.error('Error ', error)
+            Swal.fire({
+              title: 'Error',
+              text: 'Hubo un error al crear',
+              icon: 'error',
+              cancelButtonColor: '#d33',
+              cancelButtonText: "Cerrar",
+            })
+          }
+        );
+      }
+    })
+
   }
+
+  checkUse(){
+    if(this.newMaterialesForm.get('enUso').value == true){
+      this.materiales.enUso = 1
+      return this.materiales.enUso
+      console.log(this.materiales.enUso)
+    }else{
+      this.materiales.enUso = 0;
+      return this.materiales.enUso
+      console.log(this.materiales.enUso)
+    }
+  }
+
+
 
 }
