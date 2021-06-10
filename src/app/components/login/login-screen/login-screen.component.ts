@@ -61,6 +61,10 @@ export class LoginScreenComponent implements OnInit {
   //     });
   // }
 
+
+
+
+  // ESTA FORMA DE LOGIN ES PROVISIONAL YA QUE DA PROBLEMA DE CORS CON LOS SERVICIOS QUE TENEMOS MONTADOS
   url = 'https://app150.cmaleon.es/api150/api/auth/login.php';
 
   userLogIn() {
