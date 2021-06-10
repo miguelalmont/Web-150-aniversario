@@ -13,6 +13,7 @@
   
   <app-spinner *ngIf="isLoading"></app-spinner>
   <div class="mat-elevation-z8" *ngIf="!isLoading">
+  <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>
   
       <!-- Title Column -->
@@ -28,8 +29,8 @@
       </ng-container>
 
       <!-- Medios Column -->
-      <ng-container matColumnDef="medios">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Medios </th>
+      <ng-container matColumnDef="image">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Imagen </th>
         <td mat-cell *matCellDef="let row">
           <a href=" {{row.medios[0].url}}" target="blank">{{row.medios[0].url}}</a>
           </td>

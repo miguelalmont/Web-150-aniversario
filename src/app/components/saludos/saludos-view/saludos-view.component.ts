@@ -21,7 +21,7 @@ export class SaludosViewComponent implements AfterViewInit {
   displayedColumns: string[] = ['titulo', 'descripcion','texto','url','video','enUso', 'actions'];
   dataSource: MatTableDataSource<Saludo>;
   saludoData: Saludo[];
-  isLoading: boolean;
+  isLoading: boolean = false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

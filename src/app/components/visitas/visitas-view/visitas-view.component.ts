@@ -21,7 +21,7 @@ export class VisitasViewComponent implements AfterViewInit {
   dataSource: MatTableDataSource<Visita>;
   visitas: Visita[];
   value = '';
-  isLoading: boolean;
+  isLoading: boolean = false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
