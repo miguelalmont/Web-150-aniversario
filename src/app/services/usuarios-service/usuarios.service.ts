@@ -11,11 +11,16 @@ import { AuthenticatorJwt } from '../authenticatorJwt.service';
 export class UsuariosService {
 
   baseUrl = baseUrl.url
+  url: string = '/auth';
 
   constructor(private http: HttpClient, private auth: AuthenticatorJwt) { }
 
   getUser(): Observable<User[]> {
     return this.http.get<User[]>('/auth/list.php');
+  }
+
+  getUserByID(id: number): Observable<User> {
+    return this.http.get<User>(`${this.url}/${id}`);
   }
 
   insertUser(row: User): Observable<User> {
