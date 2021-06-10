@@ -1,13 +1,12 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.hidden { display: none;}
 
 // COLORS VARIABLES
 $blue: #3490b0;
 $orange: #ee712a;
 $green: #b6bc00;
 $red: #FF0000;
-
-.hidden { display: none;}
 
 // TABLE STYLES
 .table-container { margin: 1%; }
@@ -67,8 +66,3 @@ form mat-form-field {
   display: block; 
   width: 350px;
 }
-  
-  
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

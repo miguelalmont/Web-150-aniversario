@@ -1,27 +1,29 @@
+// ANGULAR IMPORTS
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+// MATERIAL IMPORTS
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
-
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UsersComponent } from './components/users/users-form/users.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { HeaderComponent } from './components/header/header.component';
-import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+
+// COMPONENTS
+import { UsersComponent } from './components/users/users-form/users.component';
+import { HeaderComponent } from './components/header/header.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { VisitasViewComponent } from './components/visitas/visitas-view/visitas-view.component';
 import { MaterialesViewComponent } from './components/materiales/materiales-view/materiales-view.component';
 import { EditUserComponent } from './components/users/edit-user/edit-user.component';
@@ -58,7 +60,7 @@ import { VisitasFormComponent } from './components/visitas/visitas-form/visitas-
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { HttpInterceptorService } from './services/httpInterceptor.service';
-import Swal from 'sweetalert2';
+
 
 @NgModule({
   declarations: [
