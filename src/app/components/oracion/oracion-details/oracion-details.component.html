@@ -3,7 +3,7 @@
   <button mat-stroked-button mat-dialog-close ><mat-icon>close</mat-icon></button>
 </div>
 <div class="form-container">
-  <form [formGroup]="detailOracionForm" (ngSubmit)="onFormSubmit()">
+  <form [formGroup]="newOracionForm" (ngSubmit)="onFormSubmit()">
       <mat-form-field appearance="outline">
         <mat-label>Titulo</mat-label>
         <input matInput formControlName="titulo" placeholder="Titulo" type="text" readonly cdkFocusInitial>
@@ -16,7 +16,7 @@
         </mat-form-field>
         <p>
           En Uso:
-          <mat-checkbox class="checkbox" disabled="true" [checked]="checkEnUso(oracionDetails.enUso)"></mat-checkbox>
+          <mat-checkbox class="checkbox" disabled="true" [checked]="checkEnUso(oracionInput.enUso)"></mat-checkbox>
         </p>
   </form>
 </div>

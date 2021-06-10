@@ -15,17 +15,23 @@ import Swal from 'sweetalert2';
 
 export class UsersComponent implements OnInit {
 
-  newUserForm: FormGroup = this.fb.group({
-    username: new FormControl('',  [Validators.required, Validators.minLength(6)]),
-    mail: new FormControl('',  [Validators.required, Validators.email]),
-    password: new FormControl('',  [Validators.minLength(6), Validators.required]),
-    passwordRepeat: new FormControl('',  [Validators.minLength(6), Validators.required]),
-    rolName: []
-  }, {validators: passwordValidator});
+  newUserForm: FormGroup;
 
-  user: User;
+  user: User = {
+    username: '',
+    password: '',
+    mail: '',
+    rolName: ''
+  };
 
-  constructor(private fb: FormBuilder, private usuariosService: UsuariosService) {}
+  constructor(private fb: FormBuilder, private usuariosService: UsuariosService) {
+    this.newUserForm = this.fb.group({
+      username: new FormControl('',  [Validators.required, Validators.minLength(6)]),
+      mail: new FormControl('',  [Validators.required, Validators.email]),
+      password: new FormControl('',  [Validators.minLength(6), Validators.required]),
+      passwordRepeat: new FormControl('',  [Validators.minLength(6), Validators.required])
+    }, {validators: passwordValidator});
+  }
 
   ngOnInit(): void {}
 
@@ -34,44 +40,43 @@ export class UsersComponent implements OnInit {
       username: this.newUserForm.get('username').value,
       mail: this.newUserForm.get('mail').value,
       password: this.newUserForm.get('password').value,
-      rolName: this.unCheckRolName(this.newUserForm.get('rolName').value),
+      rolName: this.user.rolName
     }
     console.log('Name:' + this.newUserForm.get('username').value);
-    this.usuariosService.insertUser(this.user).subscribe(
-      response => {
-        console.log('Usuario insertado ', response)
-        Swal.fire({
-          title: '¿Estas seguro?',
-          text: "Vas a crear un usuario",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          cancelButtonText: "Cancelar",
-          confirmButtonText: 'Crear'
-        }).then((result) => {
-          if (result.isConfirmed) {
+    Swal.fire({
+      title: '¿Estas seguro?',
+      text: "Vas a crear un usuario",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: "Cancelar",
+      confirmButtonText: 'Crear'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.usuariosService.insertUser(this.user).subscribe(
+          response => {
+            console.log('Usuario insertado ', response)
             Swal.fire(
               'Perfecto',
               'Usuario creado correctamente',
               'success'
             )
+          },
+          error => {
+            console.error('Error ', error)
+            Swal.fire({
+              title: 'Error',
+              text: 'Hubo un error al crear',
+              icon: 'error',
+              cancelButtonColor: '#d33',
+              cancelButtonText: "Cerrar",
+            })
           }
-        })
-      },
-      error => {
-        console.error('Error ', error)
-        Swal.fire({
-          title: 'Error',
-          text: 'Hubo un error al crear',
-          icon: 'error',
-          cancelButtonColor: '#d33',
-          cancelButtonText: "Cerrar",
-        })
+        );
       }
-    );
+    })
   }
-
   checkRolName(rolName: string) {
     if (rolName === 'admin')
       return true;
