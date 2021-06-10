@@ -23,6 +23,8 @@ export class UsersViewComponent implements AfterViewInit {
   users: User[] = [];
   userToDetail: User;
 
+  isLoading: boolean;
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -56,9 +58,11 @@ export class UsersViewComponent implements AfterViewInit {
       response => {
         this.dataSource.data = response
         console.log(this.dataSource.data)
+        this.isLoading = false;
       },
       error => {
         console.log(error)
+        this.isLoading = true;
         Swal.fire({
           title: 'Error',
           text: `Hubo un error al cargar los datos, ${error}`,

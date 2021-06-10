@@ -5,24 +5,21 @@
 <div class="form-container">
   <form [formGroup]="actosFormEdit" (ngSubmit)="onFormSubmit()">
       <mat-form-field appearance="outline">
-        <mat-label>Titulo</mat-label>
+        <mat-label>Título</mat-label>
         <input matInput formControlName="titulo" placeholder="Titulo" type="text" cdkFocusInitial>
-        <mat-error>El nombre debe contener 6 carácteres como mínimo.</mat-error>
+        <mat-error>El título es requerido.</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Descripcion</mat-label>
+        <mat-label>Descripción</mat-label>
         <input matInput formControlName="descripcion" placeholder="Descripcion" type="text">
-        <mat-error>El nombre debe contener 6 carácteres como mínimo.</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Categoria</mat-label>
+        <mat-label>Categoría</mat-label>
         <input matInput formControlName="categoria" placeholder="Categoria" type="text">
-        <mat-error>El nombre debe contener 6 carácteres como mínimo.</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Ubicacion</mat-label>
+        <mat-label>Ubicación</mat-label>
         <input matInput formControlName="ubicacion" placeholder="Ubicacion" type="text">
-        <mat-error>El nombre debe contener 6 carácteres como mínimo.</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Fecha</mat-label>

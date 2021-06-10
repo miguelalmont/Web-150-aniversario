@@ -3,21 +3,18 @@
   <button mat-stroked-button mat-dialog-close ><mat-icon>close</mat-icon></button>
 </div>
 <div class="form-container">
-  <form [formGroup]="detailHistoriaForm" (ngSubmit)="onFormSubmit()">
+  <form [formGroup]="detailHistoriaForm">
       <mat-form-field appearance="outline">
         <mat-label>Titulo</mat-label>
         <input matInput formControlName="titulo" placeholder="Titulo" type="text" readonly cdkFocusInitial>
-        <mat-error>El titulo debe contener 6 carácteres como mínimo.</mat-error>
       </mat-form-field>
         <mat-form-field appearance="outline">
-          <mat-label>Subtitulo</mat-label>
+          <mat-label>Subtítulo</mat-label>
           <input matInput formControlName="subtitulo" placeholder="Subtitulo" type="text" readonly>
-          <mat-error>El subtitulo debe contener 6 carácteres como mínimo.</mat-error>
         </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Descripcion</mat-label>
+        <mat-label>Descripción</mat-label>
         <input matInput formControlName="descripcion" placeholder="Descripcion" type="text" readonly>
-        <mat-error>El nombre debe contener 6 carácteres como mínimo.</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Imagen</mat-label>

@@ -1,8 +1,10 @@
+import { PActosViewComponent } from './../p-actos-view/p-actos-view.component';
 import { Component, OnInit } from '@angular/core';
 import Swal from "sweetalert2";
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ActoData } from 'src/app/models/models';
 import { PActoService } from 'src/app/services/p-acto-service/p-acto.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-p-actos-form',
@@ -23,9 +25,10 @@ export class PActosFormComponent implements OnInit {
     enUso: 0
   }
 
-  constructor(private fb: FormBuilder, private actoService: PActoService) { 
+  constructor(private fb: FormBuilder, private actoService: PActoService, 
+    public dialogRef: MatDialogRef<PActosViewComponent>) { 
     this.newActosForm = this.fb.group({
-      titulo: new FormControl(''),
+      titulo: new FormControl('', Validators.required),
       descripcion: new FormControl(''),
       categoria: new FormControl(''),
       ubicacion: new FormControl(''),
@@ -82,6 +85,7 @@ export class PActosFormComponent implements OnInit {
               'Acto insertado correctamente',
               'success'
             )
+            this.dialogRef.close();
           },
           error => {
             console.error(error, "Error", this.acto)
@@ -92,6 +96,7 @@ export class PActosFormComponent implements OnInit {
               cancelButtonColor: '#d33',
               cancelButtonText: "Cerrar",
             })
+            this.dialogRef.close();
           }
         );
       }

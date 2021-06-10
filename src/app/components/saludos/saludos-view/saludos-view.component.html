@@ -11,7 +11,8 @@
     <input matInput (keyup)="applyFilter($event)" placeholder="Introduce aquí la palabra a buscar" #input>
   </mat-form-field>
   
-  <div class="mat-elevation-z8">
+  <app-spinner *ngIf="isLoading"></app-spinner>
+  <div class="mat-elevation-z8" *ngIf="!isLoading">
     <table mat-table [dataSource]="dataSource" matSort>
   
       <!-- Title Column -->
@@ -34,7 +35,9 @@
 
     <ng-container matColumnDef="url">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> URL </th>
-      <td mat-cell *matCellDef="let row"> {{row.medios[0].url}} </td>
+      <td mat-cell *matCellDef="let row">
+        <a href="{{row.medios[0].url}}" target="blank">{{row.medios[0].url}}</a>
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="tipo">

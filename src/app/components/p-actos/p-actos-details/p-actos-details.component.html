@@ -3,31 +3,26 @@
   <button mat-stroked-button mat-dialog-close ><mat-icon>close</mat-icon></button>
 </div>
 <div class="form-container">
-  <form [formGroup]="newActosForm" (ngSubmit)="onFormSubmit()">
+  <form [formGroup]="newActosForm">
       <mat-form-field appearance="outline">
-        <mat-label>Titulo</mat-label>
+        <mat-label>Título</mat-label>
         <input matInput formControlName="titulo" placeholder="Titulo" type="text" readonly cdkFocusInitial>
-        <mat-error>El nombre debe contener 6 carácteres como mínimo.</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Descripcion</mat-label>
+        <mat-label>Descripción</mat-label>
         <input matInput formControlName="descripcion" placeholder="Descripcion" type="text" readonly>
-        <mat-error>El nombre debe contener 6 carácteres como mínimo.</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Ubicacion</mat-label>
         <input matInput formControlName="ubicacion" placeholder="Ubicacion" type="text" readonly>
-        <mat-error>El nombre debe contener 6 carácteres como mínimo.</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Categoria</mat-label>
+        <mat-label>Categoría</mat-label>
         <input matInput formControlName="categoria" placeholder="Categoria" type="text" readonly>
-        <mat-error>El nombre debe contener 6 carácteres como mínimo.</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Fecha</mat-label>
         <input matInput formControlName="fecha" placeholder="Fecha" type="text" readonly>
-        <mat-error>Debes introducir un correo válido.</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Imagen</mat-label>

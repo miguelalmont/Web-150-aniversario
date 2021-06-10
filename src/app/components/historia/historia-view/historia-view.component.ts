@@ -20,6 +20,7 @@ export class HistoriaViewComponent implements AfterViewInit {
   displayedColumns: string[] = ['titulo', 'subtitulo', 'descripcion', 'enUso', 'actions'];
   dataSource: MatTableDataSource<Historia>;
   historiaData: Historia[] = [];
+  isLoading: boolean;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -53,8 +54,19 @@ export class HistoriaViewComponent implements AfterViewInit {
       response => {
         this.dataSource.data = response
         console.log(this.dataSource.data)
+        this.isLoading = false;
       },
-      error => console.log(error)
+      error => {
+        console.log(error)
+        this.isLoading = true;
+        Swal.fire({
+          title: 'Error',
+          text: `Hubo un error al cargar los datos, ${error}`,
+          icon: 'error',
+          cancelButtonColor: '#d33',
+          cancelButtonText: "Cerrar",
+        })
+      }
     )
   }
 

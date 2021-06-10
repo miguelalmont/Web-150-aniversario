@@ -5,19 +5,19 @@
 <div class="form-container">
   <form [formGroup]="newHistoriaForm" (ngSubmit)="onFormSubmit()">
       <mat-form-field appearance="outline">
-        <mat-label>Titulo</mat-label>
+        <mat-label>Título</mat-label>
         <input matInput formControlName="titulo" placeholder="Titulo" type="text" cdkFocusInitial>
-        <mat-error>El titulo debe contener 6 carácteres como mínimo.</mat-error>
+        <mat-error>El título debe contener 6 carácteres como mínimo.</mat-error>
       </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Subtitulo</mat-label>
           <input matInput formControlName="subtitulo" placeholder="Subtitulo" type="text">
-          <mat-error>El subtitulo debe contener 6 carácteres como mínimo.</mat-error>
+          <mat-error>El subtítulo debe contener 6 carácteres como mínimo.</mat-error>
         </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Descripcion</mat-label>
+        <mat-label>Descripción</mat-label>
         <input matInput formControlName="descripcion" placeholder="Descripcion" type="text">
-        <mat-error>El nombre debe contener 6 carácteres como mínimo.</mat-error>
+        <mat-error>La descripción debe contener 6 carácteres como mínimo.</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Imagen</mat-label>

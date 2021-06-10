@@ -2,9 +2,10 @@ import { Component, Inject, Input, OnInit } from '@angular/core';
 
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import Swal from "sweetalert2";
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Historia } from 'src/app/models/models';
 import { HistoriaService } from 'src/app/services/historia-service/historia.service';
+import { HistoriaViewComponent } from '../historia-view/historia-view.component';
 
 @Component({
   selector: 'app-historia-edit',
@@ -39,7 +40,8 @@ export class HistoriaEditComponent implements OnInit {
     medios: this.newHistoriaForm.get('medios').value
   }
 
-  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data, private historiaService: HistoriaService) {
+  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data, private historiaService: HistoriaService,
+  public dialogRef: MatDialogRef<HistoriaViewComponent>) {
     this.historiaInput = data.row;
     this.newHistoriaForm = this.fb.group({
       titulo: new FormControl(this.historiaInput.titulo),
@@ -84,6 +86,7 @@ export class HistoriaEditComponent implements OnInit {
               'Historia editada correctamente',
               'success'
             )
+            this.dialogRef.close()
           },
           error => {
             console.error('Error ', error)
@@ -94,6 +97,7 @@ export class HistoriaEditComponent implements OnInit {
               cancelButtonColor: '#d33',
               cancelButtonText: "Cerrar",
             })
+            this.dialogRef.close()
           }
         );
       }
