@@ -1,6 +1,10 @@
+import { Inject, Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import Swal from "sweetalert2";
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Saludo } from 'src/app/models/models';
+import { SaludosService } from 'src/app/services/saludos-service/saludos.service';
 
 @Component({
   selector: 'app-saludos-edit',
@@ -9,35 +13,56 @@ import Swal from "sweetalert2";
 })
 export class SaludosEditComponent implements OnInit {
 
-  newSaludosForm: FormGroup = this.fb.group({
-    titulo: new FormControl(''),
-    contenido: new FormControl(''),
-    descripcion: new FormControl(''),
-    medios: new FormControl(''),
-    enUso: new FormControl('')
-  });
+  @Input() saludoInput: Saludo = {
+    id: 0,
+    titulo: '',
+    descripcion: '',
+    texto: '',
+    medios: [],
+    enUso: 0
+}
 
-  saludos = {
-    titulo: this.newSaludosForm.get('titulo').value,
-    contenido: this.newSaludosForm.get('contenido').value,
-    descripcion: this.newSaludosForm.get('descripcion').value,
-    medios: this.newSaludosForm.get('medios').value,
-    enUso: this.newSaludosForm.get('enUso').value
+saludosFormEdit: FormGroup;
+
+  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data, private saludoService:SaludosService) {
+    this.saludoInput = data.row;
+    this.saludosFormEdit = this.fb.group({
+      titulo: new FormControl(this.saludoInput.titulo),
+      descripcion: new FormControl(this.saludoInput.descripcion),
+      texto: new FormControl(this.saludoInput.texto),
+      image: new FormControl(this.saludoInput.medios[0].url),
+      video: new FormControl(this.saludoInput.medios[1].url),
+      enUso: new FormControl(this.checkInUse(this.saludoInput.enUso))
+    });
   }
 
-  constructor(private fb: FormBuilder) {}
+  checkInUse(inUse: number) {
+    if (inUse == 1)
+      return true;
+    else
+      return false;
+  }
 
-  get titulo() { return this.newSaludosForm.get('titulo').value; }
+  unCheckInUse(enUso: boolean) {
+    if (enUso)
+      return 1;
+    else
+      return 0;
+  }
 
   ngOnInit(): void {}
 
   onFormSubmit(): void {
-    console.log('titulo:' + this.newSaludosForm.get('titulo').value);
-  }
-
-  editarSwt(){
+    this.saludoInput = {
+      id: this.data.row.id,
+      titulo: this.saludosFormEdit.get('titulo').value,
+      descripcion: this.saludosFormEdit.get('descripcion').value,
+      texto: this.saludosFormEdit.get('texto').value,
+      medios: [{ url: this.saludosFormEdit.get('image').value }, { url: this.saludosFormEdit.get('video').value }],
+      enUso: this.unCheckInUse(this.data.row.enUso)
+    }
     Swal.fire({
-      title: '¿Estas seguro?',
+      title: '¿Estás seguro?',
       text: "Los cambios no se podran revertir",
       icon: 'warning',
       showCancelButton: true,
@@ -47,13 +72,30 @@ export class SaludosEditComponent implements OnInit {
       confirmButtonText: 'Actualizar'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Perfecto',
-          'Saludo actualizado correctamente',
-          'success'
-        )
+        this.saludoService.deleteSaludos(this.saludoInput).subscribe(
+          res => {
+            console.log("Saludo editado", res, this.saludoInput)
+            Swal.fire(
+              'Perfecto',
+              'Saludo actualizado correctamente',
+              'success'
+            )
+          },
+          error => {
+            console.error(error, "Error", this.saludoInput)
+            Swal.fire({
+              title: 'Error',
+              text: 'Hubo un error al editar',
+              icon: 'error',
+              cancelButtonColor: '#d33',
+              cancelButtonText: "Cerrar",
+            })
+          }
+        );
       }
     })
   }
+
+ 
 
 }

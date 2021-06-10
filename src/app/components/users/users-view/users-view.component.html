@@ -14,7 +14,8 @@
     </button>
   </mat-form-field>
   
-  <div class="mat-elevation-z8">
+  <app-spinner *ngIf="isLoading"></app-spinner>
+  <div class="mat-elevation-z8" *ngIf="!isLoading">
     <table mat-table [dataSource]="dataSource" matSort>
   
       <!-- Name Column -->

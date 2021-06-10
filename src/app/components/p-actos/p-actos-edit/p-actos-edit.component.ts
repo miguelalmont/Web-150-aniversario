@@ -1,10 +1,11 @@
 import { Inject, Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import Swal from "sweetalert2";
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActoData } from 'src/app/models/models';
 import { PActoService } from 'src/app/services/p-acto-service/p-acto.service';
+import { PActosViewComponent } from '../p-actos-view/p-actos-view.component';
 
 
 @Component({
@@ -29,10 +30,11 @@ export class PActosEditComponent implements OnInit {
 
   actosFormEdit: FormGroup;
 
-  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data, private actoService: PActoService) {
+  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data, private actoService: PActoService,
+  public dialogRef: MatDialogRef<PActosViewComponent>) {
     this.actoInput = data.row;
     this.actosFormEdit = this.fb.group({
-      titulo: new FormControl(this.actoInput.titulo),
+      titulo: new FormControl(this.actoInput.titulo, Validators.required),
       descripcion: new FormControl(this.actoInput.descripcion),
       categoria: new FormControl(this.actoInput.categoria),
       ubicacion: new FormControl(this.actoInput.descripcion),
@@ -89,6 +91,7 @@ export class PActosEditComponent implements OnInit {
               'Usuario actualizado correctamente',
               'success'
             )
+            this.dialogRef.close();
           },
           error => {
             console.error(error, "Error", this.actoInput)
@@ -99,6 +102,7 @@ export class PActosEditComponent implements OnInit {
               cancelButtonColor: '#d33',
               cancelButtonText: "Cerrar",
             })
+            this.dialogRef.close();
           }
         );
       }

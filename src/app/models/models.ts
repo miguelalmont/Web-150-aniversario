@@ -13,7 +13,7 @@ export interface ActoData {
 export interface Saludo {
     id?: number;
     titulo: string;
-    contenido: string;
+    texto: string;
     descripcion: string;
     medios: Array<any>;
     enUso: number;

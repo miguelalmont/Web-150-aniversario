@@ -1,9 +1,10 @@
+import { HistoriaViewComponent } from './../historia-view/historia-view.component';
 import { HistoriaService } from 'src/app/services/historia-service/historia.service';
 import { Component, OnInit } from '@angular/core';
 
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { passwordValidator } from 'src/app/shared/password-validator';
 import Swal from 'sweetalert2';
+import { MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'app-historia-form',
   templateUrl: './historia-form.component.html',
@@ -27,7 +28,8 @@ export class HistoriaFormComponent implements OnInit {
     enUso: this.newHistoriaForm.get('enUso').value
   }
 
-  constructor(private fb: FormBuilder, private historiaService: HistoriaService  ) {}
+  constructor(private fb: FormBuilder, private historiaService: HistoriaService,
+    public dialogRef: MatDialogRef<HistoriaViewComponent> ) {}
 
   get titulo() { return this.newHistoriaForm.get('titulo').value; }
 
@@ -61,6 +63,7 @@ export class HistoriaFormComponent implements OnInit {
             'Historia creada correctamente',
             'success'
           )
+          this.dialogRef.close()
         },
         error => {
           console.error('Error ', error)
@@ -71,6 +74,7 @@ export class HistoriaFormComponent implements OnInit {
             cancelButtonColor: '#d33',
             cancelButtonText: "Cerrar",
           })
+          this.dialogRef.close()
         }
       );
     }

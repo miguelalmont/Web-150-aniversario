@@ -7,6 +7,8 @@ $orange: #ee712a;
 $green: #b6bc00;
 $red: #FF0000;
 
+.hidden { display: none;}
+
 // TABLE STYLES
 .table-container { margin: 1%; }
 .mat-form-field { font-size: 14px; width: 30%; }
@@ -33,9 +35,9 @@ mat-icon { height: 28px; }
 button { font-size: 1.2em; }
 .action-btn {
   display: inline-block;
-  margin-top: 1%;
-  margin-bottom: 1%;
-  margin-right: 1%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
 }
 .insert-btn {
   margin-top: 1%;

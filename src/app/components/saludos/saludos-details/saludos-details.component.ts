@@ -11,9 +11,10 @@ import { Saludo } from 'src/app/models/models';
 })
 export class SaludosDetailsComponent implements OnInit {
 
-  @Input() saludoDetails: Saludo = {
+  @Input() saludoInput: Saludo = {
+      id: 0,
       titulo: '',
-      contenido: '',
+      texto: '',
       descripcion: '',
       enUso: 0,
       medios: []
@@ -22,39 +23,37 @@ export class SaludosDetailsComponent implements OnInit {
   detailSaludoForm: FormGroup;
 
 
-  newSaludoForm: FormGroup = this.fb.group({
-    titulo: new FormControl('',  [Validators.required, Validators.minLength(6)]),
-    contenido: new FormControl('',  [Validators.required, Validators.minLength(6)]),
-    descripcion: new FormControl('',  [Validators.required, Validators.minLength(6)]),
-    enUso: new FormControl('', Validators.required),
-    medios: new FormControl('', Validators.required)
-  });
-
-  saludo = {
-    titulo: this.newSaludoForm.get('titulo').value,
-    contenido: this.newSaludoForm.get('contenido').value,
-    descripcion: this.newSaludoForm.get('descripcion').value,
-    enUso: this.newSaludoForm.get('enUso').value,
-    medios: this.newSaludoForm.get('medios').value
-  }
 
   constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data) {
-    this.saludoDetails = data.row;
+    this.saludoInput = data.row;
     this.detailSaludoForm = this.fb.group({
-      titulo: new FormControl(this.saludoDetails.titulo),
-      subtitulo: new FormControl(this.saludoDetails.contenido),
-      descripcion: new FormControl(this.saludoDetails.descripcion),
-      enUso: new FormControl(this.saludoDetails.enUso),
-      medios: new FormControl(this.saludoDetails.medios)
+      titulo: new FormControl(this.saludoInput.titulo),
+      descripcion: new FormControl(this.saludoInput.descripcion),
+      texto: new FormControl(this.saludoInput.texto),
+      image: new FormControl(this.saludoInput.medios[0].url),
+      video: new FormControl(this.saludoInput.medios[1].url),
+      enUso: new FormControl(this.checkInUse(this.saludoInput.enUso))
     });
   }
 
-  get titulo() { return this.newSaludoForm.get('titulo').value; }
+  checkInUse(inUse: number) {
+    if (inUse == 1)
+      return true;
+    else
+      return false;
+  }
+
+  unCheckInUse(enUso: boolean) {
+    if (enUso)
+      return 1;
+    else
+      return 0;
+  }
 
   ngOnInit(): void {}
 
   onFormSubmit(): void {
-    console.log('Titulo:' + this.newSaludoForm.get('titulo').value);
+    console.log('Titulo:' + this.detailSaludoForm.get('titulo').value);
   }
 
 }

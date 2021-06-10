@@ -21,6 +21,7 @@ export class VisitasViewComponent implements AfterViewInit {
   dataSource: MatTableDataSource<Visita>;
   visitas: Visita[];
   value = '';
+  isLoading: boolean;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -53,8 +54,18 @@ export class VisitasViewComponent implements AfterViewInit {
       response => {
         this.dataSource.data = response
         console.log(this.dataSource.data)
+        this.isLoading = false;
       },
-      error => console.log(error)
+      error => {
+        Swal.fire({
+          title: 'Error',
+          text: `Hubo un error al cargar los datos, ${error}`,
+          icon: 'error',
+          cancelButtonColor: '#d33',
+          cancelButtonText: "Cerrar",
+        })
+        this.isLoading = true;
+      }
     )
   }
 

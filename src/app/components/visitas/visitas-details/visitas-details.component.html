@@ -9,8 +9,11 @@
       <input matInput formControlName="titulo" placeholder="Titulo" type="text" readonly cdkFocusInitial>
     </mat-form-field>
      <mat-form-field appearance="outline">
-      <mat-label>Descripcion</mat-label>
-      <input matInput formControlName="descripcion" placeholder="Descripcion" type="text" readonly>
+      <mat-label >Descripcion</mat-label>
+      <input class="hidden" matInput formControlName="descripcion" placeholder="Descripcion" type="text" readonly>
+      <p>
+        {{detailVisitaForm.controls.descripcion.value}}
+      </p>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Imagen-Url</mat-label>

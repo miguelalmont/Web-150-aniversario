@@ -1,1 +1,7 @@
 @use '../../../../styles.scss';
+
+.password-verify {
+    display: flex;
+    color: styles.$red;
+    margin: 1% 0;
+}

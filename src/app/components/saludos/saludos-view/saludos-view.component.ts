@@ -18,9 +18,10 @@ import Swal from "sweetalert2";
   styleUrls: ['./saludos-view.component.scss']
 })
 export class SaludosViewComponent implements AfterViewInit {
-  displayedColumns: string[] = ['titulo', 'descripcion','texto','url','tipo','enUso', 'actions'];
+  displayedColumns: string[] = ['titulo', 'descripcion','texto','url','video','enUso', 'actions'];
   dataSource: MatTableDataSource<Saludo>;
   saludoData: Saludo[];
+  isLoading: boolean;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -53,8 +54,18 @@ export class SaludosViewComponent implements AfterViewInit {
       response => {
         this.dataSource.data = response
         console.log(this.dataSource.data)
+        this.isLoading = false;
       },
-      error => console.log(error)
+      error => {
+        Swal.fire({
+          title: 'Error',
+          text: `Hubo un error al cargar los datos, ${error}`,
+          icon: 'error',
+          cancelButtonColor: '#d33',
+          cancelButtonText: "Cerrar",
+        })
+        this.isLoading = true;
+      }
     )
   }
 
@@ -76,18 +87,27 @@ export class SaludosViewComponent implements AfterViewInit {
   }
 
   editSaludoOnClick(row: Saludo) {
-    const dialogRef = this.dialog.open(SaludosEditComponent, { disableClose: true, data: { row } });
+    const dialogRef = this.dialog.open(SaludosEditComponent, { data: { row } });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      this.saludoService.getSaludos().subscribe(
+        response => {
+          this.dataSource.data = response
+          console.log(this.dataSource.data)
+        },
+        error => console.log(error)
+      )
     });
   }
 
   detailsSaludoOnClick(row: Saludo) {
     console.log(row);
     const dialogRef = this.dialog.open(SaludosDetailsComponent, {
-
       data: { row }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
     });
 
   }

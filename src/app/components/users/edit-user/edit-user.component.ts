@@ -1,10 +1,11 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import Swal from "sweetalert2";
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { User } from 'src/app/models/models';
 import { UsuariosService } from 'src/app/services/usuarios-service/usuarios.service';
 import { passwordValidator } from 'src/app/shared/password-validator';
+import { UsersViewComponent } from '../users-view/users-view.component';
 
 
 @Component({
@@ -39,12 +40,13 @@ export class EditUserComponent implements OnInit {
     rolName: ''
   }
 
-  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data, private usuariosService: UsuariosService) {
+  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data, private usuariosService: UsuariosService,
+  public dialogRef: MatDialogRef<UsersViewComponent>) {
     this.userToUpdate = data.row;
     this.newUserForm = this.fb.group({
-      username: new FormControl(this.userToUpdate.username),
-      mail: new FormControl(this.userToUpdate.mail),
-      password: [''],
+      username: new FormControl(this.userToUpdate.username, Validators.required),
+      mail: new FormControl(this.userToUpdate.mail, Validators.required),
+      password: ['', Validators.minLength(6)],
       passwordRepeat: new FormControl('', [Validators.required]),
       admin: new FormControl(this.checkRolName(this.userToUpdate.rolName))
     }, { validators: passwordValidator })
@@ -82,6 +84,7 @@ export class EditUserComponent implements OnInit {
               'Usuario actualizado correctamente',
               'success'
             )
+            this.dialogRef.close()
           },
           error => {
             console.error(error, "Error", this.user)
@@ -92,6 +95,7 @@ export class EditUserComponent implements OnInit {
               cancelButtonColor: '#d33',
               cancelButtonText: "Cerrar",
             })
+            this.dialogRef.close()
           }
         );
       }

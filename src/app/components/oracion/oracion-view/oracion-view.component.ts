@@ -21,7 +21,8 @@ export class OracionViewComponent implements AfterViewInit {
   dataSource: MatTableDataSource<Oracion>;
   oraciones: Oracion[];
   value = '';
-  show: boolean = true
+  show: boolean = true;
+  isLoading: boolean;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -52,9 +53,19 @@ export class OracionViewComponent implements AfterViewInit {
     this.oracionService.getOracion().subscribe(
       response => {
         this.dataSource.data = response
-        console.log(this.dataSource.data)
+        this.isLoading = false;
       },
-      error => console.log(error)
+      error => {
+        this.isLoading = true;
+        Swal.fire({
+          title: 'Error',
+          text: `Hubo un error al cargar los datos, ${error}`,
+          icon: 'error',
+          cancelButtonColor: '#d33',
+          cancelButtonText: "Cerrar",
+        })
+        this.isLoading = true;
+      }
     )
   }
 
@@ -71,7 +82,7 @@ export class OracionViewComponent implements AfterViewInit {
     const dialogRef = this.dialog.open(OracionFormComponent, { disableClose: true });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      
     });
   }
 
