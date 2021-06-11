@@ -76,6 +76,7 @@ export class OracionEditComponent implements OnInit {
               'Oracion editada correctamente',
               'success'
             )
+            this.dialogRef.close()
           },
           error => {
             console.error('Error ', error)
@@ -86,6 +87,7 @@ export class OracionEditComponent implements OnInit {
               cancelButtonColor: '#d33',
               cancelButtonText: "Cerrar",
             })
+            this.dialogRef.close()
           }
         );
       }

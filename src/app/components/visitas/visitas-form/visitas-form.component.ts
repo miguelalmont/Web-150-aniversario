@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Visita } from 'src/app/models/models';
 import { VisitasService } from 'src/app/services/visitas-service/visitas.service';
 import Swal from "sweetalert2";
+import { VisitasViewComponent } from '../visitas-view/visitas-view.component';
 
 @Component({
   selector: 'app-visitas-form',
@@ -29,7 +31,8 @@ export class VisitasFormComponent implements OnInit {
     medios: []
   }
 
-  constructor(private fb: FormBuilder, private visitaService: VisitasService) {}
+  constructor(private fb: FormBuilder, private visitaService: VisitasService,
+    public dialogRef: MatDialogRef<VisitasViewComponent>) {}
   
   ngOnInit(): void {
   }
@@ -74,6 +77,7 @@ export class VisitasFormComponent implements OnInit {
               'Usuario insertado correctamente',
               'success'
             )
+            this.dialogRef.close();
           },
           error => {
             console.error(error, "Error", this.visita)
@@ -84,6 +88,7 @@ export class VisitasFormComponent implements OnInit {
               cancelButtonColor: '#d33',
               cancelButtonText: "Cerrar",
             })
+            this.dialogRef.close();
           }
         );
       }

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { OracionService } from 'src/app/services/oracion-service/oracion.service';
 import Swal from 'sweetalert2';
+import { OracionViewComponent } from '../oracion-view/oracion-view.component';
 
 
 @Component({
@@ -22,7 +24,8 @@ export class OracionFormComponent implements OnInit {
     enUso: 0
   }
 
-  constructor(private fb: FormBuilder, private oracionService: OracionService) {
+  constructor(private fb: FormBuilder, private oracionService: OracionService,
+    public dialogRef: MatDialogRef<OracionViewComponent>) {
     this.newOracionForm = this.fb.group({
       titulo: new FormControl('', [Validators.required, Validators.minLength(6)]),
       oracion: new FormControl('', [Validators.required, Validators.minLength(6)]),
@@ -58,6 +61,7 @@ export class OracionFormComponent implements OnInit {
               'Oracion creada correctamente',
               'success'
             )
+            this.dialogRef.close()
           },
           error => {
             console.error('Error ', error)
@@ -68,6 +72,7 @@ export class OracionFormComponent implements OnInit {
               cancelButtonColor: '#d33',
               cancelButtonText: "Cerrar",
             })
+            this.dialogRef.close()
           }
         );
       }

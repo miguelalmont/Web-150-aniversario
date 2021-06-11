@@ -1,9 +1,11 @@
+import { AmbientesPjViewComponent } from './../ambientes-pj-view/ambientes-pj-view.component';
 import { Component, OnInit } from '@angular/core';
 
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ambientesPj } from 'src/app/models/models';
 import { AmbientesPJService } from 'src/app/services/ambientesPJ-service/ambientes-pj.service.service';
 import Swal from 'sweetalert2';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-ambientes-pj-form',
@@ -22,7 +24,8 @@ export class AmbientesPjFormComponent implements OnInit {
   newAmbienteForm: FormGroup;
   checked: boolean = false;
 
-  constructor(private fb: FormBuilder, private ambienteService: AmbientesPJService) {
+  constructor(private fb: FormBuilder, private ambienteService: AmbientesPJService,
+    public dialogRef: MatDialogRef<AmbientesPjViewComponent>) {
     this.newAmbienteForm = this.fb.group({
       titulo: new FormControl('', [Validators.required]),
       descripcion: new FormControl('', [Validators.required]),
@@ -73,6 +76,7 @@ export class AmbientesPjFormComponent implements OnInit {
               'Ambiente insertado correctamente',
               'success'
             )
+            this.dialogRef.close()
           },
           error => {
             console.error(error, "Error", this.ambiente)
@@ -83,6 +87,7 @@ export class AmbientesPjFormComponent implements OnInit {
               cancelButtonColor: '#d33',
               cancelButtonText: "Cerrar",
             })
+            this.dialogRef.close()
           }
         );
       }

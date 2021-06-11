@@ -1,10 +1,11 @@
 import {  ambientesPj } from './../../../models/models';
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { AmbientesPJService } from 'src/app/services/ambientesPJ-service/ambientes-pj.service.service';
 import Swal from "sweetalert2";
+import { AmbientesPjViewComponent } from '../ambientes-pj-view/ambientes-pj-view.component';
 
 @Component({
   selector: 'app-ambientes-pj-edit',
@@ -30,7 +31,8 @@ export class AmbientesPjEditComponent implements OnInit {
     video: new FormControl(''),
     enUso: false
   });
-  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data, private ambienteService: AmbientesPJService) {
+  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data, private ambienteService: AmbientesPJService,
+  public dialogRef: MatDialogRef<AmbientesPjViewComponent>) {
     this.ambienteInput = data.row;
     console.log(this.ambienteInput)
     if (this.data.row.medios != undefined || this.data.row.descripcion != undefined || this.data.row.medios != null || this.data.row.descripcion != null) {
@@ -93,6 +95,7 @@ export class AmbientesPjEditComponent implements OnInit {
               'Ambiente actualizado correctamente',
               'success'
             )
+            this.dialogRef.close()
           },
           error => {
             console.error(error, "Error", this.ambienteInput)
@@ -103,6 +106,7 @@ export class AmbientesPjEditComponent implements OnInit {
               cancelButtonColor: '#d33',
               cancelButtonText: "Cerrar",
             })
+            this.dialogRef.close()
           }
         );
       }
