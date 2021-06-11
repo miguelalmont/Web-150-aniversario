@@ -1,8 +1,10 @@
+import { MaterialesViewComponent } from './../materiales-view/materiales-view.component';
 import { Component, OnInit } from '@angular/core';
 
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { MaterialesService } from 'src/app/services/materiales-service/materiales.service';
 import Swal from 'sweetalert2';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-materiales-form',
@@ -22,7 +24,8 @@ export class MaterialesFormComponent implements OnInit {
     enUso: 0,
   }
 
-  constructor(private fb: FormBuilder, private materialesService: MaterialesService) {
+  constructor(private fb: FormBuilder, private materialesService: MaterialesService,
+    public dialogRef: MatDialogRef<MaterialesViewComponent>) {
     this.newMaterialesForm = this.fb.group({
       titulo: new FormControl(''),
       contenido: new FormControl(''),
@@ -61,6 +64,7 @@ export class MaterialesFormComponent implements OnInit {
               'Material creado correctamente',
               'success'
             )
+            this.dialogRef.close()
           },
           error => {
             console.error('Error ', error)
@@ -71,6 +75,7 @@ export class MaterialesFormComponent implements OnInit {
               cancelButtonColor: '#d33',
               cancelButtonText: "Cerrar",
             })
+            this.dialogRef.close()
           }
         );
       }

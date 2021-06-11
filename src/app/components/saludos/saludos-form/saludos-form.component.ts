@@ -1,8 +1,10 @@
+import { SaludosViewComponent } from './../saludos-view/saludos-view.component';
 import { Component, OnInit } from '@angular/core';
 import Swal from "sweetalert2";
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Saludo } from 'src/app/models/models';
 import { SaludosService } from 'src/app/services/saludos-service/saludos.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-saludos-form',
@@ -23,7 +25,8 @@ export class SaludosFormComponent implements OnInit {
     enUso: 0
   }
 
-  constructor(private fb: FormBuilder, private saludoService: SaludosService) {
+  constructor(private fb: FormBuilder, private saludoService: SaludosService, 
+    public dialogRef: MatDialogRef<SaludosViewComponent>) {
     this.newSaludoForm = this.fb.group({
       titulo: new FormControl(''),
       texto: new FormControl(''),
@@ -77,6 +80,7 @@ export class SaludosFormComponent implements OnInit {
               'Saludo insertado correctamente',
               'success'
             )
+            this.dialogRef.close()
           },
           error => {
             console.error(error, "Error", this.saludos)
@@ -87,6 +91,7 @@ export class SaludosFormComponent implements OnInit {
               cancelButtonColor: '#d33',
               cancelButtonText: "Cerrar",
             })
+            this.dialogRef.close()
           }
         );
       }

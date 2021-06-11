@@ -2,9 +2,10 @@ import { Inject, Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import Swal from "sweetalert2";
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Saludo } from 'src/app/models/models';
 import { SaludosService } from 'src/app/services/saludos-service/saludos.service';
+import { SaludosViewComponent } from '../saludos-view/saludos-view.component';
 
 @Component({
   selector: 'app-saludos-edit',
@@ -26,7 +27,8 @@ export class SaludosEditComponent implements OnInit {
 
 saludosFormEdit: FormGroup;
 
-  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data, private saludoService:SaludosService) {
+  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data, private saludoService:SaludosService,
+  public dialogRef: MatDialogRef<SaludosViewComponent>) {
     this.saludoInput = data.row;
     this.saludosFormEdit = this.fb.group({
       titulo: new FormControl(this.saludoInput.titulo),
@@ -82,6 +84,7 @@ saludosFormEdit: FormGroup;
               'Saludo actualizado correctamente',
               'success'
             )
+            this.dialogRef.close()
           },
           error => {
             console.error(error, "Error", this.saludoInput)
@@ -92,6 +95,7 @@ saludosFormEdit: FormGroup;
               cancelButtonColor: '#d33',
               cancelButtonText: "Cerrar",
             })
+            this.dialogRef.close()
           }
         );
       }
